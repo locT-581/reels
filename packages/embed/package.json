@@ -1,0 +1,93 @@
+{
+  "name": "@vortex/embed",
+  "version": "0.0.1",
+  "description": "Embeddable widget for VortexStream",
+  "license": "MIT",
+  "author": "VortexStream Team",
+  "homepage": "https://github.com/vortex-stream/vortex-stream#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vortex-stream/vortex-stream.git",
+    "directory": "packages/embed"
+  },
+  "bugs": {
+    "url": "https://github.com/vortex-stream/vortex-stream/issues"
+  },
+  "keywords": ["vortex", "embed", "widget", "iframe", "react", "video"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --max-warnings 0",
+    "lint:fix": "eslint src --fix"
+  },
+  "dependencies": {
+    "@vortex/core": "workspace:*",
+    "@vortex/feed": "workspace:*",
+    "@vortex/gestures": "workspace:*",
+    "@vortex/player": "workspace:*",
+    "@vortex/ui": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "hls.js": ">=1.5.0",
+    "motion": ">=11.0.0",
+    "lucide-react": ">=0.300.0",
+    "@tanstack/react-virtual": ">=3.0.0",
+    "@use-gesture/react": ">=10.0.0",
+    "zustand": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "hls.js": {
+      "optional": false
+    },
+    "motion": {
+      "optional": false
+    },
+    "lucide-react": {
+      "optional": false
+    },
+    "@tanstack/react-virtual": {
+      "optional": false
+    },
+    "@use-gesture/react": {
+      "optional": false
+    },
+    "zustand": {
+      "optional": false
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "hls.js": "^1.5.18",
+    "motion": "^11.18.0",
+    "lucide-react": "^0.408.0",
+    "@tanstack/react-virtual": "^3.11.2",
+    "@use-gesture/react": "^10.3.1",
+    "zustand": "^5.0.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ]
+}

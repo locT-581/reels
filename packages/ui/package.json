@@ -1,0 +1,60 @@
+{
+  "name": "@vortex/ui",
+  "version": "0.0.1",
+  "description": "UI components for VortexStream",
+  "license": "MIT",
+  "author": "VortexStream Team",
+  "homepage": "https://github.com/vortex-stream/vortex-stream#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vortex-stream/vortex-stream.git",
+    "directory": "packages/ui"
+  },
+  "bugs": {
+    "url": "https://github.com/vortex-stream/vortex-stream/issues"
+  },
+  "keywords": ["vortex", "ui", "components", "react", "video", "tiktok"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --max-warnings 0",
+    "lint:fix": "eslint src --fix"
+  },
+  "dependencies": {
+    "@vortex/core": "workspace:*",
+    "lucide-react": "^0.468.0",
+    "motion": "^11.15.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ]
+}
+

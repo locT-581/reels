@@ -1,0 +1,64 @@
+{
+  "name": "@vortex/feed",
+  "version": "0.0.1",
+  "description": "Virtualized video feed for VortexStream",
+  "license": "MIT",
+  "author": "VortexStream Team",
+  "homepage": "https://github.com/vortex-stream/vortex-stream#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vortex-stream/vortex-stream.git",
+    "directory": "packages/feed"
+  },
+  "bugs": {
+    "url": "https://github.com/vortex-stream/vortex-stream/issues"
+  },
+  "keywords": ["vortex", "feed", "virtualized", "scroll", "react", "video"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --max-warnings 0",
+    "lint:fix": "eslint src --fix"
+  },
+  "dependencies": {
+    "@tanstack/react-virtual": "^3.11.2",
+    "@vortex/core": "workspace:*",
+    "@vortex/player": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "motion": ">=11.0.0",
+    "lucide-react": ">=0.460.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "lucide-react": "^0.469.0",
+    "motion": "^12.11.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ]
+}
+

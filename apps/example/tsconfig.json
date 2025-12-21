@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "strict": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./app/*"],
+      "@vortex/core": ["../../packages/core/src"],
+      "@vortex/core/*": ["../../packages/core/src/*"],
+      "@vortex/player": ["../../packages/player/src"],
+      "@vortex/player/*": ["../../packages/player/src/*"],
+      "@vortex/ui": ["../../packages/ui/src"],
+      "@vortex/ui/*": ["../../packages/ui/src/*"],
+      "@vortex/feed": ["../../packages/feed/src"],
+      "@vortex/feed/*": ["../../packages/feed/src/*"],
+      "@vortex/gestures": ["../../packages/gestures/src"],
+      "@vortex/gestures/*": ["../../packages/gestures/src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}

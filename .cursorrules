@@ -1,0 +1,244 @@
+# VortexStream Project Rules
+
+## 📋 Quy tắc Cập nhật Tiến độ (QUAN TRỌNG)
+
+### Sau khi hoàn thành MỖI task:
+1. **BẮT BUỘC** cập nhật checkbox trong `docs/IMPLEMENTATION_PLAN.md`:
+   - Thay `- [ ]` thành `- [x]` cho task đã hoàn thành
+   - Cập nhật % tiến độ của Phase tương ứng
+   - Cập nhật trạng thái Phase (⬜ → 🔄 → ✅)
+
+### Sau khi hoàn thành MỖI phase:
+1. Cập nhật bảng "Tổng quan tiến độ" ở đầu file:
+   - Thay đổi trạng thái: ⬜ Chưa bắt đầu → 🔄 Đang thực hiện → ✅ Hoàn thành
+   - Cập nhật % tiến độ
+2. Cập nhật "Tổng tiến độ" overall
+3. Thêm entry mới vào bảng "Ghi chú cập nhật"
+4. Cập nhật Milestones nếu applicable
+
+### Format cập nhật:
+```markdown
+## Phase X: [Tên Phase]
+**Tiến độ Phase X:** 🔄 12/24 tasks (50%)
+```
+
+### Ký hiệu trạng thái:
+- ⬜ Chưa bắt đầu (0%)
+- 🔄 Đang thực hiện (1-99%)
+- ✅ Hoàn thành (100%)
+- ⏸️ Tạm dừng
+- ❌ Bị hủy
+
+---
+
+## 🏗️ Quy tắc Code
+
+### Cấu trúc Monorepo
+- Tất cả packages nằm trong `packages/`
+- Apps (web, docs) nằm trong `apps/`
+- Sử dụng pnpm workspace
+- Import bằng package name: `@vortex/core`, `@vortex/player`, etc.
+
+### TypeScript
+- Strict mode bắt buộc
+- Không sử dụng `any` - dùng `unknown` nếu cần
+- Export types rõ ràng từ mỗi package
+- Sử dụng barrel exports (index.ts)
+
+### Naming Conventions
+- Components: PascalCase (`VideoPlayer.tsx`)
+- Hooks: camelCase với prefix `use` (`usePlayer.ts`)
+- Utils: camelCase (`formatCount.ts`)
+- Types: PascalCase (`type VideoState`)
+- Constants: SCREAMING_SNAKE_CASE (`MAX_BUFFER_SIZE`)
+
+### File Structure trong Package
+```
+packages/[name]/
+├── src/
+│   ├── components/     # React components
+│   ├── hooks/          # Custom hooks
+│   ├── utils/          # Utility functions
+│   ├── types/          # TypeScript types
+│   ├── constants/      # Constants
+│   └── index.ts        # Barrel export
+├── package.json
+├── tsconfig.json
+└── tsup.config.ts
+```
+
+---
+
+## 🎨 UI/UX Rules (từ BLUEPRINT.md)
+
+### Design System "Vortex"
+- **Nền chủ đạo:** Pitch Black (#000000)
+- **Màu nhấn:** Electric Violet (#8B5CF6)
+- **Font:** Inter/Geist (San-serif)
+- **Spacing:** Hệ thống 8pt (8, 16, 24, 32...)
+- **Bo góc:** 16px - 24px
+- **Transition:** 300ms với easing `cubic-bezier(0.32, 0.72, 0, 1)`
+
+### Video-centric Design
+- Video chiếm 100% diện tích màn hình
+- Các nút tương tác nằm bên phải, xếp dọc
+- Seek bar cực mảnh (2px), đậm khi chạm (4px)
+- Không sử dụng nền trắng cho trang chứa video
+- Icons: Outline → Solid khi active
+
+### Reachability First
+- Nút bấm quan trọng trong vùng bottom 1/3 màn hình
+- Tap area tối thiểu 48x48px
+- Safe area insets cho notch/home indicator
+
+---
+
+## 🎬 Video Player Rules
+
+### HLS Configuration
+```typescript
+const hlsConfig = {
+  maxBufferLength: 30,              // 30s
+  maxMaxBufferLength: 60,           // 60s max
+  maxBufferSize: 30 * 1000 * 1000,  // 30MB
+  abrEwmaDefaultEstimate: 500000,   // 500kbps
+  abrBandWidthUpFactor: 0.7,
+  abrBandWidthFactor: 0.9,
+  startLevel: -1,                   // Auto
+  fragLoadingMaxRetry: 3,
+}
+```
+
+### Video Activation Rules
+- > 50% viewport → Play
+- < 30% viewport → Pause + Reset
+- Scroll velocity > 2000px/s → Skip activation
+- Scroll dừng > 300ms → Activate nearest
+
+### Memory Management
+- Max 5 videos trong DOM
+- Max 3 decoded video frames
+- Total memory < 150MB
+- Aggressive cleanup khi low memory
+
+---
+
+## 📱 Performance Budgets
+
+### Bundle Size
+| Package | Max Size (gzip) |
+|---------|-----------------|
+| @vortex/core | 5KB |
+| @vortex/player | 70KB |
+| @vortex/ui | 15KB |
+| @vortex/gestures | 15KB |
+| @vortex/feed | 8KB |
+| @vortex/embed | 100KB |
+| **Total** | **150KB** |
+
+### Core Web Vitals
+- LCP < 1.5s
+- FID < 50ms
+- CLS < 0.05
+- INP < 150ms
+- TTI < 2s
+
+### Video Metrics
+- Time to First Frame < 500ms
+- Buffering Ratio < 1%
+- Startup Failures < 0.5%
+- Seek Latency < 200ms
+
+---
+
+## 🧪 Testing Requirements
+
+### Before PR
+- [ ] Unit tests pass
+- [ ] No TypeScript errors
+- [ ] No ESLint errors
+- [ ] Bundle size within budget
+- [ ] Storybook stories updated (nếu có UI changes)
+
+### Before Release
+- [ ] E2E tests pass
+- [ ] Performance audit pass
+- [ ] Cross-browser testing
+- [ ] Accessibility check
+- [ ] Memory leak check
+
+---
+
+## 📝 Commit Convention
+
+Format: `type(scope): message`
+
+### Types
+- `feat`: Tính năng mới
+- `fix`: Bug fix
+- `docs`: Documentation
+- `style`: Code style (formatting)
+- `refactor`: Refactoring
+- `perf`: Performance improvement
+- `test`: Tests
+- `chore`: Build/tooling
+
+### Scopes
+- `core`: @vortex/core
+- `player`: @vortex/player
+- `ui`: @vortex/ui
+- `gestures`: @vortex/gestures
+- `feed`: @vortex/feed
+- `embed`: @vortex/embed
+- `web`: apps/web
+- `docs`: apps/docs
+
+### Examples
+```
+feat(player): add HLS quality selector
+fix(feed): memory leak on scroll
+docs(core): update API documentation
+perf(player): optimize buffer management
+```
+
+---
+
+## 🔄 Workflow
+
+### Khi bắt đầu task mới:
+1. Đọc task description trong IMPLEMENTATION_PLAN.md
+2. Check dependencies (tasks trước đó)
+3. Tạo branch: `feat/phase-X-task-name`
+4. Implement
+5. Test
+6. Update IMPLEMENTATION_PLAN.md
+7. Commit với convention
+8. PR nếu cần review
+
+### Khi gặp blocker:
+1. Mark task với ⏸️
+2. Document blocker trong notes
+3. Move to next task nếu có thể
+4. Quay lại khi blocker resolved
+
+---
+
+## 🚫 Những điều KHÔNG được làm
+
+1. **KHÔNG** commit code chưa test
+2. **KHÔNG** bỏ qua TypeScript errors
+3. **KHÔNG** hardcode values - dùng constants
+4. **KHÔNG** dùng inline styles - dùng Tailwind classes
+5. **KHÔNG** quên cập nhật IMPLEMENTATION_PLAN.md sau mỗi task
+6. **KHÔNG** vượt quá bundle size budget
+7. **KHÔNG** dùng third-party libraries không cần thiết
+8. **KHÔNG** bỏ qua accessibility
+
+---
+
+## 📚 Reference Documents
+
+- [BLUEPRINT.md](./docs/BLUEPRINT.md) - Product specifications
+- [TECHSTACK.md](./docs/TECHSTACK.md) - Technical decisions
+- [IMPLEMENTATION_PLAN.md](./docs/IMPLEMENTATION_PLAN.md) - Implementation tracking
+
