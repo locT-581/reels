@@ -1,14 +1,22 @@
 'use client'
 
 import { useState, useCallback, useRef } from 'react'
-import { VideoFeed, type VideoFeedRef } from '@vortex/feed'
+import { VideoFeed, ConnectedVideoFeed, type VideoFeedRef } from '@vortex/feed'
 import type { Video } from '@vortex/core'
 import { CommentSheet, ShareSheet, Toast } from '@vortex/ui'
 import { mockVideos, mockComments } from '@/lib/mock-data'
+import { useDemoConfig, toVortexConfig } from '@/lib/demo-config'
 import { Navigation } from '@/components/Navigation'
+import { Settings, Wifi, WifiOff } from 'lucide-react'
+import Link from 'next/link'
 
 export default function FeedPage() {
   const feedRef = useRef<VideoFeedRef>(null)
+  const config = useDemoConfig()
+  const vortexConfig = toVortexConfig(config)
+  const isApiMode = config.mode === 'api' && vortexConfig !== null
+
+  // State for mock mode
   const [videos, setVideos] = useState<Video[]>(mockVideos)
   const [currentVideo, setCurrentVideo] = useState<Video | null>(mockVideos[0] || null)
 
@@ -37,24 +45,27 @@ export default function FeedPage() {
 
   // Handle like
   const handleLike = useCallback((video: Video) => {
-    setVideos((prev) =>
-      prev.map((v) =>
-        v.id === video.id
-          ? {
-              ...v,
-              isLiked: !v.isLiked,
-              stats: {
-                ...v.stats,
-                likes: v.isLiked ? v.stats.likes - 1 : v.stats.likes + 1,
-              },
-            }
-          : v
+    if (!isApiMode) {
+      // Mock mode: update local state
+      setVideos((prev) =>
+        prev.map((v) =>
+          v.id === video.id
+            ? {
+                ...v,
+                isLiked: !v.isLiked,
+                stats: {
+                  ...v.stats,
+                  likes: v.isLiked ? v.stats.likes - 1 : v.stats.likes + 1,
+                },
+              }
+            : v
+        )
       )
-    )
+    }
 
     const isLiked = !video.isLiked
     showToast(isLiked ? '❤️ Đã thích video' : '💔 Đã bỏ thích', isLiked ? 'success' : 'warning')
-  }, [showToast])
+  }, [isApiMode, showToast])
 
   // Handle comment
   const handleComment = useCallback((_video: Video) => {
@@ -71,24 +82,38 @@ export default function FeedPage() {
     showToast(`👤 Đang xem profile @${video.author.username}`, 'default')
   }, [showToast])
 
+  // Common feed props
+  const feedProps = {
+    onVideoChange: handleVideoChange,
+    onLike: handleLike,
+    onComment: handleComment,
+    onShare: handleShare,
+    onAuthorClick: handleAuthorClick,
+    transitionDuration: 300,
+    swipeThreshold: 50,
+    velocityThreshold: 0.3,
+    hapticEnabled: true,
+  }
+
   return (
     <div className="min-h-screen bg-vortex-bg">
       <Navigation />
 
-      {/* Video Feed */}
-      <VideoFeed
-        ref={feedRef}
-        videos={videos}
-        onVideoChange={handleVideoChange}
-        onLike={handleLike}
-        onComment={handleComment}
-        onShare={handleShare}
-        onAuthorClick={handleAuthorClick}
-        transitionDuration={300}
-        swipeThreshold={50}
-        velocityThreshold={0.3}
-        hapticEnabled={true}
-      />
+      {/* Video Feed - Switch between mock and API mode */}
+      {isApiMode ? (
+        <ConnectedVideoFeed
+          ref={feedRef}
+          config={vortexConfig}
+          pageSize={10}
+          {...feedProps}
+        />
+      ) : (
+        <VideoFeed
+          ref={feedRef}
+          videos={videos}
+          {...feedProps}
+        />
+      )}
 
       {/* Comment Sheet */}
       <CommentSheet
@@ -125,15 +150,34 @@ export default function FeedPage() {
         onClose={() => setToastVisible(false)}
       />
 
-      {/* Video Info Overlay - Top Left */}
+      {/* Mode Indicator - Top Left */}
       <div className="fixed top-4 left-4 z-40 pointer-events-none">
-        <div className="vortex-glass rounded-xl px-4 py-3 max-w-[200px]">
-          <div className="text-xs text-vortex-text-muted mb-1">Đang xem</div>
-          <div className="text-sm font-medium text-vortex-text truncate">
-            {currentVideo?.author.displayName || 'Video'}
+        <div className="vortex-glass rounded-xl px-4 py-3 max-w-[220px] pointer-events-auto">
+          <div className="flex items-center gap-2 mb-2">
+            {isApiMode ? (
+              <Wifi className="w-4 h-4 text-green-400" />
+            ) : (
+              <WifiOff className="w-4 h-4 text-vortex-text-muted" />
+            )}
+            <span className="text-xs font-medium text-vortex-text">
+              {isApiMode ? 'API Mode' : 'Mock Mode'}
+            </span>
+            <Link
+              href="/settings"
+              className="ml-auto p-1 rounded hover:bg-vortex-surface transition-colors"
+              title="Settings"
+            >
+              <Settings className="w-3.5 h-3.5 text-vortex-text-muted" />
+            </Link>
           </div>
+          {isApiMode && config.baseUrl && (
+            <div className="text-xs text-vortex-text-muted truncate">
+              {config.baseUrl}
+            </div>
+          )}
           <div className="text-xs text-vortex-text-secondary mt-1">
-            {feedRef.current ? `${feedRef.current.activeIndex + 1} / ${feedRef.current.totalSlides}` : '1 / ?'}
+            {currentVideo?.author.displayName || 'Video'} •{' '}
+            {feedRef.current ? `${feedRef.current.activeIndex + 1}/${feedRef.current.totalSlides}` : '1/?'}
           </div>
         </div>
       </div>

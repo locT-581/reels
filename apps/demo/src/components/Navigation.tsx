@@ -12,6 +12,7 @@ import {
   BookOpen,
   Menu,
   X,
+  Settings,
 } from 'lucide-react'
 import { useState } from 'react'
 
@@ -64,6 +65,12 @@ const navItems: NavItem[] = [
     href: '/docs',
     icon: BookOpen,
     description: 'Documentation',
+  },
+  {
+    label: 'Settings',
+    href: '/settings',
+    icon: Settings,
+    description: 'API configuration',
   },
 ]
 

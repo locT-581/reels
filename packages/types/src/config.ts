@@ -219,6 +219,8 @@ export interface VortexConfig {
   baseUrl: string
   /** Authentication configuration */
   auth?: VortexAuthConfig
+  /** API key to include in all requests as query param (?api_key=xxx) */
+  apiKey?: string
   /** Custom API endpoints */
   endpoints?: Partial<VortexApiEndpoints>
   /** Response transformers */

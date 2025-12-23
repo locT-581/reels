@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import { DemoProvider } from '@/components/DemoProvider'
 import './globals.css'
 
 const geistSans = Geist({
@@ -37,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="vi" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen bg-vortex-bg text-vortex-text antialiased">
-        {children}
+        <DemoProvider>{children}</DemoProvider>
       </body>
     </html>
   )

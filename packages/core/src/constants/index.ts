@@ -1,6 +1,8 @@
 /**
  * @vortex/core - Constants
- * Configuration constants for VortexStream
+ * Runtime configuration constants for VortexStream
+ * 
+ * Note: Design tokens (colors, spacing, animation, typography) are in @vortex/design-tokens
  */
 
 // Player constants
@@ -14,41 +16,12 @@ export {
   SEEK_BAR,
 } from './player'
 
-// Animation constants
-export {
-  EASING,
-  DURATION,
-  SPRING,
-  VARIANTS,
-  STAGGER,
-} from './animation'
-
-// Color constants
-export {
-  COLORS,
-  OPACITY,
-  GRADIENTS,
-  SHADOWS,
-  BLUR,
-} from './colors'
-
 // Breakpoint constants
 export {
   BREAKPOINTS,
   MEDIA,
   SAFE_AREA,
 } from './breakpoints'
-
-// UI constants
-export {
-  TOUCH,
-  ICON_SIZE,
-  BOTTOM_SHEET,
-  PULL_TO_REFRESH,
-  SPACING,
-  RADIUS,
-  Z_INDEX,
-} from './ui'
 
 // Gesture constants
 export {

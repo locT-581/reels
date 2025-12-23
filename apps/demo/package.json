@@ -10,7 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.62.0",
     "@vortex/core": "workspace:*",
+    "@vortex/design-tokens": "workspace:*",
     "@vortex/player": "workspace:*",
     "@vortex/player-core": "workspace:*",
     "@vortex/feed": "workspace:*",

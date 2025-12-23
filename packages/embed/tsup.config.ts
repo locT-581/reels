@@ -25,8 +25,10 @@ export default defineConfig({
     'zustand/middleware',
     'clsx',
     'tailwind-merge',
+    // Design tokens needs to be external since it's referenced by @vortex/core
+    '@vortex/design-tokens',
   ],
-  // Bundle only vortex packages
+  // Bundle only vortex packages (excluding design-tokens)
   noExternal: [
     '@vortex/core',
     '@vortex/player',
@@ -35,7 +37,6 @@ export default defineConfig({
     '@vortex/ui',
     '@vortex/gestures',
     '@vortex/feed',
-    '@vortex/design-tokens',
     '@vortex/types',
   ],
 })

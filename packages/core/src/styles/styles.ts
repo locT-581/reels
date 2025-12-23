@@ -6,7 +6,7 @@
  */
 
 import type { CSSProperties } from 'react'
-import { colors, spacing, radii, fontSizes, fontWeights, shadows, durations, easings, zIndices } from './tokens'
+import { colors, spacing, radii, fontSizes, fontWeights, shadows, durations, easings, zIndices } from '@vortex/design-tokens'
 
 // =============================================================================
 // TYPE HELPERS

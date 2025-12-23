@@ -82,6 +82,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.0",
+    "@vortex/design-tokens": "workspace:*",
     "@vortex/types": "workspace:*",
     "idb": "^8.0.0",
     "zustand": "^5.0.2"

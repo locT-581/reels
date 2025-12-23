@@ -117,6 +117,11 @@ export class VortexApiClient {
     const cleanPath = path.startsWith('/') ? path : `/${path}`
     const url = new URL(`${baseUrl}${cleanPath}`)
 
+    // Add api_key if configured
+    if (this.config.apiKey) {
+      url.searchParams.set('api_key', this.config.apiKey)
+    }
+
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
         if (value !== undefined && value !== null && value !== '') {

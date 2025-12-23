@@ -154,9 +154,9 @@ export const colors = {
   accentHover: 'var(--vortex-color-accent-hover, #7C3AED)',
 
   // Semantic colors
-  like: 'var(--vortex-color-like, #FF2D55)',
+  like: 'var(--vortex-color-like, #FF434E)',
   success: 'var(--vortex-color-success, #22C55E)',
-  warning: 'var(--vortex-color-warning, #FBBF24)',
+  warning: 'var(--vortex-color-warning, #DAA000)',
   error: 'var(--vortex-color-error, #EF4444)',
 
   // Text colors
@@ -358,9 +358,17 @@ export const components = {
 
   // Action bar
   actionBar: {
-    iconSize: 32,
-    gap: 20,
+    iconSize: 28,
+    gap: 24,
+    iconCountGap: 2,
     counterFontSize: fontSizes.xs,
+    counterLineHeight: 1.4,
+  },
+
+  // Profile avatar in action bar
+  profileAction: {
+    avatarSize: 48,
+    followButtonSize: 20,
   },
 } as const
 
@@ -386,7 +394,7 @@ export const defaultCSSVariables = {
   '--vortex-color-surface-hover': '#27272A',
   '--vortex-color-accent': '#8B5CF6',
   '--vortex-color-accent-hover': '#7C3AED',
-  '--vortex-color-like': '#FF2D55',
+  '--vortex-color-like': '#FF434E',
   '--vortex-color-success': '#22C55E',
   '--vortex-color-warning': '#FBBF24',
   '--vortex-color-error': '#EF4444',

@@ -1,20 +1,77 @@
 'use client'
 
 import { useState, useCallback, useRef } from 'react'
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import {
   useVideoGestures,
   useTapGestures,
   useLongPress,
   useVerticalSwipe,
   useHorizontalSwipe,
-  useTapRipple,
   getGestureZone,
   calculateSeekAmount,
 } from '@vortex/gestures'
 import { DoubleTapHeart, useDoubleTapHeart, Toast } from '@vortex/ui'
 import { Navigation } from '@/components/Navigation'
 import { Play, Pause, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Hand, Zap } from 'lucide-react'
+
+// =============================================================================
+// Local Tap Ripple Hook (for demo purposes)
+// =============================================================================
+
+interface Ripple {
+  id: number
+  x: number
+  y: number
+}
+
+function useTapRipple({ color = 'rgba(139, 92, 246, 0.5)' }: { color?: string }) {
+  const [ripples, setRipples] = useState<Ripple[]>([])
+  const nextId = useRef(0)
+
+  const triggerRipple = useCallback((x: number, y: number) => {
+    const id = nextId.current++
+    setRipples((prev) => [...prev, { id, x, y }])
+    setTimeout(() => {
+      setRipples((prev) => prev.filter((r) => r.id !== id))
+    }, 600)
+  }, [])
+
+  const Ripples = useCallback(
+    () => (
+      <AnimatePresence>
+        {ripples.map((ripple) => (
+          <motion.span
+            key={ripple.id}
+            initial={{ scale: 0, opacity: 0.7 }}
+            animate={{ scale: 2, opacity: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            style={{
+              position: 'absolute',
+              left: ripple.x,
+              top: ripple.y,
+              width: 100,
+              height: 100,
+              marginLeft: -50,
+              marginTop: -50,
+              borderRadius: '50%',
+              backgroundColor: color,
+              pointerEvents: 'none',
+            }}
+          />
+        ))}
+      </AnimatePresence>
+    ),
+    [ripples, color]
+  )
+
+  return { Ripples, triggerRipple }
+}
+
+// =============================================================================
+// Main Component
+// =============================================================================
 
 export default function GesturesPage() {
   const containerRef = useRef<HTMLDivElement>(null)

@@ -14,9 +14,11 @@ export default defineConfig({
     'styles/index': 'src/styles/index.ts',
   },
   format: ['esm', 'cjs'],
-  dts: true,
+  dts: {
+    resolve: ['@vortex/design-tokens'],
+  },
   clean: true,
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', '@vortex/design-tokens'],
   treeshake: true,
   splitting: false,
 })

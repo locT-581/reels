@@ -98,9 +98,15 @@ importers:
 
   apps/demo:
     dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.62.0
+        version: 5.90.12(react@19.2.3)
       '@vortex/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@vortex/design-tokens':
+        specifier: workspace:*
+        version: link:../../packages/design-tokens
       '@vortex/embed':
         specifier: workspace:*
         version: link:../../packages/embed
@@ -199,6 +205,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.62.0
         version: 5.90.12(react@19.2.3)
+      '@vortex/design-tokens':
+        specifier: workspace:*
+        version: link:../design-tokens
       '@vortex/types':
         specifier: workspace:*
         version: link:../types
@@ -313,12 +322,6 @@ importers:
       '@vortex/player':
         specifier: workspace:*
         version: link:../player
-      '@vortex/player-core':
-        specifier: workspace:*
-        version: link:../player-core
-      '@vortex/ui':
-        specifier: workspace:*
-        version: link:../ui
     devDependencies:
       '@tanstack/react-query':
         specifier: ^5.80.6
