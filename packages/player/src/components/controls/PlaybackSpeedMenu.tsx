@@ -7,7 +7,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Gauge } from 'lucide-react'
-import { ANIMATION, PLAYBACK_SPEEDS } from '@vortex/core'
+import { SPRING, PLAYBACK_SPEEDS } from '@vortex/core'
 import type { PlaybackSpeed } from '@vortex/core'
 
 export interface PlaybackSpeedMenuProps {
@@ -39,8 +39,8 @@ export function PlaybackSpeedMenu({
         whileTap={{ scale: 0.95 }}
         transition={{
           type: 'spring',
-          stiffness: ANIMATION.SPRING_STIFFNESS,
-          damping: ANIMATION.SPRING_DAMPING,
+          stiffness: SPRING.DEFAULT.stiffness,
+          damping: SPRING.DEFAULT.damping,
         }}
         aria-label="Playback speed"
       >
@@ -68,8 +68,8 @@ export function PlaybackSpeedMenu({
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{
                 type: 'spring',
-                stiffness: ANIMATION.SPRING_STIFFNESS,
-                damping: ANIMATION.SPRING_DAMPING,
+                stiffness: SPRING.DEFAULT.stiffness,
+                damping: SPRING.DEFAULT.damping,
               }}
             >
               <div className="py-2">

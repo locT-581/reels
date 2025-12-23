@@ -5,14 +5,15 @@
 'use client'
 
 import { useRef, useCallback } from 'react'
-import { TAP, lightHaptic } from '@vortex/core'
+import { TAP } from '../constants'
+import { lightHaptic } from '../utils/haptics'
 import { getGestureZone, type GestureZone } from '../utils/getGestureZone'
 
 export interface TapGestureHandlers {
   /** Called on single tap */
   onSingleTap?: (zone: GestureZone) => void
-  /** Called on double tap */
-  onDoubleTap?: (zone: GestureZone) => void
+  /** Called on double tap with zone and position */
+  onDoubleTap?: (zone: GestureZone, position: { x: number; y: number }) => void
   /** Double tap delay in ms */
   delay?: number
   /** Enable haptic feedback */
@@ -49,9 +50,16 @@ export function useTapGestures({
 
   const handleTap = useCallback(
     (event: React.PointerEvent | PointerEvent) => {
-      const zone = getGestureZone(event as PointerEvent)
+      const pointerEvent = event as PointerEvent
+      const zone = getGestureZone(pointerEvent)
       const now = Date.now()
       const timeSinceLastTap = now - lastTapRef.current
+
+      // Capture tap position (absolute viewport coordinates)
+      const position = {
+        x: pointerEvent.clientX,
+        y: pointerEvent.clientY,
+      }
 
       if (
         timeSinceLastTap < delay &&
@@ -65,7 +73,7 @@ export function useTapGestures({
           lightHaptic()
         }
 
-        onDoubleTap(zone)
+        onDoubleTap(zone, position)
       } else if (onSingleTap) {
         // Potential single tap - wait to see if double tap follows
         cancelPendingTap()

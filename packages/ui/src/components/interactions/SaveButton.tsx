@@ -7,7 +7,8 @@
 import { useCallback, useState } from 'react'
 import { motion } from 'motion/react'
 import { Bookmark } from 'lucide-react'
-import { SPRING, ICON_SIZE, lightHaptic } from '@vortex/core'
+import { ICON_SIZE } from '../../constants'
+import { lightHaptic } from '../../utils'
 
 export interface SaveButtonProps {
   /** Whether the item is saved */
@@ -74,9 +75,8 @@ export function SaveButton({
               : {}
           }
           transition={{
-            type: 'spring',
-            stiffness: SPRING.DEFAULT.stiffness,
-            damping: SPRING.DEFAULT.damping,
+            duration: 0.4,
+            ease: [0.32, 0.72, 0, 1],
           }}
         >
           <Bookmark

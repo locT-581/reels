@@ -16,7 +16,6 @@ export {
   BottomSheet,
   IconButton,
   PlayPauseOverlay,
-  SeekBar,
   Spinner,
   Toast,
 } from '@vortex/ui'

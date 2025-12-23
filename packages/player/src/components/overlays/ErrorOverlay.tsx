@@ -6,7 +6,7 @@
 
 import { motion } from 'motion/react'
 import { WifiOff, AlertTriangle, RefreshCw, SkipForward } from 'lucide-react'
-import { ANIMATION, ERROR_MESSAGES } from '@vortex/core'
+import { SPRING, ERROR_MESSAGES } from '@vortex/core'
 import type { PlayerErrorType } from '@vortex/core'
 
 export interface ErrorOverlayProps {
@@ -71,8 +71,8 @@ export function ErrorOverlay({
         animate={{ opacity: 1, y: 0 }}
         transition={{
           type: 'spring',
-          stiffness: ANIMATION.SPRING_STIFFNESS,
-          damping: ANIMATION.SPRING_DAMPING,
+          stiffness: SPRING.DEFAULT.stiffness,
+          damping: SPRING.DEFAULT.damping,
           delay: 0.1,
         }}
       >
@@ -98,8 +98,8 @@ export function ErrorOverlay({
               whileTap={{ scale: 0.95 }}
               transition={{
                 type: 'spring',
-                stiffness: ANIMATION.SPRING_STIFFNESS,
-                damping: ANIMATION.SPRING_DAMPING,
+                stiffness: SPRING.DEFAULT.stiffness,
+                damping: SPRING.DEFAULT.damping,
               }}
             >
               <RefreshCw className="w-4 h-4" />
@@ -114,8 +114,8 @@ export function ErrorOverlay({
               whileTap={{ scale: 0.95 }}
               transition={{
                 type: 'spring',
-                stiffness: ANIMATION.SPRING_STIFFNESS,
-                damping: ANIMATION.SPRING_DAMPING,
+                stiffness: SPRING.DEFAULT.stiffness,
+                damping: SPRING.DEFAULT.damping,
               }}
             >
               <SkipForward className="w-4 h-4" />

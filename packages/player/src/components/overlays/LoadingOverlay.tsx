@@ -10,7 +10,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Loader2 } from 'lucide-react'
-import { ANIMATION } from '@vortex/core'
+import { SPRING } from '@vortex/core'
 
 export interface LoadingOverlayProps {
   isLoading: boolean
@@ -114,8 +114,8 @@ export function LoadingOverlay({
             animate={{ opacity: 1, scale: 1 }}
             transition={{
               type: 'spring',
-              stiffness: ANIMATION.SPRING_STIFFNESS,
-              damping: ANIMATION.SPRING_DAMPING,
+              stiffness: SPRING.DEFAULT.stiffness,
+              damping: SPRING.DEFAULT.damping,
             }}
           >
             <motion.div

@@ -1,0 +1,29 @@
+{
+  "id": "packages/feed",
+  "title": "@vortex/feed",
+  "description": "Virtualized video feed - TikTok-style infinite scroll.",
+  "source": "@site/docs/packages/feed.md",
+  "sourceDirName": "packages",
+  "slug": "/packages/feed",
+  "permalink": "/docs/packages/feed",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/packages/feed.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "@vortex/player",
+    "permalink": "/docs/packages/player"
+  },
+  "next": {
+    "title": "@vortex/gestures",
+    "permalink": "/docs/packages/gestures"
+  }
+}

@@ -3,8 +3,15 @@
  * State management for VortexStream
  */
 
-export { usePlayerStore, type PlayerStore } from './playerStore'
+// Player stores
+export {
+  usePlayerRuntimeStore,
+  usePlayerPreferencesStore,
+  type PlayerRuntimeStore,
+  type PreferencesStore,
+} from './playerStore'
+
+// Other stores
 export { useFeedStore, type FeedStore } from './feedStore'
 export { useUIStore, type UIStore } from './uiStore'
 export { useUserStore, type UserStore } from './userStore'
-

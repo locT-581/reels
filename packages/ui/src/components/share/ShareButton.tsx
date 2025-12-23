@@ -7,7 +7,8 @@
 import { useCallback } from 'react'
 import { motion } from 'motion/react'
 import { Share2 } from 'lucide-react'
-import { ICON_SIZE, lightHaptic } from '@vortex/core'
+import { ICON_SIZE } from '../../constants'
+import { lightHaptic, formatCount } from '../../utils'
 
 export interface ShareButtonProps {
   /** Share count */
@@ -45,13 +46,6 @@ export function ShareButton({
     lightHaptic()
     onShare?.()
   }, [disabled, onShare])
-
-  const formatCount = (num: number): string => {
-    if (num < 1000) return num.toString()
-    if (num < 10000) return `${(num / 1000).toFixed(1)}K`
-    if (num < 1000000) return `${Math.floor(num / 1000)}K`
-    return `${(num / 1000000).toFixed(1)}M`
-  }
 
   return (
     <div className={`flex flex-col items-center ${className}`}>

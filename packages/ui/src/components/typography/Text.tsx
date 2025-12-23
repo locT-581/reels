@@ -1,117 +1,120 @@
 /**
- * Text - Typography component with video-safe variants
+ * Text - Typography component
+ *
+ * Uses CSS Variables + Inline Styles for maximum customizability.
+ * No Tailwind CSS dependency.
  */
 
 'use client'
 
-import { forwardRef, type HTMLAttributes, type ElementType } from 'react'
+import { type CSSProperties, type ReactNode, type ElementType } from 'react'
+import { colors, fontSizes, fontWeights, lineHeights, shadows, mergeStyles } from '@vortex/design-tokens'
 
-export type TextVariant = 
-  | 'display'
-  | 'title'
-  | 'subtitle'
-  | 'body'
-  | 'caption'
-  | 'label'
-  | 'overline'
-
-export type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold'
-
-export interface TextProps extends HTMLAttributes<HTMLElement> {
+export interface TextProps {
+  /** Text content */
+  children: ReactNode
   /** Typography variant */
-  variant?: TextVariant
-  /** Font weight */
-  weight?: TextWeight
-  /** Add shadow for text over video */
-  videoSafe?: boolean
+  variant?: 'heading' | 'title' | 'body' | 'caption' | 'label'
+  /** Text color */
+  color?: 'default' | 'secondary' | 'muted' | 'accent' | 'error'
+  /** Text alignment */
+  align?: 'left' | 'center' | 'right'
+  /** Font weight override */
+  weight?: keyof typeof fontWeights
+  /** Add video overlay shadow */
+  withShadow?: boolean
   /** Truncate with ellipsis */
   truncate?: boolean
-  /** Max lines before truncate */
-  maxLines?: number
-  /** Text color */
-  color?: 'default' | 'muted' | 'accent' | 'error'
+  /** Line clamp (requires truncate) */
+  lineClamp?: number
   /** HTML element to render */
   as?: ElementType
-  /** Custom className */
+  /** Custom styles override */
+  style?: CSSProperties
+  /** Custom className (for external CSS if needed) */
   className?: string
 }
 
-const variantClasses: Record<TextVariant, string> = {
-  display: 'text-4xl leading-tight',
-  title: 'text-xl leading-snug',
-  subtitle: 'text-lg leading-snug',
-  body: 'text-base leading-normal',
-  caption: 'text-sm leading-normal',
-  label: 'text-xs leading-normal',
-  overline: 'text-xs uppercase tracking-wider leading-normal',
+// =============================================================================
+// STYLES
+// =============================================================================
+
+const variantStyles: Record<NonNullable<TextProps['variant']>, CSSProperties> = {
+  heading: {
+    fontSize: fontSizes['2xl'],
+    fontWeight: fontWeights.bold,
+    lineHeight: lineHeights.tight,
+  },
+  title: {
+    fontSize: fontSizes.lg,
+    fontWeight: fontWeights.semibold,
+    lineHeight: lineHeights.snug,
+  },
+  body: {
+    fontSize: fontSizes.md,
+    fontWeight: fontWeights.normal,
+    lineHeight: lineHeights.normal,
+  },
+  caption: {
+    fontSize: fontSizes.sm,
+    fontWeight: fontWeights.normal,
+    lineHeight: lineHeights.normal,
+  },
+  label: {
+    fontSize: fontSizes.xs,
+    fontWeight: fontWeights.medium,
+    lineHeight: lineHeights.tight,
+  },
 }
 
-const weightClasses: Record<TextWeight, string> = {
-  normal: 'font-normal',
-  medium: 'font-medium',
-  semibold: 'font-semibold',
-  bold: 'font-bold',
+const colorStyles: Record<NonNullable<TextProps['color']>, CSSProperties> = {
+  default: { color: colors.text },
+  secondary: { color: colors.textSecondary },
+  muted: { color: colors.textMuted },
+  accent: { color: colors.accent },
+  error: { color: colors.error },
 }
 
-const colorClasses: Record<string, string> = {
-  default: 'text-white',
-  muted: 'text-white/60',
-  accent: 'text-vortex-violet',
-  error: 'text-red-500',
-}
+// =============================================================================
+// COMPONENT
+// =============================================================================
 
-const defaultElements: Record<TextVariant, ElementType> = {
-  display: 'h1',
-  title: 'h2',
-  subtitle: 'h3',
-  body: 'p',
-  caption: 'span',
-  label: 'span',
-  overline: 'span',
-}
-
-export const Text = forwardRef<HTMLElement, TextProps>(
-  (
-    {
-      variant = 'body',
-      weight = 'normal',
-      videoSafe = false,
-      truncate = false,
-      maxLines,
-      color = 'default',
-      as,
-      className = '',
-      children,
-      ...props
+export function Text({
+  children,
+  variant = 'body',
+  color = 'default',
+  align,
+  weight,
+  withShadow = false,
+  truncate = false,
+  lineClamp,
+  as: Component = 'span',
+  style,
+  className = '',
+}: TextProps) {
+  const combinedStyles = mergeStyles(
+    variantStyles[variant],
+    colorStyles[color],
+    align && { textAlign: align },
+    weight && { fontWeight: fontWeights[weight] },
+    withShadow && { textShadow: shadows.text },
+    truncate && !lineClamp && {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
     },
-    ref
-  ) => {
-    const Component = as || defaultElements[variant]
+    (lineClamp !== undefined && lineClamp > 0) ? {
+      display: '-webkit-box',
+      WebkitLineClamp: lineClamp,
+      WebkitBoxOrient: 'vertical',
+      overflow: 'hidden',
+    } : undefined,
+    style
+  )
 
-    const lineClampClass = maxLines
-      ? `line-clamp-${maxLines}`
-      : truncate
-      ? 'truncate'
-      : ''
-
-    return (
-      <Component
-        ref={ref}
-        className={`
-          ${variantClasses[variant]}
-          ${weightClasses[weight]}
-          ${colorClasses[color]}
-          ${videoSafe ? 'drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]' : ''}
-          ${lineClampClass}
-          ${className}
-        `}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  }
-)
-
-Text.displayName = 'Text'
-
+  return (
+    <Component style={combinedStyles} className={className}>
+      {children}
+    </Component>
+  )
+}

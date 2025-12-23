@@ -10,7 +10,7 @@ export default defineConfig({
     'react-dom',
     '@vortex/core',
     '@vortex/player',
-    '@tanstack/react-virtual',
+    '@tanstack/react-query',
     'motion',
     'motion/react',
     'lucide-react',

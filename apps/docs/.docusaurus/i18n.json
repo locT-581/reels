@@ -1,0 +1,31 @@
+{
+  "defaultLocale": "vi",
+  "locales": [
+    "vi",
+    "en"
+  ],
+  "path": "i18n",
+  "currentLocale": "vi",
+  "localeConfigs": {
+    "vi": {
+      "label": "Tiếng Việt",
+      "direction": "ltr",
+      "htmlLang": "vi",
+      "calendar": "gregory",
+      "path": "vi",
+      "translate": false,
+      "url": "https://vortexstream.dev",
+      "baseUrl": "/"
+    },
+    "en": {
+      "label": "English",
+      "direction": "ltr",
+      "htmlLang": "en",
+      "calendar": "gregory",
+      "path": "en",
+      "translate": false,
+      "url": "https://vortexstream.dev",
+      "baseUrl": "/en/"
+    }
+  }
+}

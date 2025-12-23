@@ -5,7 +5,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { lightHaptic } from '@vortex/core'
+import { lightHaptic } from '../../utils'
 import type { ReactNode } from 'react'
 
 export interface ShareOptionProps {

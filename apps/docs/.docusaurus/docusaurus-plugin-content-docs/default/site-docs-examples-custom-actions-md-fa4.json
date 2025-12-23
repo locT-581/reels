@@ -1,0 +1,29 @@
+{
+  "id": "examples/custom-actions",
+  "title": "Custom Actions",
+  "description": "Ví dụ tùy biến action buttons.",
+  "source": "@site/docs/examples/custom-actions.md",
+  "sourceDirName": "examples",
+  "slug": "/examples/custom-actions",
+  "permalink": "/docs/examples/custom-actions",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/examples/custom-actions.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Single Player",
+    "permalink": "/docs/examples/single-player"
+  },
+  "next": {
+    "title": "Infinite Scroll",
+    "permalink": "/docs/examples/infinite-scroll"
+  }
+}

@@ -50,6 +50,26 @@
       "import": "./dist/constants/index.mjs",
       "require": "./dist/constants/index.js",
       "types": "./dist/constants/index.d.ts"
+    },
+    "./api": {
+      "import": "./dist/api/index.mjs",
+      "require": "./dist/api/index.js",
+      "types": "./dist/api/index.d.ts"
+    },
+    "./storage": {
+      "import": "./dist/storage/index.mjs",
+      "require": "./dist/storage/index.js",
+      "types": "./dist/storage/index.d.ts"
+    },
+    "./offline": {
+      "import": "./dist/offline/index.mjs",
+      "require": "./dist/offline/index.js",
+      "types": "./dist/offline/index.d.ts"
+    },
+    "./styles": {
+      "import": "./dist/styles/index.mjs",
+      "require": "./dist/styles/index.js",
+      "types": "./dist/styles/index.d.ts"
     }
   },
   "scripts": {
@@ -62,6 +82,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.0",
+    "@vortex/types": "workspace:*",
     "idb": "^8.0.0",
     "zustand": "^5.0.2"
   },

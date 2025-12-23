@@ -1,0 +1,57 @@
+{
+  "name": "@vortex/player-core",
+  "version": "0.0.1",
+  "description": "Core video playback engine for VortexStream (no UI dependency)",
+  "license": "MIT",
+  "author": "VortexStream Team",
+  "homepage": "https://github.com/vortex-stream/vortex-stream#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vortex-stream/vortex-stream.git",
+    "directory": "packages/player-core"
+  },
+  "bugs": {
+    "url": "https://github.com/vortex-stream/vortex-stream/issues"
+  },
+  "keywords": ["vortex", "video", "player", "hls", "react", "streaming", "core"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --max-warnings 0",
+    "lint:fix": "eslint src --fix"
+  },
+  "dependencies": {
+    "@vortex/core": "workspace:*",
+    "@vortex/player-engine": "workspace:*",
+    "hls.js": "^1.5.18"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.2",
+    "react": "^19.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ]
+}
+

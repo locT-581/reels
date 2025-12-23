@@ -76,14 +76,55 @@ type VideoState =
 | 500ms-2s | Skeleton shimmer |
 | > 2s | Spinner + "Đang tải..." |
 
+## Timeline Component
+
+```tsx
+import { Timeline, type TimelineRef } from '@vortex/player'
+
+// Basic usage
+<Timeline
+  videoRef={videoRef}
+  expanded={isExpanded}
+  onSeekEnd={(time) => { video.currentTime = time }}
+  onExpandedChange={setIsExpanded}
+/>
+```
+
+### Timeline Performance Guidelines
+
+```typescript
+// ✅ ĐÚNG: requestAnimationFrame + 30 FPS throttling
+const TARGET_FPS = 30
+const FRAME_INTERVAL = 1000 / TARGET_FPS // ~33.3ms
+
+const animationLoop = (timestamp: number) => {
+  if (timestamp - lastUpdate >= FRAME_INTERVAL) {
+    lastUpdate = timestamp
+    // Direct DOM manipulation via refs
+    progressRef.current.style.width = `${percent}%`
+  }
+  requestAnimationFrame(animationLoop)
+}
+
+// ❌ SAI: Không dùng useState cho progress
+const [progress, setProgress] = useState(0) // Causes re-renders!
+useEffect(() => {
+  const interval = setInterval(() => {
+    setProgress(video.currentTime / video.duration)
+  }, 100)
+}, [])
+```
+
+### Timeline Modes
+
+| Mode | Visual |
+|------|--------|
+| **Collapsed** | 2px bar, tap to expand |
+| **Expanded** | 4px bar + scrubber + time display |
+
 ## Player Controls UI
 
 ```tsx
-// Seek bar: 2px default, 4px khi touch
-<div className="h-[2px] hover:h-1 transition-all bg-white/30">
-  <div className="h-full bg-white" style={{ width: `${progress}%` }} />
-</div>
-
 // Play/Pause icon: Giữa màn hình, fade out sau 1s
 <motion.div
   initial={{ opacity: 0, scale: 0.8 }}

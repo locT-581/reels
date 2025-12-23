@@ -1,0 +1,29 @@
+{
+  "id": "packages/gestures",
+  "title": "@vortex/gestures",
+  "description": "Gesture system cho VortexStream - Tap, swipe, long press, và more.",
+  "source": "@site/docs/packages/gestures.md",
+  "sourceDirName": "packages",
+  "slug": "/packages/gestures",
+  "permalink": "/docs/packages/gestures",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/packages/gestures.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "@vortex/feed",
+    "permalink": "/docs/packages/feed"
+  },
+  "next": {
+    "title": "@vortex/ui",
+    "permalink": "/docs/packages/ui"
+  }
+}

@@ -1,21 +1,19 @@
 /**
  * @vortex/player
  * Video player package for VortexStream
+ *
+ * This package re-exports core functionality from @vortex/player-core
+ * and adds UI components specific to the video player.
  */
 
-// Core engine
-export { HLSEngine, type HLSEngineOptions, type HLSEngineCallbacks } from './core/hls-engine'
-export { NativeHLS, type NativeHLSOptions, type NativeHLSCallbacks } from './core/native-hls'
-export { PlayerCore, type PlayerCoreOptions, type PlayerCoreCallbacks } from './core/player-core'
+// Re-export everything from player-core (engine, state, hooks)
+export * from '@vortex/player-core'
 
-// State management
-export * from './state'
-
-// Hooks
-export * from './hooks'
-
-// Components
+// Player-specific UI components
 export * from './components'
 
-// Utils
-export { cn } from './utils/cn'
+// Player-specific hooks (high-level)
+export * from './hooks'
+
+// Utils (re-exported from @vortex/core for convenience)
+export { cn } from '@vortex/core'

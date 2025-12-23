@@ -1,78 +1,13 @@
 /**
  * @vortex/core - Type definitions
- * Core types for VortexStream video platform
+ * Re-exported from @vortex/types for backward compatibility
+ *
+ * NOTE: All types are sourced from @vortex/types package.
+ * This file exists for backward compatibility with existing imports from '@vortex/core'.
  */
 
-// Video types
-export type {
-  Video,
-  VideoMetadata,
-  VideoStats,
-  QualityLevel,
-  Sound,
-  VideoAspectRatio,
-  VideoSourceType,
-} from './video'
+// Re-export everything from @vortex/types
+export * from '@vortex/types'
 
-// User types
-export type {
-  User,
-  Author,
-  UserProfile,
-  UserRole,
-  UserPrivacySettings,
-  UserNotificationSettings,
-  UserRelationship,
-} from './user'
-
-// Comment types
-export type {
-  Comment,
-  Reply,
-  CommentThread,
-  CommentSortBy,
-  CommentResponse,
-  ReplyResponse,
-} from './comment'
-
-// Player types
-export type {
-  PlayerState,
-  PlaybackSpeed,
-  Quality,
-  PlayerProgress,
-  BufferedRange,
-  PlayerError,
-  PlayerErrorType,
-  PlayerConfig,
-  PlayerEvent,
-  PlayerEventMap,
-} from './player'
-
-// Feed types
-export type {
-  FeedType,
-  FeedResponse,
-  FeedRequest,
-  VideoActivation,
-  FeedScrollState,
-  FeedPreloadConfig,
-} from './feed'
-
-// UI types
-export type {
-  ToastOptions,
-  BottomSheetState,
-  ContextMenuOption,
-  ModalState,
-  LoadingState,
-  ThemeMode,
-} from './ui'
-
-// Error types
-export type {
-  ErrorType,
-  VortexError,
-  ApiErrorResponse,
-  ErrorFallbackProps,
-} from './error'
+// Also export DEFAULT_API_ENDPOINTS value
+export { DEFAULT_API_ENDPOINTS } from '@vortex/types'

@@ -1,11 +1,13 @@
 /**
  * Comment Mutations - TanStack Query mutations for comment actions
+ *
+ * Uses VortexApiClient from context for configurable endpoints
  */
 
 'use client'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { apiClient } from '../api-client'
+import { useVortexApiClient } from '../useVortexApiClient'
 import { queryKeys } from '../query-client'
 import type { Comment } from '../../types'
 
@@ -29,50 +31,43 @@ export interface LikeCommentResponse {
 }
 
 // ============================================
-// Mutation Functions
-// ============================================
-
-/**
- * Post a new comment
- */
-async function postComment(input: PostCommentInput): Promise<PostCommentResponse> {
-  const endpoint = input.replyToId
-    ? `/comments/${input.replyToId}/reply`
-    : `/videos/${input.videoId}/comments`
-
-  return apiClient.post<PostCommentResponse>(endpoint, {
-    content: input.content,
-  })
-}
-
-/**
- * Like/Unlike a comment
- */
-async function likeComment(commentId: string): Promise<LikeCommentResponse> {
-  return apiClient.post<LikeCommentResponse>(`/comments/${commentId}/like`)
-}
-
-/**
- * Delete a comment
- */
-async function deleteComment(commentId: string): Promise<void> {
-  return apiClient.delete(`/comments/${commentId}`)
-}
-
-// ============================================
 // Mutation Hooks
 // ============================================
 
 /**
  * Hook for posting a new comment
+ *
+ * @example
+ * ```tsx
+ * function CommentForm({ videoId }: { videoId: string }) {
+ *   const { mutate: postComment, isPending } = usePostCommentMutation()
+ *   const [content, setContent] = useState('')
+ *
+ *   const handleSubmit = () => {
+ *     postComment({ videoId, content }, {
+ *       onSuccess: () => setContent('')
+ *     })
+ *   }
+ *
+ *   return (
+ *     <form onSubmit={handleSubmit}>
+ *       <input value={content} onChange={e => setContent(e.target.value)} />
+ *       <button disabled={isPending}>Post</button>
+ *     </form>
+ *   )
+ * }
+ * ```
  */
 export function usePostCommentMutation() {
+  const apiClient = useVortexApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: postComment,
-    onSuccess: (_data, variables) => {
-      // Add the new comment to the cache
+    mutationFn: async (input: PostCommentInput) => {
+      return apiClient.postComment(input.videoId, input.content, input.replyToId)
+    },
+    onSuccess: (_, variables) => {
+      // Invalidate comments list to show new comment
       queryClient.invalidateQueries({
         queryKey: queryKeys.comments.list(variables.videoId),
       })
@@ -89,21 +84,36 @@ export function usePostCommentMutation() {
 
 /**
  * Hook for liking/unliking a comment
+ *
+ * @example
+ * ```tsx
+ * function CommentLikeButton({ comment, videoId }: { comment: Comment; videoId: string }) {
+ *   const { mutate: toggleLike } = useLikeCommentMutation(videoId)
+ *
+ *   return (
+ *     <button onClick={() => toggleLike(comment.id)}>
+ *       {comment.isLiked ? '❤️' : '🤍'} {comment.likesCount}
+ *     </button>
+ *   )
+ * }
+ * ```
  */
 export function useLikeCommentMutation(videoId: string) {
+  const apiClient = useVortexApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: likeComment,
+    mutationFn: async (commentId: string) => {
+      await apiClient.likeComment(commentId)
+    },
     onMutate: async (commentId) => {
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({
         queryKey: queryKeys.comments.list(videoId),
       })
 
-      // We need to update the comment in the infinite query data
-      // This is a simplified version - in production you'd want to
-      // properly update the nested comment data
+      // We could update the comment optimistically here
+      // but it's complex with paginated data
       return { commentId }
     },
     onSettled: () => {
@@ -117,12 +127,31 @@ export function useLikeCommentMutation(videoId: string) {
 
 /**
  * Hook for deleting a comment
+ *
+ * @example
+ * ```tsx
+ * function DeleteCommentButton({ commentId, videoId }: { commentId: string; videoId: string }) {
+ *   const { mutate: deleteComment, isPending } = useDeleteCommentMutation(videoId)
+ *
+ *   return (
+ *     <button
+ *       onClick={() => deleteComment(commentId)}
+ *       disabled={isPending}
+ *     >
+ *       Delete
+ *     </button>
+ *   )
+ * }
+ * ```
  */
 export function useDeleteCommentMutation(videoId: string) {
+  const apiClient = useVortexApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: deleteComment,
+    mutationFn: async (commentId: string) => {
+      await apiClient.delete(`/comments/${commentId}`)
+    },
     onSuccess: () => {
       // Invalidate comments cache
       queryClient.invalidateQueries({
@@ -133,19 +162,38 @@ export function useDeleteCommentMutation(videoId: string) {
 }
 
 /**
- * Hook for posting a reply
+ * Hook for posting a reply to a comment
+ *
+ * @example
+ * ```tsx
+ * function ReplyForm({ commentId, videoId }: { commentId: string; videoId: string }) {
+ *   const { mutate: postReply, isPending } = usePostReplyMutation(videoId)
+ *   const [content, setContent] = useState('')
+ *
+ *   const handleSubmit = () => {
+ *     postReply({ commentId, content }, {
+ *       onSuccess: () => setContent('')
+ *     })
+ *   }
+ *
+ *   return (
+ *     <form onSubmit={handleSubmit}>
+ *       <input value={content} onChange={e => setContent(e.target.value)} />
+ *       <button disabled={isPending}>Reply</button>
+ *     </form>
+ *   )
+ * }
+ * ```
  */
 export function usePostReplyMutation(videoId: string) {
+  const apiClient = useVortexApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (input: { commentId: string; content: string }) =>
-      postComment({
-        videoId,
-        content: input.content,
-        replyToId: input.commentId,
-      }),
-    onSuccess: (_data, variables) => {
+    mutationFn: async (input: { commentId: string; content: string }) => {
+      return apiClient.postComment(videoId, input.content, input.commentId)
+    },
+    onSuccess: (_, variables) => {
       // Invalidate replies cache
       queryClient.invalidateQueries({
         queryKey: queryKeys.comments.replies(variables.commentId),
@@ -157,4 +205,3 @@ export function usePostReplyMutation(videoId: string) {
     },
   })
 }
-

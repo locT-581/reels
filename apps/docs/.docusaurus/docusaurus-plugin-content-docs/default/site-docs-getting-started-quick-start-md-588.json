@@ -1,0 +1,29 @@
+{
+  "id": "getting-started/quick-start",
+  "title": "Quick Start",
+  "description": "Tạo video feed đầu tiên của bạn trong 5 phút.",
+  "source": "@site/docs/getting-started/quick-start.md",
+  "sourceDirName": "getting-started",
+  "slug": "/getting-started/quick-start",
+  "permalink": "/docs/getting-started/quick-start",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/getting-started/quick-start.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Cài đặt",
+    "permalink": "/docs/getting-started/installation"
+  },
+  "next": {
+    "title": "Cấu trúc dự án",
+    "permalink": "/docs/getting-started/project-structure"
+  }
+}

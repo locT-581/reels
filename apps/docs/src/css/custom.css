@@ -1,0 +1,265 @@
+/**
+ * VortexStream Documentation Theme
+ * Based on Vortex Design System
+ */
+
+:root {
+  /* Vortex Colors */
+  --vortex-violet: #8B5CF6;
+  --vortex-violet-light: #A78BFA;
+  --vortex-violet-dark: #7C3AED;
+  --vortex-like: #FF2D55;
+  --vortex-black: #000000;
+  --vortex-gray-100: #F4F4F5;
+  --vortex-gray-200: #E4E4E7;
+  --vortex-gray-300: #D4D4D8;
+  --vortex-gray-400: #A1A1AA;
+  --vortex-gray-500: #71717A;
+  --vortex-gray-600: #52525B;
+  --vortex-gray-700: #3F3F46;
+  --vortex-gray-800: #27272A;
+  --vortex-gray-900: #18181B;
+
+  /* Docusaurus Theme Override */
+  --ifm-color-primary: var(--vortex-violet);
+  --ifm-color-primary-dark: var(--vortex-violet-dark);
+  --ifm-color-primary-darker: #6D28D9;
+  --ifm-color-primary-darkest: #5B21B6;
+  --ifm-color-primary-light: var(--vortex-violet-light);
+  --ifm-color-primary-lighter: #C4B5FD;
+  --ifm-color-primary-lightest: #DDD6FE;
+
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --ifm-heading-font-weight: 600;
+  --ifm-font-weight-semibold: 600;
+
+  --docusaurus-highlighted-code-line-bg: rgba(139, 92, 246, 0.1);
+}
+
+/* Dark mode - Vortex style */
+[data-theme='dark'] {
+  --ifm-background-color: var(--vortex-black);
+  --ifm-background-surface-color: var(--vortex-gray-900);
+  --ifm-navbar-background-color: rgba(0, 0, 0, 0.8);
+  --ifm-footer-background-color: var(--vortex-gray-900);
+
+  --ifm-color-primary: var(--vortex-violet-light);
+  --ifm-color-primary-dark: var(--vortex-violet);
+  --ifm-color-primary-darker: var(--vortex-violet-dark);
+  --ifm-color-primary-darkest: #6D28D9;
+  --ifm-color-primary-light: #C4B5FD;
+  --ifm-color-primary-lighter: #DDD6FE;
+  --ifm-color-primary-lightest: #EDE9FE;
+
+  --ifm-code-background: var(--vortex-gray-800);
+  --ifm-menu-color-background-active: rgba(139, 92, 246, 0.1);
+
+  --docusaurus-highlighted-code-line-bg: rgba(139, 92, 246, 0.2);
+}
+
+/* Navbar styling */
+.navbar {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar__title {
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, var(--vortex-violet-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Code blocks */
+.prism-code {
+  border-radius: 12px;
+}
+
+/* Hero section */
+.hero {
+  background: linear-gradient(180deg, var(--vortex-black) 0%, var(--vortex-gray-900) 100%);
+}
+
+.hero--primary {
+  background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 70%),
+              linear-gradient(180deg, var(--vortex-black) 0%, var(--vortex-gray-900) 100%);
+}
+
+.hero__title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, var(--vortex-violet-light) 50%, var(--vortex-violet) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__subtitle {
+  color: var(--vortex-gray-400);
+  font-size: 1.25rem;
+}
+
+/* Buttons */
+.button--primary {
+  background: linear-gradient(135deg, var(--vortex-violet) 0%, var(--vortex-violet-dark) 100%);
+  border: none;
+  box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.39);
+  transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+.button--secondary {
+  border-color: var(--vortex-violet);
+  color: var(--vortex-violet);
+}
+
+/* Cards */
+.card {
+  background: var(--vortex-gray-900);
+  border: 1px solid var(--vortex-gray-800);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.card:hover {
+  border-color: var(--vortex-violet);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Sidebar */
+.menu__link {
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.menu__link--active {
+  background: rgba(139, 92, 246, 0.1);
+  border-left: 3px solid var(--vortex-violet);
+}
+
+/* Tables */
+table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th {
+  background: var(--vortex-gray-800);
+}
+
+/* Admonitions */
+.admonition {
+  border-radius: 12px;
+  border-left-width: 4px;
+}
+
+/* Feature badges */
+.badge {
+  background: linear-gradient(135deg, var(--vortex-violet) 0%, var(--vortex-violet-dark) 100%);
+  border-radius: 9999px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--vortex-gray-800);
+}
+
+.footer__title {
+  color: #fff;
+  font-weight: 600;
+}
+
+.footer__link-item {
+  color: var(--vortex-gray-400);
+  transition: color 0.2s ease;
+}
+
+.footer__link-item:hover {
+  color: var(--vortex-violet-light);
+}
+
+/* Mobile-first responsive */
+@media (max-width: 996px) {
+  .hero__title {
+    font-size: 2.5rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Scroll animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Package cards grid */
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.package-card {
+  background: var(--vortex-gray-900);
+  border: 1px solid var(--vortex-gray-800);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.package-card:hover {
+  border-color: var(--vortex-violet);
+  transform: translateY(-4px);
+}
+
+.package-card__title {
+  font-family: var(--ifm-font-family-monospace);
+  color: var(--vortex-violet-light);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.package-card__description {
+  color: var(--vortex-gray-400);
+  font-size: 0.875rem;
+}
+
+.package-card__size {
+  display: inline-block;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--vortex-violet-light);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  margin-top: 0.75rem;
+}
+

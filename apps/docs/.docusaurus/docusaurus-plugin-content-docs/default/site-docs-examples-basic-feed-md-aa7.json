@@ -1,0 +1,29 @@
+{
+  "id": "examples/basic-feed",
+  "title": "Basic Feed",
+  "description": "Ví dụ tạo video feed cơ bản.",
+  "source": "@site/docs/examples/basic-feed.md",
+  "sourceDirName": "examples",
+  "slug": "/examples/basic-feed",
+  "permalink": "/docs/examples/basic-feed",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/examples/basic-feed.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Utilities",
+    "permalink": "/docs/api/utilities"
+  },
+  "next": {
+    "title": "Single Player",
+    "permalink": "/docs/examples/single-player"
+  }
+}

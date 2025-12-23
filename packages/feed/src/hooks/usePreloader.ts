@@ -1,166 +1,118 @@
 /**
- * usePreloader - Pre-loading strategy for video feed
- * 
- * Strategy:
+ * usePreloader - Feed-specific video preloading layer
+ *
+ * ARCHITECTURE:
+ * This module re-exports core preload functionality from @vortex/player-core
+ * and adds FEED-SPECIFIC abstractions:
+ * - PreloadPriority type (high/medium/low/metadata/none)
+ * - Priority calculation helpers based on video index distance
+ *
+ * LAYERED DESIGN (Big Tech Pattern):
+ * ┌─────────────────────────────────────────┐
+ * │ @vortex/feed (Domain Layer)             │
+ * │ - Feed-specific priority enum           │
+ * │ - Distance-based priority calculation   │
+ * └──────────────┬──────────────────────────┘
+ *                │ re-exports + extends
+ *                ↓
+ * ┌─────────────────────────────────────────┐
+ * │ @vortex/player (UI Layer)               │
+ * │ - Re-exports core + UI components       │
+ * └──────────────┬──────────────────────────┘
+ *                │ re-exports
+ *                ↓
+ * ┌─────────────────────────────────────────┐
+ * │ @vortex/player-core (Core Layer)        │
+ * │ - usePreload hook                       │
+ * │ - PreloadManager service                │
+ * │ - Generic, reusable logic               │
+ * └─────────────────────────────────────────┘
+ *
+ * FEED PRELOAD STRATEGY:
  * - Current - 1: Keep in memory, paused
  * - Current: Playing
- * - Current + 1: Pre-load first 3 segments
- * - Current + 2: Pre-load first segment
- * - Current + 3: Fetch metadata only
- * - Current ± 4+: Dispose
+ * - Current + 1: Pre-load first 3 segments (high)
+ * - Current + 2: Pre-load first segment (medium)
+ * - Current + 3: Fetch metadata only (low)
+ * - Current ± 4+: Dispose (none)
  */
 
 'use client'
 
-import { useEffect, useCallback, useRef } from 'react'
-import type { Video } from '@vortex/core'
+// Re-export core preload hook from @vortex/player
+// Feed layer does NOT expose internal types (PreloadItem, PreloadStatus)
+// as these are implementation details. Consumers should use PreloadPriority.
+export {
+  usePreload,
+  type UsePreloadOptions,
+  type UsePreloadReturn,
+} from '@vortex/player'
 
+/**
+ * Priority levels for feed preloading
+ */
 export type PreloadPriority = 'high' | 'medium' | 'low' | 'metadata' | 'none'
 
-export interface PreloadState {
-  videoId: string
-  priority: PreloadPriority
-  loaded: boolean
-  error?: Error
-}
-
-export interface UsePreloaderOptions {
-  /** All videos in feed */
-  videos: Video[]
-  /** Current video index */
+/**
+ * Calculate preload priority based on distance from current video
+ *
+ * @param index - Video index to check
+ * @param currentIndex - Current active video index
+ * @returns Numeric priority (1 = highest, 10 = none/dispose)
+ */
+export function getPreloadPriorityForFeed(
+  index: number,
   currentIndex: number
-  /** Callback when a video should be preloaded */
-  onPreload?: (videoId: string, priority: PreloadPriority) => void
-  /** Callback when a video should be disposed */
-  onDispose?: (videoId: string) => void
-  /** Maximum videos to keep in memory */
-  maxInMemory?: number
+): number {
+  const distance = Math.abs(index - currentIndex)
+
+  if (distance === 0) return 1      // Current - highest priority
+  if (distance === 1) return 3      // Adjacent (prev/next)
+  if (distance === 2) return 5      // Near
+  if (distance === 3) return 7      // Metadata only
+  return 10                          // None/dispose
 }
 
-export interface UsePreloaderReturn {
-  preloadStates: Map<string, PreloadState>
-  getPreloadPriority: (index: number) => PreloadPriority
-  preloadVideo: (videoId: string, priority: PreloadPriority) => void
-  disposeVideo: (videoId: string) => void
-}
-
-export function usePreloader({
-  videos,
-  currentIndex,
-  onPreload,
-  onDispose,
-  maxInMemory = 5,
-}: UsePreloaderOptions): UsePreloaderReturn {
-  const preloadStatesRef = useRef<Map<string, PreloadState>>(new Map())
-  const preloadQueueRef = useRef<Set<string>>(new Set())
-
-  // Get priority based on distance from current
-  const getPreloadPriority = useCallback(
-    (index: number): PreloadPriority => {
-      const distance = index - currentIndex
-
-      if (distance === 0) return 'high' // Current
-      if (distance === -1) return 'high' // Previous
-      if (distance === 1) return 'high' // Next (preload 3 segments)
-      if (distance === 2) return 'medium' // +2 (preload 1 segment)
-      if (distance === 3) return 'low' // +3 (metadata only)
-      if (Math.abs(distance) <= maxInMemory / 2) return 'metadata'
-
-      return 'none' // Dispose
-    },
-    [currentIndex, maxInMemory]
-  )
-
-  // Preload a video
-  const preloadVideo = useCallback(
-    (videoId: string, priority: PreloadPriority) => {
-      const existingState = preloadStatesRef.current.get(videoId)
-
-      // Skip if already loaded with same or higher priority
-      if (existingState?.loaded && existingState.priority === priority) {
-        return
-      }
-
-      preloadStatesRef.current.set(videoId, {
-        videoId,
-        priority,
-        loaded: false,
-      })
-
-      preloadQueueRef.current.add(videoId)
-      onPreload?.(videoId, priority)
-    },
-    [onPreload]
-  )
-
-  // Dispose a video
-  const disposeVideo = useCallback(
-    (videoId: string) => {
-      preloadStatesRef.current.delete(videoId)
-      preloadQueueRef.current.delete(videoId)
-      onDispose?.(videoId)
-    },
-    [onDispose]
-  )
-
-  // Update preload states when current index changes
-  useEffect(() => {
-    if (videos.length === 0) return
-
-    // Calculate which videos to keep/preload/dispose
-    const videoIdsToKeep = new Set<string>()
-
-    videos.forEach((video, index) => {
-      const priority = getPreloadPriority(index)
-
-      if (priority !== 'none') {
-        videoIdsToKeep.add(video.id)
-        preloadVideo(video.id, priority)
-      }
-    })
-
-    // Dispose videos no longer needed
-    preloadStatesRef.current.forEach((_state, videoId) => {
-      if (!videoIdsToKeep.has(videoId)) {
-        disposeVideo(videoId)
-      }
-    })
-  }, [videos, currentIndex, getPreloadPriority, preloadVideo, disposeVideo])
-
-  return {
-    preloadStates: preloadStatesRef.current,
-    getPreloadPriority,
-    preloadVideo,
-    disposeVideo,
+/**
+ * Map PreloadPriority enum to numeric priority
+ *
+ * @param priority - Priority enum
+ * @returns Numeric priority for PreloadManager
+ */
+export function mapPriorityToNumeric(priority: PreloadPriority): number {
+  switch (priority) {
+    case 'high':
+      return 1
+    case 'medium':
+      return 3
+    case 'low':
+      return 5
+    case 'metadata':
+      return 7
+    default:
+      return 10
   }
 }
 
 /**
- * Create link preload for video metadata
+ * Get PreloadPriority enum based on distance from current
+ *
+ * @param index - Video index to check
+ * @param currentIndex - Current active video index
+ * @returns PreloadPriority enum
  */
-export function preloadVideoMetadata(url: string): void {
-  if (typeof document === 'undefined') return
+export function getPreloadPriority(
+  index: number,
+  currentIndex: number
+): PreloadPriority {
+  const distance = index - currentIndex
 
-  const link = document.createElement('link')
-  link.rel = 'preload'
-  link.as = 'fetch'
-  link.href = url
-  link.crossOrigin = 'anonymous'
-  document.head.appendChild(link)
+  if (distance === 0) return 'high'       // Current
+  if (distance === -1) return 'high'      // Previous
+  if (distance === 1) return 'high'       // Next (preload 3 segments)
+  if (distance === 2) return 'medium'     // +2 (preload 1 segment)
+  if (distance === 3) return 'low'        // +3 (metadata only)
+  if (Math.abs(distance) <= 5) return 'metadata'
 
-  // Remove after a timeout
-  setTimeout(() => {
-    link.remove()
-  }, 30000)
+  return 'none' // Dispose
 }
-
-/**
- * Preload video thumbnail
- */
-export function preloadThumbnail(url: string): void {
-  if (typeof document === 'undefined') return
-
-  const img = new Image()
-  img.src = url
-}
-

@@ -75,39 +75,47 @@ const nextConfig = {
 
 | Layer | Choice | Size | Lý do |
 |-------|--------|------|-------|
-| **CSS Framework** | Tailwind CSS 4 | ~10KB (purged) | JIT, chỉ ship CSS được dùng |
-| **Component Library** | shadcn/ui | 0KB base | Copy-paste, không dependency |
-| **Icons** | Lucide React | Tree-shakable | Chỉ import icon cần dùng |
+| **Styling** | CSS Variables + Inline Styles | 0KB | Zero runtime, maximum customizability |
+| **Design Tokens** | `@vortex/core/styles` | ~2KB | Type-safe, customizable |
+| **Icons** | Inline SVG | 0KB dependency | No external icon library needed |
 | **Animation** | Motion (motion.dev) | ~18KB | Nhẹ hơn Framer Motion 50% |
 | **Spring Physics** | Motion | Included | `spring()` cho physics-based animation |
 
-### Tailwind Config (Mobile-optimized)
+### Tại sao không dùng Tailwind CSS?
+
+| Vấn đề với Tailwind trong packages | Giải pháp CSS Variables |
+|-----------------------------------|-------------------------|
+| Cần cấu hình content scanning cho mỗi app | Hoạt động ngay khi import |
+| Class names có thể bị purged sai | Inline styles không bị purged |
+| Khó customize từ bên ngoài package | CSS variables dễ override |
+| Cần PostCSS build step | Zero build step |
+
+### CSS Variables System
+
+```css
+/* Users can override in their CSS */
+:root {
+  --vortex-color-accent: #8B5CF6;
+  --vortex-color-like: #FF2D55;
+  --vortex-radius-lg: 16px;
+  --vortex-duration-normal: 300ms;
+}
+```
+
+### Type-safe Style Utilities
 
 ```typescript
-// tailwind.config.ts
-export default {
-  theme: {
-    screens: {
-      // Mobile-first, chỉ define breakpoint khi CẦN desktop
-      'tablet': '768px',
-      'desktop': '1024px', // Ít dùng
-    },
-    extend: {
-      colors: {
-        'vortex-black': '#000000',
-        'vortex-violet': '#8B5CF6',
-      },
-      spacing: {
-        // 8pt grid system
-        'safe-bottom': 'env(safe-area-inset-bottom)',
-        'safe-top': 'env(safe-area-inset-top)',
-      },
-      transitionTimingFunction: {
-        'vortex': 'cubic-bezier(0.32, 0.72, 0, 1)',
-      },
-    },
-  },
-}
+import { colors, spacing, mergeStyles, layout, typography } from '@vortex/core'
+
+// Build styles with full type safety
+const buttonStyles = mergeStyles(
+  layout.flexCenter,
+  typography.text({ size: 'md', weight: 'semibold' }),
+  { backgroundColor: colors.accent }
+)
+
+// Override via CSS variables
+<div style={buttonStyles} />
 ```
 
 ---

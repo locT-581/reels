@@ -1,5 +1,8 @@
 /**
  * VideoPlayer - Main video player component
+ *
+ * Uses the usePlayer hook for all player logic.
+ * CSS Variables + Inline Styles for maximum customizability.
  */
 
 'use client'
@@ -9,14 +12,12 @@ import {
   useRef,
   useEffect,
   useImperativeHandle,
-  useCallback,
-  useState,
   type ReactNode,
+  type CSSProperties,
 } from 'react'
-import { PlayerCore } from '../core/player-core'
-import { usePlayback } from '../hooks/usePlayback'
-import { useVolume } from '../hooks/useVolume'
+import { colors, mergeStyles } from '@vortex/core'
 import type { Video, PlayerState, PlaybackSpeed, QualityLevel } from '@vortex/core'
+import { usePlayer } from '../hooks/usePlayer'
 
 export interface VideoPlayerProps {
   /** Video object or source URL */
@@ -29,11 +30,13 @@ export interface VideoPlayerProps {
   loop?: boolean
   /** Poster image URL */
   poster?: string
-  /** Custom className */
-  className?: string
   /** Children to render over video (overlays) */
   children?: ReactNode
-  
+  /** Custom styles override */
+  style?: CSSProperties
+  /** Custom className (for external CSS if needed) */
+  className?: string
+
   // Callbacks
   onPlay?: () => void
   onPause?: () => void
@@ -54,24 +57,45 @@ export interface VideoPlayerRef {
   seekForward: (seconds?: number) => void
   seekBackward: (seconds?: number) => void
   restart: () => void
-  
+
   // Volume
   setVolume: (volume: number) => void
   toggleMute: () => void
-  
+
   // Speed
   setPlaybackSpeed: (speed: PlaybackSpeed) => void
-  
+
   // Quality
   setQuality: (level: number) => void
   getQualityLevels: () => QualityLevel[]
-  
+
   // State
   getVideoElement: () => HTMLVideoElement | null
   getCurrentTime: () => number
   getDuration: () => number
   isPaused: () => boolean
 }
+
+// =============================================================================
+// STYLES
+// =============================================================================
+
+const containerStyles: CSSProperties = {
+  position: 'relative',
+  width: '100%',
+  height: '100%',
+  backgroundColor: colors.background,
+}
+
+const videoStyles: CSSProperties = {
+  width: '100%',
+  height: '100%',
+  objectFit: 'contain',
+}
+
+// =============================================================================
+// COMPONENT
+// =============================================================================
 
 export const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(
   (
@@ -81,8 +105,9 @@ export const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(
       muted = true,
       loop = true,
       poster,
-      className = '',
       children,
+      style,
+      className = '',
       onPlay,
       onPause,
       onEnded,
@@ -95,129 +120,95 @@ export const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(
     ref
   ) => {
     const videoRef = useRef<HTMLVideoElement>(null)
-    const playerCoreRef = useRef<PlayerCore | null>(null)
-    const [isReady, setIsReady] = useState(false)
+    const containerRef = useRef<HTMLDivElement>(null)
 
-    // Get video URL
+    // Get video URL and poster
     const videoUrl = typeof video === 'string' ? video : video.url
     const videoPoster = poster ?? (typeof video === 'object' ? video.thumbnail : undefined)
 
-    // Hooks
-    const playback = usePlayback(videoRef)
-    const volume = useVolume(videoRef)
+    // Use the unified player hook
+    const player = usePlayer(videoRef, containerRef, {
+      onStateChange,
+      onError: (error) => onError?.(error),
+      onTimeUpdate,
+      onQualityLevelsLoaded,
+      onPlay,
+      onPause,
+      onEnded,
+      onReady,
+    })
 
-    // Initialize player core
+    // Attach player when URL changes
     useEffect(() => {
-      if (!videoRef.current || !videoUrl) return
-
-      // Destroy existing
-      if (playerCoreRef.current) {
-        playerCoreRef.current.destroy()
+      if (videoUrl) {
+        player.attach(videoUrl)
       }
-
-      // Create new player core
-      playerCoreRef.current = new PlayerCore({
-        callbacks: {
-          onStateChange: (state) => {
-            onStateChange?.(state)
-            if (state === 'ready' && !isReady) {
-              setIsReady(true)
-              onReady?.()
-            }
-          },
-          onError: (error, recoverable) => {
-            if (!recoverable) {
-              onError?.(error)
-            }
-          },
-          onQualityLevelsLoaded: (levels) => {
-            onQualityLevelsLoaded?.(levels)
-          },
-          onTimeUpdate: (currentTime, duration) => {
-            onTimeUpdate?.(currentTime, duration)
-          },
-        },
-      })
-
-      playerCoreRef.current.attach(videoRef.current, videoUrl)
 
       return () => {
-        playerCoreRef.current?.destroy()
-        playerCoreRef.current = null
+        player.destroy()
       }
-    }, [videoUrl])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [videoUrl]) // player.attach and player.destroy are stable
 
-    // Handle auto-play and mute
+    // Handle video element attributes
     useEffect(() => {
       const videoEl = videoRef.current
       if (!videoEl) return
 
       videoEl.muted = muted
       videoEl.loop = loop
+    }, [muted, loop])
 
-      if (autoPlay && isReady) {
-        videoEl.play().catch((e) => {
-          // Autoplay blocked, try muted
-          if (e.name === 'NotAllowedError') {
-            videoEl.muted = true
-            videoEl.play().catch(() => {})
-          }
-        })
-      }
-    }, [autoPlay, muted, loop, isReady])
+    // Handle auto-play when ready
+    useEffect(() => {
+      const videoEl = videoRef.current
+      if (!videoEl || !player.isReady || !autoPlay) return
 
-    // Video event handlers
-    const handlePlay = useCallback(() => {
-      onPlay?.()
-    }, [onPlay])
-
-    const handlePause = useCallback(() => {
-      onPause?.()
-    }, [onPause])
-
-    const handleEnded = useCallback(() => {
-      onEnded?.()
-    }, [onEnded])
+      videoEl.play().catch((e) => {
+        // Autoplay blocked, try muted
+        if (e.name === 'NotAllowedError') {
+          videoEl.muted = true
+          videoEl.play().catch(() => {})
+        }
+      })
+    }, [autoPlay, player.isReady])
 
     // Expose player controls via ref
     useImperativeHandle(
       ref,
       () => ({
-        play: playback.play,
-        pause: playback.pause,
-        togglePlay: playback.togglePlay,
-        seek: playback.seek,
-        seekForward: playback.seekForward,
-        seekBackward: playback.seekBackward,
-        restart: playback.restart,
-        setVolume: volume.setVolume,
-        toggleMute: volume.toggleMute,
-        setPlaybackSpeed: playback.setPlaybackSpeed,
-        setQuality: (level: number) => {
-          playerCoreRef.current?.setQuality(level)
-        },
-        getQualityLevels: () => {
-          return playerCoreRef.current?.getQualityLevels() ?? []
-        },
+        play: player.play,
+        pause: player.pause,
+        togglePlay: player.togglePlay,
+        seek: player.seek,
+        seekForward: player.seekForward,
+        seekBackward: player.seekBackward,
+        restart: player.restart,
+        setVolume: player.volume.setVolume,
+        toggleMute: player.volume.toggleMute,
+        setPlaybackSpeed: player.setPlaybackSpeed,
+        setQuality: player.quality.setQuality,
+        getQualityLevels: () => player.quality.availableLevels,
         getVideoElement: () => videoRef.current,
-        getCurrentTime: () => videoRef.current?.currentTime ?? 0,
-        getDuration: () => videoRef.current?.duration ?? 0,
+        getCurrentTime: () => player.progress.currentTime,
+        getDuration: () => player.progress.duration,
         isPaused: () => videoRef.current?.paused ?? true,
       }),
-      [playback, volume]
+      [player]
     )
 
     return (
-      <div className={`relative w-full h-full bg-black ${className}`}>
+      <div
+        ref={containerRef}
+        style={mergeStyles(containerStyles, style)}
+        className={className}
+      >
         <video
           ref={videoRef}
           poster={videoPoster}
           playsInline
           preload="auto"
-          className="w-full h-full object-cover"
-          onPlay={handlePlay}
-          onPause={handlePause}
-          onEnded={handleEnded}
+          style={videoStyles}
         />
         {children}
       </div>

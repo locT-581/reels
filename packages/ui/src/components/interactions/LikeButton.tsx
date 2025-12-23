@@ -7,7 +7,8 @@
 import { useCallback, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Heart } from 'lucide-react'
-import { SPRING, ICON_SIZE, lightHaptic } from '@vortex/core'
+import { ICON_SIZE } from '../../constants'
+import { lightHaptic, formatCount } from '../../utils'
 
 export interface LikeButtonProps {
   /** Whether the item is liked */
@@ -55,13 +56,6 @@ export function LikeButton({
     setTimeout(() => setIsAnimating(false), 300)
   }, [disabled, isLiked, onLike])
 
-  const formatCount = (num: number): string => {
-    if (num < 1000) return num.toString()
-    if (num < 10000) return `${(num / 1000).toFixed(1)}K`
-    if (num < 1000000) return `${Math.floor(num / 1000)}K`
-    return `${(num / 1000000).toFixed(1)}M`
-  }
-
   return (
     <div className={`flex flex-col items-center ${className}`}>
       <motion.button
@@ -87,9 +81,8 @@ export function LikeButton({
               : {}
           }
           transition={{
-            type: 'spring',
-            stiffness: SPRING.DEFAULT.stiffness,
-            damping: SPRING.DEFAULT.damping,
+            duration: 0.3,
+            ease: [0.32, 0.72, 0, 1],
           }}
         >
           <Heart

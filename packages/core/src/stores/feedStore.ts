@@ -3,13 +3,12 @@
  */
 
 import { create } from 'zustand'
-import type { Video, FeedType } from '../types'
+import type { Video } from '../types'
 
 export interface FeedStore {
   // State
   videos: Video[]
   currentIndex: number
-  feedType: FeedType
   isLoading: boolean
   hasMore: boolean
   error: string | null
@@ -20,7 +19,6 @@ export interface FeedStore {
   setCurrentIndex: (index: number) => void
   goToNext: () => void
   goToPrevious: () => void
-  setFeedType: (type: FeedType) => void
   removeVideo: (id: string) => void
   setLoading: (loading: boolean) => void
   setHasMore: (hasMore: boolean) => void
@@ -31,13 +29,12 @@ export interface FeedStore {
 const initialState = {
   videos: [] as Video[],
   currentIndex: 0,
-  feedType: 'foryou' as FeedType,
   isLoading: false,
   hasMore: true,
   error: null,
 }
 
-export const useFeedStore = create<FeedStore>((set, get) => ({
+export const useFeedStore = create<FeedStore>((set) => ({
   ...initialState,
 
   setVideos: (videos) => set({ videos, currentIndex: 0 }),
@@ -60,20 +57,6 @@ export const useFeedStore = create<FeedStore>((set, get) => ({
       const prevIndex = Math.max(state.currentIndex - 1, 0)
       return { currentIndex: prevIndex }
     }),
-
-  setFeedType: (feedType) => {
-    const currentFeedType = get().feedType
-    if (currentFeedType !== feedType) {
-      set({
-        feedType,
-        videos: [],
-        currentIndex: 0,
-        hasMore: true,
-        error: null,
-      })
-    }
-  },
-
   removeVideo: (id) =>
     set((state) => {
       const newVideos = state.videos.filter((v) => v.id !== id)

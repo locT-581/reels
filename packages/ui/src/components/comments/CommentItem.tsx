@@ -1,162 +1,184 @@
 /**
- * CommentItem - Single comment display
+ * CommentItem - Individual comment component
+ *
+ * Uses CSS Variables + Inline Styles for maximum customizability.
+ * No Tailwind CSS dependency.
  */
 
 'use client'
 
-import { useState, useCallback } from 'react'
-import { motion } from 'motion/react'
-import { Heart, MoreHorizontal } from 'lucide-react'
-import { lightHaptic, formatCount } from '@vortex/core'
-import type { Comment, User } from '@vortex/core'
+import { type CSSProperties } from 'react'
+import type { Comment } from '@vortex/types'
+import { colors, spacing, fontSizes, fontWeights, mergeStyles } from '@vortex/design-tokens'
+import { Avatar } from '../base/Avatar'
 
 export interface CommentItemProps {
   /** Comment data */
   comment: Comment
-  /** Whether current user has liked this comment */
-  isLiked?: boolean
-  /** Called when like button is clicked */
+  /** Called when like is pressed */
   onLike?: () => void
-  /** Called when reply button is clicked */
+  /** Called when reply is pressed */
   onReply?: () => void
-  /** Called when author avatar is clicked */
-  onAuthorClick?: (author: User) => void
-  /** Called when more options is clicked */
-  onMoreOptions?: () => void
-  /** Whether this is a reply (smaller variant) */
+  /** Whether this is a reply (indented) */
   isReply?: boolean
-  /** Custom className */
+  /** Custom styles override */
+  style?: CSSProperties
+  /** Custom className (for external CSS if needed) */
   className?: string
 }
 
+// =============================================================================
+// STYLES
+// =============================================================================
+
+const containerStyles: CSSProperties = {
+  display: 'flex',
+  gap: spacing[3],
+  padding: `${spacing[3]}px ${spacing[4]}px`,
+}
+
+const replyContainerStyles: CSSProperties = {
+  marginLeft: 40, // Avatar size + gap
+}
+
+const contentStyles: CSSProperties = {
+  flex: 1,
+  minWidth: 0,
+}
+
+const headerStyles: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: spacing[2],
+  marginBottom: spacing[1],
+}
+
+const usernameStyles: CSSProperties = {
+  fontSize: fontSizes.sm,
+  fontWeight: fontWeights.semibold,
+  color: colors.text,
+}
+
+const timeStyles: CSSProperties = {
+  fontSize: fontSizes.xs,
+  color: colors.textMuted,
+}
+
+const textStyles: CSSProperties = {
+  fontSize: fontSizes.sm,
+  color: colors.text,
+  lineHeight: 1.4,
+  wordBreak: 'break-word',
+}
+
+const actionsStyles: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: spacing[4],
+  marginTop: spacing[2],
+}
+
+const actionButtonStyles: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: spacing[1],
+  background: 'none',
+  border: 'none',
+  padding: 0,
+  cursor: 'pointer',
+  fontSize: fontSizes.xs,
+  color: colors.textSecondary,
+}
+
+const likeCountStyles: CSSProperties = {
+  fontSize: fontSizes.xs,
+  color: colors.textSecondary,
+}
+
+// =============================================================================
+// ICONS
+// =============================================================================
+
+const HeartIcon = ({ filled, size = 14 }: { filled?: boolean; size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill={filled ? colors.like : 'none'}
+    stroke={filled ? colors.like : 'currentColor'}
+    strokeWidth={2}
+  >
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+  </svg>
+)
+
+// =============================================================================
+// HELPER
+// =============================================================================
+
+function formatTimeAgo(date: Date | string): string {
+  const now = new Date()
+  const then = new Date(date)
+  const seconds = Math.floor((now.getTime() - then.getTime()) / 1000)
+
+  if (seconds < 60) return 'Vừa xong'
+  if (seconds < 3600) return `${Math.floor(seconds / 60)}ph`
+  if (seconds < 86400) return `${Math.floor(seconds / 3600)}h`
+  if (seconds < 604800) return `${Math.floor(seconds / 86400)}d`
+  return `${Math.floor(seconds / 604800)}w`
+}
+
+// =============================================================================
+// COMPONENT
+// =============================================================================
+
 export function CommentItem({
   comment,
-  isLiked = false,
   onLike,
   onReply,
-  onAuthorClick,
-  onMoreOptions,
   isReply = false,
+  style,
   className = '',
 }: CommentItemProps) {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const [showLikeAnimation, setShowLikeAnimation] = useState(false)
-
-  const handleLike = useCallback(() => {
-    lightHaptic()
-    setShowLikeAnimation(true)
-    setTimeout(() => setShowLikeAnimation(false), 300)
-    onLike?.()
-  }, [onLike])
-
-  const formatTimeAgo = (dateString: string): string => {
-    const date = new Date(dateString)
-    const now = new Date()
-    const diffMs = now.getTime() - date.getTime()
-    const diffMins = Math.floor(diffMs / 60000)
-    const diffHours = Math.floor(diffMins / 60)
-    const diffDays = Math.floor(diffHours / 24)
-    const diffWeeks = Math.floor(diffDays / 7)
-
-    if (diffMins < 1) return 'Vừa xong'
-    if (diffMins < 60) return `${diffMins}p`
-    if (diffHours < 24) return `${diffHours}h`
-    if (diffDays < 7) return `${diffDays}d`
-    return `${diffWeeks}w`
-  }
-
-  const avatarSize = isReply ? 'w-8 h-8' : 'w-10 h-10'
-  const textSize = isReply ? 'text-sm' : 'text-base'
-
   return (
-    <div className={`flex gap-3 ${className}`}>
-      {/* Avatar */}
-      <button
-        onClick={() => onAuthorClick?.(comment.author)}
-        className="flex-shrink-0"
-      >
-        <img
-          src={comment.author.avatar}
-          alt={comment.author.displayName}
-          className={`${avatarSize} rounded-full object-cover`}
-        />
-      </button>
+    <div
+      style={mergeStyles(
+        containerStyles,
+        isReply && replyContainerStyles,
+        style
+      )}
+      className={className}
+    >
+      <Avatar
+        src={comment.author.avatar}
+        alt={comment.author.displayName}
+        size={isReply ? 'sm' : 'md'}
+      />
 
-      {/* Content */}
-      <div className="flex-1 min-w-0">
-        {/* Author & Time */}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => onAuthorClick?.(comment.author)}
-            className="font-semibold text-white text-sm hover:underline"
-          >
-            {comment.author.username}
-          </button>
-          <span className="text-xs text-white/50">
-            {formatTimeAgo(comment.createdAt)}
-          </span>
+      <div style={contentStyles}>
+        {/* Header */}
+        <div style={headerStyles}>
+          <span style={usernameStyles}>@{comment.author.username}</span>
+          <span style={timeStyles}>{formatTimeAgo(comment.createdAt)}</span>
         </div>
 
-        {/* Comment text */}
-        <div className="mt-1">
-          <p
-            className={`text-white/90 ${textSize} ${
-              !isExpanded ? 'line-clamp-3' : ''
-            }`}
-          >
-            {comment.content}
-          </p>
-          {comment.content.length > 150 && !isExpanded && (
-            <button
-              onClick={() => setIsExpanded(true)}
-              className="text-white/50 text-sm mt-1"
-            >
-              Xem thêm
-            </button>
-          )}
-        </div>
+        {/* Content */}
+        <p style={textStyles}>{comment.content}</p>
 
         {/* Actions */}
-        <div className="flex items-center gap-4 mt-2">
-          {/* Like */}
-          <button
-            onClick={handleLike}
-            className="flex items-center gap-1 text-white/70 hover:text-white"
-          >
-            <motion.div
-              animate={showLikeAnimation ? { scale: [1, 1.3, 1] } : {}}
-              transition={{ duration: 0.3 }}
-            >
-              <Heart
-                size={16}
-                className={isLiked ? 'fill-vortex-red text-vortex-red' : ''}
-              />
-            </motion.div>
+        <div style={actionsStyles}>
+          <button style={actionButtonStyles} onClick={onLike}>
+            <HeartIcon filled={comment.isLiked} />
             {comment.likesCount > 0 && (
-              <span className="text-xs">{formatCount(comment.likesCount)}</span>
+              <span style={likeCountStyles}>{comment.likesCount}</span>
             )}
           </button>
 
-          {/* Reply */}
-          {!isReply && (
-            <button
-              onClick={onReply}
-              className="flex items-center gap-1 text-white/70 hover:text-white text-xs"
-            >
-              Phản hồi
-            </button>
-          )}
+          <button style={actionButtonStyles} onClick={onReply}>
+            Trả lời
+          </button>
         </div>
       </div>
-
-      {/* More options */}
-      <button
-        onClick={onMoreOptions}
-        className="flex-shrink-0 p-1 text-white/50 hover:text-white"
-      >
-        <MoreHorizontal size={16} />
-      </button>
     </div>
   )
 }
-

@@ -1,0 +1,49 @@
+{
+  "name": "@vortex/player-engine",
+  "version": "0.0.1",
+  "description": "Pure Vanilla TypeScript video player engine for VortexStream",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "hls.js": ">=1.5.0"
+  },
+  "devDependencies": {
+    "@vortex/types": "workspace:*",
+    "hls.js": "^1.5.17",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vortexstream/vortex.git",
+    "directory": "packages/player-engine"
+  },
+  "keywords": [
+    "video",
+    "player",
+    "hls",
+    "engine",
+    "vanilla",
+    "typescript"
+  ],
+  "sideEffects": false
+}
+

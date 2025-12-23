@@ -6,7 +6,7 @@
 
 import { motion } from 'motion/react'
 import { Volume2, Volume1, VolumeX, Volume } from 'lucide-react'
-import { ANIMATION } from '@vortex/core'
+import { SPRING } from '@vortex/core'
 
 export interface VolumeButtonProps {
   volume: number // 0-1
@@ -45,8 +45,8 @@ export function VolumeButton({
         whileTap={{ scale: 0.9 }}
         transition={{
           type: 'spring',
-          stiffness: ANIMATION.SPRING_STIFFNESS,
-          damping: ANIMATION.SPRING_DAMPING,
+          stiffness: SPRING.DEFAULT.stiffness,
+          damping: SPRING.DEFAULT.damping,
         }}
         aria-label={isMuted ? 'Unmute' : 'Mute'}
       >

@@ -1,14 +1,17 @@
 /**
- * CommentSheet - Bottom sheet for displaying comments
+ * CommentSheet - Comment bottom sheet with scrollable list
+ *
+ * Uses CSS Variables + Inline Styles for maximum customizability.
+ * No Tailwind CSS dependency.
  */
 
 'use client'
 
-import { useState, useCallback, useRef } from 'react'
-import { motion, AnimatePresence, useDragControls, PanInfo } from 'motion/react'
-import { X } from 'lucide-react'
-import { SPRING, formatCount } from '@vortex/core'
-import type { Comment, User } from '@vortex/core'
+import { useState, useCallback, useRef, type CSSProperties } from 'react'
+import { colors, spacing, fontSizes, fontWeights } from '@vortex/design-tokens'
+import type { Comment } from '@vortex/types'
+import { formatCount } from '../../utils'
+import { BottomSheet } from '../BottomSheet'
 import { CommentItem } from './CommentItem'
 import { CommentInput } from './CommentInput'
 import { Spinner } from '../Spinner'
@@ -18,92 +21,110 @@ export interface CommentSheetProps {
   isOpen: boolean
   /** Called when sheet should close */
   onClose: () => void
-  /** Comments data */
+  /** Comments to display */
   comments: Comment[]
   /** Total comment count */
-  commentCount: number
-  /** Current user avatar */
-  userAvatar?: string
-  /** Loading state */
-  isLoading?: boolean
-  /** Loading more state */
-  isLoadingMore?: boolean
-  /** Whether there are more comments */
-  hasMore?: boolean
-  /** Called when more comments should be loaded */
-  onLoadMore?: () => void
+  totalCount?: number
+  /** Called when a new comment is submitted */
+  onSubmit?: (content: string) => void | Promise<void>
   /** Called when a comment is liked */
   onLikeComment?: (commentId: string) => void
   /** Called when reply is initiated */
   onReply?: (comment: Comment) => void
-  /** Called when a new comment is posted */
-  onPostComment?: (text: string) => void
-  /** Called when author is clicked */
-  onAuthorClick?: (author: User) => void
-  /** Set of liked comment IDs */
-  likedCommentIds?: Set<string>
+  /** Called when more comments should be loaded */
+  onLoadMore?: () => void | Promise<void>
+  /** Loading state */
+  isLoading?: boolean
+  /** Has more comments to load */
+  hasMore?: boolean
+  /** Submitting state */
+  isSubmitting?: boolean
+  /** Current user avatar */
+  userAvatar?: string
+  /** Custom styles override */
+  style?: CSSProperties
 }
+
+// =============================================================================
+// STYLES
+// =============================================================================
+
+const contentStyles: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
+}
+
+const listContainerStyles: CSSProperties = {
+  flex: 1,
+  overflow: 'auto',
+  WebkitOverflowScrolling: 'touch',
+}
+
+const loadingStyles: CSSProperties = {
+  display: 'flex',
+  justifyContent: 'center',
+  padding: spacing[4],
+}
+
+const emptyStyles: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: spacing[8],
+  color: colors.textSecondary,
+  textAlign: 'center',
+}
+
+const emptyTitleStyles: CSSProperties = {
+  fontSize: fontSizes.lg,
+  fontWeight: fontWeights.semibold,
+  color: colors.text,
+  marginBottom: spacing[2],
+}
+
+const emptyTextStyles: CSSProperties = {
+  fontSize: fontSizes.sm,
+  color: colors.textMuted,
+}
+
+const inputContainerStyles: CSSProperties = {
+  borderTop: `1px solid ${colors.border}`,
+  paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+}
+
+// =============================================================================
+// COMPONENT
+// =============================================================================
 
 export function CommentSheet({
   isOpen,
   onClose,
   comments,
-  commentCount,
-  userAvatar,
-  isLoading = false,
-  isLoadingMore = false,
-  hasMore = false,
-  onLoadMore,
+  totalCount = comments.length,
+  onSubmit,
   onLikeComment,
   onReply,
-  onPostComment,
-  onAuthorClick,
-  likedCommentIds = new Set(),
+  onLoadMore,
+  isLoading = false,
+  hasMore = false,
+  isSubmitting = false,
+  userAvatar,
+  style,
 }: CommentSheetProps) {
   const [replyTo, setReplyTo] = useState<Comment | null>(null)
-  const [sheetHeight, setSheetHeight] = useState(60) // percentage
-  const dragControls = useDragControls()
-  const contentRef = useRef<HTMLDivElement>(null)
+  const listRef = useRef<HTMLDivElement>(null)
 
-  // Handle drag to resize/dismiss
-  const handleDragEnd = useCallback(
-    (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-      const velocity = info.velocity.y
-      const offset = info.offset.y
+  // Handle scroll to bottom for infinite loading
+  const handleScroll = useCallback(() => {
+    if (!listRef.current || isLoading || !hasMore) return
 
-      if (velocity > 500 || offset > 200) {
-        // Dismiss
-        onClose()
-      } else if (velocity < -500 || offset < -100) {
-        // Expand to max
-        setSheetHeight(90)
-      } else {
-        // Snap to nearest
-        if (sheetHeight < 50) {
-          onClose()
-        } else if (sheetHeight < 75) {
-          setSheetHeight(60)
-        } else {
-          setSheetHeight(90)
-        }
-      }
-    },
-    [sheetHeight, onClose]
-  )
-
-  // Handle scroll to load more
-  const handleScroll = useCallback(
-    (e: React.UIEvent<HTMLDivElement>) => {
-      const target = e.currentTarget
-      const isNearBottom =
-        target.scrollHeight - target.scrollTop - target.clientHeight < 100
-
-      if (isNearBottom && hasMore && !isLoadingMore) {
-        onLoadMore?.()
-      }
-    },
-    [hasMore, isLoadingMore, onLoadMore]
-  )
+    const { scrollTop, scrollHeight, clientHeight } = listRef.current
+    if (scrollHeight - scrollTop - clientHeight < 200) {
+      onLoadMore?.()
+    }
+  }, [isLoading, hasMore, onLoadMore])
 
   // Handle reply
   const handleReply = useCallback((comment: Comment) => {
@@ -111,124 +132,64 @@ export function CommentSheet({
     onReply?.(comment)
   }, [onReply])
 
-  // Handle post comment
-  const handlePostComment = useCallback(
-    (text: string) => {
-      onPostComment?.(text)
-      setReplyTo(null)
-    },
-    [onPostComment]
-  )
+  // Handle submit
+  const handleSubmit = useCallback(async (content: string) => {
+    await onSubmit?.(content)
+    setReplyTo(null)
+  }, [onSubmit])
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            className="fixed inset-0 bg-black/60 z-40"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
+    <BottomSheet
+      isOpen={isOpen}
+      onClose={onClose}
+      title={`${formatCount(totalCount)} bình luận`}
+      height="70vh"
+      style={style}
+    >
+      <div style={contentStyles}>
+        {/* Comment list */}
+        <div
+          ref={listRef}
+          style={listContainerStyles}
+          onScroll={handleScroll}
+        >
+          {comments.length === 0 && !isLoading ? (
+            <div style={emptyStyles}>
+              <p style={emptyTitleStyles}>Chưa có bình luận</p>
+              <p style={emptyTextStyles}>Hãy là người đầu tiên bình luận!</p>
+            </div>
+          ) : (
+            <>
+              {comments.map((comment) => (
+                <CommentItem
+                  key={comment.id}
+                  comment={comment}
+                  onLike={() => onLikeComment?.(comment.id)}
+                  onReply={() => handleReply(comment)}
+                />
+              ))}
+            </>
+          )}
+
+          {/* Loading indicator */}
+          {isLoading && (
+            <div style={loadingStyles}>
+              <Spinner size={20} />
+            </div>
+          )}
+        </div>
+
+        {/* Comment input */}
+        <div style={inputContainerStyles}>
+          <CommentInput
+            onSubmit={handleSubmit}
+            isSubmitting={isSubmitting}
+            userAvatar={userAvatar}
+            replyTo={replyTo?.author.username}
+            onCancelReply={() => setReplyTo(null)}
           />
-
-          {/* Sheet */}
-          <motion.div
-            className="fixed bottom-0 left-0 right-0 z-50 bg-zinc-900 rounded-t-3xl overflow-hidden flex flex-col"
-            style={{ height: `${sheetHeight}vh` }}
-            initial={{ y: '100%' }}
-            animate={{ y: 0 }}
-            exit={{ y: '100%' }}
-            transition={{
-              type: 'spring',
-              stiffness: SPRING.DEFAULT.stiffness,
-              damping: SPRING.DEFAULT.damping,
-            }}
-            drag="y"
-            dragControls={dragControls}
-            dragConstraints={{ top: 0, bottom: 0 }}
-            dragElastic={{ top: 0.1, bottom: 0.5 }}
-            onDragEnd={handleDragEnd}
-          >
-            {/* Drag handle */}
-            <div
-              className="flex justify-center pt-3 pb-2 cursor-grab active:cursor-grabbing"
-              onPointerDown={(e) => dragControls.start(e)}
-            >
-              <div className="w-10 h-1 bg-white/20 rounded-full" />
-            </div>
-
-            {/* Header */}
-            <div className="flex items-center justify-between px-4 pb-3 border-b border-white/10">
-              <h3 className="text-base font-semibold text-white">
-                {formatCount(commentCount)} bình luận
-              </h3>
-              <button
-                onClick={onClose}
-                className="p-2 -mr-2 rounded-full hover:bg-white/10"
-                aria-label="Close"
-              >
-                <X size={24} className="text-white" />
-              </button>
-            </div>
-
-            {/* Comments list */}
-            <div
-              ref={contentRef}
-              className="flex-1 overflow-y-auto px-4 py-3"
-              onScroll={handleScroll}
-            >
-              {isLoading ? (
-                <div className="flex justify-center py-8">
-                  <Spinner size="md" />
-                </div>
-              ) : comments.length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-12 text-white/50">
-                  <p className="text-sm">Chưa có bình luận nào</p>
-                  <p className="text-xs mt-1">Hãy là người đầu tiên bình luận!</p>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {comments.map((comment) => (
-                    <CommentItem
-                      key={comment.id}
-                      comment={comment}
-                      isLiked={likedCommentIds.has(comment.id)}
-                      onLike={() => onLikeComment?.(comment.id)}
-                      onReply={() => handleReply(comment)}
-                      onAuthorClick={onAuthorClick}
-                    />
-                  ))}
-
-                  {/* Load more indicator */}
-                  {isLoadingMore && (
-                    <div className="flex justify-center py-4">
-                      <Spinner size="sm" />
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Input */}
-            <CommentInput
-              userAvatar={userAvatar}
-              replyTo={replyTo?.author.username}
-              onSubmit={handlePostComment}
-              placeholder={
-                replyTo
-                  ? `Trả lời @${replyTo.author.username}...`
-                  : 'Thêm bình luận...'
-              }
-            />
-
-            {/* Safe area */}
-            <div className="h-safe-bottom bg-zinc-900" />
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+        </div>
+      </div>
+    </BottomSheet>
   )
 }
-

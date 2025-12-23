@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { renderHook, act, waitFor } from '@testing-library/react'
+import { renderHook, act } from '@testing-library/react'
 import { useDebounce } from '../hooks/useDebounce'
 import { useThrottle } from '../hooks/useThrottle'
 
@@ -31,7 +31,7 @@ describe('useDebounce', () => {
 
     // Update value
     rerender({ value: 'updated' })
-    
+
     // Should still be initial immediately
     expect(result.current).toBe('initial')
 
@@ -54,12 +54,12 @@ describe('useDebounce', () => {
     await act(async () => {
       vi.advanceTimersByTime(200)
     })
-    
+
     rerender({ value: 'c' })
     await act(async () => {
       vi.advanceTimersByTime(200)
     })
-    
+
     rerender({ value: 'd' })
     await act(async () => {
       vi.advanceTimersByTime(500)

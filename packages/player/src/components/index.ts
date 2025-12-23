@@ -11,6 +11,7 @@ export {
   type FullScreenContainerProps,
 } from './VideoContainer'
 export { SeekPreview, useSeekPreview, type SeekPreviewProps, type UseSeekPreviewReturn } from './SeekPreview'
+export { Timeline, type TimelineProps, type TimelineRef } from './Timeline'
 
 // Controls
 export * from './controls'

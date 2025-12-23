@@ -36,17 +36,21 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
-    "@tanstack/react-virtual": "^3.11.2",
     "@vortex/core": "workspace:*",
-    "@vortex/player": "workspace:*"
+    "@vortex/player": "workspace:*",
+    "@vortex/player-core": "workspace:*",
+    "@vortex/gestures": "workspace:*",
+    "@vortex/ui": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
     "motion": ">=11.0.0",
-    "lucide-react": ">=0.460.0"
+    "lucide-react": ">=0.460.0",
+    "@tanstack/react-query": ">=5.0.0"
   },
   "devDependencies": {
+    "@tanstack/react-query": "^5.80.6",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "lucide-react": "^0.469.0",

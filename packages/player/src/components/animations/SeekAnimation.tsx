@@ -7,7 +7,7 @@
 
 import { motion, AnimatePresence } from 'motion/react'
 import { FastForward, Rewind } from 'lucide-react'
-import { ANIMATION } from '@vortex/core'
+import { SPRING } from '@vortex/core'
 
 export interface SeekAnimationProps {
   /** Direction of seek */
@@ -44,8 +44,8 @@ export function SeekAnimation({
           exit={{ opacity: 0, scale: 1.2 }}
           transition={{
             type: 'spring',
-            stiffness: ANIMATION.SPRING_STIFFNESS * 1.5,
-            damping: ANIMATION.SPRING_DAMPING,
+            stiffness: SPRING.DEFAULT.stiffness * 1.5,
+            damping: SPRING.DEFAULT.damping,
           }}
         >
           {/* Ripple circles */}

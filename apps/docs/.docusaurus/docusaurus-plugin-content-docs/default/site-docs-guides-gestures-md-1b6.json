@@ -1,0 +1,29 @@
+{
+  "id": "guides/gestures",
+  "title": "Gestures",
+  "description": "Hướng dẫn cấu hình và tùy biến gesture system.",
+  "source": "@site/docs/guides/gestures.md",
+  "sourceDirName": "guides",
+  "slug": "/guides/gestures",
+  "permalink": "/docs/guides/gestures",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/guides/gestures.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Custom UI",
+    "permalink": "/docs/guides/custom-ui"
+  },
+  "next": {
+    "title": "Offline Support",
+    "permalink": "/docs/guides/offline-support"
+  }
+}

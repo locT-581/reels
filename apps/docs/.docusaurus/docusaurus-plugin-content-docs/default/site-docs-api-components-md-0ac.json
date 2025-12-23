@@ -1,0 +1,29 @@
+{
+  "id": "api/components",
+  "title": "Components",
+  "description": "React components từ VortexStream.",
+  "source": "@site/docs/api/components.md",
+  "sourceDirName": "api",
+  "slug": "/api/components",
+  "permalink": "/docs/api/components",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/api/components.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Hooks",
+    "permalink": "/docs/api/hooks"
+  },
+  "next": {
+    "title": "Utilities",
+    "permalink": "/docs/api/utilities"
+  }
+}

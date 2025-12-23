@@ -114,16 +114,29 @@ Mọi thiết kế/mô tả màn hình sau này phải xuất ra theo cấu trú
 | **Quality Selector** | Menu trong settings | Auto (default), 1080p, 720p, 480p, 360p |
 | **Fullscreen** | Icon góc phải | Xoay landscape cho video 16:9. Escape để thoát. |
 
-### 13.2 Seek Bar Behavior
+### 13.2 Timeline/Seek Bar Behavior
+
+| Mode | Height | Features |
+|------|--------|----------|
+| **Collapsed (Default)** | 2px | Progress bar only, tap to expand |
+| **Expanded** | ~40px | Progress + scrubber + time (currentTime / duration) |
 
 | State | Visual |
 |-------|--------|
-| **Default** | 2px height, 30% opacity white |
-| **Hover/Touch** | 4px height, 100% opacity, hiện buffer progress |
-| **Dragging** | Hiện preview thumbnail, time indicator |
-| **Buffering** | Animated gradient trên phần chưa buffer |
+| **Idle** | 2px height, 20% opacity white |
+| **Touch/Hover** | Expand to 4px, show buffer |
+| **Dragging** | Scrubber follows touch, time updates real-time |
+| **Buffering** | Buffer indicator (30% opacity) |
 
-### 13.3 Video Info Overlay
+### 13.3 Timeline Performance
+
+| Property | Value |
+|----------|-------|
+| **Update Method** | `requestAnimationFrame` (no state re-renders) |
+| **Frame Rate** | 30 FPS (throttled for performance) |
+| **DOM Updates** | Direct manipulation via refs |
+
+### 13.4 Video Info Overlay
 
 | Element | Position | Behavior |
 |---------|----------|----------|

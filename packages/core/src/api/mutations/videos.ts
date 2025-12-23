@@ -1,11 +1,13 @@
 /**
  * Video Mutations - TanStack Query mutations for video actions
+ *
+ * Uses VortexApiClient from context for configurable endpoints
  */
 
 'use client'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { apiClient } from '../api-client'
+import { useVortexApiClient } from '../useVortexApiClient'
 import { queryKeys } from '../query-client'
 import type { Video } from '../../types'
 import type { ReportReason } from '../../hooks/useContentControl'
@@ -29,56 +31,38 @@ export interface ReportVideoResponse {
 }
 
 // ============================================
-// Mutation Functions
-// ============================================
-
-/**
- * Like/Unlike a video
- */
-async function likeVideo(videoId: string): Promise<LikeVideoResponse> {
-  return apiClient.post<LikeVideoResponse>(`/videos/${videoId}/like`)
-}
-
-/**
- * Save/Unsave a video
- */
-async function saveVideo(videoId: string): Promise<SaveVideoResponse> {
-  return apiClient.post<SaveVideoResponse>(`/videos/${videoId}/save`)
-}
-
-/**
- * Report a video
- */
-async function reportVideo(
-  videoId: string,
-  reason: ReportReason,
-  details?: string
-): Promise<ReportVideoResponse> {
-  return apiClient.post<ReportVideoResponse>(`/videos/${videoId}/report`, {
-    reason,
-    details,
-  })
-}
-
-/**
- * Mark video as not interested
- */
-async function markNotInterested(videoId: string): Promise<void> {
-  return apiClient.post(`/videos/${videoId}/not-interested`)
-}
-
-// ============================================
 // Mutation Hooks
 // ============================================
 
 /**
  * Hook for liking/unliking a video
+ *
+ * Provides optimistic updates and automatic cache invalidation
+ *
+ * @example
+ * ```tsx
+ * function LikeButton({ video }: { video: Video }) {
+ *   const { mutate: toggleLike, isPending } = useLikeVideoMutation()
+ *
+ *   return (
+ *     <button
+ *       onClick={() => toggleLike(video.id)}
+ *       disabled={isPending}
+ *     >
+ *       {video.isLiked ? '❤️' : '🤍'} {video.stats.likes}
+ *     </button>
+ *   )
+ * }
+ * ```
  */
 export function useLikeVideoMutation() {
+  const apiClient = useVortexApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: likeVideo,
+    mutationFn: async (videoId: string) => {
+      await apiClient.likeVideo(videoId)
+    },
     onMutate: async (videoId) => {
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: queryKeys.videos.detail(videoId) })
@@ -121,12 +105,28 @@ export function useLikeVideoMutation() {
 
 /**
  * Hook for saving/unsaving a video
+ *
+ * @example
+ * ```tsx
+ * function SaveButton({ video }: { video: Video }) {
+ *   const { mutate: toggleSave } = useSaveVideoMutation()
+ *
+ *   return (
+ *     <button onClick={() => toggleSave(video.id)}>
+ *       {video.isSaved ? '🔖' : '📌'}
+ *     </button>
+ *   )
+ * }
+ * ```
  */
 export function useSaveVideoMutation() {
+  const apiClient = useVortexApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: saveVideo,
+    mutationFn: async (videoId: string) => {
+      await apiClient.saveVideo(videoId)
+    },
     onMutate: async (videoId) => {
       await queryClient.cancelQueries({ queryKey: queryKeys.videos.detail(videoId) })
 
@@ -159,25 +159,62 @@ export function useSaveVideoMutation() {
 
 /**
  * Hook for reporting a video
+ *
+ * @example
+ * ```tsx
+ * function ReportButton({ videoId }: { videoId: string }) {
+ *   const { mutate: report, isPending } = useReportVideoMutation()
+ *
+ *   const handleReport = (reason: ReportReason) => {
+ *     report({ videoId, reason, details: 'Additional info' })
+ *   }
+ *
+ *   return <ReportDialog onSubmit={handleReport} disabled={isPending} />
+ * }
+ * ```
  */
 export function useReportVideoMutation() {
+  const apiClient = useVortexApiClient()
+
   return useMutation({
-    mutationFn: ({ videoId, reason, details }: {
+    mutationFn: async ({
+      videoId,
+      reason,
+      details,
+    }: {
       videoId: string
       reason: ReportReason
       details?: string
-    }) => reportVideo(videoId, reason, details),
+    }) => {
+      await apiClient.reportVideo(videoId, reason, details)
+    },
   })
 }
 
 /**
  * Hook for marking video as not interested
+ *
+ * @example
+ * ```tsx
+ * function NotInterestedButton({ videoId }: { videoId: string }) {
+ *   const { mutate: markNotInterested } = useNotInterestedMutation()
+ *
+ *   return (
+ *     <button onClick={() => markNotInterested(videoId)}>
+ *       Not interested
+ *     </button>
+ *   )
+ * }
+ * ```
  */
 export function useNotInterestedMutation() {
+  const apiClient = useVortexApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: markNotInterested,
+    mutationFn: async (videoId: string) => {
+      await apiClient.markNotInterested(videoId)
+    },
     onSuccess: () => {
       // Invalidate feed queries to remove the video
       queryClient.invalidateQueries({ queryKey: queryKeys.videos.lists() })
@@ -185,3 +222,40 @@ export function useNotInterestedMutation() {
   })
 }
 
+/**
+ * Hook for sharing a video (tracks share count)
+ *
+ * @example
+ * ```tsx
+ * function ShareButton({ videoId }: { videoId: string }) {
+ *   const { mutate: trackShare } = useShareVideoMutation()
+ *
+ *   const handleShare = async (platform: string) => {
+ *     await navigator.share({ url: `...` })
+ *     trackShare({ videoId, platform })
+ *   }
+ *
+ *   return <button onClick={() => handleShare('copy')}>Share</button>
+ * }
+ * ```
+ */
+export function useShareVideoMutation() {
+  const apiClient = useVortexApiClient()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async ({
+      videoId,
+      platform,
+    }: {
+      videoId: string
+      platform?: string
+    }) => {
+      await apiClient.shareVideo(videoId, platform)
+    },
+    onSuccess: (_data, { videoId }) => {
+      // Optionally update share count in cache
+      queryClient.invalidateQueries({ queryKey: queryKeys.videos.detail(videoId) })
+    },
+  })
+}

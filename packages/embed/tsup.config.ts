@@ -19,7 +19,6 @@ export default defineConfig({
     'motion/react',
     'framer-motion',
     'lucide-react',
-    '@tanstack/react-virtual',
     '@tanstack/react-query',
     '@use-gesture/react',
     'zustand',
@@ -31,8 +30,12 @@ export default defineConfig({
   noExternal: [
     '@vortex/core',
     '@vortex/player',
+    '@vortex/player-core',
+    '@vortex/player-engine',
     '@vortex/ui',
     '@vortex/gestures',
     '@vortex/feed',
+    '@vortex/design-tokens',
+    '@vortex/types',
   ],
 })

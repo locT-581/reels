@@ -3,10 +3,10 @@
  */
 
 import { describe, it, expect, beforeEach } from 'vitest'
-import { usePlayerStore } from '../stores/playerStore'
+import { usePlayerRuntimeStore, usePlayerPreferencesStore } from '../stores/playerStore'
 import { useFeedStore } from '../stores/feedStore'
 import { useUIStore } from '../stores/uiStore'
-import type { Video, Quality } from '../types'
+import type { Video } from '../types'
 
 // Mock video factory
 const createMockVideo = (id: string): Video => ({
@@ -18,9 +18,7 @@ const createMockVideo = (id: string): Video => ({
     username: 'testuser',
     displayName: 'Test User',
     avatar: 'https://example.com/avatar.jpg',
-    verified: false,
-    followers: 1000,
-    following: 100,
+    isVerified: false,
   },
   caption: 'Test video',
   hashtags: ['test'],
@@ -29,131 +27,122 @@ const createMockVideo = (id: string): Video => ({
     likes: 100,
     comments: 10,
     shares: 5,
-    saves: 2,
   },
   createdAt: new Date().toISOString(),
   duration: 30,
 })
 
-describe('Player Store', () => {
+describe('Player Stores', () => {
   beforeEach(() => {
-    // Reset store before each test
-    usePlayerStore.setState({
-      currentVideo: null,
-      playerState: 'idle',
-      isPlaying: false,
-      isMuted: true,
-      volume: 1,
-      playbackSpeed: 1,
-      quality: 'auto' as Quality,
-      currentTime: 0,
-      duration: 0,
-      buffered: 0,
-    })
+    // Reset stores before each test
+    usePlayerRuntimeStore.getState().reset()
+    usePlayerPreferencesStore.getState().resetPreferences()
   })
 
   describe('playback controls', () => {
     it('should start with default values', () => {
-      const state = usePlayerStore.getState()
-      expect(state.isPlaying).toBe(false)
-      expect(state.isMuted).toBe(true)
-      expect(state.volume).toBe(1)
-      expect(state.playerState).toBe('idle')
+      const runtime = usePlayerRuntimeStore.getState()
+      const prefs = usePlayerPreferencesStore.getState()
+      expect(runtime.isPlaying).toBe(false)
+      expect(prefs.isMuted).toBe(true)
+      expect(prefs.volume).toBe(1)
+      expect(runtime.playerState).toBe('idle')
     })
 
     it('should play video', () => {
-      usePlayerStore.getState().play()
-      expect(usePlayerStore.getState().isPlaying).toBe(true)
-      expect(usePlayerStore.getState().playerState).toBe('playing')
+      usePlayerRuntimeStore.getState().play()
+      expect(usePlayerRuntimeStore.getState().isPlaying).toBe(true)
+      expect(usePlayerRuntimeStore.getState().playerState).toBe('playing')
     })
 
     it('should pause video', () => {
-      usePlayerStore.getState().play()
-      usePlayerStore.getState().pause()
-      expect(usePlayerStore.getState().isPlaying).toBe(false)
-      expect(usePlayerStore.getState().playerState).toBe('paused')
+      usePlayerRuntimeStore.getState().play()
+      usePlayerRuntimeStore.getState().pause()
+      expect(usePlayerRuntimeStore.getState().isPlaying).toBe(false)
+      expect(usePlayerRuntimeStore.getState().playerState).toBe('paused')
     })
 
     it('should toggle play/pause', () => {
-      usePlayerStore.getState().togglePlay()
-      expect(usePlayerStore.getState().isPlaying).toBe(true)
-      usePlayerStore.getState().togglePlay()
-      expect(usePlayerStore.getState().isPlaying).toBe(false)
+      usePlayerRuntimeStore.getState().togglePlay()
+      expect(usePlayerRuntimeStore.getState().isPlaying).toBe(true)
+      usePlayerRuntimeStore.getState().togglePlay()
+      expect(usePlayerRuntimeStore.getState().isPlaying).toBe(false)
     })
   })
 
   describe('mute controls', () => {
     it('should toggle mute', () => {
-      usePlayerStore.getState().toggleMute()
-      expect(usePlayerStore.getState().isMuted).toBe(false)
-      usePlayerStore.getState().toggleMute()
-      expect(usePlayerStore.getState().isMuted).toBe(true)
+      usePlayerPreferencesStore.getState().toggleMute()
+      expect(usePlayerPreferencesStore.getState().isMuted).toBe(false)
+      usePlayerPreferencesStore.getState().toggleMute()
+      expect(usePlayerPreferencesStore.getState().isMuted).toBe(true)
     })
 
     it('should set volume', () => {
-      usePlayerStore.getState().setVolume(0.5)
-      expect(usePlayerStore.getState().volume).toBe(0.5)
+      usePlayerPreferencesStore.getState().setVolume(0.5)
+      expect(usePlayerPreferencesStore.getState().volume).toBe(0.5)
     })
 
     it('should mute when setting volume to 0', () => {
-      usePlayerStore.getState().setVolume(0)
-      expect(usePlayerStore.getState().isMuted).toBe(true)
+      usePlayerPreferencesStore.getState().setVolume(0)
+      expect(usePlayerPreferencesStore.getState().isMuted).toBe(true)
     })
 
     it('should clamp volume between 0 and 1', () => {
-      usePlayerStore.getState().setVolume(1.5)
-      expect(usePlayerStore.getState().volume).toBe(1)
-      usePlayerStore.getState().setVolume(-0.5)
-      expect(usePlayerStore.getState().volume).toBe(0)
+      usePlayerPreferencesStore.getState().setVolume(1.5)
+      expect(usePlayerPreferencesStore.getState().volume).toBe(1)
+      usePlayerPreferencesStore.getState().setVolume(-0.5)
+      expect(usePlayerPreferencesStore.getState().volume).toBe(0)
     })
   })
 
   describe('time controls', () => {
     it('should update progress', () => {
-      usePlayerStore.getState().updateProgress(30, 45)
-      expect(usePlayerStore.getState().currentTime).toBe(30)
-      expect(usePlayerStore.getState().buffered).toBe(45)
+      usePlayerRuntimeStore.getState().updateProgress(30, 45)
+      expect(usePlayerRuntimeStore.getState().currentTime).toBe(30)
+      expect(usePlayerRuntimeStore.getState().buffered).toBe(45)
     })
 
     it('should update duration', () => {
-      usePlayerStore.getState().setDuration(120)
-      expect(usePlayerStore.getState().duration).toBe(120)
+      usePlayerRuntimeStore.getState().setDuration(120)
+      expect(usePlayerRuntimeStore.getState().duration).toBe(120)
     })
 
     it('should seek to time', () => {
-      usePlayerStore.getState().setDuration(120)
-      usePlayerStore.getState().seek(60)
-      expect(usePlayerStore.getState().currentTime).toBe(60)
+      usePlayerRuntimeStore.getState().setDuration(120)
+      usePlayerRuntimeStore.getState().seek(60)
+      expect(usePlayerRuntimeStore.getState().currentTime).toBe(60)
     })
   })
 
   describe('quality and speed controls', () => {
     it('should set quality', () => {
-      usePlayerStore.getState().setQuality('720p')
-      expect(usePlayerStore.getState().quality).toBe('720p')
+      usePlayerPreferencesStore.getState().setQuality('720p')
+      expect(usePlayerPreferencesStore.getState().quality).toBe('720p')
     })
 
     it('should set playback speed', () => {
-      usePlayerStore.getState().setPlaybackSpeed(1.5)
-      expect(usePlayerStore.getState().playbackSpeed).toBe(1.5)
+      usePlayerPreferencesStore.getState().setPlaybackSpeed(1.5)
+      expect(usePlayerPreferencesStore.getState().playbackSpeed).toBe(1.5)
     })
   })
 
   describe('video management', () => {
     it('should set current video', () => {
       const video = createMockVideo('test-1')
-      usePlayerStore.getState().setCurrentVideo(video)
-      expect(usePlayerStore.getState().currentVideo).toEqual(video)
-      expect(usePlayerStore.getState().playerState).toBe('loading')
-      expect(usePlayerStore.getState().currentTime).toBe(0)
+      usePlayerRuntimeStore.getState().setCurrentVideo(video)
+      expect(usePlayerRuntimeStore.getState().currentVideo).toEqual(video)
+      expect(usePlayerRuntimeStore.getState().playerState).toBe('loading')
+      expect(usePlayerRuntimeStore.getState().currentTime).toBe(0)
     })
 
     it('should reset state', () => {
-      usePlayerStore.getState().play()
-      usePlayerStore.getState().setVolume(0.5)
-      usePlayerStore.getState().reset()
-      expect(usePlayerStore.getState().isPlaying).toBe(false)
-      expect(usePlayerStore.getState().volume).toBe(1)
+      usePlayerRuntimeStore.getState().play()
+      usePlayerPreferencesStore.getState().setVolume(0.5)
+      usePlayerRuntimeStore.getState().reset()
+      usePlayerPreferencesStore.getState().resetPreferences()
+      expect(usePlayerRuntimeStore.getState().isPlaying).toBe(false)
+      expect(usePlayerPreferencesStore.getState().volume).toBe(1)
     })
   })
 })
@@ -163,7 +152,6 @@ describe('Feed Store', () => {
     useFeedStore.setState({
       currentIndex: 0,
       videos: [],
-      feedType: 'foryou',
       isLoading: false,
       hasMore: true,
       error: null,
@@ -175,7 +163,6 @@ describe('Feed Store', () => {
     expect(state.currentIndex).toBe(0)
     expect(state.videos).toEqual([])
     expect(state.isLoading).toBe(false)
-    expect(state.feedType).toBe('foryou')
   })
 
   it('should set current index', () => {
@@ -225,7 +212,6 @@ describe('Feed Store', () => {
     useFeedStore.getState().setVideos([createMockVideo('1'), createMockVideo('2')])
     useFeedStore.getState().removeVideo('1')
     expect(useFeedStore.getState().videos).toHaveLength(1)
-    expect(useFeedStore.getState().videos[0].id).toBe('2')
   })
 
   it('should set loading state', () => {

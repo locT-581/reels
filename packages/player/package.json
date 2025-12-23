@@ -37,7 +37,8 @@
   },
   "dependencies": {
     "@vortex/core": "workspace:*",
-    "hls.js": "^1.5.18"
+    "@vortex/player-core": "workspace:*",
+    "@vortex/ui": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

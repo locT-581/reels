@@ -1,0 +1,14 @@
+/* CSSPanSwiper - Hide scrollbar but keep functionality */
+.css-pan-swiper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ensure slides don't show overflow */
+.css-pan-slide {
+  overflow: hidden;
+}
+
+/* Virtual placeholder - no content, just space */
+.css-pan-slide--virtual-placeholder {
+  background: transparent;
+}

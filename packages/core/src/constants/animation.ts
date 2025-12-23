@@ -1,6 +1,9 @@
 /**
  * Animation configuration constants
  * Based on Vortex Design System
+ *
+ * Note: These constants are the canonical source.
+ * The `springs` export in `styles/tokens.ts` references these values.
  */
 
 /**

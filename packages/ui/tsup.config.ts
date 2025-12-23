@@ -5,7 +5,14 @@ export default defineConfig({
   format: ['esm', 'cjs'],
   dts: true,
   clean: true,
-  external: ['react', 'react-dom', '@vortex/core'],
+  external: [
+    'react',
+    'react-dom',
+    '@vortex/core',
+    'motion',
+    'motion/react',
+    'lucide-react',
+  ],
   treeshake: true,
   splitting: false,
 })

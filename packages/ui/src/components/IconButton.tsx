@@ -1,97 +1,119 @@
 /**
- * IconButton - Touch-optimized icon button
+ * IconButton - Icon-only button component
+ *
+ * Uses CSS Variables + Inline Styles for maximum customizability.
+ * No Tailwind CSS dependency.
  */
 
 'use client'
 
-import { forwardRef, type ReactNode } from 'react'
-import { motion } from 'motion/react'
-import { ANIMATION, UI } from '@vortex/core'
+import { forwardRef, type ButtonHTMLAttributes, type ReactNode, type CSSProperties } from 'react'
+import { colors, radii, durations, easings, components, mergeStyles } from '@vortex/design-tokens'
 
-export interface IconButtonProps {
+export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Icon to display */
   icon: ReactNode
-  label: string
+  /** Button size */
   size?: 'sm' | 'md' | 'lg'
-  variant?: 'default' | 'ghost' | 'accent'
-  count?: number
-  isActive?: boolean
-  disabled?: boolean
-  className?: string
-  onClick?: () => void
+  /** Button variant */
+  variant?: 'default' | 'ghost' | 'glass'
+  /** Accessibility label (required for icon-only buttons) */
+  'aria-label': string
+  /** Custom styles override */
+  style?: CSSProperties
 }
 
-const sizeClasses = {
-  sm: 'w-10 h-10',
-  md: 'w-12 h-12',
-  lg: 'w-14 h-14',
+// =============================================================================
+// STYLES
+// =============================================================================
+
+const baseStyles: CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: 'none',
+  cursor: 'pointer',
+  borderRadius: radii.full,
+  transitionProperty: 'background-color, transform, opacity',
+  transitionDuration: durations.fast,
+  transitionTimingFunction: easings.vortex,
+  userSelect: 'none',
 }
 
-const iconSizeClasses = {
-  sm: '[&_svg]:w-5 [&_svg]:h-5',
-  md: '[&_svg]:w-7 [&_svg]:h-7',
-  lg: '[&_svg]:w-8 [&_svg]:h-8',
+const sizeStyles: Record<NonNullable<IconButtonProps['size']>, CSSProperties> = {
+  sm: {
+    width: 32,
+    height: 32,
+  },
+  md: {
+    width: components.tapArea,
+    height: components.tapArea,
+  },
+  lg: {
+    width: 56,
+    height: 56,
+  },
 }
+
+const variantStyles: Record<NonNullable<IconButtonProps['variant']>, CSSProperties> = {
+  default: {
+    backgroundColor: colors.surface,
+    color: colors.text,
+  },
+  ghost: {
+    backgroundColor: 'transparent',
+    color: colors.text,
+  },
+  glass: {
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    backdropFilter: 'blur(4px)',
+    WebkitBackdropFilter: 'blur(4px)',
+    color: colors.text,
+  },
+}
+
+const disabledStyles: CSSProperties = {
+  opacity: 0.5,
+  cursor: 'not-allowed',
+  pointerEvents: 'none',
+}
+
+// =============================================================================
+// COMPONENT
+// =============================================================================
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   (
     {
       icon,
-      label,
       size = 'md',
-      variant = 'default',
-      count,
-      isActive = false,
-      disabled = false,
+      variant = 'ghost',
+      disabled,
+      style,
       className = '',
-      onClick,
+      ...props
     },
     ref
   ) => {
     return (
-      <motion.button
+      <button
         ref={ref}
         type="button"
         disabled={disabled}
-        className={`
-          flex flex-col items-center justify-center gap-1
-          ${sizeClasses[size]}
-          ${iconSizeClasses[size]}
-          min-h-[${UI.MIN_TAP_AREA}px] min-w-[${UI.MIN_TAP_AREA}px]
-          rounded-full
-          text-white
-          transition-colors duration-300 ease-vortex
-          ${variant === 'ghost' ? 'bg-transparent' : ''}
-          ${variant === 'accent' && isActive ? 'text-vortex-violet' : ''}
-          ${isActive ? 'text-vortex-red' : ''}
-          ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
-          ${className}
-        `}
-        whileTap={disabled ? undefined : { scale: 0.9 }}
-        transition={{
-          type: 'spring',
-          stiffness: ANIMATION.SPRING_STIFFNESS,
-          damping: ANIMATION.SPRING_DAMPING,
-        }}
-        aria-label={label}
-        onClick={onClick}
+        style={mergeStyles(
+          baseStyles,
+          sizeStyles[size],
+          variantStyles[variant],
+          disabled && disabledStyles,
+          style
+        )}
+        className={className}
+        {...props}
       >
         {icon}
-        {count !== undefined && (
-          <span className="text-xs font-medium text-video-overlay">
-            {formatCount(count)}
-          </span>
-        )}
-      </motion.button>
+      </button>
     )
   }
 )
 
 IconButton.displayName = 'IconButton'
-
-// Helper to format count
-function formatCount(count: number): string {
-  if (count < 1000) return count.toString()
-  if (count < 10000) return `${(count / 1000).toFixed(1)}K`
-  if (count < 1000000) return `${Math.floor(count / 1000)}K`
-  return `${(count / 1000000).toFixed(1)}M`
-}

@@ -110,6 +110,7 @@ export function useShare({
 
       return true
     } catch (err) {
+      console.error("Failed to copy link", err)
       // Fallback for older browsers
       const textArea = document.createElement('textarea')
       textArea.value = data.url

@@ -6,12 +6,13 @@
 
 import { useRef, useCallback } from 'react'
 import { useGesture } from '@use-gesture/react'
-import { GESTURE, lightHaptic, mediumHaptic } from '@vortex/core'
+import { GESTURE } from '../constants'
+import { lightHaptic, mediumHaptic } from '../utils/haptics'
 import { getGestureZone, type GestureZone } from '../utils/getGestureZone'
 
 export interface VideoGestureHandlers {
   onSingleTap?: (zone: GestureZone) => void
-  onDoubleTap?: (zone: GestureZone) => void
+  onDoubleTap?: (zone: GestureZone, position: { x: number; y: number }) => void
   onLongPress?: (position: { x: number; y: number }) => void
   onSwipeUp?: () => void
   onSwipeDown?: () => void
@@ -43,6 +44,12 @@ export function useVideoGestures(handlers: VideoGestureHandlers) {
       const now = Date.now()
       const timeSinceLastTap = now - lastTapRef.current
 
+      // Capture tap position (absolute viewport coordinates)
+      const position = {
+        x: event.clientX,
+        y: event.clientY,
+      }
+
       if (timeSinceLastTap < GESTURE.TAP_DELAY && lastTapZoneRef.current === zone) {
         // Double tap
         if (doubleTapTimeoutRef.current) {
@@ -50,7 +57,7 @@ export function useVideoGestures(handlers: VideoGestureHandlers) {
           doubleTapTimeoutRef.current = null
         }
         lightHaptic()
-        handlers.onDoubleTap?.(zone)
+        handlers.onDoubleTap?.(zone, position)
       } else {
         // Potential single tap - wait to see if it's a double tap
         doubleTapTimeoutRef.current = setTimeout(() => {

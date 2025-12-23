@@ -1,11 +1,13 @@
 /**
- * useDoubleTap - Double tap detection hook
+ * useDoubleTap - Simple double tap detection hook
+ *
+ * For zone detection and more features, use `useTapGestures` instead.
  */
 
 'use client'
 
 import { useRef, useCallback } from 'react'
-import { GESTURE } from '@vortex/core'
+import { GESTURE } from '../constants'
 
 export interface DoubleTapOptions {
   onDoubleTap: () => void
@@ -13,6 +15,10 @@ export interface DoubleTapOptions {
   delay?: number
 }
 
+/**
+ * Simple double tap detection hook.
+ * For zone detection and more features, use `useTapGestures` instead.
+ */
 export function useDoubleTap({
   onDoubleTap,
   onSingleTap,

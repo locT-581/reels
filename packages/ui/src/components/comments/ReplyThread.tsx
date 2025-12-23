@@ -7,8 +7,8 @@
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
-import { formatCount } from '@vortex/core'
-import type { Reply, User } from '@vortex/core'
+import type { Reply, User } from '@vortex/types'
+import { formatCount } from '../../utils'
 import { CommentItem } from './CommentItem'
 
 export interface ReplyThreadProps {
@@ -38,7 +38,7 @@ export function ReplyThread({
   hasMore = false,
   likedReplyIds = new Set(),
   onLikeReply,
-  onAuthorClick,
+  onAuthorClick: _onAuthorClick,
   onLoadMore,
   isLoadingMore = false,
   className = '',
@@ -73,10 +73,9 @@ export function ReplyThread({
               comment={{
                 ...reply,
                 repliesCount: 0,
+                isLiked: likedReplyIds.has(reply.id),
               }}
-              isLiked={likedReplyIds.has(reply.id)}
               onLike={() => onLikeReply?.(reply.id)}
-              onAuthorClick={onAuthorClick}
               isReply
             />
           </motion.div>

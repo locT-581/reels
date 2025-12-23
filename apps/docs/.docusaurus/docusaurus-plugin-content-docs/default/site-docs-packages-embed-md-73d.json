@@ -1,0 +1,29 @@
+{
+  "id": "packages/embed",
+  "title": "@vortex/embed",
+  "description": "All-in-one embeddable video widget.",
+  "source": "@site/docs/packages/embed.md",
+  "sourceDirName": "packages",
+  "slug": "/packages/embed",
+  "permalink": "/docs/packages/embed",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/packages/embed.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "sidebar_position": 6
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "@vortex/ui",
+    "permalink": "/docs/packages/ui"
+  },
+  "next": {
+    "title": "Types",
+    "permalink": "/docs/api/types"
+  }
+}

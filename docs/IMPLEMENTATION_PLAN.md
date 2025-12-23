@@ -1,7 +1,7 @@
 # VortexStream Implementation Plan
 
 > **Trạng thái:** 🚧 Đang triển khai
-> **Cập nhật lần cuối:** 2024-12-22
+> **Cập nhật lần cuối:** 2025-12-23
 > **Phiên bản:** 1.0.0
 
 ---
@@ -920,6 +920,9 @@
 | Ngày | Phase | Thay đổi |
 |------|-------|----------|
 | 2024-12-21 | - | Khởi tạo Implementation Plan |
+| 2025-12-23 | apps/example | Cập nhật Example app theo hướng "customer-ready": bỏ inline styles ở pages chính, chuyển API feed sang env config, thêm màn hình hướng dẫn cấu hình |
+| 2025-12-23 | packages/core, packages/player-core | Refactor: bỏ export `api/storage/offline` khỏi root `@vortex/core` (dùng subpath `@vortex/core/api|storage|offline`), và unify autoplay handling qua `safePlay()` để tránh drift giữa PlayerCore và hooks |
+| 2025-12-23 | apps/demo | ✨ **Tạo Demo App hoàn chỉnh**: Next.js 15 + Tailwind v4 showcase đầy đủ features của VortexStream packages - Video Feed, Single Player, UI Components, Gesture System, Design System. Sử dụng làm reference guide cho khách hàng và internal team. |
 
 ---
 

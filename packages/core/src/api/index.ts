@@ -16,6 +16,28 @@ export {
   type ApiResponse,
 } from './api-client'
 
+// Vortex Provider (for API integration)
+export {
+  VortexProvider,
+  useVortexConfig,
+  useVortexApiMode,
+  useRequireConfig,
+  VortexContext,
+} from './vortex-provider'
+
+// Vortex API Client (for custom implementations)
+export {
+  VortexApiClient,
+  createVortexApiClient,
+} from './vortex-api-client'
+
+// Vortex API Client Hook (for use in components)
+export {
+  useVortexApiClient,
+  useVortexApiClientOptional,
+  createApiClientFromConfig,
+} from './useVortexApiClient'
+
 // Queries
 export * from './queries/videos'
 export * from './queries/comments'

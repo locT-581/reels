@@ -37,9 +37,13 @@
   },
   "dependencies": {
     "@vortex/core": "workspace:*",
+    "@vortex/design-tokens": "workspace:*",
     "@vortex/feed": "workspace:*",
     "@vortex/gestures": "workspace:*",
     "@vortex/player": "workspace:*",
+    "@vortex/player-core": "workspace:*",
+    "@vortex/player-engine": "workspace:*",
+    "@vortex/types": "workspace:*",
     "@vortex/ui": "workspace:*"
   },
   "peerDependencies": {
@@ -47,8 +51,7 @@
     "react-dom": ">=18.0.0",
     "hls.js": ">=1.5.0",
     "motion": ">=11.0.0",
-    "lucide-react": ">=0.300.0",
-    "@tanstack/react-virtual": ">=3.0.0",
+    "lucide-react": ">=0.460.0",
     "@use-gesture/react": ">=10.0.0",
     "zustand": ">=4.0.0"
   },
@@ -60,9 +63,6 @@
       "optional": false
     },
     "lucide-react": {
-      "optional": false
-    },
-    "@tanstack/react-virtual": {
       "optional": false
     },
     "@use-gesture/react": {
@@ -78,9 +78,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "hls.js": "^1.5.18",
-    "motion": "^11.18.0",
-    "lucide-react": "^0.408.0",
-    "@tanstack/react-virtual": "^3.11.2",
+    "motion": "^12.0.0",
+    "lucide-react": "^0.468.0",
     "@use-gesture/react": "^10.3.1",
     "zustand": "^5.0.2",
     "tsup": "^8.3.5",

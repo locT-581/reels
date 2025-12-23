@@ -11,7 +11,6 @@
 export { ActionBar, type ActionBarProps } from './components/ActionBar'
 export { IconButton, type IconButtonProps } from './components/IconButton'
 export { PlayPauseOverlay, type PlayPauseOverlayProps } from './components/PlayPauseOverlay'
-export { SeekBar, type SeekBarProps } from './components/SeekBar'
 export { ContextMenu, type ContextMenuProps, type ContextMenuOption } from './components/ContextMenu'
 
 // Base
@@ -28,8 +27,6 @@ export {
 export {
   Text,
   type TextProps,
-  type TextVariant,
-  type TextWeight,
   Counter,
   type CounterProps,
   Marquee,
@@ -67,6 +64,11 @@ export {
   type SaveButtonProps,
 } from './components/interactions'
 
+// ============================================
+// Utility Components
+// ============================================
+export { PullToRefresh, type PullToRefreshProps } from './components/PullToRefresh'
+
 // Animation Components
 export {
   DoubleTapHeart,
@@ -102,6 +104,25 @@ export {
 } from './components/share'
 
 // ============================================
-// Icons (re-exported from lucide-react)
+// Utilities
 // ============================================
-export * from './icons'
+export {
+  formatCount,
+  formatDuration,
+  formatTimestamp,
+  truncateText,
+  lightHaptic,
+  mediumHaptic,
+  heavyHaptic,
+  selectionHaptic,
+  successHaptic,
+  errorHaptic,
+  supportsHaptic,
+} from './utils'
+
+// ============================================
+// Constants
+// ============================================
+export { ICON_SIZE } from './constants'
+
+// Note: lucide-react icons removed, use project-specific icons

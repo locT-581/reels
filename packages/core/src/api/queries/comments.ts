@@ -1,5 +1,7 @@
 /**
  * Comment Queries - TanStack Query hooks for comments
+ *
+ * Uses VortexApiClient from context for configurable endpoints
  */
 
 'use client'
@@ -9,78 +11,26 @@ import {
   useInfiniteQuery,
   type UseQueryOptions,
   type UseInfiniteQueryOptions,
+  type QueryClient,
 } from '@tanstack/react-query'
-import { apiClient, type ApiResponse } from '../api-client'
+import { useVortexApiClient } from '../useVortexApiClient'
 import { queryKeys } from '../query-client'
-import type { Comment, Reply, CommentSortBy } from '../../types'
+import type { CommentsListResponse, RepliesListResponse } from '../../types'
 
 // ============================================
 // Types
 // ============================================
 
-export interface CommentListParams {
+export interface CommentFetchParams {
   videoId: string
-  sortBy?: CommentSortBy
+  sortBy?: 'top' | 'newest' | 'oldest'
   limit?: number
 }
 
-export interface CommentListResponse {
-  comments: Comment[]
-  nextCursor?: string
-  hasMore: boolean
-  totalCount: number
-}
-
-export interface ReplyListParams {
+export interface ReplyFetchParams {
   commentId: string
+  videoId: string
   limit?: number
-}
-
-export interface ReplyListResponse {
-  replies: Reply[]
-  nextCursor?: string
-  hasMore: boolean
-}
-
-// ============================================
-// Query Functions
-// ============================================
-
-/**
- * Fetch comments for a video (paginated)
- */
-async function fetchComments(
-  params: CommentListParams & { cursor?: string }
-): Promise<CommentListResponse> {
-  const response = await apiClient.get<ApiResponse<CommentListResponse>>(
-    `/videos/${params.videoId}/comments`,
-    {
-      params: {
-        sortBy: params.sortBy || 'top',
-        limit: params.limit || 20,
-        cursor: params.cursor,
-      },
-    }
-  )
-  return response.data
-}
-
-/**
- * Fetch replies for a comment (paginated)
- */
-async function fetchReplies(
-  params: ReplyListParams & { cursor?: string }
-): Promise<ReplyListResponse> {
-  const response = await apiClient.get<ApiResponse<ReplyListResponse>>(
-    `/comments/${params.commentId}/replies`,
-    {
-      params: {
-        limit: params.limit || 10,
-        cursor: params.cursor,
-      },
-    }
-  )
-  return response.data
 }
 
 // ============================================
@@ -89,15 +39,37 @@ async function fetchReplies(
 
 /**
  * Hook for infinite comments list
+ *
+ * Requires VortexProvider with config
+ *
+ * @example
+ * ```tsx
+ * function CommentSection({ videoId }: { videoId: string }) {
+ *   const { data, fetchNextPage, hasNextPage } = useCommentsInfiniteQuery({
+ *     videoId,
+ *     sortBy: 'top',
+ *     limit: 20
+ *   })
+ *
+ *   const comments = data?.pages.flatMap(page => page.comments) ?? []
+ *   return <CommentList comments={comments} onLoadMore={fetchNextPage} />
+ * }
+ * ```
  */
 export function useCommentsInfiniteQuery(
-  params: CommentListParams,
-  options?: Partial<UseInfiniteQueryOptions<CommentListResponse, Error>>
+  params: CommentFetchParams,
+  options?: Partial<UseInfiniteQueryOptions<CommentsListResponse, Error>>
 ) {
+  const apiClient = useVortexApiClient()
+
   return useInfiniteQuery({
     queryKey: queryKeys.comments.list(params.videoId),
-    queryFn: ({ pageParam }) =>
-      fetchComments({ ...params, cursor: pageParam as string }),
+    queryFn: async ({ pageParam }) => {
+      return apiClient.fetchComments(params.videoId, {
+        cursor: pageParam as string,
+        limit: params.limit,
+      })
+    },
     getNextPageParam: (lastPage) =>
       lastPage.hasMore ? lastPage.nextCursor : undefined,
     initialPageParam: undefined as string | undefined,
@@ -108,15 +80,43 @@ export function useCommentsInfiniteQuery(
 
 /**
  * Hook for infinite replies list
+ *
+ * Note: VortexApiClient doesn't have a fetchReplies method yet,
+ * so this uses the generic get method with the replies endpoint
+ *
+ * @example
+ * ```tsx
+ * function ReplySection({ commentId, videoId }: { commentId: string; videoId: string }) {
+ *   const { data, fetchNextPage } = useRepliesInfiniteQuery({
+ *     commentId,
+ *     videoId,
+ *     limit: 10
+ *   })
+ *
+ *   const replies = data?.pages.flatMap(page => page.replies) ?? []
+ *   return <ReplyList replies={replies} />
+ * }
+ * ```
  */
 export function useRepliesInfiniteQuery(
-  params: ReplyListParams,
-  options?: Partial<UseInfiniteQueryOptions<ReplyListResponse, Error>>
+  params: ReplyFetchParams,
+  options?: Partial<UseInfiniteQueryOptions<RepliesListResponse, Error>>
 ) {
+  const apiClient = useVortexApiClient()
+
   return useInfiniteQuery({
     queryKey: queryKeys.comments.replies(params.commentId),
-    queryFn: ({ pageParam }) =>
-      fetchReplies({ ...params, cursor: pageParam as string }),
+    queryFn: async ({ pageParam }) => {
+      // Use generic get since VortexApiClient doesn't have fetchReplies
+      // The endpoint follows pattern: /comments/:commentId/replies
+      return apiClient.get<RepliesListResponse>(
+        `/comments/${params.commentId}/replies`,
+        {
+          cursor: pageParam as string,
+          limit: params.limit,
+        }
+      )
+    },
     getNextPageParam: (lastPage) =>
       lastPage.hasMore ? lastPage.nextCursor : undefined,
     initialPageParam: undefined as string | undefined,
@@ -126,19 +126,29 @@ export function useRepliesInfiniteQuery(
 }
 
 /**
- * Get comment count for a video (from cache or fresh)
+ * Get comment count for a video
+ *
+ * @example
+ * ```tsx
+ * function CommentCount({ videoId }: { videoId: string }) {
+ *   const { data: count } = useCommentCountQuery(videoId)
+ *   return <span>{formatCount(count ?? 0)} comments</span>
+ * }
+ * ```
  */
 export function useCommentCountQuery(
   videoId: string,
   options?: Partial<UseQueryOptions<number, Error>>
 ) {
+  const apiClient = useVortexApiClient()
+
   return useQuery({
     queryKey: [...queryKeys.comments.list(videoId), 'count'],
     queryFn: async () => {
-      const response = await apiClient.get<ApiResponse<{ count: number }>>(
+      const response = await apiClient.get<{ count: number }>(
         `/videos/${videoId}/comments/count`
       )
-      return response.data.count
+      return response.count
     },
     enabled: !!videoId,
     staleTime: 1000 * 60, // 1 minute
@@ -148,16 +158,31 @@ export function useCommentCountQuery(
 
 /**
  * Prefetch comments for a video
+ *
+ * @example
+ * ```tsx
+ * // Prefetch when video comes into view
+ * const queryClient = useQueryClient()
+ * const apiClient = useVortexApiClient()
+ *
+ * useEffect(() => {
+ *   prefetchComments(queryClient, apiClient, videoId)
+ * }, [videoId])
+ * ```
  */
 export function prefetchComments(
-  queryClient: ReturnType<typeof import('@tanstack/react-query').useQueryClient>,
-  params: CommentListParams
+  queryClient: QueryClient,
+  apiClient: { fetchComments: (videoId: string, params?: { cursor?: string; limit?: number }) => Promise<CommentsListResponse> },
+  videoId: string,
+  params?: { limit?: number }
 ) {
   return queryClient.prefetchInfiniteQuery({
-    queryKey: queryKeys.comments.list(params.videoId),
+    queryKey: queryKeys.comments.list(videoId),
     queryFn: ({ pageParam }) =>
-      fetchComments({ ...params, cursor: pageParam as string }),
+      apiClient.fetchComments(videoId, {
+        cursor: pageParam as string,
+        limit: params?.limit,
+      }),
     initialPageParam: undefined as string | undefined,
   })
 }
-

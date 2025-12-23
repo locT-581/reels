@@ -13,7 +13,8 @@ import {
   Link,
   X,
 } from 'lucide-react'
-import { SPRING, lightHaptic } from '@vortex/core'
+import { SPRING } from '@vortex/design-tokens'
+import { lightHaptic } from '../utils'
 import type { ReactNode } from 'react'
 
 export interface ContextMenuOption {

@@ -2,7 +2,7 @@
  * calculateSeekAmount - Convert drag distance to seek time
  */
 
-import { DRAG } from '@vortex/core'
+import { DRAG } from '../constants'
 
 export function calculateSeekAmount(
   dragDistance: number,

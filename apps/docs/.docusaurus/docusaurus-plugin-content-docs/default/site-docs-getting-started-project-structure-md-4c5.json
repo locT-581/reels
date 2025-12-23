@@ -1,0 +1,29 @@
+{
+  "id": "getting-started/project-structure",
+  "title": "Cấu trúc dự án",
+  "description": "Hiểu cách VortexStream được tổ chức và cách các packages tương tác với nhau.",
+  "source": "@site/docs/getting-started/project-structure.md",
+  "sourceDirName": "getting-started",
+  "slug": "/getting-started/project-structure",
+  "permalink": "/docs/getting-started/project-structure",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/getting-started/project-structure.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Quick Start",
+    "permalink": "/docs/getting-started/quick-start"
+  },
+  "next": {
+    "title": "Basic Integration",
+    "permalink": "/docs/guides/basic-integration"
+  }
+}

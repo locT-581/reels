@@ -1,6 +1,6 @@
 /**
  * useSeekDrag - Drag gesture for seeking video
- * 
+ *
  * Horizontal drag to seek through video
  * 1px = configurable seconds
  */
@@ -9,7 +9,7 @@
 
 import { useRef, useCallback, useState } from 'react'
 import { useDrag } from '@use-gesture/react'
-import { DRAG, GESTURE } from '@vortex/core'
+import { DRAG, GESTURE } from '../constants'
 
 export interface SeekDragOptions {
   /** Current video time in seconds */
@@ -57,7 +57,7 @@ export function useSeekDrag({
   const [isSeeking, setIsSeeking] = useState(false)
   const [previewTime, setPreviewTime] = useState<number | null>(null)
   const [previewPosition, setPreviewPosition] = useState<{ x: number; y: number } | null>(null)
-  
+
   const startTimeRef = useRef(currentTime)
   const seekingRef = useRef(false)
 

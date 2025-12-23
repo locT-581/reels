@@ -2,8 +2,8 @@
  * Testing Utilities
  */
 
-import { ReactNode } from 'react'
-import { render, RenderOptions } from '@testing-library/react'
+import type { ReactNode } from 'react'
+import { render, type RenderOptions } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 // ============================================
@@ -140,9 +140,9 @@ interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {
 export function renderWithProviders(
   ui: React.ReactElement,
   options: CustomRenderOptions = {}
-) {
+): ReturnType<typeof render> {
   const { queryClient, ...renderOptions } = options
-  
+
   return render(ui, {
     wrapper: ({ children }) => (
       <TestProviders queryClient={queryClient}>{children}</TestProviders>

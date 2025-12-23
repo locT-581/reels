@@ -1,5 +1,5 @@
 ---
-description: "UI component rules - Tailwind CSS, shadcn/ui, animations, and the Vortex Design System"
+description: "UI component rules - CSS Variables, Inline Styles, animations, and the Vortex Design System"
 globs: ["**/components/**", "**/ui/**", "**/*.tsx"]
 alwaysApply: false
 ---
@@ -11,66 +11,141 @@ alwaysApply: false
 - **Philosophy**: Video-centric, "Invisible App"
 - **Motion**: Physics-First (spring animations)
 - **Layout**: Reachability First (bottom 1/3 for interactions)
+- **Styling**: CSS Variables + Inline Styles (NO Tailwind CSS)
+
+## Styling Approach
+
+### Import Design Tokens
+
+```typescript
+import {
+  colors,
+  spacing,
+  radii,
+  fontSizes,
+  fontWeights,
+  shadows,
+  durations,
+  easings,
+  springs,
+  zIndices,
+  mergeStyles,
+  layout,
+  typography,
+  visual,
+  interactive,
+  animation,
+} from '@vortex/core'
+```
+
+### Building Styles
+
+```typescript
+// Define styles as CSSProperties objects
+const buttonStyles: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: colors.accent,
+  borderRadius: radii.lg,
+  padding: `${spacing[2]}px ${spacing[4]}px`,
+}
+
+// Merge multiple styles
+const combinedStyles = mergeStyles(
+  buttonStyles,
+  isActive && { backgroundColor: colors.accentHover },
+  style // Allow prop override
+)
+
+// Use in JSX
+<button style={combinedStyles}>Click me</button>
+```
+
+### Using Utility Functions
+
+```typescript
+// Layout utilities
+layout.flex({ direction: 'column', align: 'center', gap: 4 })
+layout.flexCenter
+layout.fixed({ top: 0, left: 0, right: 0 })
+layout.centerAbsolute
+
+// Typography utilities
+typography.text({ size: 'md', weight: 'semibold', color: 'text' })
+typography.heading
+typography.caption
+typography.lineClamp(2)
+
+// Visual utilities
+visual.bg('surface')
+visual.rounded('lg')
+visual.glass(20) // Glassmorphism
+visual.shadow('md')
+
+// Interactive utilities
+interactive.clickable
+interactive.disabled
+interactive.touchAction('pan-y')
+```
 
 ## Color Palette
 
 ```typescript
-// tailwind.config.ts
 const colors = {
-  'vortex-black': '#000000',      // Nền chủ đạo (OLED optimized)
-  'vortex-violet': '#8B5CF6',     // Màu nhấn (Actions)
-  'vortex-red': '#FF2D55',        // Like color
-  'vortex-gray': '#8E8E93',       // Secondary text
+  background: 'var(--vortex-color-bg, #000000)',
+  surface: 'var(--vortex-color-surface, #18181B)',
+  accent: 'var(--vortex-color-accent, #8B5CF6)',
+  like: 'var(--vortex-color-like, #FF2D55)',
+  text: 'var(--vortex-color-text, #FAFAFA)',
+  textSecondary: 'var(--vortex-color-text-secondary, #A1A1AA)',
+  textMuted: 'var(--vortex-color-text-muted, #71717A)',
+  overlay: 'var(--vortex-color-overlay, rgba(0, 0, 0, 0.8))',
+  border: 'var(--vortex-color-border, rgba(255, 255, 255, 0.1))',
 }
-```
-
-## Typography
-
-```typescript
-// Font: Inter hoặc Geist (San-serif)
-const typography = {
-  header: 'font-bold text-xl',      // 20px+, Bold
-  body: 'font-medium text-sm',      // 14-16px, Medium
-  caption: 'text-xs text-vortex-gray', // 12px
-}
-
-// Text trên video cần shadow
-const textOverVideo = 'drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]'
 ```
 
 ## Spacing (8pt Grid)
 
 ```typescript
-// Chỉ dùng các giá trị: 8, 16, 24, 32, 40, 48...
-// Tailwind: p-2 (8px), p-4 (16px), p-6 (24px), p-8 (32px)
-
-// Safe areas cho mobile
-const safeArea = {
-  top: 'pt-safe-top',    // env(safe-area-inset-top)
-  bottom: 'pb-safe-bottom', // env(safe-area-inset-bottom)
+const spacing = {
+  0: 0,
+  1: 4,   // 0.5 unit
+  2: 8,   // 1 unit
+  3: 12,  // 1.5 units
+  4: 16,  // 2 units
+  5: 20,  // 2.5 units
+  6: 24,  // 3 units
+  8: 32,  // 4 units
+  10: 40, // 5 units
+  12: 48, // 6 units
 }
 ```
 
 ## Border Radius
 
 ```typescript
-// Bo góc lớn: 16px - 24px
-const borderRadius = {
-  default: 'rounded-2xl',  // 16px
-  large: 'rounded-3xl',    // 24px
+const radii = {
+  sm: 'var(--vortex-radius-sm, 8px)',
+  md: 'var(--vortex-radius-md, 12px)',
+  lg: 'var(--vortex-radius-lg, 16px)',
+  xl: 'var(--vortex-radius-xl, 24px)',
+  full: '9999px',
 }
 ```
 
-## Glassmorphism (cho Overlays)
+## Glassmorphism (for Overlays)
 
 ```typescript
-// Bottom sheets, modals dùng glassmorphism
-const glassmorph = 'bg-black/80 backdrop-blur-xl'
+// Using utility
+const sheetStyles = visual.glass(20)
 
-// Example: Comment sheet
-<div className="bg-black/80 backdrop-blur-xl rounded-t-3xl">
-  {/* Content */}
-</div>
+// Or manually
+const glassStyles: CSSProperties = {
+  backgroundColor: colors.overlay,
+  backdropFilter: 'blur(20px)',
+  WebkitBackdropFilter: 'blur(20px)',
+}
 ```
 
 ## Animation Rules
@@ -78,94 +153,97 @@ const glassmorph = 'bg-black/80 backdrop-blur-xl'
 ### Timing & Easing
 
 ```typescript
-// Default transition: 300ms
-// Easing: cubic-bezier(0.32, 0.72, 0, 1)
+const durations = {
+  fast: '150ms',
+  normal: 'var(--vortex-duration-normal, 300ms)',
+  slow: '500ms',
+}
 
-// Tailwind config
-const transitionTimingFunction = {
-  'vortex': 'cubic-bezier(0.32, 0.72, 0, 1)',
+const easings = {
+  vortex: 'var(--vortex-easing, cubic-bezier(0.32, 0.72, 0, 1))',
 }
 
 // Usage
-<div className="transition-all duration-300 ease-vortex" />
+animation.transition(['transform', 'opacity'], 'normal', 'vortex')
 ```
 
 ### Spring Physics (Motion)
 
 ```typescript
-import { motion, spring } from 'motion/react'
+import { motion } from 'motion/react'
+import { springs } from '@vortex/core'
 
-// Spring config cho natural feel
-const springConfig = {
-  stiffness: 400,
-  damping: 30,
+// Spring configs
+const springs = {
+  default: { stiffness: 400, damping: 30 },
+  gentle: { stiffness: 200, damping: 20 },
+  bouncy: { stiffness: 500, damping: 25 },
 }
 
 // Example: Like animation
 <motion.div
   animate={{ scale: liked ? [1, 1.3, 1] : 1 }}
-  transition={{ type: 'spring', ...springConfig }}
+  transition={{ type: 'spring', ...springs.default }}
 />
-```
-
-### Stagger Animations
-
-```typescript
-// Action bar buttons xuất hiện với stagger
-const staggerChildren = 0.05 // 50ms
-
-<motion.div
-  initial="hidden"
-  animate="visible"
-  variants={{
-    visible: { transition: { staggerChildren: 0.05 } }
-  }}
->
-  {buttons.map((btn) => (
-    <motion.button
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 }
-      }}
-    />
-  ))}
-</motion.div>
 ```
 
 ## Icons
 
-- Dùng Lucide React (tree-shakable)
-- Style: Outline mặc định, Solid khi active
-- Size: 32px cho action buttons
+Use inline SVG instead of icon libraries:
 
 ```tsx
-import { Heart } from 'lucide-react'
+const HeartIcon = ({ filled, color = 'white' }: { filled?: boolean; color?: string }) => (
+  <svg
+    width={32}
+    height={32}
+    viewBox="0 0 24 24"
+    fill={filled ? color : 'none'}
+    stroke={color}
+    strokeWidth={2}
+  >
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+  </svg>
+)
 
 // Unliked: outline
-<Heart className="w-8 h-8 stroke-white fill-none" />
+<HeartIcon filled={false} color="white" />
 
 // Liked: solid
-<Heart className="w-8 h-8 stroke-vortex-red fill-vortex-red" />
+<HeartIcon filled={true} color={colors.like} />
 ```
 
 ## Bottom Sheets
 
 ```tsx
-// Height: 60% mặc định, có thể kéo lên 90%
-// Animation: Slide up với spring physics
+const sheetStyles: CSSProperties = {
+  position: 'fixed',
+  inset: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  backgroundColor: colors.overlay,
+  backdropFilter: 'blur(20px)',
+  WebkitBackdropFilter: 'blur(20px)',
+  borderTopLeftRadius: radii.xl,
+  borderTopRightRadius: radii.xl,
+}
 
+// With Motion for animation
 <motion.div
   initial={{ y: '100%' }}
   animate={{ y: 0 }}
   exit={{ y: '100%' }}
-  transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-  drag="y"
-  dragConstraints={{ top: 0, bottom: 0 }}
-  dragElastic={{ top: 0, bottom: 0.5 }}
-  className="fixed inset-x-0 bottom-0 h-[60vh] bg-black/80 backdrop-blur-xl rounded-t-3xl"
+  transition={{ type: 'spring', ...springs.default }}
+  style={sheetStyles}
 >
   {/* Drag handle */}
-  <div className="w-10 h-1 bg-white/30 rounded-full mx-auto mt-3" />
+  <div style={{
+    width: 40,
+    height: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    borderRadius: 2,
+    margin: '12px auto 0',
+  }} />
   {/* Content */}
 </motion.div>
 ```
@@ -174,7 +252,7 @@ import { Heart } from 'lucide-react'
 
 ```
 ┌─────────────────────────────────┐
-│ [Following] [For You]           │ ← Top tabs
+│ [Mute] [Tab Tabs] [Menu]        │ ← Header (fixed)
 │                                 │
 │                                 │
 │                        [👤+]    │ ← Action bar (right)
@@ -199,29 +277,62 @@ import { Heart } from 'lucide-react'
 
 ```tsx
 // Tap areas tối thiểu 48x48px
-<button className="w-12 h-12 flex items-center justify-center">
-  <Icon className="w-8 h-8" />
-</button>
+const tapAreaStyles: CSSProperties = {
+  width: 48,
+  height: 48,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}
 
-// Focus indicators cho keyboard users
-<button className="focus:ring-2 focus:ring-vortex-violet focus:ring-offset-2 focus:ring-offset-black" />
+// Always include aria-label for icon buttons
+<button style={tapAreaStyles} aria-label="Like">
+  <HeartIcon />
+</button>
 ```
 
-## Reduced Motion Support
+## Component Props Pattern
 
-```typescript
-// Respect user preference
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+```tsx
+interface MyComponentProps {
+  // ... other props
+  /** Custom styles override */
+  style?: CSSProperties
+  /** Custom className (for external CSS if needed) */
+  className?: string
+}
 
-// Motion component với reduced motion
-<motion.div
-  animate={{ opacity: 1 }}
-  transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3 }}
-/>
+export function MyComponent({ style, className = '', ...props }: MyComponentProps) {
+  return (
+    <div
+      style={mergeStyles(baseStyles, style)}
+      className={className}
+    >
+      {/* content */}
+    </div>
+  )
+}
 ```
 
 ## No White Backgrounds
 
-❌ KHÔNG BAO GIỜ dùng `bg-white` cho pages chứa video
-✅ Luôn dùng `bg-black` hoặc `bg-vortex-black`
+❌ KHÔNG BAO GIỜ dùng `backgroundColor: '#FFFFFF'` cho pages chứa video
+✅ Luôn dùng `backgroundColor: colors.background` hoặc `#000000`
 
+## Customization for Users
+
+Users can override design tokens via CSS variables:
+
+```css
+:root {
+  /* Change accent color to blue */
+  --vortex-color-accent: #3B82F6;
+  --vortex-color-accent-hover: #2563EB;
+
+  /* Larger border radius */
+  --vortex-radius-lg: 20px;
+
+  /* Slower animations */
+  --vortex-duration-normal: 400ms;
+}
+```

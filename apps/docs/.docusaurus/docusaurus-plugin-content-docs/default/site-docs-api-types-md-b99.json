@@ -1,0 +1,29 @@
+{
+  "id": "api/types",
+  "title": "Types",
+  "description": "TypeScript type definitions cho VortexStream.",
+  "source": "@site/docs/api/types.md",
+  "sourceDirName": "api",
+  "slug": "/api/types",
+  "permalink": "/docs/api/types",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/api/types.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "@vortex/embed",
+    "permalink": "/docs/packages/embed"
+  },
+  "next": {
+    "title": "Stores",
+    "permalink": "/docs/api/stores"
+  }
+}

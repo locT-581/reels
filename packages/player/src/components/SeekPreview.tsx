@@ -5,7 +5,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'motion/react'
-import { formatDuration, ANIMATION } from '@vortex/core'
+import { formatDuration, SPRING } from '@vortex/core'
 
 export interface SeekPreviewProps {
   /** Whether preview is visible */
@@ -47,8 +47,8 @@ export function SeekPreview({
           exit={{ opacity: 0, y: 10, scale: 0.9 }}
           transition={{
             type: 'spring',
-            stiffness: ANIMATION.SPRING_STIFFNESS,
-            damping: ANIMATION.SPRING_DAMPING,
+            stiffness: SPRING.DEFAULT.stiffness,
+            damping: SPRING.DEFAULT.damping,
           }}
         >
           <div className="flex flex-col items-center gap-2">

@@ -1,0 +1,29 @@
+{
+  "id": "packages/core",
+  "title": "@vortex/core",
+  "description": "Core logic, types, stores, và utilities cho VortexStream.",
+  "source": "@site/docs/packages/core.md",
+  "sourceDirName": "packages",
+  "slug": "/packages/core",
+  "permalink": "/docs/packages/core",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/packages/core.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Performance",
+    "permalink": "/docs/guides/performance"
+  },
+  "next": {
+    "title": "@vortex/player",
+    "permalink": "/docs/packages/player"
+  }
+}

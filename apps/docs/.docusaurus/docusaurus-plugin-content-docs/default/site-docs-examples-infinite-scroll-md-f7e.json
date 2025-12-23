@@ -1,0 +1,29 @@
+{
+  "id": "examples/infinite-scroll",
+  "title": "Infinite Scroll",
+  "description": "Ví dụ infinite scroll với TanStack Query.",
+  "source": "@site/docs/examples/infinite-scroll.md",
+  "sourceDirName": "examples",
+  "slug": "/examples/infinite-scroll",
+  "permalink": "/docs/examples/infinite-scroll",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/examples/infinite-scroll.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Custom Actions",
+    "permalink": "/docs/examples/custom-actions"
+  },
+  "next": {
+    "title": "Troubleshooting",
+    "permalink": "/docs/troubleshooting"
+  }
+}

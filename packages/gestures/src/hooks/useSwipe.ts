@@ -6,7 +6,7 @@
 
 import { useCallback } from 'react'
 import { useDrag } from '@use-gesture/react'
-import { GESTURE } from '@vortex/core'
+import { GESTURE } from '../constants'
 
 export type SwipeDirection = 'up' | 'down' | 'left' | 'right'
 

@@ -1,0 +1,29 @@
+{
+  "id": "guides/nextjs-integration",
+  "title": "Next.js Integration",
+  "description": "Hướng dẫn tích hợp VortexStream với Next.js 14+ (App Router).",
+  "source": "@site/docs/guides/nextjs-integration.md",
+  "sourceDirName": "guides",
+  "slug": "/guides/nextjs-integration",
+  "permalink": "/docs/guides/nextjs-integration",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/guides/nextjs-integration.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Basic Integration",
+    "permalink": "/docs/guides/basic-integration"
+  },
+  "next": {
+    "title": "Custom UI",
+    "permalink": "/docs/guides/custom-ui"
+  }
+}

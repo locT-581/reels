@@ -1,0 +1,29 @@
+{
+  "id": "examples/single-player",
+  "title": "Single Player",
+  "description": "Ví dụ embed single video player.",
+  "source": "@site/docs/examples/single-player.md",
+  "sourceDirName": "examples",
+  "slug": "/examples/single-player",
+  "permalink": "/docs/examples/single-player",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/examples/single-player.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": null,
+  "lastUpdatedAt": null,
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Basic Feed",
+    "permalink": "/docs/examples/basic-feed"
+  },
+  "next": {
+    "title": "Custom Actions",
+    "permalink": "/docs/examples/custom-actions"
+  }
+}
