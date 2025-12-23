@@ -1,19 +1,24 @@
 /**
- * useVideoActivation - Control video play/pause based on visibility
+ * useVideoActivation - Control video play/pause based on isCurrentVideo prop
+ *
+ * For carousel/swipe feeds: Uses index-based activation from VideoFeed (no IntersectionObserver)
+ * For scroll feeds: Enable `trackVisibility` to get viewport-based analytics
+ *
+ * Note: For infinite scroll loading, use `useInfiniteScroll` instead.
+ * For standalone visibility tracking, use `useVideoVisibility` directly.
  */
 
 'use client'
 
 import { useEffect, useRef, useCallback, type RefObject } from 'react'
-import { VIDEO_ACTIVATION } from '@vortex/core'
 import { useVideoVisibility } from './useVideoVisibility'
 
 export interface UseVideoActivationOptions {
-  /** Video container element ref */
-  containerRef: RefObject<HTMLElement | null>
+  /** Video container element ref (required if trackVisibility is true) */
+  containerRef?: RefObject<HTMLElement | null>
   /** Video element ref */
   videoRef: RefObject<HTMLVideoElement | null>
-  /** Whether this video is the current active one */
+  /** Whether this video is the current active one (from parent feed) */
   isCurrentVideo?: boolean
   /** Callback when video should activate */
   onActivate?: () => void
@@ -21,103 +26,73 @@ export interface UseVideoActivationOptions {
   onDeactivate?: () => void
   /** Whether auto-activation is enabled */
   autoActivate?: boolean
+  /**
+   * Enable visibility tracking via IntersectionObserver
+   * Use this for:
+   * - Analytics (track how much of video is visible)
+   * - Scroll-based feeds (non-carousel)
+   * - Lazy loading based on viewport
+   * Default: false (carousel mode)
+   */
+  trackVisibility?: boolean
+  /** Callback for visibility changes (requires trackVisibility: true) */
+  onVisibilityChange?: (isVisible: boolean, ratio: number) => void
 }
 
 export interface UseVideoActivationReturn {
+  /** Whether this video is currently active */
   isActive: boolean
+  /** Whether video is visible in viewport (only when trackVisibility: true) */
   isVisible: boolean
+  /** Visibility ratio 0-1 (only when trackVisibility: true) */
   visibilityRatio: number
+  /** Manually activate the video */
   activate: () => void
+  /** Manually deactivate the video */
   deactivate: () => void
 }
 
 export function useVideoActivation({
   containerRef,
   videoRef,
-  isCurrentVideo: _isCurrentVideo = false,
+  isCurrentVideo = false,
   onActivate,
   onDeactivate,
   autoActivate = true,
+  trackVisibility = false,
+  onVisibilityChange,
 }: UseVideoActivationOptions): UseVideoActivationReturn {
   const wasActiveRef = useRef(false)
-  const scrollVelocityRef = useRef(0)
-  const lastScrollTimeRef = useRef(Date.now())
-  const lastScrollPosRef = useRef(0)
-  const scrollStopTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const { isActive, isVisible, visibilityRatio } = useVideoVisibility({
-    elementRef: containerRef,
+  // Optional visibility tracking via IntersectionObserver
+  // Only creates observer when trackVisibility is true
+  const {
+    isVisible: observerIsVisible,
+    isActive: observerIsActive,
+    visibilityRatio: observerRatio,
+  } = useVideoVisibility({
+    elementRef: containerRef ?? { current: null },
+    onVisibilityChange: trackVisibility ? onVisibilityChange : undefined,
   })
 
-  // Track scroll velocity
-  useEffect(() => {
-    const handleScroll = () => {
-      const now = Date.now()
-      const currentPos = window.scrollY
-      const timeDelta = now - lastScrollTimeRef.current
-      const posDelta = Math.abs(currentPos - lastScrollPosRef.current)
+  // Use observer-based activation if trackVisibility is enabled,
+  // otherwise use index-based activation from parent
+  const effectiveIsActive = trackVisibility ? observerIsActive : isCurrentVideo
 
-      if (timeDelta > 0) {
-        scrollVelocityRef.current = (posDelta / timeDelta) * 1000 // px/s
-      }
-
-      lastScrollTimeRef.current = now
-      lastScrollPosRef.current = currentPos
-
-      // Clear and reset scroll stop timeout
-      if (scrollStopTimeoutRef.current) {
-        clearTimeout(scrollStopTimeoutRef.current)
-      }
-
-      scrollStopTimeoutRef.current = setTimeout(() => {
-        scrollVelocityRef.current = 0
-      }, VIDEO_ACTIVATION.SCROLL_SETTLE_DELAY)
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      if (scrollStopTimeoutRef.current) {
-        clearTimeout(scrollStopTimeoutRef.current)
-      }
-    }
-  }, [])
-
-  // Activate/deactivate video based on visibility
+  // Activate/deactivate video based on effective active state
   useEffect(() => {
     if (!autoActivate) return
 
-    const video = videoRef.current
-    if (!video) return
-
-    // Skip activation if scrolling too fast
-    if (scrollVelocityRef.current > VIDEO_ACTIVATION.SCROLL_VELOCITY_THRESHOLD) {
-      return
-    }
-
-    if (isActive && !wasActiveRef.current) {
+    if (effectiveIsActive && !wasActiveRef.current) {
       // Becoming active
       wasActiveRef.current = true
       onActivate?.()
-
-      // Auto-play
-      video.play().catch((e) => {
-        // Autoplay blocked, try muted
-        if (e.name === 'NotAllowedError') {
-          video.muted = true
-          video.play().catch(() => {})
-        }
-      })
-    } else if (!isActive && wasActiveRef.current) {
+    } else if (!effectiveIsActive && wasActiveRef.current) {
       // Becoming inactive
       wasActiveRef.current = false
       onDeactivate?.()
-
-      // Pause and reset
-      video.pause()
-      video.currentTime = 0
     }
-  }, [isActive, videoRef, onActivate, onDeactivate, autoActivate])
+  }, [effectiveIsActive, onActivate, onDeactivate, autoActivate])
 
   const activate = useCallback(() => {
     const video = videoRef.current
@@ -140,9 +115,10 @@ export function useVideoActivation({
   }, [videoRef, onDeactivate])
 
   return {
-    isActive,
-    isVisible,
-    visibilityRatio,
+    isActive: effectiveIsActive,
+    // Only meaningful when trackVisibility is enabled
+    isVisible: trackVisibility ? observerIsVisible : isCurrentVideo,
+    visibilityRatio: trackVisibility ? observerRatio : (isCurrentVideo ? 1 : 0),
     activate,
     deactivate,
   }

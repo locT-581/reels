@@ -31,3 +31,10 @@ export {
   type UsePreloadReturn,
 } from './usePreload'
 
+// Headless engine hook
+export {
+  useVideoEngine,
+  type UseVideoEngineOptions,
+  type UseVideoEngineReturn,
+} from './useVideoEngine'
+

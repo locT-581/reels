@@ -9,6 +9,9 @@
 // Re-export everything from player-core (engine, state, hooks)
 export * from '@vortex/player-core'
 
+// Re-export everything from ui (allows feed to import from player only)
+export * from '@vortex/ui'
+
 // Player-specific UI components
 export * from './components'
 

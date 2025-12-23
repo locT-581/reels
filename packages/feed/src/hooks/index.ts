@@ -1,8 +1,21 @@
 /**
  * @vortex/feed - Hooks
+ *
+ * IntersectionObserver Usage Guide:
+ * ---------------------------------
+ * - useVideoVisibility: Standalone visibility tracking (analytics, lazy loading)
+ * - useVideoActivation: Video play/pause control
+ *   - Carousel mode (default): Index-based, no IntersectionObserver
+ *   - Scroll mode (trackVisibility: true): Uses IntersectionObserver
+ * - useInfiniteScroll: Load more content when sentinel is visible
  */
 
+// Visibility tracking via IntersectionObserver
+// Use for: Analytics, lazy loading, scroll-based feeds
 export { useVideoVisibility, type UseVideoVisibilityOptions, type UseVideoVisibilityReturn } from './useVideoVisibility'
+
+// Video activation control
+// Default: Index-based (carousel) | trackVisibility: true for scroll-based
 export { useVideoActivation, type UseVideoActivationOptions, type UseVideoActivationReturn } from './useVideoActivation'
 // Preloader: Re-exports core hook + feed-specific helpers
 // Only exports domain-specific abstractions, not internal implementation types
@@ -18,6 +31,9 @@ export {
 } from './usePreloader'
 export { useMemoryManager, useGlobalMemoryState, type UseMemoryManagerOptions, type UseMemoryManagerReturn } from './useMemoryManager'
 export { useFeedScroll, type UseFeedScrollOptions, type UseFeedScrollReturn } from './useFeedScroll'
+
+// Infinite scroll via IntersectionObserver
+// Use for: Loading more videos when approaching end of feed
 export { useInfiniteScroll, type UseInfiniteScrollOptions, type UseInfiniteScrollReturn } from './useInfiniteScroll'
 
 // API integration hook

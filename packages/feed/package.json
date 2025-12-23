@@ -38,9 +38,7 @@
   "dependencies": {
     "@vortex/core": "workspace:*",
     "@vortex/player": "workspace:*",
-    "@vortex/player-core": "workspace:*",
-    "@vortex/gestures": "workspace:*",
-    "@vortex/ui": "workspace:*"
+    "@vortex/gestures": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

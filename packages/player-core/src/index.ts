@@ -83,6 +83,10 @@ export {
   usePreload,
   type UsePreloadOptions,
   type UsePreloadReturn,
+  // Headless engine hook
+  useVideoEngine,
+  type UseVideoEngineOptions,
+  type UseVideoEngineReturn,
 } from './hooks'
 
 // Utils
