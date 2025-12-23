@@ -149,14 +149,25 @@ export function useVideoFeed(options: UseVideoFeedOptions = {}): UseVideoFeedRet
   // Create API client ref to avoid recreating on every render
   const apiClientRef = useRef<VortexApiClient | null>(null)
 
-  // Update API client when config changes
+  // ✅ Serialize config để so sánh stable - tránh re-create API client khi reference thay đổi nhưng content giống nhau
+  const configKey = useMemo(() => {
+    if (!config) return null
+    return JSON.stringify({
+      baseUrl: config.baseUrl,
+      apiKey: config.apiKey,
+      auth: config.auth?.accessToken,
+      endpoints: config.endpoints,
+    })
+  }, [config])
+
+  // Update API client when config actually changes (by content, not reference)
   useEffect(() => {
-    if (config) {
+    if (config && configKey) {
       apiClientRef.current = createVortexApiClient(config)
     } else {
       apiClientRef.current = null
     }
-  }, [config])
+  }, [configKey]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Build fetch params for query key
   const fetchParams: VideoFetchParams = useMemo(

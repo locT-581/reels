@@ -9,18 +9,18 @@
 export {
   // Color tokens
   colors,
-  
+
   // Spacing tokens
   spacing,
-  
+
   // Border radius tokens
   radii,
-  
+
   // Typography tokens
   fontSizes,
   fontWeights,
   lineHeights,
-  
+
   // Animation tokens
   durations,
   easings,
@@ -30,26 +30,26 @@ export {
   SPRING,
   VARIANTS,
   STAGGER,
-  
+
   // Shadow tokens
   shadows,
-  
+
   // Z-index tokens
   zIndices,
-  
+
   // Breakpoint tokens
   breakpoints,
-  
+
   // Component tokens
   components,
-  
+
   // All tokens object
   tokens,
-  
+
   // CSS variables
   generateCSSVariables,
   defaultCSSVariables,
-  
+
   // Types
   type Tokens,
 } from '@vortex/design-tokens'

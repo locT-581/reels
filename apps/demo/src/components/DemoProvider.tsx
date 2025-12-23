@@ -20,14 +20,34 @@ interface DemoProviderProps {
 }
 
 export function DemoProvider({ children }: DemoProviderProps) {
-  const config = useDemoConfig()
+  // ✅ Sử dụng selector để chỉ subscribe những fields cần thiết
+  const mode = useDemoConfig((state) => state.mode)
+  const baseUrl = useDemoConfig((state) => state.baseUrl)
+  const apiKey = useDemoConfig((state) => state.apiKey)
+  const accessToken = useDemoConfig((state) => state.accessToken)
+  const refreshToken = useDemoConfig((state) => state.refreshToken)
+  const endpoints = useDemoConfig((state) => state.endpoints)
+  const debugMode = useDemoConfig((state) => state.debugMode)
 
-  // Convert demo config to VortexConfig
-  const vortexConfig = useMemo(() => toVortexConfig(config), [config])
+  // ✅ Memoize vortexConfig với dependencies cụ thể
+  const vortexConfig = useMemo(() => {
+    if (mode === 'mock' || !baseUrl) {
+      return undefined
+    }
+    return (toVortexConfig({
+      mode,
+      baseUrl,
+      apiKey,
+      accessToken,
+      refreshToken,
+      endpoints,
+      debugMode,
+    } as Parameters<typeof toVortexConfig>[0]) ?? undefined)
+  }, [mode, baseUrl, apiKey, accessToken, refreshToken, endpoints, debugMode])
 
   return (
     <QueryClientProvider client={queryClient}>
-      <VortexProvider config={vortexConfig ?? undefined}>
+      <VortexProvider config={vortexConfig}>
         {children}
       </VortexProvider>
     </QueryClientProvider>

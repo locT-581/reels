@@ -5,124 +5,124 @@
       "plugin": "c141421f"
     }
   },
-  "/docs-8ea": {
+  "/docs-d2b": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/docs-1e1": {
+  "/docs-a06": {
     "__comp": "a7bd4aaa",
     "__props": "0058b4c6"
   },
-  "/docs-b87": {
+  "/docs-448": {
     "__comp": "a94703ab"
   },
-  "/docs/-eb4": {
+  "/docs/-586": {
     "__comp": "17896441",
     "content": "0e384e19"
   },
-  "/docs/api/components-f46": {
+  "/docs/api/components-0a3": {
     "__comp": "17896441",
     "content": "0ac02f92"
   },
-  "/docs/api/hooks-ae7": {
+  "/docs/api/hooks-712": {
     "__comp": "17896441",
     "content": "0685996c"
   },
-  "/docs/api/stores-08f": {
+  "/docs/api/stores-41a": {
     "__comp": "17896441",
     "content": "41347662"
   },
-  "/docs/api/types-24b": {
+  "/docs/api/types-c54": {
     "__comp": "17896441",
     "content": "b999a6e4"
   },
-  "/docs/api/utilities-c14": {
+  "/docs/api/utilities-a1b": {
     "__comp": "17896441",
     "content": "0f3e4875"
   },
-  "/docs/changelog-249": {
+  "/docs/changelog-49b": {
     "__comp": "17896441",
     "content": "9beb87c2"
   },
-  "/docs/examples/basic-feed-168": {
+  "/docs/examples/basic-feed-35d": {
     "__comp": "17896441",
     "content": "aa7094da"
   },
-  "/docs/examples/custom-actions-02f": {
+  "/docs/examples/custom-actions-64a": {
     "__comp": "17896441",
     "content": "fa46127d"
   },
-  "/docs/examples/infinite-scroll-907": {
+  "/docs/examples/infinite-scroll-c37": {
     "__comp": "17896441",
     "content": "f7ee4e22"
   },
-  "/docs/examples/single-player-78f": {
+  "/docs/examples/single-player-724": {
     "__comp": "17896441",
     "content": "ba6180e2"
   },
-  "/docs/getting-started/installation-324": {
+  "/docs/getting-started/installation-36a": {
     "__comp": "17896441",
     "content": "54f44165"
   },
-  "/docs/getting-started/project-structure-a9f": {
+  "/docs/getting-started/project-structure-eea": {
     "__comp": "17896441",
     "content": "4c515ec3"
   },
-  "/docs/getting-started/quick-start-941": {
+  "/docs/getting-started/quick-start-8cf": {
     "__comp": "17896441",
     "content": "588bd741"
   },
-  "/docs/guides/basic-integration-749": {
+  "/docs/guides/basic-integration-3d5": {
     "__comp": "17896441",
     "content": "281bb455"
   },
-  "/docs/guides/custom-ui-458": {
+  "/docs/guides/custom-ui-d85": {
     "__comp": "17896441",
     "content": "3434c48a"
   },
-  "/docs/guides/gestures-d20": {
+  "/docs/guides/gestures-4c3": {
     "__comp": "17896441",
     "content": "1b6ecb8e"
   },
-  "/docs/guides/nextjs-integration-dfa": {
+  "/docs/guides/nextjs-integration-2f2": {
     "__comp": "17896441",
     "content": "f32c5a34"
   },
-  "/docs/guides/offline-support-37b": {
+  "/docs/guides/offline-support-54d": {
     "__comp": "17896441",
     "content": "d66ef0a4"
   },
-  "/docs/guides/performance-0eb": {
+  "/docs/guides/performance-5ed": {
     "__comp": "17896441",
     "content": "9c2b973e"
   },
-  "/docs/packages/core-466": {
+  "/docs/packages/core-e6d": {
     "__comp": "17896441",
     "content": "8f900f9a"
   },
-  "/docs/packages/embed-259": {
+  "/docs/packages/embed-334": {
     "__comp": "17896441",
     "content": "73dfa9ac"
   },
-  "/docs/packages/feed-cb3": {
+  "/docs/packages/feed-2c2": {
     "__comp": "17896441",
     "content": "0a7dbb82"
   },
-  "/docs/packages/gestures-18c": {
+  "/docs/packages/gestures-23f": {
     "__comp": "17896441",
     "content": "9cce9d93"
   },
-  "/docs/packages/player-991": {
+  "/docs/packages/player-637": {
     "__comp": "17896441",
     "content": "e1e20b56"
   },
-  "/docs/packages/ui-d66": {
+  "/docs/packages/ui-c25": {
     "__comp": "17896441",
     "content": "b9c9fa19"
   },
-  "/docs/troubleshooting-0a5": {
+  "/docs/troubleshooting-ee8": {
     "__comp": "17896441",
     "content": "9d9f8394"
   },

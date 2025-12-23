@@ -93,7 +93,7 @@ export function transformOwnerToUser(owner: ApiOwner | null): User {
  */
 export function transformReelToVideo(reel: ApiReel): Video {
   // Get the first video media item
-  const videoMedia = reel.media.find((m) => m.type === 'video')
+  const videoMedia = reel.media?.find((m) => m.type === 'video')
 
   // Build stats
   const stats: VideoStats = {
@@ -104,7 +104,8 @@ export function transformReelToVideo(reel: ApiReel): Video {
   }
 
   // Build hashtags from tags (remove # prefix if present)
-  const hashtags = reel.tags.map((tag) =>
+  // Handle null/undefined tags safely
+  const hashtags = (reel.tags || []).map((tag) =>
     tag.startsWith('#') ? tag.slice(1) : tag
   )
 

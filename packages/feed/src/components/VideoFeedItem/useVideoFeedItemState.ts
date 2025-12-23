@@ -4,7 +4,7 @@
 
 'use client'
 
-import { useRef, useMemo, useState, useCallback } from 'react'
+import { useRef, useMemo, useState, useCallback, useEffect } from 'react'
 import type { Video } from '@vortex/core'
 import {
   useDoubleTapHeart,
@@ -83,8 +83,8 @@ export function useVideoFeedItemState({
     [video.id]
   )
 
-  // Player hook
-  const { play, pause, seek, state } = usePlayer(videoRef, containerRef, {
+  // Player hook - lấy state để track trạng thái
+  const { state } = usePlayer(videoRef, containerRef, {
     preferNative: true,
     enableSmoothTimeUpdates: true,
     networkBehavior: 'feed',
@@ -106,7 +106,61 @@ export function useVideoFeedItemState({
     onAnalyticsUpdate: handleAnalyticsUpdate,
   })
 
-  const isPlaying = state.state === 'playing'
+  // ✅ Native video controls - không dùng PlayerCore vì không cần HLS trong feed context
+  const play = useCallback(async (): Promise<void> => {
+    const videoEl = videoRef.current
+    if (videoEl) {
+      videoEl.muted = true // Ensure muted for autoplay policy
+      try {
+        await videoEl.play()
+      } catch (err) {
+        console.warn('[VideoFeedItem] Play failed:', (err as Error).message)
+      }
+    }
+  }, [])
+
+  const pause = useCallback(() => {
+    const videoEl = videoRef.current
+    if (videoEl) {
+      videoEl.pause()
+    }
+  }, [])
+
+  const seek = useCallback((time: number) => {
+    const videoEl = videoRef.current
+    if (videoEl) {
+      videoEl.currentTime = time
+    }
+  }, [])
+
+  // Theo dõi trạng thái playing từ video element trực tiếp
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  // Sync isPlaying state với video element
+  useEffect(() => {
+    const videoEl = videoRef.current
+    if (!videoEl) return
+
+    const handlePlay = () => setIsPlaying(true)
+    const handlePause = () => setIsPlaying(false)
+    const handleEnded = () => setIsPlaying(false)
+
+    videoEl.addEventListener('play', handlePlay)
+    videoEl.addEventListener('pause', handlePause)
+    videoEl.addEventListener('ended', handleEnded)
+
+    // Sync initial state
+    setIsPlaying(!videoEl.paused)
+
+    return () => {
+      videoEl.removeEventListener('play', handlePlay)
+      videoEl.removeEventListener('pause', handlePause)
+      videoEl.removeEventListener('ended', handleEnded)
+    }
+  }, [video.id]) // Re-run when video changes
+
+  // Fallback: sync từ state nếu có
+  const effectiveIsPlaying = isPlaying || state.state === 'playing'
 
   // Memory management
   const { setInDom, setHasDecodedFrames, shouldDispose } = useMemoryManager({
@@ -120,30 +174,64 @@ export function useVideoFeedItemState({
     },
   })
 
-  // Video activation
+  // ✅ Derived state - ĐỊNH NGHĨA SỚM để các useEffect có thể sử dụng
+  const shouldRenderVideo = !shouldDispose && priority !== 'none'
+
+  // ✅ Track pending play request - dùng khi video element chưa available
+  const pendingPlayRef = useRef(false)
+
+  // Video activation - autoActivate: true để video tự động play khi isActive thay đổi
   useVideoActivation({
     videoRef,
     isCurrentVideo: isActive,
     onActivate: () => {
+      console.log('[VideoFeedItem] onActivate called, videoRef:', videoRef.current?.src)
       setHasDecodedFrames(true)
-      play()
+      // Nếu video element chưa mount, đánh dấu pending
+      if (!videoRef.current) {
+        console.log('[VideoFeedItem] Video element not ready, marking pending play')
+        pendingPlayRef.current = true
+      } else {
+        play()
+      }
     },
     onDeactivate: () => {
+      console.log('[VideoFeedItem] onDeactivate called')
+      pendingPlayRef.current = false
       setHasDecodedFrames(false)
       pause()
       seek(0)
     },
-    autoActivate: false,
+    autoActivate: true,
   })
 
+  // ✅ Effect để trigger pending play khi video element mount
+  useEffect(() => {
+    const videoEl = videoRef.current
+    if (videoEl && pendingPlayRef.current && isActive) {
+      console.log('[VideoFeedItem] Video element now available, executing pending play')
+      pendingPlayRef.current = false
+      play()
+    }
+  }) // Run on every render to catch when videoRef.current becomes available
+
   // Mark as in DOM
-  void useMemo(() => {
+  useEffect(() => {
     setInDom(true)
     return () => setInDom(false)
   }, [setInDom])
 
-  // Derived state
-  const shouldRenderVideo = !shouldDispose && priority !== 'none'
+  // Debug log
+  useEffect(() => {
+    console.log('[VideoFeedItem] State:', {
+      videoId: video.id,
+      isActive,
+      priority,
+      shouldRenderVideo,
+      hasVideoElement: !!videoRef.current,
+      videoSrc: videoRef.current?.src,
+    })
+  }, [video.id, isActive, priority, shouldRenderVideo])
 
   const preload = useMemo(() => {
     switch (priority) {
@@ -161,11 +249,11 @@ export function useVideoFeedItemState({
 
   // Seek handlers
   const handleSeekStart = useCallback(() => {
-    wasPlayingBeforeSeekRef.current = isPlaying
+    wasPlayingBeforeSeekRef.current = effectiveIsPlaying
     setTimelineExpanded(true)
     setShowPauseOverlay(false)
     pause()
-  }, [isPlaying, pause])
+  }, [effectiveIsPlaying, pause])
 
   const handleSeekEnd = useCallback(
     (time: number) => {
@@ -182,12 +270,12 @@ export function useVideoFeedItemState({
 
   // Gesture handlers
   const handleSingleTap = useCallback(() => {
-    if (isPlaying) {
+    if (effectiveIsPlaying) {
       pause()
     } else {
       play()
     }
-  }, [isPlaying, play, pause])
+  }, [effectiveIsPlaying, play, pause])
 
   const handleDoubleTap = useCallback(
     (_zone: string, position: { x: number; y: number }) => {
@@ -214,7 +302,7 @@ export function useVideoFeedItemState({
     preload,
     containerRef,
     videoRef,
-    isPlaying,
+    isPlaying: effectiveIsPlaying,
     showPauseOverlay,
     timelineExpanded,
     play,

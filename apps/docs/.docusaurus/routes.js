@@ -9,175 +9,175 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '8ea'),
+    component: ComponentCreator('/docs', 'd2b'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', '1e1'),
+        component: ComponentCreator('/docs', 'a06'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', 'b87'),
+            component: ComponentCreator('/docs', '448'),
             routes: [
               {
                 path: '/docs/',
-                component: ComponentCreator('/docs/', 'eb4'),
+                component: ComponentCreator('/docs/', '586'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/api/components',
-                component: ComponentCreator('/docs/api/components', 'f46'),
+                component: ComponentCreator('/docs/api/components', '0a3'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/api/hooks',
-                component: ComponentCreator('/docs/api/hooks', 'ae7'),
+                component: ComponentCreator('/docs/api/hooks', '712'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/api/stores',
-                component: ComponentCreator('/docs/api/stores', '08f'),
+                component: ComponentCreator('/docs/api/stores', '41a'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/api/types',
-                component: ComponentCreator('/docs/api/types', '24b'),
+                component: ComponentCreator('/docs/api/types', 'c54'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/api/utilities',
-                component: ComponentCreator('/docs/api/utilities', 'c14'),
+                component: ComponentCreator('/docs/api/utilities', 'a1b'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/changelog',
-                component: ComponentCreator('/docs/changelog', '249'),
+                component: ComponentCreator('/docs/changelog', '49b'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/examples/basic-feed',
-                component: ComponentCreator('/docs/examples/basic-feed', '168'),
+                component: ComponentCreator('/docs/examples/basic-feed', '35d'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/examples/custom-actions',
-                component: ComponentCreator('/docs/examples/custom-actions', '02f'),
+                component: ComponentCreator('/docs/examples/custom-actions', '64a'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/examples/infinite-scroll',
-                component: ComponentCreator('/docs/examples/infinite-scroll', '907'),
+                component: ComponentCreator('/docs/examples/infinite-scroll', 'c37'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/examples/single-player',
-                component: ComponentCreator('/docs/examples/single-player', '78f'),
+                component: ComponentCreator('/docs/examples/single-player', '724'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/getting-started/installation',
-                component: ComponentCreator('/docs/getting-started/installation', '324'),
+                component: ComponentCreator('/docs/getting-started/installation', '36a'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/getting-started/project-structure',
-                component: ComponentCreator('/docs/getting-started/project-structure', 'a9f'),
+                component: ComponentCreator('/docs/getting-started/project-structure', 'eea'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/getting-started/quick-start',
-                component: ComponentCreator('/docs/getting-started/quick-start', '941'),
+                component: ComponentCreator('/docs/getting-started/quick-start', '8cf'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/guides/basic-integration',
-                component: ComponentCreator('/docs/guides/basic-integration', '749'),
+                component: ComponentCreator('/docs/guides/basic-integration', '3d5'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/guides/custom-ui',
-                component: ComponentCreator('/docs/guides/custom-ui', '458'),
+                component: ComponentCreator('/docs/guides/custom-ui', 'd85'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/guides/gestures',
-                component: ComponentCreator('/docs/guides/gestures', 'd20'),
+                component: ComponentCreator('/docs/guides/gestures', '4c3'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/guides/nextjs-integration',
-                component: ComponentCreator('/docs/guides/nextjs-integration', 'dfa'),
+                component: ComponentCreator('/docs/guides/nextjs-integration', '2f2'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/guides/offline-support',
-                component: ComponentCreator('/docs/guides/offline-support', '37b'),
+                component: ComponentCreator('/docs/guides/offline-support', '54d'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/guides/performance',
-                component: ComponentCreator('/docs/guides/performance', '0eb'),
+                component: ComponentCreator('/docs/guides/performance', '5ed'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/packages/core',
-                component: ComponentCreator('/docs/packages/core', '466'),
+                component: ComponentCreator('/docs/packages/core', 'e6d'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/packages/embed',
-                component: ComponentCreator('/docs/packages/embed', '259'),
+                component: ComponentCreator('/docs/packages/embed', '334'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/packages/feed',
-                component: ComponentCreator('/docs/packages/feed', 'cb3'),
+                component: ComponentCreator('/docs/packages/feed', '2c2'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/packages/gestures',
-                component: ComponentCreator('/docs/packages/gestures', '18c'),
+                component: ComponentCreator('/docs/packages/gestures', '23f'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/packages/player',
-                component: ComponentCreator('/docs/packages/player', '991'),
+                component: ComponentCreator('/docs/packages/player', '637'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/packages/ui',
-                component: ComponentCreator('/docs/packages/ui', 'd66'),
+                component: ComponentCreator('/docs/packages/ui', 'c25'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/troubleshooting',
-                component: ComponentCreator('/docs/troubleshooting', '0a5'),
+                component: ComponentCreator('/docs/troubleshooting', 'ee8'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }

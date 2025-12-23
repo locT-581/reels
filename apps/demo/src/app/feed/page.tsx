@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef, useMemo } from 'react'
 import { VideoFeed, ConnectedVideoFeed, type VideoFeedRef } from '@vortex/feed'
 import type { Video } from '@vortex/core'
 import { CommentSheet, ShareSheet, Toast } from '@vortex/ui'
@@ -12,9 +12,33 @@ import Link from 'next/link'
 
 export default function FeedPage() {
   const feedRef = useRef<VideoFeedRef>(null)
-  const config = useDemoConfig()
-  const vortexConfig = toVortexConfig(config)
-  const isApiMode = config.mode === 'api' && vortexConfig !== null
+
+  // ✅ Sử dụng selector để chỉ lấy những fields cần thiết, tránh re-render khi các fields khác thay đổi
+  const mode = useDemoConfig((state) => state.mode)
+  const baseUrl = useDemoConfig((state) => state.baseUrl)
+  const apiKey = useDemoConfig((state) => state.apiKey)
+  const accessToken = useDemoConfig((state) => state.accessToken)
+  const refreshToken = useDemoConfig((state) => state.refreshToken)
+  const endpoints = useDemoConfig((state) => state.endpoints)
+  const debugMode = useDemoConfig((state) => state.debugMode)
+
+  // ✅ Memoize vortexConfig để tránh tạo object mới mỗi render
+  const vortexConfig = useMemo(() => {
+    if (mode === 'mock' || !baseUrl) {
+      return null
+    }
+    return toVortexConfig({
+      mode,
+      baseUrl,
+      apiKey,
+      accessToken,
+      refreshToken,
+      endpoints,
+      debugMode,
+    } as Parameters<typeof toVortexConfig>[0])
+  }, [mode, baseUrl, apiKey, accessToken, refreshToken, endpoints, debugMode])
+
+  const isApiMode = mode === 'api' && vortexConfig !== null
 
   // State for mock mode
   const [videos, setVideos] = useState<Video[]>(mockVideos)
@@ -82,8 +106,8 @@ export default function FeedPage() {
     showToast(`👤 Đang xem profile @${video.author.username}`, 'default')
   }, [showToast])
 
-  // Common feed props
-  const feedProps = {
+  // ✅ Memoize feedProps để tránh tạo object mới mỗi render
+  const feedProps = useMemo(() => ({
     onVideoChange: handleVideoChange,
     onLike: handleLike,
     onComment: handleComment,
@@ -93,7 +117,7 @@ export default function FeedPage() {
     swipeThreshold: 50,
     velocityThreshold: 0.3,
     hapticEnabled: true,
-  }
+  }), [handleVideoChange, handleLike, handleComment, handleShare, handleAuthorClick])
 
   return (
     <div className="min-h-screen bg-vortex-bg">
@@ -170,9 +194,9 @@ export default function FeedPage() {
               <Settings className="w-3.5 h-3.5 text-vortex-text-muted" />
             </Link>
           </div>
-          {isApiMode && config.baseUrl && (
+          {isApiMode && baseUrl && (
             <div className="text-xs text-vortex-text-muted truncate">
-              {config.baseUrl}
+              {baseUrl}
             </div>
           )}
           <div className="text-xs text-vortex-text-secondary mt-1">

@@ -17,18 +17,28 @@ export interface ApiMediaItem {
   type: 'video' | 'image' | 'audio'
   url: string
   poster?: string
-  duration?: number
+  duration?: number | null
   width?: number
   height?: number
+  /** Download URL for the media file */
+  download_url?: string
 }
 
 /**
  * Thumbnail from API
  */
 export interface ApiThumbnail {
+  /** Type of thumbnail (image or video) */
+  type?: 'image' | 'video'
   url: string
   width?: number
   height?: number
+  /** Duration (null for images) */
+  duration?: number | null
+  /** Poster URL */
+  poster?: string
+  /** Download URL */
+  download_url?: string
 }
 
 /**
@@ -54,21 +64,41 @@ export interface ApiOwner {
 export interface ApiReel {
   id: string
   title?: string
+  /** Reel type (reel, video, etc.) */
+  type?: 'reel' | 'video' | string
   description?: string
   content?: string
+  /** Owner ID reference */
+  owner_id?: string
   media: ApiMediaItem[]
   thumbnail?: ApiThumbnail
   owner: ApiOwner | null
   tags: string[]
   views?: number
   likes?: number
+  /** Dislikes count */
+  dislikes?: number
   total_comments?: number
+  /** Unread comments count */
+  total_unread_comments?: number
+  /** Oldest unread comment position */
+  oldest_unread_comment?: number
   liked?: boolean
   saved?: boolean
   status?: 'published' | 'draft' | 'private'
+  /** Approval status */
+  approving_status?: 'approved' | 'pending' | 'rejected' | string
+  /** Participants (for collaborative content) */
+  participants?: unknown
   is_allow_comment: boolean
   created_at: string
   updated_at?: string
+  /** User who last updated */
+  updated_by?: string | null
+  /** Scheduled publish time */
+  scheduled_at?: string | null
+  /** Notification status */
+  notification_status?: 'sent' | 'pending' | 'failed' | string
 }
 
 // =============================================================================
@@ -77,16 +107,28 @@ export interface ApiReel {
 
 /**
  * Generic paginated response wrapper
+ *
+ * Matches BE response structure:
+ * { code: 200, timestamp: ..., message: "Success", data: { reels: [...] }, success: true }
  */
 export interface ApiPaginatedResponse<T> {
+  /** HTTP status code */
+  code?: number
+  /** Server timestamp */
+  timestamp?: number
+  /** Response message */
+  message?: string
+  /** Success flag */
   success: boolean
+  /** Response data */
   data: {
     reels: T[]
     total: number
+    /** Number of items in current page */
+    number_of_items?: number
     has_next: boolean
     next_cursor: string | null
   }
-  message?: string
 }
 
 /**

@@ -10,6 +10,11 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { VortexConfig } from '@vortex/core'
+import {
+  transformReelsResponse,
+  transformSingleReelResponse,
+  transformCommentsResponse,
+} from '@vortex/core'
 
 // =============================================================================
 // TYPES
@@ -63,8 +68,10 @@ const DEFAULT_CONFIG: Omit<DemoConfigState, 'setMode' | 'setBaseUrl' | 'setApiKe
   accessToken: '',
   refreshToken: '',
   endpoints: {
-    videos: '/videos',
-    comments: '/videos/:videoId/comments',
+    // Default endpoint matching BE API structure
+    // Response format: { code, data: { reels: [...], has_next, next_cursor }, success }
+    videos: '/reels',
+    comments: '/reels/:videoId/comments',
   },
   debugMode: false,
   connectionStatus: 'idle',
@@ -142,6 +149,14 @@ export function toVortexConfig(config: DemoConfigState): VortexConfig | null {
       videos: config.endpoints.videos,
       comments: config.endpoints.comments,
     },
+    // Sử dụng pre-built transformers để chuyển đổi API response sang VortexStream format
+    // BE response: { code, data: { reels: [...], has_next, next_cursor } }
+    // -> VortexStream format: { videos: [...], hasMore, nextCursor }
+    transformers: {
+      transformVideoList: transformReelsResponse,
+      transformVideo: transformSingleReelResponse,
+      transformComments: transformCommentsResponse,
+    },
     debug: config.debugMode,
   }
 }
@@ -202,13 +217,20 @@ export async function testConnection(config: DemoConfigState): Promise<{ success
     const data = await response.json()
 
     // Basic validation - check if it looks like a video list response
-    if (Array.isArray(data) || (data && (Array.isArray(data.videos) || Array.isArray(data.data)))) {
+    // BE format: { code: 200, data: { reels: [...], has_next, next_cursor }, success: true }
+    // Also support legacy formats
+    const hasReelsFormat = data?.data?.reels && Array.isArray(data.data.reels)
+    const hasVideosFormat = data?.videos && Array.isArray(data.videos)
+    const hasLegacyDataFormat = data?.data && Array.isArray(data.data)
+    const isArrayFormat = Array.isArray(data)
+
+    if (hasReelsFormat || hasVideosFormat || hasLegacyDataFormat || isArrayFormat) {
       return { success: true }
     }
 
     return {
       success: false,
-      error: 'Response does not match expected format (expected { videos: [...] } or array)',
+      error: 'Response does not match expected format (expected { data: { reels: [...] } } or { videos: [...] })',
     }
   } catch (error) {
     if (error instanceof TypeError && error.message.includes('fetch')) {

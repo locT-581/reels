@@ -1,7 +1,7 @@
 /**
  * @vortex/core - Constants
  * Runtime configuration constants for VortexStream
- * 
+ *
  * Note: Design tokens (colors, spacing, animation, typography) are in @vortex/design-tokens
  */
 
