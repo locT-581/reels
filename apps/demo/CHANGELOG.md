@@ -1,5 +1,19 @@
 # xhub-reel-demo
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies [98a7616]
+  - @xhub-reel/feed@0.2.0
+  - @xhub-reel/core@0.2.0
+  - @xhub-reel/player@0.2.0
+  - @xhub-reel/ui@0.2.0
+  - @xhub-reel/gestures@0.2.0
+  - @xhub-reel/embed@0.2.0
+  - @xhub-reel/player-core@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes

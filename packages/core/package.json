@@ -1,6 +1,6 @@
 {
   "name": "@xhub-reel/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Core logic, types, stores, and utilities for XHubReel",
   "license": "MIT",
   "author": "XHubReel Team",
