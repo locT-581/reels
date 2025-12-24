@@ -1,5 +1,13 @@
 # xhub-reel-demo
 
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @xhub-reel/feed@0.2.1
+  - @xhub-reel/embed@0.2.1
+
 ## 0.0.3
 
 ### Patch Changes

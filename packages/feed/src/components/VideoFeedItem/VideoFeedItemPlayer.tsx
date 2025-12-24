@@ -18,7 +18,7 @@ export interface VideoFeedItemPlayerProps extends HTMLAttributes<HTMLDivElement>
 
 const VideoFeedItemPlayer = forwardRef<HTMLVideoElement, VideoFeedItemPlayerProps>(
   ({ placeholder, ...props }, ref) => {
-    const { video, videoRef, shouldRenderVideo, preload, isPreloaded } = useVideoFeedItemContext()
+    const { video, videoRef, shouldRenderVideo, preload, isPreloaded, initialMuted } = useVideoFeedItemContext()
 
     if (!shouldRenderVideo) {
       return (
@@ -53,7 +53,7 @@ const VideoFeedItemPlayer = forwardRef<HTMLVideoElement, VideoFeedItemPlayerProp
         preload={preload}
         loop
         playsInline
-        muted
+        muted={initialMuted}
         style={videoFeedItemStyles.video}
       />
     )

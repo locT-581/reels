@@ -1,5 +1,11 @@
 # @xhub-reel/feed
 
+## 0.2.1
+
+### Patch Changes
+
+- Add initialMuted prop to VideoFeed and VideoFeedItem components for better autoplay control
+
 ## 0.2.0
 
 ### Minor Changes

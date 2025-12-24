@@ -15,6 +15,8 @@ export interface VideoFeedItemContextValue {
   preload: '' | 'none' | 'metadata' | 'auto'
   /** Video has been preloaded and first frame is ready */
   isPreloaded: boolean
+  /** Whether video should start muted (default: true for browser autoplay policy) */
+  initialMuted: boolean
 
   // Refs
   containerRef: RefObject<HTMLDivElement | null>

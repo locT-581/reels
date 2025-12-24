@@ -65,6 +65,8 @@ export interface VideoFeedProps {
   gesturesDisabled?: boolean
   /** Enable haptic feedback on swipe */
   hapticEnabled?: boolean
+  /** Whether video should start muted (default: true for browser autoplay policy) */
+  initialMuted?: boolean
   /** Custom styles override */
   style?: CSSProperties
   /** Custom className (for external CSS if needed) */
@@ -169,6 +171,7 @@ export const VideoFeed = forwardRef<VideoFeedRef, VideoFeedProps>(
       velocityThreshold = DEFAULT_VELOCITY_THRESHOLD,
       gesturesDisabled = false,
       hapticEnabled = true,
+      initialMuted = true,
       style,
       className = '',
     },
@@ -563,6 +566,7 @@ export const VideoFeed = forwardRef<VideoFeedRef, VideoFeedProps>(
                   video={video}
                   isActive={isActive}
                   priority={priority}
+                  initialMuted={initialMuted}
                   onLike={() => onLike?.(video)}
                   onComment={() => onComment?.(video)}
                   onShare={() => onShare?.(video)}

@@ -24,6 +24,8 @@ export interface UseVideoFeedItemStateOptions {
   video: Video
   isActive: boolean
   priority: PreloadPriority
+  /** Whether video should start muted (default: true for browser autoplay policy) */
+  initialMuted?: boolean
   onLike?: () => void
   onComment?: () => void
   onShare?: () => void
@@ -34,6 +36,7 @@ export function useVideoFeedItemState({
   video,
   isActive,
   priority,
+  initialMuted = true,
   onLike,
   onComment,
   onShare,
@@ -111,14 +114,25 @@ export function useVideoFeedItemState({
   const play = useCallback(async (): Promise<void> => {
     const videoEl = videoRef.current
     if (videoEl) {
-      videoEl.muted = true // Ensure muted for autoplay policy
+      videoEl.muted = initialMuted // Use initialMuted prop (default: true for browser autoplay policy)
       try {
         await videoEl.play()
       } catch (err) {
-        console.warn('[VideoFeedItem] Play failed:', (err as Error).message)
+        // If autoplay fails (browser policy), try with muted
+        if ((err as Error).name === 'NotAllowedError' && !initialMuted) {
+          console.warn('[VideoFeedItem] Autoplay blocked, falling back to muted')
+          videoEl.muted = true
+          try {
+            await videoEl.play()
+          } catch (mutedErr) {
+            console.warn('[VideoFeedItem] Play failed even muted:', (mutedErr as Error).message)
+          }
+        } else {
+          console.warn('[VideoFeedItem] Play failed:', (err as Error).message)
+        }
       }
     }
-  }, [])
+  }, [initialMuted])
 
   const pause = useCallback(() => {
     const videoEl = videoRef.current
@@ -350,6 +364,7 @@ export function useVideoFeedItemState({
     shouldRenderVideo,
     preload,
     isPreloaded,
+    initialMuted,
     containerRef,
     videoRef,
     isPlaying: effectiveIsPlaying,

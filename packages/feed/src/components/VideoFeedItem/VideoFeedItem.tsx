@@ -45,6 +45,8 @@ export interface VideoFeedItemProps {
   isActive?: boolean
   /** Preload priority */
   priority?: PreloadPriority
+  /** Whether video should start muted (default: true for browser autoplay policy) */
+  initialMuted?: boolean
   /** Show timeline (default: true, only used with default children) */
   showTimeline?: boolean
   /** Called when video is liked */
@@ -75,6 +77,7 @@ const VideoFeedItem = forwardRef<HTMLDivElement, VideoFeedItemProps>(
       video,
       isActive = false,
       priority = 'none',
+      initialMuted = true,
       showTimeline = true,
       onLike,
       onComment,
@@ -90,6 +93,7 @@ const VideoFeedItem = forwardRef<HTMLDivElement, VideoFeedItemProps>(
       video,
       isActive,
       priority,
+      initialMuted,
       onLike,
       onComment,
       onShare,
