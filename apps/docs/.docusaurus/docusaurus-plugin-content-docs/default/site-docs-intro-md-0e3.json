@@ -1,6 +1,6 @@
 {
   "id": "intro",
-  "title": "VortexStream",
+  "title": "XHubReel",
   "description": "High-performance short-form video SDK cho React - Xây dựng trải nghiệm video như TikTok/Reels",
   "source": "@site/docs/intro.md",
   "sourceDirName": ".",
@@ -8,7 +8,7 @@
   "permalink": "/en/docs/",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/intro.md",
+  "editUrl": "https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/docs/intro.md",
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "locT-581",

@@ -1,12 +1,12 @@
 /**
- * VortexStream Style Utilities
+ * XHubReel Style Utilities
  *
  * Type-safe inline style helpers for building components.
  * Zero runtime CSS-in-JS - just plain CSSProperties objects.
  */
 
 import type { CSSProperties } from 'react'
-import { colors, spacing, radii, fontSizes, fontWeights, shadows, durations, easings, zIndices } from '@vortex/design-tokens'
+import { colors, spacing, radii, fontSizes, fontWeights, shadows, durations, easings, zIndices } from '@xhub-reel/design-tokens'
 
 // =============================================================================
 // TYPE HELPERS
@@ -346,7 +346,7 @@ export const animation = {
   transition: (
     properties: string | string[] = 'all',
     duration: keyof typeof durations = 'normal',
-    easing: keyof typeof easings = 'vortex'
+    easing: keyof typeof easings = 'xhubReel'
   ): CSSProperties => ({
     transitionProperty: Array.isArray(properties) ? properties.join(', ') : properties,
     transitionDuration: durations[duration],

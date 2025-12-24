@@ -1,6 +1,6 @@
 /**
- * @vortex/feed
- * Virtualized video feed for VortexStream
+ * @xhub-reel/feed
+ * Virtualized video feed for XHubReel
  * Optimized for smooth scrolling and memory management
  */
 

@@ -1,6 +1,6 @@
-# VortexStream Cursor Rules Documentation
+# XHubReel Cursor Rules Documentation
 
-Tài liệu này mô tả tất cả Cursor Rules đã được tạo cho dự án VortexStream.
+Tài liệu này mô tả tất cả Cursor Rules đã được tạo cho dự án XHubReel.
 
 ## Cấu trúc Rules
 
@@ -54,7 +54,7 @@ Nội dung chính:
 **File**: `.cursor/rules/ui-components/RULE.md`
 
 Nội dung chính:
-- Vortex Design System
+- XHubReel Design System
 - Color palette (#000000, #8B5CF6, #FF2D55)
 - Typography (Inter/Geist)
 - 8pt spacing grid

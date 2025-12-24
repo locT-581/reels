@@ -1,9 +1,9 @@
 /**
- * @vortex/core - Storage Layer
+ * @xhub-reel/core - Storage Layer
  */
 
 // Database
-export { getDB, closeDB, deleteDB, getStorageUsage, type VortexDBSchema } from './db'
+export { getDB, closeDB, deleteDB, getStorageUsage, type XHubReelDBSchema } from './db'
 
 // Video Cache
 export {

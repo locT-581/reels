@@ -1,5 +1,5 @@
 /**
- * @vortex/ui - Comment Components
+ * @xhub-reel/ui - Comment Components
  */
 
 export { CommentSheet, type CommentSheetProps } from './CommentSheet'

@@ -1,5 +1,5 @@
 /**
- * @vortex/feed - Components
+ * @xhub-reel/feed - Components
  */
 
 // Manual mode - pass videos directly

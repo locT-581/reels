@@ -2,14 +2,14 @@
  * ConnectedVideoFeed - VideoFeed with automatic API data fetching
  *
  * This component wraps VideoFeed and handles data fetching from your backend.
- * Requires VortexProvider config to be set up, or pass config directly.
+ * Requires XHubReelProvider config to be set up, or pass config directly.
  *
  * @example
  * ```tsx
- * // With VortexProvider (recommended)
- * <VortexProvider config={{ baseUrl: 'https://api.example.com' }}>
+ * // With XHubReelProvider (recommended)
+ * <XHubReelProvider config={{ baseUrl: 'https://api.example.com' }}>
  *   <ConnectedVideoFeed onLike={handleLike} />
- * </VortexProvider>
+ * </XHubReelProvider>
  *
  * // Or pass config directly
  * <ConnectedVideoFeed
@@ -25,9 +25,9 @@ import {
   useCallback,
   type CSSProperties,
 } from 'react'
-import type { Video, VortexConfig } from '@vortex/core'
-import { colors, spacing, fontSizes, fontWeights, radii } from '@vortex/core'
-import { useVortexConfig } from '@vortex/core/api'
+import type { Video, XHubReelConfig } from '@xhub-reel/core'
+import { colors, spacing, fontSizes, fontWeights, radii } from '@xhub-reel/core'
+import { useXHubReelConfig } from '@xhub-reel/core/api'
 import { VideoFeed, type VideoFeedRef, type VideoFeedProps } from './VideoFeed'
 import { useVideoFeed } from '../hooks/useVideoFeed'
 
@@ -37,10 +37,10 @@ import { useVideoFeed } from '../hooks/useVideoFeed'
 
 export interface ConnectedVideoFeedProps extends Omit<VideoFeedProps, 'videos' | 'isLoading' | 'hasMore' | 'onLoadMore'> {
   /**
-   * VortexConfig for API connection
-   * Optional if wrapped in VortexProvider with config
+   * XHubReelConfig for API connection
+   * Optional if wrapped in XHubReelProvider with config
    */
-  config?: VortexConfig
+  config?: XHubReelConfig
 
   /**
    * User ID for user-specific feed
@@ -119,7 +119,7 @@ const stateStyles = {
     borderColor: 'rgba(255, 255, 255, 0.2)',
     borderTopColor: colors.accent,
     borderRadius: radii.full,
-    animation: 'vortex-spin 1s linear infinite',
+    animation: 'xhub-reel-spin 1s linear infinite',
   } satisfies CSSProperties,
 
   text: {
@@ -154,7 +154,7 @@ const stateStyles = {
 const DefaultLoading = () => (
   <div style={stateStyles.container}>
     <style>{`
-      @keyframes vortex-spin {
+      @keyframes xhub-reel-spin {
         to { transform: rotate(360deg); }
       }
     `}</style>
@@ -212,8 +212,8 @@ export const ConnectedVideoFeed = forwardRef<VideoFeedRef, ConnectedVideoFeedPro
     },
     ref
   ) => {
-    // Get config from props or VortexProvider context
-    const { config: contextConfig } = useVortexConfig()
+    // Get config from props or XHubReelProvider context
+    const { config: contextConfig } = useXHubReelConfig()
     const config = configProp || contextConfig
 
     // Fetch videos using the hook
@@ -252,7 +252,7 @@ export const ConnectedVideoFeed = forwardRef<VideoFeedRef, ConnectedVideoFeedPro
         <div style={stateStyles.container}>
           <div style={stateStyles.errorIcon}>⚠️</div>
           <p style={stateStyles.text}>
-            Chưa cấu hình API. Vui lòng wrap component trong VortexProvider với config hoặc truyền config prop.
+            Chưa cấu hình API. Vui lòng wrap component trong XHubReelProvider với config hoặc truyền config prop.
           </p>
         </div>
       )

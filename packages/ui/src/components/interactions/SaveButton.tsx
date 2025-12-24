@@ -83,7 +83,7 @@ export function SaveButton({
             size={config.icon}
             className={`transition-colors duration-200 ${
               isSaved
-                ? 'fill-vortex-violet text-vortex-violet'
+                ? 'fill-xhub-reel-violet text-xhub-reel-violet'
                 : 'text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]'
             }`}
           />

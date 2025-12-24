@@ -101,28 +101,28 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.62.0
         version: 5.90.12(react@19.2.3)
-      '@vortex/core':
+      '@xhub-reel/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@vortex/design-tokens':
+      '@xhub-reel/design-tokens':
         specifier: workspace:*
         version: link:../../packages/design-tokens
-      '@vortex/embed':
+      '@xhub-reel/embed':
         specifier: workspace:*
         version: link:../../packages/embed
-      '@vortex/feed':
+      '@xhub-reel/feed':
         specifier: workspace:*
         version: link:../../packages/feed
-      '@vortex/gestures':
+      '@xhub-reel/gestures':
         specifier: workspace:*
         version: link:../../packages/gestures
-      '@vortex/player':
+      '@xhub-reel/player':
         specifier: workspace:*
         version: link:../../packages/player
-      '@vortex/player-core':
+      '@xhub-reel/player-core':
         specifier: workspace:*
         version: link:../../packages/player-core
-      '@vortex/ui':
+      '@xhub-reel/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       lucide-react:
@@ -205,10 +205,10 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.62.0
         version: 5.90.12(react@19.2.3)
-      '@vortex/design-tokens':
+      '@xhub-reel/design-tokens':
         specifier: workspace:*
         version: link:../design-tokens
-      '@vortex/types':
+      '@xhub-reel/types':
         specifier: workspace:*
         version: link:../types
       idb:
@@ -249,31 +249,31 @@ importers:
 
   packages/embed:
     dependencies:
-      '@vortex/core':
+      '@xhub-reel/core':
         specifier: workspace:*
         version: link:../core
-      '@vortex/design-tokens':
+      '@xhub-reel/design-tokens':
         specifier: workspace:*
         version: link:../design-tokens
-      '@vortex/feed':
+      '@xhub-reel/feed':
         specifier: workspace:*
         version: link:../feed
-      '@vortex/gestures':
+      '@xhub-reel/gestures':
         specifier: workspace:*
         version: link:../gestures
-      '@vortex/player':
+      '@xhub-reel/player':
         specifier: workspace:*
         version: link:../player
-      '@vortex/player-core':
+      '@xhub-reel/player-core':
         specifier: workspace:*
         version: link:../player-core
-      '@vortex/player-engine':
+      '@xhub-reel/player-engine':
         specifier: workspace:*
         version: link:../player-engine
-      '@vortex/types':
+      '@xhub-reel/types':
         specifier: workspace:*
         version: link:../types
-      '@vortex/ui':
+      '@xhub-reel/ui':
         specifier: workspace:*
         version: link:../ui
     devDependencies:
@@ -313,13 +313,13 @@ importers:
 
   packages/feed:
     dependencies:
-      '@vortex/core':
+      '@xhub-reel/core':
         specifier: workspace:*
         version: link:../core
-      '@vortex/gestures':
+      '@xhub-reel/gestures':
         specifier: workspace:*
         version: link:../gestures
-      '@vortex/player':
+      '@xhub-reel/player':
         specifier: workspace:*
         version: link:../player
     devDependencies:
@@ -378,13 +378,13 @@ importers:
 
   packages/player:
     dependencies:
-      '@vortex/core':
+      '@xhub-reel/core':
         specifier: workspace:*
         version: link:../core
-      '@vortex/player-core':
+      '@xhub-reel/player-core':
         specifier: workspace:*
         version: link:../player-core
-      '@vortex/ui':
+      '@xhub-reel/ui':
         specifier: workspace:*
         version: link:../ui
     devDependencies:
@@ -415,10 +415,10 @@ importers:
 
   packages/player-core:
     dependencies:
-      '@vortex/core':
+      '@xhub-reel/core':
         specifier: workspace:*
         version: link:../core
-      '@vortex/player-engine':
+      '@xhub-reel/player-engine':
         specifier: workspace:*
         version: link:../player-engine
       hls.js:
@@ -440,7 +440,7 @@ importers:
 
   packages/player-engine:
     devDependencies:
-      '@vortex/types':
+      '@xhub-reel/types':
         specifier: workspace:*
         version: link:../types
       hls.js:
@@ -471,10 +471,10 @@ importers:
 
   packages/ui:
     dependencies:
-      '@vortex/design-tokens':
+      '@xhub-reel/design-tokens':
         specifier: workspace:*
         version: link:../design-tokens
-      '@vortex/types':
+      '@xhub-reel/types':
         specifier: workspace:*
         version: link:../types
     devDependencies:

@@ -11,7 +11,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef, type RefObject } from 'react'
-import type { PlayerProgress, BufferedRange } from '@vortex/core'
+import type { PlayerProgress, BufferedRange } from '@xhub-reel/core'
 
 export type UseProgressOptions = {
   /** Enable smooth RAF tracking when playing. Default: false */

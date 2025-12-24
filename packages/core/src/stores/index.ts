@@ -1,6 +1,6 @@
 /**
- * @vortex/core - Zustand Stores
- * State management for VortexStream
+ * @xhub-reel/core - Zustand Stores
+ * State management for XHubReel
  */
 
 // Player stores

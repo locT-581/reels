@@ -1,5 +1,5 @@
 /**
- * @vortex/ui - Share Components
+ * @xhub-reel/ui - Share Components
  */
 
 export { ShareSheet, type ShareSheetProps } from './ShareSheet'

@@ -2,7 +2,7 @@
 
 ## Approach: CSS Variables + Inline Styles
 
-All VortexStream packages use inline styles with design tokens from `@vortex/core` for theming.
+All XHubReel packages use inline styles with design tokens from `@xhub-reel/core` for theming.
 
 ### Why Inline Styles?
 
@@ -14,7 +14,7 @@ All VortexStream packages use inline styles with design tokens from `@vortex/cor
 
 ## Design Tokens
 
-Import design tokens from `@vortex/core`:
+Import design tokens from `@xhub-reel/core`:
 
 ```typescript
 import {
@@ -29,7 +29,7 @@ import {
   shadows,
   zIndices,
   mergeStyles,
-} from '@vortex/core'
+} from '@xhub-reel/core'
 ```
 
 ### Colors
@@ -113,7 +113,7 @@ const durations = {
 }
 
 const easings = {
-  vortex: 'cubic-bezier(0.32, 0.72, 0, 1)',
+  xhub-reel: 'cubic-bezier(0.32, 0.72, 0, 1)',
   spring: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
   easeOut: 'cubic-bezier(0, 0, 0.2, 1)',
   easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
@@ -132,7 +132,7 @@ const springs = {
 
 ```typescript
 import { type CSSProperties } from 'react'
-import { colors, spacing, radii, mergeStyles } from '@vortex/core'
+import { colors, spacing, radii, mergeStyles } from '@xhub-reel/core'
 
 // 1. Define static styles as constants
 const containerStyles: CSSProperties = {
@@ -215,7 +215,7 @@ const sizeStyles: Record<Size, CSSProperties> = {
 >
 
 // Or using conditionalStyle helper
-import { conditionalStyle } from '@vortex/core'
+import { conditionalStyle } from '@xhub-reel/core'
 
 <div
   style={conditionalStyle(
@@ -233,7 +233,7 @@ import { conditionalStyle } from '@vortex/core'
 Merges multiple style objects, filtering out falsy values:
 
 ```typescript
-import { mergeStyles } from '@vortex/core'
+import { mergeStyles } from '@xhub-reel/core'
 
 const style = mergeStyles(
   baseStyles,
@@ -244,10 +244,10 @@ const style = mergeStyles(
 
 ### Style Presets
 
-Common style patterns available in `@vortex/core`:
+Common style patterns available in `@xhub-reel/core`:
 
 ```typescript
-import { presets } from '@vortex/core'
+import { presets } from '@xhub-reel/core'
 
 // Centering
 presets.center       // display: flex, alignItems: center, justifyContent: center
@@ -322,7 +322,7 @@ const baseStyles: CSSProperties = {
   borderRadius: radii.lg,
   border: 'none',
   cursor: 'pointer',
-  transition: `all ${durations.normal} ${easings.vortex}`,
+  transition: `all ${durations.normal} ${easings.xhubReel}`,
 }
 
 const variantStyles = {
@@ -370,7 +370,7 @@ Use Motion (from motion.dev) for animations:
 
 ```typescript
 import { motion } from 'motion/react'
-import { springs } from '@vortex/core'
+import { springs } from '@xhub-reel/core'
 
 <motion.div
   initial={{ opacity: 0, y: 20 }}

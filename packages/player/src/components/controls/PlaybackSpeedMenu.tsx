@@ -7,8 +7,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Gauge } from 'lucide-react'
-import { SPRING, PLAYBACK_SPEEDS } from '@vortex/core'
-import type { PlaybackSpeed } from '@vortex/core'
+import { SPRING, PLAYBACK_SPEEDS } from '@xhub-reel/core'
+import type { PlaybackSpeed } from '@xhub-reel/core'
 
 export interface PlaybackSpeedMenuProps {
   currentSpeed: PlaybackSpeed
@@ -80,7 +80,7 @@ export function PlaybackSpeedMenu({
                       w-full px-4 py-2 text-left text-sm font-medium
                       transition-colors
                       ${speed === currentSpeed
-                        ? 'text-vortex-violet bg-vortex-violet/10'
+                        ? 'text-xhub-reel-violet bg-xhub-reel-violet/10'
                         : 'text-white hover:bg-white/10'
                       }
                     `}

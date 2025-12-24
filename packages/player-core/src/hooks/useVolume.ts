@@ -8,7 +8,7 @@
 'use client'
 
 import { useCallback, useEffect, type RefObject } from 'react'
-import { usePlayerPreferencesStore } from '@vortex/core'
+import { usePlayerPreferencesStore } from '@xhub-reel/core'
 
 /**
  * useVolume - Hook for video volume control

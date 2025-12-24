@@ -13,7 +13,7 @@ import {
   Link,
   X,
 } from 'lucide-react'
-import { SPRING } from '@vortex/design-tokens'
+import { SPRING } from '@xhub-reel/design-tokens'
 import { lightHaptic } from '../utils'
 import type { ReactNode } from 'react'
 

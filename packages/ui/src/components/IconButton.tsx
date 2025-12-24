@@ -8,7 +8,7 @@
 'use client'
 
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode, type CSSProperties } from 'react'
-import { colors, radii, durations, easings, components, mergeStyles } from '@vortex/design-tokens'
+import { colors, radii, durations, easings, components, mergeStyles } from '@xhub-reel/design-tokens'
 
 export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Icon to display */
@@ -36,7 +36,7 @@ const baseStyles: CSSProperties = {
   borderRadius: radii.full,
   transitionProperty: 'background-color, transform, opacity',
   transitionDuration: durations.fast,
-  transitionTimingFunction: easings.vortex,
+  transitionTimingFunction: easings.xhubReel,
   userSelect: 'none',
 }
 

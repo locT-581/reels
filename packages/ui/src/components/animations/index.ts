@@ -1,5 +1,5 @@
 /**
- * @vortex/ui - Animation Components
+ * @xhub-reel/ui - Animation Components
  */
 
 export {

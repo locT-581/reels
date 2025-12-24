@@ -1,5 +1,5 @@
 /**
- * @vortex/player-core - Hooks
+ * @xhub-reel/player-core - Hooks
  */
 
 // Playback control hooks

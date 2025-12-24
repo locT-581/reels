@@ -17,9 +17,9 @@ npm install @tanstack/react-query
 ```tsx
 'use client'
 
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 import { useInfiniteQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { Video } from '@vortex/core'
+import type { Video } from '@xhub-reel/core'
 
 // Create query client
 const queryClient = new QueryClient({
@@ -97,7 +97,7 @@ function Feed() {
 
   return (
     <div className="h-screen w-screen bg-black">
-      <VortexEmbed
+      <XHubReelEmbed
         videos={videos}
         config={{
           autoPlay: true,
@@ -183,7 +183,7 @@ function FeedWithRefresh() {
   })
 
   return (
-    <VortexEmbed
+    <XHubReelEmbed
       videos={videos}
       onRefresh={async () => {
         // Reset to first page
@@ -215,7 +215,7 @@ function FeedWithPrefetch() {
     }
   }, [data, queryClient])
 
-  return <VortexEmbed videos={videos} />
+  return <XHubReelEmbed videos={videos} />
 }
 ```
 

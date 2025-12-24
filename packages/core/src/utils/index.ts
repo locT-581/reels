@@ -1,5 +1,5 @@
 /**
- * @vortex/core - Utility Functions
+ * @xhub-reel/core - Utility Functions
  */
 
 export * from './format'

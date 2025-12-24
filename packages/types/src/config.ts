@@ -1,5 +1,5 @@
 /**
- * Configuration types for VortexStream API integration
+ * Configuration types for XHubReel API integration
  */
 
 import type { Video } from './video'
@@ -13,7 +13,7 @@ import type { Comment } from './comment'
  * Configurable API endpoints
  * Use placeholders like :id, :videoId, :commentId for dynamic values
  */
-export interface VortexApiEndpoints {
+export interface XHubReelApiEndpoints {
   /** GET videos list */
   videos: string
   /** GET single video */
@@ -45,7 +45,7 @@ export interface VortexApiEndpoints {
 /**
  * Default API endpoints
  */
-export const DEFAULT_API_ENDPOINTS: VortexApiEndpoints = {
+export const DEFAULT_API_ENDPOINTS: XHubReelApiEndpoints = {
   videos: '/videos',
   videoDetail: '/videos/:id',
   videoMetadata: '/videos/:id/metadata',
@@ -77,7 +77,7 @@ export interface TokenRefreshResult {
 /**
  * Authentication configuration
  */
-export interface VortexAuthConfig {
+export interface XHubReelAuthConfig {
   /** Access token */
   accessToken?: string
   /** Refresh token (optional) */
@@ -139,9 +139,9 @@ export interface RepliesListResponse {
 
 /**
  * Response transformer functions
- * Use these to transform your API response format to VortexStream format
+ * Use these to transform your API response format to XHubReel format
  */
-export interface VortexResponseTransformers {
+export interface XHubReelResponseTransformers {
   /** Transform video list response */
   transformVideoList?: (response: unknown) => VideoListResponse
   /** Transform single video response */
@@ -172,7 +172,7 @@ export type ErrorInterceptor = (error: Error) => Error | null | Promise<Error | 
 /**
  * Request/Response interceptors
  */
-export interface VortexInterceptors {
+export interface XHubReelInterceptors {
   /** Called before each request */
   onRequest?: RequestInterceptor
   /** Called after each successful response */
@@ -212,21 +212,21 @@ export interface VideoFetchParams {
 // =============================================================================
 
 /**
- * Main VortexStream configuration
+ * Main XHubReel configuration
  */
-export interface VortexConfig {
+export interface XHubReelConfig {
   /** Base URL for API requests */
   baseUrl: string
   /** Authentication configuration */
-  auth?: VortexAuthConfig
+  auth?: XHubReelAuthConfig
   /** API key to include in all requests as query param (?api_key=xxx) */
   apiKey?: string
   /** Custom API endpoints */
-  endpoints?: Partial<VortexApiEndpoints>
+  endpoints?: Partial<XHubReelApiEndpoints>
   /** Response transformers */
-  transformers?: VortexResponseTransformers
+  transformers?: XHubReelResponseTransformers
   /** Request/Response interceptors */
-  interceptors?: VortexInterceptors
+  interceptors?: XHubReelInterceptors
   /** Default fetch params */
   defaultFetchParams?: VideoFetchParams
   /** Custom headers to include in all requests */
@@ -242,25 +242,25 @@ export interface VortexConfig {
 // =============================================================================
 
 /**
- * VortexProvider props
+ * XHubReelProvider props
  */
-export interface VortexProviderProps {
+export interface XHubReelProviderProps {
   /** API configuration (optional - omit for manual mode) */
-  config?: VortexConfig
+  config?: XHubReelConfig
   /** Children */
   children: React.ReactNode
 }
 
 /**
- * VortexContext value
+ * XHubReelContext value
  */
-export interface VortexContextValue {
+export interface XHubReelContextValue {
   /** Current configuration */
-  config: VortexConfig | null
+  config: XHubReelConfig | null
   /** Whether API mode is enabled */
   isApiMode: boolean
   /** Update configuration */
-  updateConfig: (newConfig: Partial<VortexConfig>) => void
+  updateConfig: (newConfig: Partial<XHubReelConfig>) => void
   /** Update access token */
   setAccessToken: (token: string | undefined) => void
 }

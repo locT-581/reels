@@ -3,15 +3,15 @@ import type { Config } from '@docusaurus/types'
 import type * as Preset from '@docusaurus/preset-classic'
 
 const config: Config = {
-  title: 'VortexStream',
+  title: 'XHubReel',
   tagline: 'High-performance short-form video SDK for React',
   favicon: 'img/favicon.ico',
 
-  url: 'https://vortexstream.dev',
+  url: 'https://xhubreel.dev',
   baseUrl: '/',
 
-  organizationName: 'vortexstream',
-  projectName: 'vortexstream',
+  organizationName: 'xhub-reel',
+  projectName: 'xhub-reel',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -27,13 +27,13 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/vortexstream/vortexstream/tree/main/apps/docs/',
+          editUrl: 'https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
         },
         blog: {
           showReadingTime: true,
-          editUrl: 'https://github.com/vortexstream/vortexstream/tree/main/apps/docs/',
+          editUrl: 'https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -43,16 +43,16 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/vortex-social-card.jpg',
+    image: 'img/xhub-reel-social-card.jpg',
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'VortexStream',
+      title: 'XHubReel',
       logo: {
-        alt: 'VortexStream Logo',
+        alt: 'XHubReel Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -68,7 +68,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/vortexstream/vortexstream',
+          href: 'https://github.com/xhub-reel/xhub-reel',
           label: 'GitHub',
           position: 'right',
         },
@@ -94,15 +94,15 @@ const config: Config = {
           title: 'Packages',
           items: [
             {
-              label: '@vortex/core',
+              label: '@xhub-reel/core',
               to: '/docs/packages/core',
             },
             {
-              label: '@vortex/player',
+              label: '@xhub-reel/player',
               to: '/docs/packages/player',
             },
             {
-              label: '@vortex/feed',
+              label: '@xhub-reel/feed',
               to: '/docs/packages/feed',
             },
           ],
@@ -112,16 +112,16 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/vortexstream/vortexstream',
+              href: 'https://github.com/xhub-reel/xhub-reel',
             },
             {
               label: 'npm',
-              href: 'https://www.npmjs.com/org/vortex',
+              href: 'https://www.npmjs.com/org/xhub-reel',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} VortexStream. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} XHubReel. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
@@ -131,7 +131,7 @@ const config: Config = {
     algolia: {
       appId: 'YOUR_APP_ID',
       apiKey: 'YOUR_SEARCH_API_KEY',
-      indexName: 'vortexstream',
+      indexName: 'xhubreel',
       contextualSearch: true,
     },
   } satisfies Preset.ThemeConfig,

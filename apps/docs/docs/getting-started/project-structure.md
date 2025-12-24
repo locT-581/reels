@@ -4,23 +4,23 @@ sidebar_position: 3
 
 # Cấu trúc dự án
 
-Hiểu cách VortexStream được tổ chức và cách các packages tương tác với nhau.
+Hiểu cách XHubReel được tổ chức và cách các packages tương tác với nhau.
 
 ## Kiến trúc Monorepo
 
 ```
-vortex-stream/
+xhub-reel/
 ├── apps/
 │   ├── web/                    # Demo app
 │   ├── docs/                   # Documentation (bạn đang đọc)
 │   └── example/                # Example implementations
 ├── packages/
-│   ├── core/                   # @vortex/core
-│   ├── player/                 # @vortex/player
-│   ├── feed/                   # @vortex/feed
-│   ├── gestures/               # @vortex/gestures
-│   ├── ui/                     # @vortex/ui
-│   └── embed/                  # @vortex/embed
+│   ├── core/                   # @xhub-reel/core
+│   ├── player/                 # @xhub-reel/player
+│   ├── feed/                   # @xhub-reel/feed
+│   ├── gestures/               # @xhub-reel/gestures
+│   ├── ui/                     # @xhub-reel/ui
+│   └── embed/                  # @xhub-reel/embed
 ├── package.json
 ├── pnpm-workspace.yaml
 └── turbo.json
@@ -30,11 +30,11 @@ vortex-stream/
 
 ```mermaid
 graph TD
-    A[@vortex/embed] --> B[@vortex/feed]
-    A --> C[@vortex/player]
-    A --> D[@vortex/ui]
-    A --> E[@vortex/gestures]
-    A --> F[@vortex/core]
+    A[@xhub-reel/embed] --> B[@xhub-reel/feed]
+    A --> C[@xhub-reel/player]
+    A --> D[@xhub-reel/ui]
+    A --> E[@xhub-reel/gestures]
+    A --> F[@xhub-reel/core]
     B --> C
     B --> F
     C --> F
@@ -46,16 +46,16 @@ graph TD
 
 | Package | Dependencies | Mô tả |
 |---------|-------------|-------|
-| `@vortex/core` | zustand | Không phụ thuộc package khác |
-| `@vortex/player` | core, hls.js | Player cần core types |
-| `@vortex/feed` | core, player, react-virtual | Feed cần player |
-| `@vortex/gestures` | core, use-gesture | Gestures độc lập |
-| `@vortex/ui` | core, motion, lucide-react | UI độc lập |
-| `@vortex/embed` | Tất cả | All-in-one package |
+| `@xhub-reel/core` | zustand | Không phụ thuộc package khác |
+| `@xhub-reel/player` | core, hls.js | Player cần core types |
+| `@xhub-reel/feed` | core, player, react-virtual | Feed cần player |
+| `@xhub-reel/gestures` | core, use-gesture | Gestures độc lập |
+| `@xhub-reel/ui` | core, motion, lucide-react | UI độc lập |
+| `@xhub-reel/embed` | Tất cả | All-in-one package |
 
 ## Chi tiết từng Package
 
-### @vortex/core
+### @xhub-reel/core
 
 Nền tảng của toàn bộ SDK.
 
@@ -95,7 +95,7 @@ packages/core/
 │   └── index.ts              # Barrel export
 ```
 
-### @vortex/player
+### @xhub-reel/player
 
 Video player với HLS support.
 
@@ -121,7 +121,7 @@ packages/player/
 │   └── index.ts
 ```
 
-### @vortex/feed
+### @xhub-reel/feed
 
 Virtualized video feed.
 
@@ -141,7 +141,7 @@ packages/feed/
 │   └── index.ts
 ```
 
-### @vortex/gestures
+### @xhub-reel/gestures
 
 Hệ thống gesture.
 
@@ -166,9 +166,9 @@ packages/gestures/
 │   └── index.ts
 ```
 
-### @vortex/ui
+### @xhub-reel/ui
 
-UI components với Vortex Design System.
+UI components với XHubReel Design System.
 
 ```
 packages/ui/
@@ -193,15 +193,15 @@ packages/ui/
 ├── tailwind.preset.js        # Tailwind preset
 ```
 
-### @vortex/embed
+### @xhub-reel/embed
 
 All-in-one embeddable widget.
 
 ```
 packages/embed/
 ├── src/
-│   ├── VortexEmbed.tsx       # Main embed component
-│   ├── VortexPlayer.tsx      # Single player embed
+│   ├── XHubReelEmbed.tsx       # Main embed component
+│   ├── XHubReelPlayer.tsx      # Single player embed
 │   ├── createEmbed.ts        # Vanilla JS API
 │   └── index.ts
 ```
@@ -210,12 +210,12 @@ packages/embed/
 
 | Package | Size (gzip) | Dependencies |
 |---------|-------------|--------------|
-| `@vortex/core` | < 5KB | zustand |
-| `@vortex/player` | < 70KB | core + hls.js |
-| `@vortex/feed` | < 8KB | core + player + react-virtual |
-| `@vortex/gestures` | < 15KB | core + use-gesture |
-| `@vortex/ui` | < 15KB | core + motion + lucide-react |
-| `@vortex/embed` | < 100KB | Tất cả (bundled) |
+| `@xhub-reel/core` | < 5KB | zustand |
+| `@xhub-reel/player` | < 70KB | core + hls.js |
+| `@xhub-reel/feed` | < 8KB | core + player + react-virtual |
+| `@xhub-reel/gestures` | < 15KB | core + use-gesture |
+| `@xhub-reel/ui` | < 15KB | core + motion + lucide-react |
+| `@xhub-reel/embed` | < 100KB | Tất cả (bundled) |
 
 ## Import Patterns
 
@@ -223,26 +223,26 @@ packages/embed/
 
 ```tsx
 // Chỉ import những gì cần
-import { Video, Author } from '@vortex/core/types'
-import { usePlayerStore } from '@vortex/core/stores'
-import { formatCount } from '@vortex/core/utils'
+import { Video, Author } from '@xhub-reel/core/types'
+import { usePlayerStore } from '@xhub-reel/core/stores'
+import { formatCount } from '@xhub-reel/core/utils'
 ```
 
 ### Barrel imports
 
 ```tsx
 // Import từ entry point
-import { Video, usePlayerStore, formatCount } from '@vortex/core'
+import { Video, usePlayerStore, formatCount } from '@xhub-reel/core'
 ```
 
 ### Package-level imports
 
 ```tsx
 // Import từ package entry
-import { VideoPlayer } from '@vortex/player'
-import { VideoFeed } from '@vortex/feed'
-import { useVideoGestures } from '@vortex/gestures'
-import { LikeButton, Avatar } from '@vortex/ui'
+import { VideoPlayer } from '@xhub-reel/player'
+import { VideoFeed } from '@xhub-reel/feed'
+import { useVideoGestures } from '@xhub-reel/gestures'
+import { LikeButton, Avatar } from '@xhub-reel/ui'
 ```
 
 ## Build System
@@ -283,7 +283,7 @@ export default defineConfig({
 
 ## Recommended Project Structure
 
-Khi tích hợp VortexStream vào dự án của bạn:
+Khi tích hợp XHubReel vào dự án của bạn:
 
 ```
 your-app/

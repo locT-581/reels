@@ -6,7 +6,7 @@
 
 import { motion } from 'motion/react'
 import { Volume2, Volume1, VolumeX, Volume } from 'lucide-react'
-import { SPRING } from '@vortex/core'
+import { SPRING } from '@xhub-reel/core'
 
 export interface VolumeButtonProps {
   volume: number // 0-1

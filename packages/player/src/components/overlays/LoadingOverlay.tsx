@@ -10,7 +10,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Loader2 } from 'lucide-react'
-import { SPRING } from '@vortex/core'
+import { SPRING } from '@xhub-reel/core'
 
 export interface LoadingOverlayProps {
   isLoading: boolean

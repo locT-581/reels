@@ -21,13 +21,13 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@vortex/core": ["../../packages/core/src"],
-      "@vortex/player": ["../../packages/player/src"],
-      "@vortex/player-core": ["../../packages/player-core/src"],
-      "@vortex/feed": ["../../packages/feed/src"],
-      "@vortex/gestures": ["../../packages/gestures/src"],
-      "@vortex/ui": ["../../packages/ui/src"],
-      "@vortex/embed": ["../../packages/embed/src"]
+      "@xhub-reel/core": ["../../packages/core/src"],
+      "@xhub-reel/player": ["../../packages/player/src"],
+      "@xhub-reel/player-core": ["../../packages/player-core/src"],
+      "@xhub-reel/feed": ["../../packages/feed/src"],
+      "@xhub-reel/gestures": ["../../packages/gestures/src"],
+      "@xhub-reel/ui": ["../../packages/ui/src"],
+      "@xhub-reel/embed": ["../../packages/embed/src"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

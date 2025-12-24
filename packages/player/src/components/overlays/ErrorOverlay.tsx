@@ -6,8 +6,8 @@
 
 import { motion } from 'motion/react'
 import { WifiOff, AlertTriangle, RefreshCw, SkipForward } from 'lucide-react'
-import { SPRING, ERROR_MESSAGES } from '@vortex/core'
-import type { PlayerErrorType } from '@vortex/core'
+import { SPRING, ERROR_MESSAGES } from '@xhub-reel/core'
+import type { PlayerErrorType } from '@xhub-reel/core'
 
 export interface ErrorOverlayProps {
   errorType: PlayerErrorType
@@ -93,7 +93,7 @@ export function ErrorOverlay({
         <div className="flex items-center gap-3 mt-4">
           {onRetry && (
             <motion.button
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-vortex-violet text-white font-medium text-sm"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-xhub-reel-violet text-white font-medium text-sm"
               onClick={onRetry}
               whileTap={{ scale: 0.95 }}
               transition={{

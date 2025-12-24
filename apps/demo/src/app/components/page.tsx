@@ -25,7 +25,7 @@ import {
   useDoubleTapHeart,
   CommentSheet,
   ShareSheet,
-} from '@vortex/ui'
+} from '@xhub-reel/ui'
 import {
   Play,
   Pause,
@@ -102,15 +102,15 @@ export default function ComponentsPage() {
   }, [triggerHeart, showToast])
 
   return (
-    <div className="min-h-screen bg-vortex-bg">
+    <div className="min-h-screen bg-xhub-reel-bg">
       <Navigation />
 
       {/* Page Header */}
-      <div className="sticky top-0 z-30 pt-4 px-6 pb-4 vortex-glass">
+      <div className="sticky top-0 z-30 pt-4 px-6 pb-4 xhub-reel-glass">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-2xl font-bold text-vortex-text">UI Components</h1>
-          <p className="text-sm text-vortex-text-muted">
-            Vortex Design System components showcase
+          <h1 className="text-2xl font-bold text-xhub-reel-text">UI Components</h1>
+          <p className="text-sm text-xhub-reel-text-muted">
+            XHubReel design System components showcase
           </p>
         </div>
       </div>
@@ -119,10 +119,10 @@ export default function ComponentsPage() {
         <div className="max-w-4xl mx-auto space-y-12">
           {/* Buttons Section */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-6">Buttons</h2>
-            <div className="vortex-card space-y-6">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-6">Buttons</h2>
+            <div className="xhub-reel-card space-y-6">
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Button Variants</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Button Variants</h3>
                 <div className="flex flex-wrap gap-3">
                   <Button variant="primary">Primary</Button>
                   <Button variant="secondary">Secondary</Button>
@@ -132,7 +132,7 @@ export default function ComponentsPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Button Sizes</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Button Sizes</h3>
                 <div className="flex flex-wrap items-center gap-3">
                   <Button size="sm">Small</Button>
                   <Button size="md">Medium</Button>
@@ -141,7 +141,7 @@ export default function ComponentsPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Icon Buttons</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Icon Buttons</h3>
                 <div className="flex flex-wrap gap-3">
                   <IconButton icon={<Play className="w-5 h-5" />} aria-label="Play" onClick={() => showToast('Play clicked')} />
                   <IconButton icon={<Pause className="w-5 h-5" />} aria-label="Pause" onClick={() => showToast('Pause clicked')} />
@@ -155,10 +155,10 @@ export default function ComponentsPage() {
 
           {/* Interaction Components */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-6">Interactions</h2>
-            <div className="vortex-card space-y-6">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-6">Interactions</h2>
+            <div className="xhub-reel-card space-y-6">
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Like Button</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Like Button</h3>
                 <div className="flex items-center gap-4">
                   <LikeButton
                     isLiked={isLiked}
@@ -166,29 +166,29 @@ export default function ComponentsPage() {
                     onLike={handleLike}
                     size="lg"
                   />
-                  <span className="text-sm text-vortex-text-secondary">
+                  <span className="text-sm text-xhub-reel-text-secondary">
                     Click to {isLiked ? 'unlike' : 'like'}
                   </span>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Save Button</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Save Button</h3>
                 <div className="flex items-center gap-4">
                   <SaveButton
                     isSaved={isSaved}
                     onSave={handleSave}
                     size="lg"
                   />
-                  <span className="text-sm text-vortex-text-secondary">
+                  <span className="text-sm text-xhub-reel-text-secondary">
                     Click to {isSaved ? 'unsave' : 'save'}
                   </span>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Action Bar</h3>
-                <div className="relative h-[400px] bg-linear-to-b from-vortex-surface-elevated to-vortex-surface rounded-xl overflow-hidden">
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Action Bar</h3>
+                <div className="relative h-[400px] bg-linear-to-b from-xhub-reel-surface-elevated to-xhub-reel-surface rounded-xl overflow-hidden">
                   <ActionBar
                     likeCount={likeCount}
                     commentCount={8765}
@@ -205,10 +205,10 @@ export default function ComponentsPage() {
 
           {/* Avatar & Profile */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-6">Avatar & Profile</h2>
-            <div className="vortex-card space-y-6">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-6">Avatar & Profile</h2>
+            <div className="xhub-reel-card space-y-6">
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Avatar Sizes</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Avatar Sizes</h3>
                 <div className="flex items-center gap-4">
                   <Avatar src={authors[0]?.avatar} alt="User" size="sm" />
                   <Avatar src={authors[1]?.avatar} alt="User" size="md" />
@@ -218,7 +218,7 @@ export default function ComponentsPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Avatar with Border</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Avatar with Border</h3>
                 <div className="flex items-center gap-4">
                   <Avatar src={authors[0]?.avatar} alt="User" size="lg" showBorder />
                   <Avatar src={authors[1]?.avatar} alt="User" size="lg" showBorder borderColor="#FF2D55" />
@@ -229,10 +229,10 @@ export default function ComponentsPage() {
 
           {/* Typography */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-6">Typography</h2>
-            <div className="vortex-card space-y-6">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-6">Typography</h2>
+            <div className="xhub-reel-card space-y-6">
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Text Variants</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Text Variants</h3>
                 <div className="space-y-2">
                   <Text variant="heading">Heading Text</Text>
                   <Text variant="title">Title Text</Text>
@@ -243,7 +243,7 @@ export default function ComponentsPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Text Colors</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Text Colors</h3>
                 <div className="space-y-2">
                   <Text color="default">Default color</Text>
                   <Text color="secondary">Secondary color</Text>
@@ -254,9 +254,9 @@ export default function ComponentsPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Counter Animation</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Counter Animation</h3>
                 <div className="flex items-center gap-4">
-                  <Counter value={likeCount} className="text-3xl font-bold text-vortex-text" />
+                  <Counter value={likeCount} className="text-3xl font-bold text-xhub-reel-text" />
                   <div className="flex gap-2">
                     <Button size="sm" onClick={() => setLikeCount((prev) => prev + 100)}>
                       +100
@@ -269,8 +269,8 @@ export default function ComponentsPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Marquee</h3>
-                <div className="bg-vortex-surface-elevated rounded-lg p-4">
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Marquee</h3>
+                <div className="bg-xhub-reel-surface-elevated rounded-lg p-4">
                   <Marquee speed={30}>
                     🎵 This is a scrolling text - Lorem ipsum dolor sit amet, consectetur adipiscing elit. 🎶
                   </Marquee>
@@ -281,10 +281,10 @@ export default function ComponentsPage() {
 
           {/* Loading States */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-6">Loading States</h2>
-            <div className="vortex-card space-y-6">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-6">Loading States</h2>
+            <div className="xhub-reel-card space-y-6">
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Spinners</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Spinners</h3>
                 <div className="flex items-center gap-6">
                   <Spinner size={16} />
                   <Spinner size={24} />
@@ -294,7 +294,7 @@ export default function ComponentsPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Skeletons</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Skeletons</h3>
                 <div className="flex items-start gap-6">
                   <div className="space-y-2">
                     <AvatarSkeleton size="lg" />
@@ -313,19 +313,19 @@ export default function ComponentsPage() {
 
           {/* Overlays */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-6">Overlays</h2>
-            <div className="vortex-card space-y-6">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-6">Overlays</h2>
+            <div className="xhub-reel-card space-y-6">
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Play/Pause Overlay</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Play/Pause Overlay</h3>
                 <div
-                  className="relative h-[200px] bg-linear-to-b from-vortex-surface-elevated to-vortex-surface rounded-xl overflow-hidden cursor-pointer"
+                  className="relative h-[200px] bg-linear-to-b from-xhub-reel-surface-elevated to-xhub-reel-surface rounded-xl overflow-hidden cursor-pointer"
                   onClick={() => {
                     setIsPlaying(!isPlaying)
                     setShowPauseOverlay(!isPlaying)
                     setTimeout(() => setShowPauseOverlay(false), 1500)
                   }}
                 >
-                  <div className="absolute inset-0 flex items-center justify-center text-vortex-text-muted">
+                  <div className="absolute inset-0 flex items-center justify-center text-xhub-reel-text-muted">
                     Click to toggle play/pause
                   </div>
                   <PlayPauseOverlay
@@ -337,12 +337,12 @@ export default function ComponentsPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Double Tap Heart</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Double Tap Heart</h3>
                 <div
-                  className="relative h-[200px] bg-linear-to-b from-vortex-surface-elevated to-vortex-surface rounded-xl overflow-hidden cursor-pointer"
+                  className="relative h-[200px] bg-linear-to-b from-xhub-reel-surface-elevated to-xhub-reel-surface rounded-xl overflow-hidden cursor-pointer"
                   onDoubleClick={handleDoubleTapDemo}
                 >
-                  <div className="absolute inset-0 flex items-center justify-center text-vortex-text-muted">
+                  <div className="absolute inset-0 flex items-center justify-center text-xhub-reel-text-muted">
                     Double click anywhere
                   </div>
                   <DoubleTapHeart
@@ -355,7 +355,7 @@ export default function ComponentsPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Sheets & Modals</h3>
+                <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Sheets & Modals</h3>
                 <div className="flex flex-wrap gap-3">
                   <Button onClick={() => setBottomSheetOpen(true)}>Bottom Sheet</Button>
                   <Button variant="secondary" onClick={() => setModalOpen(true)}>Modal</Button>
@@ -368,8 +368,8 @@ export default function ComponentsPage() {
 
           {/* Context Menu */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-6">Context Menu</h2>
-            <div className="vortex-card">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-6">Context Menu</h2>
+            <div className="xhub-reel-card">
               <div className="flex items-center gap-4">
                 <Button
                   variant="secondary"
@@ -393,11 +393,11 @@ export default function ComponentsPage() {
 
           {/* Pull to Refresh */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-6">Pull to Refresh</h2>
-            <div className="vortex-card">
-              <div className="h-[200px] overflow-hidden rounded-lg bg-vortex-surface-elevated">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-6">Pull to Refresh</h2>
+            <div className="xhub-reel-card">
+              <div className="h-[200px] overflow-hidden rounded-lg bg-xhub-reel-surface-elevated">
                 <PullToRefresh onRefresh={handleRefresh} isLoading={refreshing}>
-                  <div className="flex items-center justify-center h-full text-vortex-text-muted">
+                  <div className="flex items-center justify-center h-full text-xhub-reel-text-muted">
                     Pull down to refresh (on mobile)
                   </div>
                 </PullToRefresh>
@@ -407,9 +407,9 @@ export default function ComponentsPage() {
 
           {/* Navigation Icons */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-6">Icons</h2>
-            <div className="vortex-card">
-              <h3 className="text-sm font-medium text-vortex-text-muted mb-3">Common Icons (Lucide)</h3>
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-6">Icons</h2>
+            <div className="xhub-reel-card">
+              <h3 className="text-sm font-medium text-xhub-reel-text-muted mb-3">Common Icons (Lucide)</h3>
               <div className="flex flex-wrap gap-4">
                 {[
                   { Icon: Home, name: 'Home' },
@@ -425,9 +425,9 @@ export default function ComponentsPage() {
                   { Icon: Bookmark, name: 'Bookmark' },
                   { Icon: MoreHorizontal, name: 'More' },
                 ].map(({ Icon, name }) => (
-                  <div key={name} className="flex flex-col items-center gap-2 p-3 rounded-lg bg-vortex-surface-elevated">
-                    <Icon className="w-6 h-6 text-vortex-text" />
-                    <span className="text-xs text-vortex-text-muted">{name}</span>
+                  <div key={name} className="flex flex-col items-center gap-2 p-3 rounded-lg bg-xhub-reel-surface-elevated">
+                    <Icon className="w-6 h-6 text-xhub-reel-text" />
+                    <span className="text-xs text-xhub-reel-text-muted">{name}</span>
                   </div>
                 ))}
               </div>
@@ -443,7 +443,7 @@ export default function ComponentsPage() {
         title="Bottom Sheet Example"
       >
         <div className="px-4 pb-8 space-y-4">
-          <p className="text-vortex-text-secondary">
+          <p className="text-xhub-reel-text-secondary">
             This is a bottom sheet component with glassmorphism styling.
           </p>
           <div className="space-y-2">
@@ -470,7 +470,7 @@ export default function ComponentsPage() {
         title="Modal Example"
       >
         <div className="space-y-4">
-          <p className="text-vortex-text-secondary">
+          <p className="text-xhub-reel-text-secondary">
             This is a modal dialog with backdrop blur effect.
           </p>
           <div className="flex gap-3 justify-end">
@@ -508,7 +508,7 @@ export default function ComponentsPage() {
       <ShareSheet
         isOpen={shareSheetOpen}
         onClose={() => setShareSheetOpen(false)}
-        videoUrl="https://vortexstream.app/video/123"
+        videoUrl="https://xhubreel.app/video/123"
         videoTitle="Sample Video"
         onCopyLink={() => showToast('Link copied!')}
         onNativeShare={() => showToast('Shared!')}

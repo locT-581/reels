@@ -7,7 +7,7 @@
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
-import type { Reply, User } from '@vortex/types'
+import type { Reply, User } from '@xhub-reel/types'
 import { formatCount } from '../../utils'
 import { CommentItem } from './CommentItem'
 

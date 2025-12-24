@@ -9,8 +9,8 @@
 import { useState, useCallback } from 'react'
 import { mediumHaptic } from '../utils/haptic'
 
-const HIDDEN_VIDEOS_KEY = 'vortex_hidden_videos'
-const HIDDEN_AUTHORS_KEY = 'vortex_hidden_authors'
+const HIDDEN_VIDEOS_KEY = 'xhub_reel_hidden_videos'
+const HIDDEN_AUTHORS_KEY = 'xhub_reel_hidden_authors'
 
 export type ReportReason =
   | 'spam'

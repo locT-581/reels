@@ -24,9 +24,9 @@ import {
   type NetworkInfo,
   type PowerInfo,
   type PlaybackMetrics,
-} from '@vortex/player-core'
+} from '@xhub-reel/player-core'
 import { useFullscreen, type UseFullscreenReturn } from './useFullscreen'
-import type { PlaybackSpeed, QualityLevel, PlayerState } from '@vortex/core'
+import type { PlaybackSpeed, QualityLevel, PlayerState } from '@xhub-reel/core'
 
 /**
  * Network adaptation strategy

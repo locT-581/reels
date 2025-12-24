@@ -1,17 +1,17 @@
 /**
- * Mock Data for VortexStream Demo
+ * Mock Data for XHubReel Demo
  *
  * These sample videos are from publicly available sources for demo purposes.
  */
 
-import type { Video, Author, Comment, Reply } from '@vortex/core'
+import type { Video, Author, Comment, Reply } from '@xhub-reel/core'
 
 // Sample Authors
 export const authors: Author[] = [
   {
     id: 'author-1',
-    username: 'vortex_official',
-    displayName: 'VortexStream',
+    username: 'xhubreel_official',
+    displayName: 'XHubReel',
     avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop',
     isVerified: true,
     followersCount: 1500000,

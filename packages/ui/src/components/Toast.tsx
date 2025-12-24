@@ -9,7 +9,7 @@
 
 import { useEffect, type CSSProperties, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { colors, radii, spacing, fontSizes, zIndices, springs, mergeStyles } from '@vortex/design-tokens'
+import { colors, radii, spacing, fontSizes, zIndices, springs, mergeStyles } from '@xhub-reel/design-tokens'
 
 export interface ToastProps {
   /** Toast message */

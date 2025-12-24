@@ -4,13 +4,13 @@
  * Modify the docusaurus.config.js file at your site's root instead.
  */
 export default {
-  "title": "VortexStream",
+  "title": "XHubReel",
   "tagline": "High-performance short-form video SDK for React",
   "favicon": "img/favicon.ico",
-  "url": "https://vortexstream.dev",
+  "url": "https://xhubreel.dev",
   "baseUrl": "/en/",
-  "organizationName": "vortexstream",
-  "projectName": "vortexstream",
+  "organizationName": "xhub-reel",
+  "projectName": "xhub-reel",
   "onBrokenLinks": "throw",
   "i18n": {
     "defaultLocale": "vi",
@@ -27,13 +27,13 @@ export default {
       {
         "docs": {
           "sidebarPath": "./sidebars.ts",
-          "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/",
+          "editUrl": "https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/",
           "showLastUpdateAuthor": true,
           "showLastUpdateTime": true
         },
         "blog": {
           "showReadingTime": true,
-          "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/"
+          "editUrl": "https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/"
         },
         "theme": {
           "customCss": "./src/css/custom.css"
@@ -42,16 +42,16 @@ export default {
     ]
   ],
   "themeConfig": {
-    "image": "img/vortex-social-card.jpg",
+    "image": "img/xhub-reel-social-card.jpg",
     "colorMode": {
       "defaultMode": "dark",
       "disableSwitch": false,
       "respectPrefersColorScheme": true
     },
     "navbar": {
-      "title": "VortexStream",
+      "title": "XHubReel",
       "logo": {
-        "alt": "VortexStream Logo",
+        "alt": "XHubReel Logo",
         "src": "img/logo.svg"
       },
       "items": [
@@ -67,7 +67,7 @@ export default {
           "position": "left"
         },
         {
-          "href": "https://github.com/vortexstream/vortexstream",
+          "href": "https://github.com/xhub-reel/xhub-reel",
           "label": "GitHub",
           "position": "right"
         }
@@ -94,15 +94,15 @@ export default {
           "title": "Packages",
           "items": [
             {
-              "label": "@vortex/core",
+              "label": "@xhub-reel/core",
               "to": "/docs/packages/core"
             },
             {
-              "label": "@vortex/player",
+              "label": "@xhub-reel/player",
               "to": "/docs/packages/player"
             },
             {
-              "label": "@vortex/feed",
+              "label": "@xhub-reel/feed",
               "to": "/docs/packages/feed"
             }
           ]
@@ -112,16 +112,16 @@ export default {
           "items": [
             {
               "label": "GitHub",
-              "href": "https://github.com/vortexstream/vortexstream"
+              "href": "https://github.com/xhub-reel/xhub-reel"
             },
             {
               "label": "npm",
-              "href": "https://www.npmjs.com/org/vortex"
+              "href": "https://www.npmjs.com/org/xhub-reel"
             }
           ]
         }
       ],
-      "copyright": "Copyright © 2025 VortexStream. Built with Docusaurus."
+      "copyright": "Copyright © 2025 XHubReel. Built with Docusaurus."
     },
     "prism": {
       "theme": {
@@ -335,7 +335,7 @@ export default {
     "algolia": {
       "appId": "YOUR_APP_ID",
       "apiKey": "YOUR_SEARCH_API_KEY",
-      "indexName": "vortexstream",
+      "indexName": "xhubreel",
       "contextualSearch": true,
       "searchParameters": {},
       "searchPagePath": "search"

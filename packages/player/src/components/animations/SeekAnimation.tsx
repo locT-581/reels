@@ -7,7 +7,7 @@
 
 import { motion, AnimatePresence } from 'motion/react'
 import { FastForward, Rewind } from 'lucide-react'
-import { SPRING } from '@vortex/core'
+import { SPRING } from '@xhub-reel/core'
 
 export interface SeekAnimationProps {
   /** Direction of seek */

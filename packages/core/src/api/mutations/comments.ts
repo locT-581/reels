@@ -1,13 +1,13 @@
 /**
  * Comment Mutations - TanStack Query mutations for comment actions
  *
- * Uses VortexApiClient from context for configurable endpoints
+ * Uses XHubReelApiClient from context for configurable endpoints
  */
 
 'use client'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useVortexApiClient } from '../useVortexApiClient'
+import { useXHubReelApiClient } from '../useXHubReelApiClient'
 import { queryKeys } from '../query-client'
 import type { Comment } from '../../types'
 
@@ -59,7 +59,7 @@ export interface LikeCommentResponse {
  * ```
  */
 export function usePostCommentMutation() {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
@@ -99,7 +99,7 @@ export function usePostCommentMutation() {
  * ```
  */
 export function useLikeCommentMutation(videoId: string) {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
@@ -145,7 +145,7 @@ export function useLikeCommentMutation(videoId: string) {
  * ```
  */
 export function useDeleteCommentMutation(videoId: string) {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
@@ -186,7 +186,7 @@ export function useDeleteCommentMutation(videoId: string) {
  * ```
  */
 export function usePostReplyMutation(videoId: string) {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({

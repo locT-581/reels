@@ -1,5 +1,5 @@
 /**
- * @vortex/ui - Interaction Components
+ * @xhub-reel/ui - Interaction Components
  */
 
 export { LikeButton, type LikeButtonProps } from './LikeButton'

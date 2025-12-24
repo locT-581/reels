@@ -5,7 +5,7 @@
 'use client'
 
 import { forwardRef, type ReactNode, type CSSProperties } from 'react'
-import { cn } from '@vortex/core'
+import { cn } from '@xhub-reel/core'
 
 export interface VideoContainerProps {
   /** Children (usually VideoPlayer) */

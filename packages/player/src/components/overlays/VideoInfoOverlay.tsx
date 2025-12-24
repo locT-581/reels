@@ -7,7 +7,7 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
 import { Music2, ChevronDown, ChevronUp } from 'lucide-react'
-import type { Video, Author } from '@vortex/core'
+import type { Video, Author } from '@xhub-reel/core'
 
 export interface VideoInfoOverlayProps {
   video: Video
@@ -49,7 +49,7 @@ export function VideoInfoOverlay({
             <span className="text-white font-semibold text-sm drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
               @{author.username}
               {author.isVerified && (
-                <span className="ml-1 text-vortex-violet">✓</span>
+                <span className="ml-1 text-xhub-reel-violet">✓</span>
               )}
             </span>
 
@@ -98,7 +98,7 @@ export function VideoInfoOverlay({
             {hashtags.map((tag, i) => (
               <motion.button
                 key={i}
-                className="text-vortex-violet text-sm font-medium drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"
+                className="text-xhub-reel-violet text-sm font-medium drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"
                 onClick={() => onHashtagClick?.(tag)}
                 whileTap={{ scale: 0.95 }}
               >

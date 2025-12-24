@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'VortexStream Demo',
-  description: 'Showcase all features of the VortexStream video platform',
+  title: 'XHubReel Demo',
+  description: 'Showcase all features of the XHubReel video platform',
   icons: {
     icon: '/favicon.ico',
   },
@@ -37,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="min-h-screen bg-vortex-bg text-vortex-text antialiased">
+      <body className="min-h-screen bg-xhub-reel-bg text-xhub-reel-text antialiased">
         <DemoProvider>{children}</DemoProvider>
       </body>
     </html>

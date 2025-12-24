@@ -1,5 +1,5 @@
 /**
- * VortexStream Style Utilities
+ * XHubReel Style Utilities
  *
  * Type-safe inline style helpers for building components.
  * Zero runtime CSS-in-JS - just plain CSSProperties objects.
@@ -346,7 +346,7 @@ export const animation = {
   transition: (
     properties: string | string[] = 'all',
     duration: keyof typeof durations = 'normal',
-    easing: keyof typeof easings = 'vortex'
+    easing: keyof typeof easings = 'xhubReel'
   ): CSSProperties => ({
     transitionProperty: Array.isArray(properties) ? properties.join(', ') : properties,
     transitionDuration: durations[duration],

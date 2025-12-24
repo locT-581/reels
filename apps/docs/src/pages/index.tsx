@@ -7,37 +7,37 @@ import styles from './index.module.css'
 
 const packages = [
   {
-    name: '@vortex/core',
+    name: '@xhub-reel/core',
     description: 'Types, stores, hooks, và utilities cốt lõi',
     size: '< 5KB',
     href: '/docs/packages/core',
   },
   {
-    name: '@vortex/player',
+    name: '@xhub-reel/player',
     description: 'HLS video player tối ưu cho short-form content',
     size: '< 70KB',
     href: '/docs/packages/player',
   },
   {
-    name: '@vortex/feed',
+    name: '@xhub-reel/feed',
     description: 'Virtualized video feed với infinite scroll',
     size: '< 8KB',
     href: '/docs/packages/feed',
   },
   {
-    name: '@vortex/gestures',
+    name: '@xhub-reel/gestures',
     description: 'Hệ thống gesture: tap, swipe, long press',
     size: '< 15KB',
     href: '/docs/packages/gestures',
   },
   {
-    name: '@vortex/ui',
-    description: 'UI components với Vortex Design System',
+    name: '@xhub-reel/ui',
+    description: 'UI components với XHubReel design System',
     size: '< 15KB',
     href: '/docs/packages/ui',
   },
   {
-    name: '@vortex/embed',
+    name: '@xhub-reel/embed',
     description: 'All-in-one embeddable widget',
     size: '< 100KB',
     href: '/docs/packages/embed',
@@ -89,7 +89,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          VortexStream
+          XHubReel
         </Heading>
         <p className="hero__subtitle">
           High-performance short-form video SDK cho React
@@ -111,7 +111,7 @@ function HomepageHeader() {
         </div>
         <div className={styles.codePreview}>
           <pre>
-            <code>npm install @vortex/embed</code>
+            <code>npm install @xhub-reel/embed</code>
           </pre>
         </div>
       </div>
@@ -175,11 +175,11 @@ function QuickStartSection() {
         </Heading>
         <div className={styles.codeBlock}>
           <pre>
-            <code>{`import { VortexEmbed } from '@vortex/embed'
+            <code>{`import { XHubReelEmbed } from '@xhub-reel/embed'
 
 function App() {
   return (
-    <VortexEmbed
+    <XHubReelEmbed
       videos={videos}
       config={{
         autoPlay: true,

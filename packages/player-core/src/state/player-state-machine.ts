@@ -8,7 +8,7 @@
  * - Subscriber pattern for state change notifications
  *
  * Architecture Note:
- * This state machine works alongside the playerStore from @vortex/core:
+ * This state machine works alongside the playerStore from @xhub-reel/core:
  * - playerStore: Zustand store for application-level state
  * - PlayerStateMachine: Validates state transitions, handles edge cases
  *
@@ -27,7 +27,7 @@
  * ```
  */
 
-import type { PlayerState } from '@vortex/core'
+import type { PlayerState } from '@xhub-reel/core'
 
 export type StateTransition = {
   from: PlayerState | '*'

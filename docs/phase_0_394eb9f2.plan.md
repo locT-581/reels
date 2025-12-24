@@ -1,17 +1,17 @@
 ---
 name: "Phase 0 "
-overview: Thiết lập monorepo VortexStream với Turborepo + pnpm, cấu trúc thư mục phù hợp với Cursor Rules globs, và cài đặt tất cả dependencies cần thiết.
+overview: Thiết lập monorepo XHubReel với Turborepo + pnpm, cấu trúc thư mục phù hợp với Cursor Rules globs, và cài đặt tất cả dependencies cần thiết.
 todos: []
 ---
 
-# Phase 0: VortexStream Project Setup
+# Phase 0: XHubReel Project Setup
 
 ## Monorepo Structure
 
 Cấu trúc thư mục được thiết kế để match với Cursor Rules globs:
 
 ```
-vortex-stream/
+xhub-reel/
 ├── apps/
 │   ├── web/                          # Next.js 15 app
 │   │   ├── app/                      # App Router
@@ -21,7 +21,7 @@ vortex-stream/
 │   │   └── package.json
 │   └── docs/                         # Nextra docs (optional, later)
 ├── packages/
-│   ├── core/                         # @vortex/core
+│   ├── core/                         # @xhub-reel/core
 │   │   └── src/
 │   │       ├── types/                # TypeScript types
 │   │       ├── stores/               # Zustand stores (matches **/stores/**)
@@ -29,27 +29,27 @@ vortex-stream/
 │   │       ├── utils/                # Utility functions
 │   │       ├── constants/            # Constants
 │   │       └── index.ts
-│   ├── player/                       # @vortex/player (matches **/player/**)
+│   ├── player/                       # @xhub-reel/player (matches **/player/**)
 │   │   └── src/
 │   │       ├── core/                 # HLS engine
 │   │       ├── components/           # Player components (matches **/components/**)
 │   │       ├── hooks/
 │   │       └── index.ts
-│   ├── ui/                           # @vortex/ui (matches **/ui/**)
+│   ├── ui/                           # @xhub-reel/ui (matches **/ui/**)
 │   │   └── src/
 │   │       ├── components/           # UI components (matches **/components/**)
 │   │       └── index.ts
-│   ├── gestures/                     # @vortex/gestures (matches **/gestures/**)
+│   ├── gestures/                     # @xhub-reel/gestures (matches **/gestures/**)
 │   │   └── src/
 │   │       ├── hooks/
 │   │       ├── utils/
 │   │       └── index.ts
-│   ├── feed/                         # @vortex/feed (matches **/feed/**)
+│   ├── feed/                         # @xhub-reel/feed (matches **/feed/**)
 │   │   └── src/
 │   │       ├── components/
 │   │       ├── hooks/
 │   │       └── index.ts
-│   └── embed/                        # @vortex/embed
+│   └── embed/                        # @xhub-reel/embed
 │       └── src/
 │           └── index.ts
 ├── turbo.json
@@ -69,7 +69,7 @@ Create root `package.json` with Turborepo:
 
 ```json
 {
-  "name": "vortex-stream",
+  "name": "xhub-reel",
   "private": true,
   "packageManager": "pnpm@9.15.0",
   "scripts": {
@@ -98,7 +98,7 @@ Create `turbo.json` with pipeline config.
 
 ### Step 2: TypeScript Configuration
 
-Create `tsconfig.base.json` at root with strict mode and path aliases for `@vortex/*` packages.
+Create `tsconfig.base.json` at root with strict mode and path aliases for `@xhub-reel/*` packages.
 
 ### Step 3: ESLint and Prettier
 
@@ -111,18 +111,18 @@ Create `tsconfig.base.json` at root with strict mode and path aliases for `@vort
 Create Next.js 15 app with:
 - App Router structure
 - Turbopack enabled
-- Tailwind CSS 4 configured with Vortex design system colors
+- Tailwind CSS 4 configured with XHubReel design system colors
 - Basic layout with `bg-black` background
 
 Key files:
 - `apps/web/app/layout.tsx` - Root layout with Inter font
 - `apps/web/app/page.tsx` - Placeholder home page
-- `apps/web/tailwind.config.ts` - Vortex color palette, 8pt spacing
+- `apps/web/tailwind.config.ts` - XHubReel color palette, 8pt spacing
 
 ### Step 5: Initialize Packages
 
 Each package needs:
-- `package.json` with name `@vortex/{name}`
+- `package.json` with name `@xhub-reel/{name}`
 - `tsconfig.json` extending base
 - `tsup.config.ts` for bundling
 - `src/index.ts` barrel export
@@ -160,7 +160,7 @@ Dev dependencies:
 
 ## Key Configuration Details
 
-### Tailwind Config (Vortex Design System)
+### Tailwind Config (XHubReel Design System)
 
 ```typescript
 // apps/web/tailwind.config.ts
@@ -172,17 +172,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        'vortex-black': '#000000',
-        'vortex-violet': '#8B5CF6',
-        'vortex-red': '#FF2D55',
-        'vortex-gray': '#8E8E93',
+        'xhub-reel-black': '#000000',
+        'xhub-reel-violet': '#8B5CF6',
+        'xhub-reel-red': '#FF2D55',
+        'xhub-reel-gray': '#8E8E93',
       },
       spacing: {
         'safe-top': 'env(safe-area-inset-top)',
         'safe-bottom': 'env(safe-area-inset-bottom)',
       },
       transitionTimingFunction: {
-        'vortex': 'cubic-bezier(0.32, 0.72, 0, 1)',
+        'xhub-reel': 'cubic-bezier(0.32, 0.72, 0, 1)',
       },
     },
   },
@@ -228,5 +228,5 @@ After setup, verify:
 1. `pnpm install` succeeds
 2. `pnpm dev` starts Next.js app on localhost:3000
 3. `pnpm build` builds all packages
-4. Tailwind classes work with Vortex colors
-5. Package imports work: `import { } from '@vortex/core'`
+4. Tailwind classes work with XHubReel colors
+5. Package imports work: `import { } from '@xhub-reel/core'`

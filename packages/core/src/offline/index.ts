@@ -1,5 +1,5 @@
 /**
- * @vortex/core - Offline Module
+ * @xhub-reel/core - Offline Module
  */
 
 export {

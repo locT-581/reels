@@ -1,5 +1,5 @@
 /**
- * @vortex/player-engine
+ * @xhub-reel/player-engine
  * Pure Vanilla TypeScript video player engine
  * No React dependency - can be used in any framework
  */

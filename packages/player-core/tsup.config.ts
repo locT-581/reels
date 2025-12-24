@@ -8,7 +8,7 @@ export default defineConfig({
   external: [
     'react',
     'react-dom',
-    '@vortex/core',
+    '@xhub-reel/core',
     'hls.js',
   ],
   treeshake: true,

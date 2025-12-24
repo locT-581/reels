@@ -1,4 +1,4 @@
-import { colors, radii, zIndices, easings, durations } from '@vortex/core'
+import { colors, radii, zIndices, easings, durations } from '@xhub-reel/core'
 import type { CSSProperties } from 'react'
 
 export const videoFeedItemStyles = {
@@ -51,6 +51,6 @@ export const videoFeedItemStyles = {
     borderRadius: radii.full,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backdropFilter: 'blur(8px)',
-    transition: `opacity ${durations.normal}ms ${easings.vortex}, transform ${durations.normal}ms ${easings.vortex}`,
+    transition: `opacity ${durations.normal}ms ${easings.xhubReel}, transform ${durations.normal}ms ${easings.xhubReel}`,
   } satisfies CSSProperties,
 }

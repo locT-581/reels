@@ -1,9 +1,9 @@
 {
-  "name": "vortex-stream",
+  "name": "xhub-reel-stream",
   "private": true,
   "packageManager": "pnpm@9.15.0",
   "scripts": {
-    "dev": "turbo run dev --filter=!@vortex/docs --concurrency=15",
+    "dev": "turbo run dev --filter=!@xhub-reel/docs --concurrency=15",
     "build": "turbo run build ",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",

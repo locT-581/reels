@@ -1,5 +1,5 @@
 /**
- * @vortex/player - Components
+ * @xhub-reel/player - Components
  */
 
 // Main components

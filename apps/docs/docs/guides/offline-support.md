@@ -4,11 +4,11 @@ sidebar_position: 5
 
 # Offline Support
 
-Hướng dẫn triển khai tính năng offline cho VortexStream.
+Hướng dẫn triển khai tính năng offline cho XHubReel.
 
 ## Tổng quan
 
-VortexStream hỗ trợ offline với:
+XHubReel hỗ trợ offline với:
 
 - 💾 **IndexedDB** - Lưu video metadata và segments
 - 🔄 **Service Worker** - Cache static assets và API
@@ -26,7 +26,7 @@ VortexStream hỗ trợ offline với:
 ## Network Status
 
 ```tsx
-import { useNetworkStatus } from '@vortex/core'
+import { useNetworkStatus } from '@xhub-reel/core'
 
 function NetworkIndicator() {
   const {
@@ -62,7 +62,7 @@ function NetworkIndicator() {
 ### Cache video metadata
 
 ```tsx
-import { cacheVideo, getCachedVideo, getCachedVideos } from '@vortex/core/storage'
+import { cacheVideo, getCachedVideo, getCachedVideos } from '@xhub-reel/core/storage'
 
 // Cache video khi xem
 async function handleVideoView(video: Video) {
@@ -79,7 +79,7 @@ const allCached = await getCachedVideos()
 ### Manual video download
 
 ```tsx
-import { queueAction, registerActionHandler, syncAllActions } from '@vortex/core/offline'
+import { queueAction, registerActionHandler, syncAllActions } from '@xhub-reel/core/offline'
 
 async function queueLikeWhileOffline(videoId: string) {
   await queueAction('like', { videoId })
@@ -102,7 +102,7 @@ import {
   getWatchProgress,
   getWatchHistory,
   clearWatchHistory,
-} from '@vortex/core/storage'
+} from '@xhub-reel/core/storage'
 
 // Lưu progress mỗi 5s
 useEffect(() => {
@@ -139,7 +139,7 @@ import {
   registerActionHandler,
   syncAllActions,
   getPendingActions,
-} from '@vortex/core/offline'
+} from '@xhub-reel/core/offline'
 
 // Queue like action
 async function likeVideo(videoId: string) {
@@ -288,8 +288,8 @@ registerRoute(
 ### Offline Feed
 
 ```tsx
-import { useNetworkStatus } from '@vortex/core'
-import { getCachedVideos } from '@vortex/core/storage'
+import { useNetworkStatus } from '@xhub-reel/core'
+import { getCachedVideos } from '@xhub-reel/core/storage'
 
 function OfflineFeed() {
   const { isOnline } = useNetworkStatus()
@@ -326,7 +326,7 @@ function OfflineFeed() {
 ### Offline indicator
 
 ```tsx
-import { useNetworkStatus } from '@vortex/core'
+import { useNetworkStatus } from '@xhub-reel/core'
 import { motion, AnimatePresence } from 'motion/react'
 
 function OfflineIndicator() {
@@ -375,7 +375,7 @@ function OfflineIndicator() {
 ### Cache size
 
 ```tsx
-import { getStorageUsage, clearOldCache } from '@vortex/core/storage'
+import { getStorageUsage, clearOldCache } from '@xhub-reel/core/storage'
 
 function CacheSettings() {
   const [cacheSize, setCacheSize] = useState(0)
@@ -412,7 +412,7 @@ function formatBytes(bytes: number) {
 ### Auto cleanup
 
 ```tsx
-import { clearOldCache } from '@vortex/core/storage'
+import { clearOldCache } from '@xhub-reel/core/storage'
 
 // Clean up on app start
 useEffect(() => {

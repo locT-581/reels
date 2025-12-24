@@ -1,19 +1,19 @@
 {
-  "name": "@vortex/feed",
+  "name": "@xhub-reel/feed",
   "version": "0.0.1",
-  "description": "Virtualized video feed for VortexStream",
+  "description": "Virtualized video feed for XHubReel",
   "license": "MIT",
-  "author": "VortexStream Team",
-  "homepage": "https://github.com/vortex-stream/vortex-stream#readme",
+  "author": "XHubReel Team",
+  "homepage": "https://github.com/xhub-reel/xhub-reel#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vortex-stream/vortex-stream.git",
+    "url": "https://github.com/xhub-reel/xhub-reel.git",
     "directory": "packages/feed"
   },
   "bugs": {
-    "url": "https://github.com/vortex-stream/vortex-stream/issues"
+    "url": "https://github.com/xhub-reel/xhub-reel/issues"
   },
-  "keywords": ["vortex", "feed", "virtualized", "scroll", "react", "video"],
+  "keywords": ["xhub-reel", "feed", "virtualized", "scroll", "react", "video"],
   "publishConfig": {
     "access": "public"
   },
@@ -36,9 +36,9 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
-    "@vortex/core": "workspace:*",
-    "@vortex/player": "workspace:*",
-    "@vortex/gestures": "workspace:*"
+    "@xhub-reel/core": "workspace:*",
+    "@xhub-reel/player": "workspace:*",
+    "@xhub-reel/gestures": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

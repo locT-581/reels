@@ -1,13 +1,13 @@
-# @vortex/embed
+# @xhub-reel/embed
 
-> Embeddable video widget for VortexStream
+> Embeddable video widget for XHubReel
 
 ## Installation
 
 ```bash
-npm install @vortex/embed
+npm install @xhub-reel/embed
 # or
-pnpm add @vortex/embed
+pnpm add @xhub-reel/embed
 ```
 
 ### Peer Dependencies
@@ -29,11 +29,11 @@ npm install react react-dom hls.js motion lucide-react @tanstack/react-virtual @
 ### Basic Embed
 
 ```tsx
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 
 function App() {
   return (
-    <VortexEmbed
+    <XHubReelEmbed
       videos={videos}
       width={375}
       height={667}
@@ -45,7 +45,7 @@ function App() {
 ### With Configuration
 
 ```tsx
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   config={{
     autoPlay: true,
@@ -66,9 +66,9 @@ function App() {
 ### Single Video
 
 ```tsx
-import { VortexPlayer } from '@vortex/embed'
+import { XHubReelPlayer } from '@xhub-reel/embed'
 
-<VortexPlayer
+<XHubReelPlayer
   video={video}
   autoPlay
   muted
@@ -82,7 +82,7 @@ For cross-origin embedding:
 
 ```html
 <iframe
-  src="https://vortex.stream/embed?v=VIDEO_ID"
+  src="https://xhubreel.stream/embed?v=VIDEO_ID"
   width="375"
   height="667"
   frameborder="0"
@@ -93,7 +93,7 @@ For cross-origin embedding:
 
 ## Props
 
-### VortexEmbed
+### XHubReelEmbed
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -132,13 +132,13 @@ interface EmbedConfig {
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-<!-- Include Vortex Embed -->
-<script src="https://unpkg.com/@vortex/embed"></script>
+<!-- Include XHubReel Embed -->
+<script src="https://unpkg.com/@xhub-reel/embed"></script>
 
-<div id="vortex-player"></div>
+<div id="xhub-reel-player"></div>
 
 <script>
-  VortexEmbed.render('#vortex-player', {
+  XHubReelEmbed.render('#xhub-reel-player', {
     videos: [...],
     config: {
       autoPlay: true,
@@ -150,24 +150,24 @@ interface EmbedConfig {
 
 ## Re-exports
 
-For convenience, this package re-exports from other @vortex packages:
+For convenience, this package re-exports from other @xhub-reel packages:
 
 ```typescript
 // Components
-export { VortexEmbed, VortexPlayer } from '@vortex/embed'
-export { VideoFeed, VideoFeedItem } from '@vortex/feed'
-export { VideoPlayer } from '@vortex/player'
+export { XHubReelEmbed, XHubReelPlayer } from '@xhub-reel/embed'
+export { VideoFeed, VideoFeedItem } from '@xhub-reel/feed'
+export { VideoPlayer } from '@xhub-reel/player'
 
 // Types
-export type { Video, Author, Comment } from '@vortex/core'
-export type { EmbedConfig, EmbedProps } from '@vortex/embed'
+export type { Video, Author, Comment } from '@xhub-reel/core'
+export type { EmbedConfig, EmbedProps } from '@xhub-reel/embed'
 ```
 
 ## Bundle Size
 
 | Bundle | Size (gzip) |
 |--------|-------------|
-| @vortex/embed | ~12KB |
+| @xhub-reel/embed | ~12KB |
 | + peer dependencies | ~150KB |
 
 Note: Peer dependencies are externalized. If already using React, HLS.js, etc., the actual bundle added is only ~12KB.

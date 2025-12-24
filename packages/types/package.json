@@ -1,7 +1,7 @@
 {
-  "name": "@vortex/types",
+  "name": "@xhub-reel/types",
   "version": "0.0.1",
-  "description": "TypeScript type definitions for VortexStream",
+  "description": "TypeScript type definitions for XHubReel",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -37,13 +37,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vortexstream/vortex.git",
+    "url": "https://github.com/xhub-reel/xhub-reel.git",
     "directory": "packages/types"
   },
   "keywords": [
     "types",
     "typescript",
-    "vortex"
+    "xhub-reel"
   ],
   "sideEffects": false
 }

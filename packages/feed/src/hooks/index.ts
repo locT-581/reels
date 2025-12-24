@@ -1,5 +1,5 @@
 /**
- * @vortex/feed - Hooks
+ * @xhub-reel/feed - Hooks
  *
  * IntersectionObserver Usage Guide:
  * ---------------------------------

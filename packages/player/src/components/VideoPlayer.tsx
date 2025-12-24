@@ -15,8 +15,8 @@ import {
   type ReactNode,
   type CSSProperties,
 } from 'react'
-import { colors, mergeStyles } from '@vortex/core'
-import type { Video, PlayerState, PlaybackSpeed, QualityLevel } from '@vortex/core'
+import { colors, mergeStyles } from '@xhub-reel/core'
+import type { Video, PlayerState, PlaybackSpeed, QualityLevel } from '@xhub-reel/core'
 import { usePlayer } from '../hooks/usePlayer'
 
 export interface VideoPlayerProps {

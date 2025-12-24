@@ -1,6 +1,6 @@
 {
   "id": "packages/embed",
-  "title": "@vortex/embed",
+  "title": "@xhub-reel/embed",
   "description": "All-in-one embeddable video widget.",
   "source": "@site/docs/packages/embed.md",
   "sourceDirName": "packages",
@@ -8,7 +8,7 @@
   "permalink": "/en/docs/packages/embed",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/packages/embed.md",
+  "editUrl": "https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/docs/packages/embed.md",
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "locT-581",
@@ -19,7 +19,7 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "@vortex/ui",
+    "title": "@xhub-reel/ui",
     "permalink": "/en/docs/packages/ui"
   },
   "next": {

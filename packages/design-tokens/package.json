@@ -1,7 +1,7 @@
 {
-  "name": "@vortex/design-tokens",
+  "name": "@xhub-reel/design-tokens",
   "version": "0.0.1",
-  "description": "Design tokens for VortexStream - CSS Variables based design system",
+  "description": "Design tokens for XHubReel - CSS Variables based design system",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -37,13 +37,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vortexstream/vortex.git",
+    "url": "https://github.com/xhub-reel/xhub-reel.git",
     "directory": "packages/design-tokens"
   },
   "keywords": [
     "design-tokens",
     "css-variables",
-    "vortex",
+    "xhub-reel",
     "react"
   ]
 }

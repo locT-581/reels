@@ -1,13 +1,13 @@
 /**
  * Video Mutations - TanStack Query mutations for video actions
  *
- * Uses VortexApiClient from context for configurable endpoints
+ * Uses XHubReelApiClient from context for configurable endpoints
  */
 
 'use client'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useVortexApiClient } from '../useVortexApiClient'
+import { useXHubReelApiClient } from '../useXHubReelApiClient'
 import { queryKeys } from '../query-client'
 import type { Video } from '../../types'
 import type { ReportReason } from '../../hooks/useContentControl'
@@ -56,7 +56,7 @@ export interface ReportVideoResponse {
  * ```
  */
 export function useLikeVideoMutation() {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
@@ -120,7 +120,7 @@ export function useLikeVideoMutation() {
  * ```
  */
 export function useSaveVideoMutation() {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
@@ -174,7 +174,7 @@ export function useSaveVideoMutation() {
  * ```
  */
 export function useReportVideoMutation() {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
 
   return useMutation({
     mutationFn: async ({
@@ -208,7 +208,7 @@ export function useReportVideoMutation() {
  * ```
  */
 export function useNotInterestedMutation() {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({
@@ -240,7 +240,7 @@ export function useNotInterestedMutation() {
  * ```
  */
 export function useShareVideoMutation() {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
   const queryClient = useQueryClient()
 
   return useMutation({

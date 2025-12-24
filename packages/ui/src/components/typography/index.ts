@@ -1,5 +1,5 @@
 /**
- * @vortex/ui - Typography Components
+ * @xhub-reel/ui - Typography Components
  */
 
 export { Text, type TextProps } from './Text'

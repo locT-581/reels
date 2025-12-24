@@ -13,7 +13,7 @@ Browsers modern yêu cầu video phải muted để autoplay.
 
 ### Giải pháp
 ```tsx
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   config={{
     autoPlay: true,
@@ -72,22 +72,22 @@ Video player cần render client-side only.
 ```tsx
 'use client'
 
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 ```
 
 2. **Dynamic import:**
 ```tsx
 import dynamic from 'next/dynamic'
 
-const VortexEmbed = dynamic(
-  () => import('@vortex/embed').then((m) => m.VortexEmbed),
+const XHubReelEmbed = dynamic(
+  () => import('@xhub-reel/embed').then((m) => m.XHubReelEmbed),
   { ssr: false }
 )
 ```
 
 ---
 
-## Cannot find module '@vortex/xxx'
+## Cannot find module '@xhub-reel/xxx'
 
 ### Nguyên nhân
 - Chưa cài đặt đầy đủ packages
@@ -97,7 +97,7 @@ const VortexEmbed = dynamic(
 
 1. **Cài đặt packages:**
 ```bash
-npm install @vortex/embed
+npm install @xhub-reel/embed
 npm install react react-dom hls.js motion lucide-react @tanstack/react-virtual @use-gesture/react zustand
 ```
 
@@ -105,12 +105,12 @@ npm install react react-dom hls.js motion lucide-react @tanstack/react-virtual @
 ```js
 module.exports = {
   transpilePackages: [
-    '@vortex/core',
-    '@vortex/player',
-    '@vortex/ui',
-    '@vortex/gestures',
-    '@vortex/feed',
-    '@vortex/embed',
+    '@xhub-reel/core',
+    '@xhub-reel/player',
+    '@xhub-reel/ui',
+    '@xhub-reel/gestures',
+    '@xhub-reel/feed',
+    '@xhub-reel/embed',
   ],
 }
 ```
@@ -128,7 +128,7 @@ module.exports = {
 
 1. **Giảm videos in DOM:**
 ```tsx
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   config={{
     maxVideosInDOM: 3,  // Giảm từ 5 xuống 3
@@ -168,7 +168,7 @@ useEffect(() => {
 
 2. **Force cleanup:**
 ```tsx
-import { cleanupMemory } from '@vortex/core'
+import { cleanupMemory } from '@xhub-reel/core'
 
 // Cleanup periodically
 useEffect(() => {
@@ -275,7 +275,7 @@ document.addEventListener('click', () => {
 Safari dùng native HLS, có thể có behavior khác:
 
 ```tsx
-import { isSafari, supportsHLS } from '@vortex/core'
+import { isSafari, supportsHLS } from '@xhub-reel/core'
 
 if (isSafari() && supportsHLS()) {
   // Safari handles HLS natively
@@ -291,7 +291,7 @@ if (isSafari() && supportsHLS()) {
 
 ```tsx
 // Import types explicitly
-import type { Video, Author, EmbedConfig } from '@vortex/core'
+import type { Video, Author, EmbedConfig } from '@xhub-reel/core'
 
 const video: Video = {
   // All required fields
@@ -311,9 +311,9 @@ Enable debug logging:
 ```tsx
 // In development
 if (process.env.NODE_ENV === 'development') {
-  localStorage.setItem('vortex:debug', 'true')
+  localStorage.setItem('xhub-reel:debug', 'true')
 }
 ```
 
-Check console for `[Vortex]` prefixed logs.
+Check console for `[XHubReel]` prefixed logs.
 

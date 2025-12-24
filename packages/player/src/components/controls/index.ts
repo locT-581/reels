@@ -1,5 +1,5 @@
 /**
- * @vortex/player - Controls
+ * @xhub-reel/player - Controls
  */
 
 export { VolumeButton, type VolumeButtonProps } from './VolumeButton'

@@ -1,6 +1,6 @@
-# Getting Started with VortexStream
+# Getting Started with XHubReel
 
-This guide will help you integrate VortexStream into your project.
+This guide will help you integrate XHubReel into your project.
 
 ## Installation
 
@@ -9,7 +9,7 @@ This guide will help you integrate VortexStream into your project.
 Install the embed package which includes everything:
 
 ```bash
-npm install @vortex/embed
+npm install @xhub-reel/embed
 ```
 
 Required peer dependencies:
@@ -24,19 +24,19 @@ Install only what you need:
 
 ```bash
 # Core (required)
-npm install @vortex/core
+npm install @xhub-reel/core
 
 # Video player
-npm install @vortex/player hls.js
+npm install @xhub-reel/player hls.js
 
 # UI components
-npm install @vortex/ui motion lucide-react
+npm install @xhub-reel/ui motion lucide-react
 
 # Gesture system
-npm install @vortex/gestures @use-gesture/react
+npm install @xhub-reel/gestures @use-gesture/react
 
 # Video feed
-npm install @vortex/feed @tanstack/react-virtual
+npm install @xhub-reel/feed @tanstack/react-virtual
 ```
 
 ## Basic Usage
@@ -44,8 +44,8 @@ npm install @vortex/feed @tanstack/react-virtual
 ### Full Feed Experience
 
 ```tsx
-import { VortexEmbed } from '@vortex/embed'
-import type { Video } from '@vortex/core'
+import { XHubReelEmbed } from '@xhub-reel/embed'
+import type { Video } from '@xhub-reel/core'
 
 const videos: Video[] = [
   {
@@ -80,7 +80,7 @@ const videos: Video[] = [
 function App() {
   return (
     <div className="h-screen w-screen bg-black">
-      <VortexEmbed
+      <XHubReelEmbed
         videos={videos}
         config={{
           autoPlay: true,
@@ -103,7 +103,7 @@ function App() {
 ### Single Video Player
 
 ```tsx
-import { VideoPlayer } from '@vortex/player'
+import { VideoPlayer } from '@xhub-reel/player'
 
 function VideoPage() {
   return (
@@ -127,7 +127,7 @@ function VideoPage() {
 
 ```tsx
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { VideoFeed } from '@vortex/feed'
+import { VideoFeed } from '@xhub-reel/feed'
 import { useVideosQuery } from './hooks/useVideos'
 
 const queryClient = new QueryClient()
@@ -155,7 +155,7 @@ function Feed() {
 ### With Zustand Stores
 
 ```tsx
-import { usePlayerStore, useFeedStore } from '@vortex/core'
+import { usePlayerStore, useFeedStore } from '@xhub-reel/core'
 
 function Controls() {
   const { isPlaying, togglePlay, toggleMute } = usePlayerStore()
@@ -196,7 +196,7 @@ export default function RootLayout({ children }) {
 }
 
 // app/page.tsx
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 import { getVideos } from '@/lib/api'
 
 export default async function Home() {
@@ -204,7 +204,7 @@ export default async function Home() {
 
   return (
     <main className="h-screen">
-      <VortexEmbed videos={videos} />
+      <XHubReelEmbed videos={videos} />
     </main>
   )
 }
@@ -216,12 +216,12 @@ export default async function Home() {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: [
-    '@vortex/core',
-    '@vortex/player',
-    '@vortex/ui',
-    '@vortex/gestures',
-    '@vortex/feed',
-    '@vortex/embed',
+    '@xhub-reel/core',
+    '@xhub-reel/player',
+    '@xhub-reel/ui',
+    '@xhub-reel/gestures',
+    '@xhub-reel/feed',
+    '@xhub-reel/embed',
   ],
 }
 
@@ -232,15 +232,15 @@ module.exports = nextConfig
 
 ### Tailwind CSS
 
-Include the Vortex preset:
+Include the XHubReel preset:
 
 ```js
 // tailwind.config.js
 module.exports = {
-  presets: [require('@vortex/ui/tailwind.preset')],
+  presets: [require('@xhub-reel/ui/tailwind.preset')],
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@vortex/ui/dist/**/*.js',
+    './node_modules/@xhub-reel/ui/dist/**/*.js',
   ],
 }
 ```
@@ -249,9 +249,9 @@ module.exports = {
 
 ```css
 :root {
-  --vortex-violet: #8B5CF6;
-  --vortex-like: #FF2D55;
-  --vortex-black: #000000;
+  --xhub-reel-violet: #8B5CF6;
+  --xhub-reel-like: #FF2D55;
+  --xhub-reel-black: #000000;
 }
 ```
 
@@ -267,7 +267,7 @@ import type {
   VideoStats,
   PlayerState,
   Quality,
-} from '@vortex/core'
+} from '@xhub-reel/core'
 ```
 
 ## Next Steps

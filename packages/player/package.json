@@ -1,19 +1,19 @@
 {
-  "name": "@vortex/player",
+  "name": "@xhub-reel/player",
   "version": "0.0.1",
-  "description": "HLS video player for VortexStream",
+  "description": "HLS video player for XHubReel",
   "license": "MIT",
-  "author": "VortexStream Team",
-  "homepage": "https://github.com/vortex-stream/vortex-stream#readme",
+  "author": "XHubReel Team",
+  "homepage": "https://github.com/xhub-reel/xhub-reel#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vortex-stream/vortex-stream.git",
+    "url": "https://github.com/xhub-reel/xhub-reel.git",
     "directory": "packages/player"
   },
   "bugs": {
-    "url": "https://github.com/vortex-stream/vortex-stream/issues"
+    "url": "https://github.com/xhub-reel/xhub-reel/issues"
   },
-  "keywords": ["vortex", "video", "player", "hls", "react", "streaming"],
+  "keywords": ["xhub-reel", "video", "player", "hls", "react", "streaming"],
   "publishConfig": {
     "access": "public"
   },
@@ -36,9 +36,9 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
-    "@vortex/core": "workspace:*",
-    "@vortex/player-core": "workspace:*",
-    "@vortex/ui": "workspace:*"
+    "@xhub-reel/core": "workspace:*",
+    "@xhub-reel/player-core": "workspace:*",
+    "@xhub-reel/ui": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

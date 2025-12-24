@@ -18,7 +18,7 @@ export type ErrorType =
 /**
  * Application error
  */
-export interface VortexError {
+export interface XHubReelError {
   code: string
   type: ErrorType
   message: string

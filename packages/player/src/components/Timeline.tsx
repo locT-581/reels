@@ -10,8 +10,8 @@
  * - Full accessibility support (ARIA)
  *
  * @remarks
- * This is the canonical seek bar component for VortexStream.
- * For video feeds, use this component instead of SeekBar from @vortex/ui.
+ * This is the canonical seek bar component for XHubReel.
+ * For video feeds, use this component instead of SeekBar from @xhub-reel/ui.
  */
 
 'use client'
@@ -34,7 +34,7 @@ import {
   shadows,
   zIndices,
   SEEK_BAR,
-} from '@vortex/core'
+} from '@xhub-reel/core'
 
 // =============================================================================
 // TYPES

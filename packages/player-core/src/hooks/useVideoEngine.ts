@@ -5,7 +5,7 @@
  * without any UI opinions or automatic behaviors. Use this when you need
  * full control over the video engine.
  *
- * For most use cases, prefer usePlayer from @vortex/player which provides
+ * For most use cases, prefer usePlayer from @xhub-reel/player which provides
  * a higher-level API with smart defaults.
  */
 
@@ -14,7 +14,7 @@
 import { useRef, useState, useEffect, useCallback, useMemo } from 'react'
 import { PlayerCore, type PlayerCoreOptions, type PlayerCoreCallbacks } from '../core/player-core'
 import { createPlayerStateMachine } from '../state/player-state-machine'
-import type { PlayerState, QualityLevel } from '@vortex/core'
+import type { PlayerState, QualityLevel } from '@xhub-reel/core'
 import type { PlayResult } from '../types/playback'
 
 export interface UseVideoEngineOptions {

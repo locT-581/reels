@@ -1,14 +1,14 @@
 {
   "id": "getting-started/installation",
   "title": "Cài đặt",
-  "description": "Hướng dẫn cài đặt VortexStream vào dự án của bạn.",
+  "description": "Hướng dẫn cài đặt XHubReel vào dự án của bạn.",
   "source": "@site/docs/getting-started/installation.md",
   "sourceDirName": "getting-started",
   "slug": "/getting-started/installation",
   "permalink": "/en/docs/getting-started/installation",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/getting-started/installation.md",
+  "editUrl": "https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/docs/getting-started/installation.md",
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "locT-581",
@@ -19,7 +19,7 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "VortexStream",
+    "title": "XHubReel",
     "permalink": "/en/docs/"
   },
   "next": {

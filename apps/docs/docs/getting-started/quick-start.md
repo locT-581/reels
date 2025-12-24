@@ -8,10 +8,10 @@ Tạo video feed đầu tiên của bạn trong 5 phút.
 
 ## Bước 1: Chuẩn bị dữ liệu video
 
-VortexStream sử dụng kiểu `Video` được định nghĩa trong `@vortex/core`:
+XHubReel sử dụng kiểu `Video` được định nghĩa trong `@xhub-reel/core`:
 
 ```tsx title="data/videos.ts"
-import type { Video } from '@vortex/core'
+import type { Video } from '@xhub-reel/core'
 
 export const videos: Video[] = [
   {
@@ -68,18 +68,18 @@ export const videos: Video[] = [
 
 ## Bước 2: Tạo Video Feed
 
-### Cách 1: Sử dụng VortexEmbed (Đơn giản nhất)
+### Cách 1: Sử dụng XHubReelEmbed (Đơn giản nhất)
 
 ```tsx title="app/page.tsx"
 'use client'
 
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 import { videos } from './data/videos'
 
 export default function HomePage() {
   return (
     <div className="h-screen w-screen bg-black">
-      <VortexEmbed
+      <XHubReelEmbed
         videos={videos}
         config={{
           autoPlay: true,
@@ -114,7 +114,7 @@ export default function HomePage() {
 ```tsx title="app/feed/page.tsx"
 'use client'
 
-import { VideoFeed } from '@vortex/feed'
+import { VideoFeed } from '@xhub-reel/feed'
 import { videos } from '../data/videos'
 
 export default function FeedPage() {
@@ -150,7 +150,7 @@ export default function FeedPage() {
 ```tsx title="app/video/[id]/page.tsx"
 'use client'
 
-import { VideoPlayer } from '@vortex/player'
+import { VideoPlayer } from '@xhub-reel/player'
 import { videos } from '../../data/videos'
 
 export default function VideoPage({ params }: { params: { id: string } }) {
@@ -184,9 +184,9 @@ Kích hoạt gesture để có trải nghiệm như TikTok:
 ```tsx title="components/VideoWithGestures.tsx"
 'use client'
 
-import { VideoPlayer } from '@vortex/player'
-import { useVideoGestures } from '@vortex/gestures'
-import { DoubleTapHeart } from '@vortex/ui'
+import { VideoPlayer } from '@xhub-reel/player'
+import { useVideoGestures } from '@xhub-reel/gestures'
+import { DoubleTapHeart } from '@xhub-reel/ui'
 import { useState, useRef } from 'react'
 
 export function VideoWithGestures({ video }) {
@@ -248,7 +248,7 @@ import {
   SaveButton,
   Avatar,
   Text,
-} from '@vortex/ui'
+} from '@xhub-reel/ui'
 
 export function VideoOverlay({ video, onLike, onComment, onShare, onSave }) {
   return (
@@ -266,7 +266,7 @@ export function VideoOverlay({ video, onLike, onComment, onShare, onSave }) {
               @{video.author.username}
             </Text>
             {video.author.verified && (
-              <span className="text-vortex-violet">✓</span>
+              <span className="text-xhub-reel-violet">✓</span>
             )}
           </div>
         </div>
@@ -323,7 +323,7 @@ export function useVideos() {
 ```tsx title="app/feed/page.tsx"
 'use client'
 
-import { VideoFeed } from '@vortex/feed'
+import { VideoFeed } from '@xhub-reel/feed'
 import { useVideos } from '../hooks/useVideos'
 
 export default function FeedPage() {

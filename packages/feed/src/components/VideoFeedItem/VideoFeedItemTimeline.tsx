@@ -8,7 +8,7 @@
 'use client'
 
 import { forwardRef, type HTMLAttributes } from 'react'
-import { Timeline } from '@vortex/player'
+import { Timeline } from '@xhub-reel/player'
 import { useVideoFeedItemContext } from './context'
 
 export interface VideoFeedItemTimelineProps extends HTMLAttributes<HTMLDivElement> {

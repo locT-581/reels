@@ -2,7 +2,7 @@
 
 ## Overview
 
-VortexStream uses a layered state management approach:
+XHubReel uses a layered state management approach:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -30,11 +30,11 @@ VortexStream uses a layered state management approach:
 
 | State | Store | Persisted | Location |
 |-------|-------|-----------|----------|
-| User Preferences | `usePlayerPreferencesStore` | Yes (localStorage) | `@vortex/core` |
-| Playback Runtime | `usePlayerRuntimeStore` | No | `@vortex/core` |
-| Feed State | `useFeedStore` | No | `@vortex/core` |
-| UI State | `useUIStore` | No | `@vortex/core` |
-| User Session | `useUserStore` | No | `@vortex/core` |
+| User Preferences | `usePlayerPreferencesStore` | Yes (localStorage) | `@xhub-reel/core` |
+| Playback Runtime | `usePlayerRuntimeStore` | No | `@xhub-reel/core` |
+| Feed State | `useFeedStore` | No | `@xhub-reel/core` |
+| UI State | `useUIStore` | No | `@xhub-reel/core` |
+| User Session | `useUserStore` | No | `@xhub-reel/core` |
 
 ## Stores Detail
 
@@ -145,7 +145,7 @@ interface UIStore {
 
 ## PlayerStateMachine
 
-Located in `@vortex/player-core`, validates state transitions:
+Located in `@xhub-reel/player-core`, validates state transitions:
 
 ```typescript
 const machine = createPlayerStateMachine()
@@ -190,7 +190,7 @@ Use for:
 - State that other parts of the app need to react to
 
 ```typescript
-import { usePlayerRuntimeStore, usePlayerPreferencesStore } from '@vortex/core'
+import { usePlayerRuntimeStore, usePlayerPreferencesStore } from '@xhub-reel/core'
 
 // For runtime state
 const { isPlaying, play, pause } = usePlayerRuntimeStore()
@@ -207,7 +207,7 @@ Use for:
 - Background refetching
 
 ```typescript
-import { useVideoFeed } from '@vortex/feed'
+import { useVideoFeed } from '@xhub-reel/feed'
 
 const { data, isLoading, fetchNextPage } = useVideoFeed({
   initialPageSize: 10,

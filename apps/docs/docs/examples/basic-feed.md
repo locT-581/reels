@@ -9,8 +9,8 @@ Ví dụ tạo video feed cơ bản.
 ## Code
 
 ```tsx
-import { VortexEmbed } from '@vortex/embed'
-import type { Video } from '@vortex/core'
+import { XHubReelEmbed } from '@xhub-reel/embed'
+import type { Video } from '@xhub-reel/core'
 
 const videos: Video[] = [
   {
@@ -61,7 +61,7 @@ const videos: Video[] = [
 export default function BasicFeed() {
   return (
     <div className="h-screen w-screen bg-black">
-      <VortexEmbed
+      <XHubReelEmbed
         videos={videos}
         config={{
           autoPlay: true,
@@ -95,7 +95,7 @@ export default function BasicFeed() {
 ### Ẩn controls
 
 ```tsx
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   config={{
     showControls: false,  // Ẩn seek bar, volume
@@ -107,7 +107,7 @@ export default function BasicFeed() {
 ### Ẩn overlay
 
 ```tsx
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   config={{
     showOverlay: false,  // Ẩn author info, caption
@@ -118,7 +118,7 @@ export default function BasicFeed() {
 ### Custom accent color
 
 ```tsx
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   config={{
     accentColor: '#FF6B00',  // Orange thay vì violet

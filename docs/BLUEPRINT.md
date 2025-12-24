@@ -17,7 +17,7 @@
 
 * **UX Pattern:** "Reachability First" – Mọi nút bấm tương tác quan trọng phải nằm trong vùng quét của ngón tay cái (Bottom 1/3 of the screen).
 
-## 4. UI Visual System (The "Vortex" Design System)
+## 4. UI Visual System (The "XHubReel" Design System)
 
 | Yếu tố | Quy định |
 | --- | --- |
@@ -80,7 +80,7 @@
 
 ## 11. AI Guidelines (Instruction for Screen Generation)
 
-> "Khi tạo bất kỳ màn hình nào cho VortexStream, AI phải tuân thủ:
+> "Khi tạo bất kỳ màn hình nào cho XHubReel, AI phải tuân thủ:
 > 1. Luôn ưu tiên hiển thị nội dung video chiếm 100% diện tích.
 > 2. Các nút tương tác nằm bên phải màn hình, xếp dọc.
 > 3. Thanh tiến trình (Seek bar) phải cực mảnh (2px) và chỉ đậm lên khi chạm.
@@ -763,7 +763,7 @@ Mọi thiết kế/mô tả màn hình sau này phải xuất ra theo cấu trú
 │  Link preview:                      │
 │  ┌─────────────────────────────┐   │
 │  │ [Thumb] Title của video...  │   │
-│  │         vortex.app/v/abc123 │   │
+│  │         xhubreel.app/v/abc123 │   │
 │  └─────────────────────────────┘   │
 │                               [Copy]│
 └─────────────────────────────────────┘
@@ -788,8 +788,8 @@ Mọi thiết kế/mô tả màn hình sau này phải xuất ra theo cấu trú
 
 | Type | Format |
 |------|--------|
-| **Web link** | `https://vortex.app/v/{video_id}` |
-| **Deep link** | `vortex://video/{video_id}` |
+| **Web link** | `https://xhubreel.app/v/{video_id}` |
+| **Deep link** | `xhub-reel://video/{video_id}` |
 | **Short link** | `https://vtx.to/{short_code}` |
 
 ### 26.5 Share Metadata (OG Tags)

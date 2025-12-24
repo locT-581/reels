@@ -1,5 +1,5 @@
 /**
- * VortexApiClient - Enhanced API client with authentication support
+ * XHubReelApiClient - Enhanced API client with authentication support
  *
  * Features:
  * - Token-based authentication
@@ -11,8 +11,8 @@
 
 import { ApiError } from './query-client'
 import type {
-  VortexConfig,
-  VortexApiEndpoints,
+  XHubReelConfig,
+  XHubReelApiEndpoints,
   VideoListResponse,
   CommentsListResponse,
   VideoFetchParams,
@@ -20,8 +20,8 @@ import type {
   Video,
   VideoMetadata,
   Comment,
-} from '@vortex/types'
-import { DEFAULT_API_ENDPOINTS } from '@vortex/types'
+} from '@xhub-reel/types'
+import { DEFAULT_API_ENDPOINTS } from '@xhub-reel/types'
 
 // =============================================================================
 // TYPES
@@ -34,18 +34,18 @@ interface FetchOptions extends RequestInit {
 }
 
 // =============================================================================
-// VORTEX API CLIENT CLASS
+// XHUB REEL API CLIENT CLASS
 // =============================================================================
 
 /**
- * VortexApiClient - API client configured for VortexStream
+ * XHubReelApiClient - API client configured for XHubReel
  */
-export class VortexApiClient {
-  private config: VortexConfig
+export class XHubReelApiClient {
+  private config: XHubReelConfig
   private isRefreshing = false
   private refreshPromise: Promise<TokenRefreshResult | null> | null = null
 
-  constructor(config: VortexConfig) {
+  constructor(config: XHubReelConfig) {
     this.config = config
   }
 
@@ -56,7 +56,7 @@ export class VortexApiClient {
   /**
    * Update configuration
    */
-  updateConfig(newConfig: Partial<VortexConfig>): void {
+  updateConfig(newConfig: Partial<XHubReelConfig>): void {
     this.config = { ...this.config, ...newConfig }
   }
 
@@ -82,7 +82,7 @@ export class VortexApiClient {
    * Get endpoint URL with placeholder replacement
    */
   private getEndpoint(
-    key: keyof VortexApiEndpoints,
+    key: keyof XHubReelApiEndpoints,
     params?: Record<string, string>
   ): string {
     const endpoints = {
@@ -195,7 +195,7 @@ export class VortexApiClient {
         this.setAccessToken(result.accessToken)
 
         if (this.config.debug) {
-          console.log('[VortexApi] Token refreshed successfully')
+          console.log('[XHubReelApi] Token refreshed successfully')
         }
       }
 
@@ -248,7 +248,7 @@ export class VortexApiClient {
 
     try {
       if (this.config.debug) {
-        console.log('[VortexApi] Request:', fetchOptions.method || 'GET', url)
+        console.log('[XHubReelApi] Request:', fetchOptions.method || 'GET', url)
       }
 
       const response = await fetch(url, {
@@ -295,7 +295,7 @@ export class VortexApiClient {
       }
 
       if (this.config.debug) {
-        console.log('[VortexApi] Response:', response.status, body)
+        console.log('[XHubReelApi] Response:', response.status, body)
       }
 
       return body as T
@@ -509,11 +509,11 @@ export class VortexApiClient {
 // =============================================================================
 
 /**
- * Create a VortexApiClient instance
+ * Create a XHubReelApiClient instance
  *
  * @example
  * ```typescript
- * const client = createVortexApiClient({
+ * const client = createXHubReelApiClient({
  *   baseUrl: 'https://api.example.com',
  *   auth: {
  *     accessToken: 'xxx',
@@ -527,7 +527,7 @@ export class VortexApiClient {
  * const { videos, hasMore } = await client.fetchVideos()
  * ```
  */
-export function createVortexApiClient(config: VortexConfig): VortexApiClient {
-  return new VortexApiClient(config)
+export function createXHubReelApiClient(config: XHubReelConfig): XHubReelApiClient {
+  return new XHubReelApiClient(config)
 }
 

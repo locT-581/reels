@@ -1,16 +1,16 @@
 /**
- * @vortex/embed
+ * @xhub-reel/embed
  *
- * Embeddable video feed widget for VortexStream
+ * Embeddable video feed widget for XHubReel
  * Can be integrated into any website
  */
 
 // Re-export core types
-export type { Video, VideoStats, Author, Comment, Reply } from '@vortex/core'
+export type { Video, VideoStats, Author, Comment, Reply } from '@xhub-reel/core'
 
 // Re-export useful components
-export { VideoPlayer, type VideoPlayerProps } from '@vortex/player'
-export { VideoFeed, VideoFeedItem, type VideoFeedProps, type VideoFeedItemProps } from '@vortex/feed'
+export { VideoPlayer, type VideoPlayerProps } from '@xhub-reel/player'
+export { VideoFeed, VideoFeedItem, type VideoFeedProps, type VideoFeedItemProps } from '@xhub-reel/feed'
 export {
   ActionBar,
   BottomSheet,
@@ -18,10 +18,10 @@ export {
   PlayPauseOverlay,
   Spinner,
   Toast,
-} from '@vortex/ui'
-export { useVideoGestures, type VideoGestureHandlers } from '@vortex/gestures'
+} from '@xhub-reel/ui'
+export { useVideoGestures, type VideoGestureHandlers } from '@xhub-reel/gestures'
 
 // Embed-specific exports
-export { VortexEmbed, type VortexEmbedProps } from './VortexEmbed'
-export { createVortexEmbed, type VortexEmbedOptions } from './createEmbed'
+export { XHubReelEmbed, type XHubReelEmbedProps } from './XHubReelEmbed'
+export { createXHubReelEmbed, type XHubReelEmbedOptions } from './createEmbed'
 

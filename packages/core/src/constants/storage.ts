@@ -7,21 +7,21 @@
  */
 export const STORAGE_KEYS = {
   /** Player preferences (volume, muted, speed, quality) */
-  PLAYER_PREFERENCES: 'vortex-player',
+  PLAYER_PREFERENCES: 'xhub-reel-player',
   /** User session/auth data */
-  USER_DATA: 'vortex-user',
+  USER_DATA: 'xhub-reel-user',
   /** Watch history */
-  WATCH_HISTORY: 'vortex-history',
+  WATCH_HISTORY: 'xhub-reel-history',
   /** Feed cache */
-  FEED_CACHE: 'vortex-feed-cache',
+  FEED_CACHE: 'xhub-reel-feed-cache',
   /** Liked videos (optimistic) */
-  LIKED_VIDEOS: 'vortex-liked',
+  LIKED_VIDEOS: 'xhub-reel-liked',
   /** Saved videos */
-  SAVED_VIDEOS: 'vortex-saved',
+  SAVED_VIDEOS: 'xhub-reel-saved',
   /** App settings */
-  SETTINGS: 'vortex-settings',
+  SETTINGS: 'xhub-reel-settings',
   /** Theme preference */
-  THEME: 'vortex-theme',
+  THEME: 'xhub-reel-theme',
 } as const
 
 /**
@@ -29,7 +29,7 @@ export const STORAGE_KEYS = {
  */
 export const IDB_CONFIG = {
   /** Database name */
-  DB_NAME: 'vortex-db',
+  DB_NAME: 'xhub-reel-db',
   /** Database version */
   DB_VERSION: 1,
   /** Object stores */

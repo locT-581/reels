@@ -8,7 +8,7 @@
 'use client'
 
 import { forwardRef, type HTMLAttributes } from 'react'
-import { PlayPauseOverlay, DoubleTapHeart } from '@vortex/player'
+import { PlayPauseOverlay, DoubleTapHeart } from '@xhub-reel/player'
 import { VideoOverlay } from '../VideoOverlay'
 import { useVideoFeedItemContext } from './context'
 

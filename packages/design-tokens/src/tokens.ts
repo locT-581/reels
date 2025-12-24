@@ -1,5 +1,5 @@
 /**
- * VortexStream Design Tokens
+ * XHubReel Design Tokens
  *
  * CSS Variables-based design system for maximum customizability.
  * Users can override these values by setting CSS variables in their app.
@@ -7,8 +7,8 @@
  * @example
  * ```css
  * :root {
- *   --vortex-color-accent: #FF6B6B;
- *   --vortex-radius-lg: 20px;
+ *   --xhub-reel-color-accent: #FF6B6B;
+ *   --xhub-reel-radius-lg: 20px;
  * }
  * ```
  */
@@ -21,8 +21,8 @@
  * Easing curves
  */
 export const EASING = {
-  /** Vortex signature easing - smooth deceleration */
-  VORTEX: 'cubic-bezier(0.32, 0.72, 0, 1)',
+  /** XHubReel signature easing - smooth deceleration */
+  XHUB_REEL: 'cubic-bezier(0.32, 0.72, 0, 1)',
   /** iOS-like spring feel */
   IOS: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
   /** Quick ease out */
@@ -145,32 +145,32 @@ export const STAGGER = {
 
 export const colors = {
   // Primary colors
-  background: 'var(--vortex-color-bg, #000000)',
-  surface: 'var(--vortex-color-surface, #18181B)',
-  surfaceHover: 'var(--vortex-color-surface-hover, #27272A)',
+  background: 'var(--xhub-reel-color-bg, #000000)',
+  surface: 'var(--xhub-reel-color-surface, #18181B)',
+  surfaceHover: 'var(--xhub-reel-color-surface-hover, #27272A)',
 
   // Accent colors
-  accent: 'var(--vortex-color-accent, #8B5CF6)',
-  accentHover: 'var(--vortex-color-accent-hover, #7C3AED)',
+  accent: 'var(--xhub-reel-color-accent, #8B5CF6)',
+  accentHover: 'var(--xhub-reel-color-accent-hover, #7C3AED)',
 
   // Semantic colors
-  like: 'var(--vortex-color-like, #FF434E)',
-  success: 'var(--vortex-color-success, #22C55E)',
-  warning: 'var(--vortex-color-warning, #DAA000)',
-  error: 'var(--vortex-color-error, #EF4444)',
+  like: 'var(--xhub-reel-color-like, #FF434E)',
+  success: 'var(--xhub-reel-color-success, #22C55E)',
+  warning: 'var(--xhub-reel-color-warning, #DAA000)',
+  error: 'var(--xhub-reel-color-error, #EF4444)',
 
   // Text colors
-  text: 'var(--vortex-color-text, #FAFAFA)',
-  textSecondary: 'var(--vortex-color-text-secondary, #A1A1AA)',
-  textMuted: 'var(--vortex-color-text-muted, #71717A)',
+  text: 'var(--xhub-reel-color-text, #FAFAFA)',
+  textSecondary: 'var(--xhub-reel-color-text-secondary, #A1A1AA)',
+  textMuted: 'var(--xhub-reel-color-text-muted, #71717A)',
 
   // Overlay colors
-  overlay: 'var(--vortex-color-overlay, rgba(0, 0, 0, 0.8))',
-  overlayLight: 'var(--vortex-color-overlay-light, rgba(0, 0, 0, 0.4))',
+  overlay: 'var(--xhub-reel-color-overlay, rgba(0, 0, 0, 0.8))',
+  overlayLight: 'var(--xhub-reel-color-overlay-light, rgba(0, 0, 0, 0.4))',
 
   // Border colors
-  border: 'var(--vortex-color-border, rgba(255, 255, 255, 0.1))',
-  borderHover: 'var(--vortex-color-border-hover, rgba(255, 255, 255, 0.2))',
+  border: 'var(--xhub-reel-color-border, rgba(255, 255, 255, 0.1))',
+  borderHover: 'var(--xhub-reel-color-border-hover, rgba(255, 255, 255, 0.2))',
 
   // Transparent
   transparent: 'transparent',
@@ -204,10 +204,10 @@ export const spacing = {
 
 export const radii = {
   none: 0,
-  sm: 'var(--vortex-radius-sm, 8px)',
-  md: 'var(--vortex-radius-md, 12px)',
-  lg: 'var(--vortex-radius-lg, 16px)',
-  xl: 'var(--vortex-radius-xl, 24px)',
+  sm: 'var(--xhub-reel-radius-sm, 8px)',
+  md: 'var(--xhub-reel-radius-md, 12px)',
+  lg: 'var(--xhub-reel-radius-lg, 16px)',
+  xl: 'var(--xhub-reel-radius-xl, 24px)',
   full: '9999px',
 } as const
 
@@ -216,13 +216,13 @@ export const radii = {
 // =============================================================================
 
 export const fontSizes = {
-  xs: 'var(--vortex-font-size-xs, 12px)',
-  sm: 'var(--vortex-font-size-sm, 14px)',
-  md: 'var(--vortex-font-size-md, 16px)',
-  lg: 'var(--vortex-font-size-lg, 18px)',
-  xl: 'var(--vortex-font-size-xl, 20px)',
-  '2xl': 'var(--vortex-font-size-2xl, 24px)',
-  '3xl': 'var(--vortex-font-size-3xl, 32px)',
+  xs: 'var(--xhub-reel-font-size-xs, 12px)',
+  sm: 'var(--xhub-reel-font-size-sm, 14px)',
+  md: 'var(--xhub-reel-font-size-md, 16px)',
+  lg: 'var(--xhub-reel-font-size-lg, 18px)',
+  xl: 'var(--xhub-reel-font-size-xl, 20px)',
+  '2xl': 'var(--xhub-reel-font-size-2xl, 24px)',
+  '3xl': 'var(--xhub-reel-font-size-3xl, 32px)',
 } as const
 
 export const fontWeights = {
@@ -247,13 +247,13 @@ export const lineHeights = {
 export const durations = {
   instant: '0ms',
   fast: `${DURATION.FAST}ms`,
-  normal: `var(--vortex-duration-normal, ${DURATION.DEFAULT}ms)`,
+  normal: `var(--xhub-reel-duration-normal, ${DURATION.DEFAULT}ms)`,
   slow: `${DURATION.SLOW}ms`,
 } as const
 
 export const easings = {
-  // Vortex signature easing (smooth, natural feel)
-  vortex: `var(--vortex-easing, ${EASING.VORTEX})`,
+  // XHubReel signature easing (smooth, natural feel)
+  xhubReel: `var(--xhub-reel-easing, ${EASING.XHUB_REEL})`,
   // Standard easings
   ease: 'ease',
   easeIn: EASING.EASE_IN,
@@ -277,11 +277,11 @@ export const springs = {
 
 export const shadows = {
   none: 'none',
-  sm: 'var(--vortex-shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.5))',
-  md: 'var(--vortex-shadow-md, 0 4px 6px rgba(0, 0, 0, 0.5))',
-  lg: 'var(--vortex-shadow-lg, 0 10px 15px rgba(0, 0, 0, 0.5))',
+  sm: 'var(--xhub-reel-shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.5))',
+  md: 'var(--xhub-reel-shadow-md, 0 4px 6px rgba(0, 0, 0, 0.5))',
+  lg: 'var(--xhub-reel-shadow-lg, 0 10px 15px rgba(0, 0, 0, 0.5))',
   // Text shadow for video overlay
-  text: 'var(--vortex-shadow-text, 0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.6))',
+  text: 'var(--xhub-reel-shadow-text, 0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.6))',
 } as const
 
 // =============================================================================
@@ -389,44 +389,44 @@ export function generateCSSVariables(overrides: Partial<typeof defaultCSSVariabl
 
 export const defaultCSSVariables = {
   // Colors
-  '--vortex-color-bg': '#000000',
-  '--vortex-color-surface': '#18181B',
-  '--vortex-color-surface-hover': '#27272A',
-  '--vortex-color-accent': '#8B5CF6',
-  '--vortex-color-accent-hover': '#7C3AED',
-  '--vortex-color-like': '#FF434E',
-  '--vortex-color-success': '#22C55E',
-  '--vortex-color-warning': '#FBBF24',
-  '--vortex-color-error': '#EF4444',
-  '--vortex-color-text': '#FAFAFA',
-  '--vortex-color-text-secondary': '#A1A1AA',
-  '--vortex-color-text-muted': '#71717A',
-  '--vortex-color-overlay': 'rgba(0, 0, 0, 0.8)',
-  '--vortex-color-overlay-light': 'rgba(0, 0, 0, 0.4)',
-  '--vortex-color-border': 'rgba(255, 255, 255, 0.1)',
+  '--xhub-reel-color-bg': '#000000',
+  '--xhub-reel-color-surface': '#18181B',
+  '--xhub-reel-color-surface-hover': '#27272A',
+  '--xhub-reel-color-accent': '#8B5CF6',
+  '--xhub-reel-color-accent-hover': '#7C3AED',
+  '--xhub-reel-color-like': '#FF434E',
+  '--xhub-reel-color-success': '#22C55E',
+  '--xhub-reel-color-warning': '#FBBF24',
+  '--xhub-reel-color-error': '#EF4444',
+  '--xhub-reel-color-text': '#FAFAFA',
+  '--xhub-reel-color-text-secondary': '#A1A1AA',
+  '--xhub-reel-color-text-muted': '#71717A',
+  '--xhub-reel-color-overlay': 'rgba(0, 0, 0, 0.8)',
+  '--xhub-reel-color-overlay-light': 'rgba(0, 0, 0, 0.4)',
+  '--xhub-reel-color-border': 'rgba(255, 255, 255, 0.1)',
 
   // Spacing & Sizing
-  '--vortex-radius-sm': '8px',
-  '--vortex-radius-md': '12px',
-  '--vortex-radius-lg': '16px',
-  '--vortex-radius-xl': '24px',
+  '--xhub-reel-radius-sm': '8px',
+  '--xhub-reel-radius-md': '12px',
+  '--xhub-reel-radius-lg': '16px',
+  '--xhub-reel-radius-xl': '24px',
 
   // Typography
-  '--vortex-font-size-xs': '12px',
-  '--vortex-font-size-sm': '14px',
-  '--vortex-font-size-md': '16px',
-  '--vortex-font-size-lg': '18px',
-  '--vortex-font-size-xl': '20px',
+  '--xhub-reel-font-size-xs': '12px',
+  '--xhub-reel-font-size-sm': '14px',
+  '--xhub-reel-font-size-md': '16px',
+  '--xhub-reel-font-size-lg': '18px',
+  '--xhub-reel-font-size-xl': '20px',
 
   // Animation
-  '--vortex-duration-normal': '300ms',
-  '--vortex-easing': 'cubic-bezier(0.32, 0.72, 0, 1)',
+  '--xhub-reel-duration-normal': '300ms',
+  '--xhub-reel-easing': 'cubic-bezier(0.32, 0.72, 0, 1)',
 
   // Shadows
-  '--vortex-shadow-sm': '0 1px 2px rgba(0, 0, 0, 0.5)',
-  '--vortex-shadow-md': '0 4px 6px rgba(0, 0, 0, 0.5)',
-  '--vortex-shadow-lg': '0 10px 15px rgba(0, 0, 0, 0.5)',
-  '--vortex-shadow-text': '0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.6)',
+  '--xhub-reel-shadow-sm': '0 1px 2px rgba(0, 0, 0, 0.5)',
+  '--xhub-reel-shadow-md': '0 4px 6px rgba(0, 0, 0, 0.5)',
+  '--xhub-reel-shadow-lg': '0 10px 15px rgba(0, 0, 0, 0.5)',
+  '--xhub-reel-shadow-text': '0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.6)',
 } as const
 
 // Export all tokens as a single object

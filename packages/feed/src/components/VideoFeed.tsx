@@ -21,9 +21,9 @@ import {
   useImperativeHandle,
   type CSSProperties,
 } from 'react'
-import { useFeedStore, colors, radii, zIndices, mergeStyles } from '@vortex/core'
-import type { Video } from '@vortex/core'
-import { useVerticalSwipe } from '@vortex/gestures'
+import { useFeedStore, colors, radii, zIndices, mergeStyles } from '@xhub-reel/core'
+import type { Video } from '@xhub-reel/core'
+import { useVerticalSwipe } from '@xhub-reel/gestures'
 import { VideoFeedItem } from './VideoFeedItem'
 import { getPreloadPriority } from '../hooks/usePreloader'
 import { useSwipeAnimation } from '../hooks/useSwipeAnimation'
@@ -142,7 +142,7 @@ const feedStyles = {
     borderColor: 'rgba(255, 255, 255, 0.3)',
     borderTopColor: colors.text,
     borderRadius: radii.full,
-    animation: 'vortex-spin 1s linear infinite',
+    animation: 'xhub-reel-spin 1s linear infinite',
   } satisfies CSSProperties,
 }
 
@@ -450,7 +450,7 @@ export const VideoFeed = forwardRef<VideoFeedRef, VideoFeedProps>(
     // GESTURE BINDING
     // ==========================================================================
 
-    // Use vertical swipe gesture from @vortex/gestures
+    // Use vertical swipe gesture from @xhub-reel/gestures
     const { bind: swipeBind } = useVerticalSwipe({
       onSwipeUp: handleSwipeUp,
       onSwipeDown: handleSwipeDown,
@@ -508,7 +508,7 @@ export const VideoFeed = forwardRef<VideoFeedRef, VideoFeedProps>(
           ref={containerRef}
           style={mergeStyles(feedStyles.container, style)}
           className={className}
-          data-vortex-feed
+          data-xhub-reel-feed
         >
           {isLoading && (
             <div style={{ ...feedStyles.loadingIndicator, top: '50%', bottom: 'auto' }}>
@@ -531,11 +531,11 @@ export const VideoFeed = forwardRef<VideoFeedRef, VideoFeedProps>(
         {...swipeBind()}
         style={mergeStyles(feedStyles.container, style)}
         className={className}
-        data-vortex-feed
+        data-xhub-reel-feed
       >
         {/* Keyframes */}
         <style>{`
-          @keyframes vortex-spin {
+          @keyframes xhub-reel-spin {
             to { transform: rotate(360deg); }
           }
         `}</style>

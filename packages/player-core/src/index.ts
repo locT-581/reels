@@ -1,6 +1,6 @@
 /**
- * @vortex/player-core
- * Core video playback engine for VortexStream
+ * @xhub-reel/player-core
+ * Core video playback engine for XHubReel
  * No UI dependency - pure playback logic
  */
 

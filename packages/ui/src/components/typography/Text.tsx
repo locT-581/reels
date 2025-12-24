@@ -8,7 +8,7 @@
 'use client'
 
 import { type CSSProperties, type ReactNode, type ElementType } from 'react'
-import { colors, fontSizes, fontWeights, lineHeights, shadows, mergeStyles } from '@vortex/design-tokens'
+import { colors, fontSizes, fontWeights, lineHeights, shadows, mergeStyles } from '@xhub-reel/design-tokens'
 
 export interface TextProps {
   /** Text content */

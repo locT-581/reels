@@ -1,6 +1,6 @@
 /**
  * Player Core Services
- * Re-exported from @vortex/player-engine for convenience
+ * Re-exported from @xhub-reel/player-engine for convenience
  */
 
 export {
@@ -36,4 +36,4 @@ export {
   type AnalyticsCollectorCallbacks,
   AnalyticsCollector,
   createAnalyticsCollector,
-} from '@vortex/player-engine'
+} from '@xhub-reel/player-engine'

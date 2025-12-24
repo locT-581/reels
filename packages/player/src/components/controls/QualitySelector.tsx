@@ -7,8 +7,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Settings2 } from 'lucide-react'
-import { SPRING } from '@vortex/core'
-import type { QualityLevel } from '@vortex/core'
+import { SPRING } from '@xhub-reel/core'
+import type { QualityLevel } from '@xhub-reel/core'
 
 export interface QualitySelectorProps {
   currentLevel: number // -1 for auto
@@ -89,7 +89,7 @@ export function QualitySelector({
                     w-full px-4 py-2 text-left text-sm font-medium
                     transition-colors flex items-center justify-between
                     ${currentLevel === -1
-                      ? 'text-vortex-violet bg-vortex-violet/10'
+                      ? 'text-xhub-reel-violet bg-xhub-reel-violet/10'
                       : 'text-white hover:bg-white/10'
                     }
                   `}
@@ -107,7 +107,7 @@ export function QualitySelector({
                       w-full px-4 py-2 text-left text-sm font-medium
                       transition-colors flex items-center justify-between
                       ${index === currentLevel
-                        ? 'text-vortex-violet bg-vortex-violet/10'
+                        ? 'text-xhub-reel-violet bg-xhub-reel-violet/10'
                         : 'text-white hover:bg-white/10'
                       }
                     `}

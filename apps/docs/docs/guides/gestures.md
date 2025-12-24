@@ -22,7 +22,7 @@ Hướng dẫn cấu hình và tùy biến gesture system.
 ## Basic Setup
 
 ```tsx
-import { useVideoGestures } from '@vortex/gestures'
+import { useVideoGestures } from '@xhub-reel/gestures'
 
 function VideoWithGestures({ video, onLike }) {
   const [isPlaying, setIsPlaying] = useState(true)
@@ -53,7 +53,7 @@ function VideoWithGestures({ video, onLike }) {
 Video được chia thành 3 zones:
 
 ```tsx
-import { getGestureZone } from '@vortex/gestures'
+import { getGestureZone } from '@xhub-reel/gestures'
 
 function handleTap(event, containerRef) {
   const zone = getGestureZone(event, containerRef.current)
@@ -92,7 +92,7 @@ const bind = useVideoGestures({
 ## Double Tap Like
 
 ```tsx
-import { DoubleTapHeart } from '@vortex/ui'
+import { DoubleTapHeart } from '@xhub-reel/ui'
 import { useState } from 'react'
 
 function VideoWithDoubleTapLike({ video }) {
@@ -136,7 +136,7 @@ function VideoWithDoubleTapLike({ video }) {
 ### Double tap to seek
 
 ```tsx
-import { SeekIndicator } from '@vortex/gestures'
+import { SeekIndicator } from '@xhub-reel/gestures'
 
 function VideoWithSeek() {
   const [seekIndicator, setSeekIndicator] = useState<{
@@ -179,7 +179,7 @@ function VideoWithSeek() {
 ### Drag to seek
 
 ```tsx
-import { useSeekDrag } from '@vortex/gestures'
+import { useSeekDrag } from '@xhub-reel/gestures'
 
 function SeekableVideo({ duration, currentTime, onSeek }) {
   const bind = useSeekDrag({
@@ -208,8 +208,8 @@ function SeekableVideo({ duration, currentTime, onSeek }) {
 ## Long Press Menu
 
 ```tsx
-import { ContextMenu } from '@vortex/ui'
-import { useLongPress } from '@vortex/gestures'
+import { ContextMenu } from '@xhub-reel/ui'
+import { useLongPress } from '@xhub-reel/gestures'
 
 function VideoWithContextMenu({ video }) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -247,7 +247,7 @@ function VideoWithContextMenu({ video }) {
 ## Hold to Pause
 
 ```tsx
-import { useHold } from '@vortex/gestures'
+import { useHold } from '@xhub-reel/gestures'
 
 function VideoWithHoldToPause() {
   const [isPlaying, setIsPlaying] = useState(true)
@@ -279,7 +279,7 @@ function VideoWithHoldToPause() {
 ## Swipe Navigation
 
 ```tsx
-import { useVerticalSwipe } from '@vortex/gestures'
+import { useVerticalSwipe } from '@xhub-reel/gestures'
 
 function SwipeableFeed({ videos, currentIndex, onIndexChange }) {
   const bind = useVerticalSwipe({
@@ -308,7 +308,7 @@ function SwipeableFeed({ videos, currentIndex, onIndexChange }) {
 ## Haptic Feedback
 
 ```tsx
-import { haptic } from '@vortex/core'
+import { haptic } from '@xhub-reel/core'
 
 // Single tap feedback
 haptic.light()
@@ -337,7 +337,7 @@ const bind = useVideoGestures({
 ## Custom Gesture Configuration
 
 ```tsx
-import { GestureProvider } from '@vortex/gestures'
+import { GestureProvider } from '@xhub-reel/gestures'
 
 function App() {
   return (

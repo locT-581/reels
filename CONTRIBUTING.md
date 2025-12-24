@@ -1,6 +1,6 @@
-# Contributing to VortexStream
+# Contributing to XHubReel
 
-Thank you for your interest in contributing to VortexStream! 🎉
+Thank you for your interest in contributing to XHubReel! 🎉
 
 ## Development Setup
 
@@ -15,8 +15,8 @@ Thank you for your interest in contributing to VortexStream! 🎉
 1. **Fork and clone the repository**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/vortex-stream.git
-cd vortex-stream
+git clone https://github.com/YOUR_USERNAME/xhub-reel.git
+cd xhub-reel
 ```
 
 2. **Install dependencies**
@@ -40,7 +40,7 @@ pnpm dev
 ## Project Structure
 
 ```
-vortex-stream/
+xhub-reel/
 ├── apps/
 │   ├── web/          # Next.js demo app
 │   └── docs/         # Documentation site

@@ -1,18 +1,18 @@
-# @vortex/ui
+# @xhub-reel/ui
 
-> UI components for VortexStream - Vortex Design System
+> UI components for XHubReel - XHubReel Design System
 
 ## Installation
 
 ```bash
-npm install @vortex/ui @vortex/core motion lucide-react
+npm install @xhub-reel/ui @xhub-reel/core motion lucide-react
 # or
-pnpm add @vortex/ui @vortex/core motion lucide-react
+pnpm add @xhub-reel/ui @xhub-reel/core motion lucide-react
 ```
 
 ## Features
 
-- 🎨 **Vortex Design System** - Dark-first, video-centric
+- 🎨 **XHubReel Design System** - Dark-first, video-centric
 - ✨ **Motion Animations** - Spring physics, smooth transitions
 - 📱 **Mobile-First** - Touch-optimized, 48px tap targets
 - 🌙 **OLED Black** - #000000 backgrounds
@@ -25,7 +25,7 @@ pnpm add @vortex/ui @vortex/core motion lucide-react
 #### Button
 
 ```tsx
-import { Button } from '@vortex/ui'
+import { Button } from '@xhub-reel/ui'
 
 <Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
@@ -39,7 +39,7 @@ import { Button } from '@vortex/ui'
 #### IconButton
 
 ```tsx
-import { IconButton } from '@vortex/ui'
+import { IconButton } from '@xhub-reel/ui'
 import { Heart, Share2 } from 'lucide-react'
 
 <IconButton icon={Heart} count={1234} aria-label="Like" />
@@ -50,7 +50,7 @@ import { Heart, Share2 } from 'lucide-react'
 #### Avatar
 
 ```tsx
-import { Avatar } from '@vortex/ui'
+import { Avatar } from '@xhub-reel/ui'
 
 <Avatar src="https://..." alt="User" />
 <Avatar fallback="John Doe" />
@@ -63,7 +63,7 @@ import { Avatar } from '@vortex/ui'
 #### Text
 
 ```tsx
-import { Text } from '@vortex/ui'
+import { Text } from '@xhub-reel/ui'
 
 <Text variant="display">Display</Text>
 <Text variant="title">Title</Text>
@@ -75,7 +75,7 @@ import { Text } from '@vortex/ui'
 #### Counter
 
 ```tsx
-import { Counter } from '@vortex/ui'
+import { Counter } from '@xhub-reel/ui'
 
 <Counter value={1234} />    // "1.2K"
 <Counter value={1000000} /> // "1M"
@@ -85,7 +85,7 @@ import { Counter } from '@vortex/ui'
 #### Marquee
 
 ```tsx
-import { Marquee } from '@vortex/ui'
+import { Marquee } from '@xhub-reel/ui'
 
 <Marquee>This text will scroll if it overflows the container</Marquee>
 ```
@@ -95,7 +95,7 @@ import { Marquee } from '@vortex/ui'
 #### LikeButton
 
 ```tsx
-import { LikeButton } from '@vortex/ui'
+import { LikeButton } from '@xhub-reel/ui'
 
 <LikeButton
   count={1234}
@@ -107,7 +107,7 @@ import { LikeButton } from '@vortex/ui'
 #### SaveButton
 
 ```tsx
-import { SaveButton } from '@vortex/ui'
+import { SaveButton } from '@xhub-reel/ui'
 
 <SaveButton
   isSaved={false}
@@ -118,7 +118,7 @@ import { SaveButton } from '@vortex/ui'
 #### ShareButton
 
 ```tsx
-import { ShareButton } from '@vortex/ui'
+import { ShareButton } from '@xhub-reel/ui'
 
 <ShareButton
   count={156}
@@ -131,7 +131,7 @@ import { ShareButton } from '@vortex/ui'
 #### Modal
 
 ```tsx
-import { Modal } from '@vortex/ui'
+import { Modal } from '@xhub-reel/ui'
 
 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
   <h2>Modal Title</h2>
@@ -142,7 +142,7 @@ import { Modal } from '@vortex/ui'
 #### CommentSheet
 
 ```tsx
-import { CommentSheet } from '@vortex/ui'
+import { CommentSheet } from '@xhub-reel/ui'
 
 <CommentSheet
   isOpen={isOpen}
@@ -156,7 +156,7 @@ import { CommentSheet } from '@vortex/ui'
 #### ShareSheet
 
 ```tsx
-import { ShareSheet } from '@vortex/ui'
+import { ShareSheet } from '@xhub-reel/ui'
 
 <ShareSheet
   isOpen={isOpen}
@@ -171,7 +171,7 @@ import { ShareSheet } from '@vortex/ui'
 #### Skeleton
 
 ```tsx
-import { Skeleton } from '@vortex/ui'
+import { Skeleton } from '@xhub-reel/ui'
 
 <Skeleton variant="text" className="w-48" />
 <Skeleton variant="circular" className="w-12 h-12" />
@@ -181,7 +181,7 @@ import { Skeleton } from '@vortex/ui'
 #### BlurPlaceholder
 
 ```tsx
-import { BlurPlaceholder } from '@vortex/ui'
+import { BlurPlaceholder } from '@xhub-reel/ui'
 
 <BlurPlaceholder
   src="https://..."
@@ -194,7 +194,7 @@ import { BlurPlaceholder } from '@vortex/ui'
 #### DoubleTapHeart
 
 ```tsx
-import { DoubleTapHeart } from '@vortex/ui'
+import { DoubleTapHeart } from '@xhub-reel/ui'
 
 {showHeart && <DoubleTapHeart onComplete={() => setShowHeart(false)} />}
 ```
@@ -208,33 +208,33 @@ import {
   Heart, MessageCircle, Share2, Bookmark,
   Play, Pause, Volume2, VolumeX,
   // ... 70+ icons
-} from '@vortex/ui'
+} from '@xhub-reel/ui'
 ```
 
 ## Tailwind CSS Preset
 
-Include the Vortex design system in your Tailwind config:
+Include the XHubReel design system in your Tailwind config:
 
 ```js
 // tailwind.config.js
 module.exports = {
-  presets: [require('@vortex/ui/tailwind.preset')],
+  presets: [require('@xhub-reel/ui/tailwind.preset')],
 }
 ```
 
 This adds:
-- Vortex colors (`vortex-violet`, `vortex-like`, `vortex-black`)
+- XHubReel colors (`xhub-reel-violet`, `xhub-reel-like`, `xhub-reel-black`)
 - 8pt spacing system
-- Custom animations (`vortex-bounce`, `shimmer`)
+- Custom animations (`xhub-reel-bounce`, `shimmer`)
 - Safe area utilities (`pt-safe`, `pb-safe`)
 
 ## Design Tokens
 
 ```css
---vortex-violet: #8B5CF6;
---vortex-like: #FF2D55;
---vortex-black: #000000;
---vortex-easing: cubic-bezier(0.32, 0.72, 0, 1);
+--xhub-reel-violet: #8B5CF6;
+--xhub-reel-like: #FF2D55;
+--xhub-reel-black: #000000;
+--xhub-reel-easing: cubic-bezier(0.32, 0.72, 0, 1);
 ```
 
 ## License

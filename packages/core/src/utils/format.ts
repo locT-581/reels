@@ -1,5 +1,5 @@
 /**
- * Formatting utilities for VortexStream
+ * Formatting utilities for XHubReel
  */
 
 /**

@@ -1,11 +1,11 @@
 /**
  * useVideoFeed - Hook for fetching videos from API with infinite scroll support
  *
- * Uses VortexProvider config to fetch videos. Falls back to manual mode if no config.
+ * Uses XHubReelProvider config to fetch videos. Falls back to manual mode if no config.
  *
  * @example
  * ```tsx
- * // API Mode (requires VortexProvider with config)
+ * // API Mode (requires XHubReelProvider with config)
  * function FeedPage() {
  *   const {
  *     videos,
@@ -28,11 +28,11 @@
 
 'use client'
 
-import type { VortexApiClient } from '@vortex/core/api'
+import type { XHubReelApiClient } from '@xhub-reel/core/api'
 import type { InfiniteData } from '@tanstack/react-query'
-import type { VortexConfig, VideoFetchParams, VideoListResponse, Video } from '@vortex/core'
+import type { XHubReelConfig, VideoFetchParams, VideoListResponse, Video } from '@xhub-reel/core'
 
-import { queryKeys, createVortexApiClient } from '@vortex/core/api'
+import { queryKeys, createXHubReelApiClient } from '@xhub-reel/core/api'
 import { useMemo, useCallback, useRef, useEffect } from 'react'
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 
@@ -43,10 +43,10 @@ import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 
 export interface UseVideoFeedOptions {
   /**
-   * VortexConfig - required for API mode
+   * XHubReelConfig - required for API mode
    * If not provided, the hook returns empty data (use manual mode)
    */
-  config?: VortexConfig
+  config?: XHubReelConfig
 
   /**
    * Enable/disable the query (default: true)
@@ -147,7 +147,7 @@ export function useVideoFeed(options: UseVideoFeedOptions = {}): UseVideoFeedRet
   void useQueryClient()
 
   // Create API client ref to avoid recreating on every render
-  const apiClientRef = useRef<VortexApiClient | null>(null)
+  const apiClientRef = useRef<XHubReelApiClient | null>(null)
 
   // ✅ Serialize config để so sánh stable - tránh re-create API client khi reference thay đổi nhưng content giống nhau
   const configKey = useMemo(() => {
@@ -163,7 +163,7 @@ export function useVideoFeed(options: UseVideoFeedOptions = {}): UseVideoFeedRet
   // Update API client when config actually changes (by content, not reference)
   useEffect(() => {
     if (config && configKey) {
-      apiClientRef.current = createVortexApiClient(config)
+      apiClientRef.current = createXHubReelApiClient(config)
     } else {
       apiClientRef.current = null
     }
@@ -191,7 +191,7 @@ export function useVideoFeed(options: UseVideoFeedOptions = {}): UseVideoFeedRet
   const fetchVideos = useCallback(
     async ({ pageParam }: { pageParam?: string }): Promise<VideoListResponse> => {
       if (!apiClientRef.current) {
-        throw new Error('[Vortex] API client not initialized. Provide config to useVideoFeed.')
+        throw new Error('[XHubReel] API client not initialized. Provide config to useVideoFeed.')
       }
 
       return apiClientRef.current.fetchVideos({
@@ -258,7 +258,7 @@ export function useVideoFeed(options: UseVideoFeedOptions = {}): UseVideoFeedRet
     try {
       await tanstackFetchNextPage()
     } catch (err) {
-      console.error('[Vortex] Error fetching next page:', err)
+      console.error('[XHubReel] Error fetching next page:', err)
       onError?.(err as Error)
     }
   }, [hasNextPage, isFetchingNextPage, tanstackFetchNextPage, onError])
@@ -268,7 +268,7 @@ export function useVideoFeed(options: UseVideoFeedOptions = {}): UseVideoFeedRet
     try {
       await tanstackRefetch()
     } catch (err) {
-      console.error('[Vortex] Error refetching:', err)
+      console.error('[XHubReel] Error refetching:', err)
       onError?.(err as Error)
     }
   }, [tanstackRefetch, onError])
@@ -306,10 +306,10 @@ export function useVideoFeed(options: UseVideoFeedOptions = {}): UseVideoFeedRet
  */
 export async function prefetchVideoFeed(
   queryClient: ReturnType<typeof useQueryClient>,
-  config: VortexConfig,
+  config: XHubReelConfig,
   params: VideoFetchParams = {}
 ): Promise<void> {
-  const client = createVortexApiClient(config)
+  const client = createXHubReelApiClient(config)
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: queryKeys.videos.list(params as Record<string, unknown>),

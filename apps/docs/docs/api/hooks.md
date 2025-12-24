@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Hooks
 
-Custom React hooks từ VortexStream.
+Custom React hooks từ XHubReel.
 
 ## Core Hooks
 
@@ -13,7 +13,7 @@ Custom React hooks từ VortexStream.
 Debounce một giá trị.
 
 ```tsx
-import { useDebounce } from '@vortex/core'
+import { useDebounce } from '@xhub-reel/core'
 
 function Search() {
   const [query, setQuery] = useState('')
@@ -42,7 +42,7 @@ function Search() {
 Throttle một giá trị.
 
 ```tsx
-import { useThrottle } from '@vortex/core'
+import { useThrottle } from '@xhub-reel/core'
 
 function ScrollTracker() {
   const [scrollY, setScrollY] = useState(0)
@@ -71,7 +71,7 @@ function ScrollTracker() {
 Theo dõi network status.
 
 ```tsx
-import { useNetworkStatus } from '@vortex/core'
+import { useNetworkStatus } from '@xhub-reel/core'
 
 function NetworkIndicator() {
   const {
@@ -106,7 +106,7 @@ function NetworkIndicator() {
 Lưu giá trị trước đó.
 
 ```tsx
-import { usePrevious } from '@vortex/core'
+import { usePrevious } from '@xhub-reel/core'
 
 function VideoTracker({ videoId }) {
   const previousVideoId = usePrevious(videoId)
@@ -128,7 +128,7 @@ function VideoTracker({ videoId }) {
 Access player controls.
 
 ```tsx
-import { usePlayer } from '@vortex/player'
+import { usePlayer } from '@xhub-reel/player'
 
 function CustomControls() {
   const {
@@ -164,7 +164,7 @@ function CustomControls() {
 Track video progress.
 
 ```tsx
-import { useVideoProgress } from '@vortex/player'
+import { useVideoProgress } from '@xhub-reel/player'
 
 function ProgressBar() {
   const { currentTime, duration, buffered, percentage } = useVideoProgress()
@@ -191,7 +191,7 @@ function ProgressBar() {
 Track buffering state.
 
 ```tsx
-import { useBuffering } from '@vortex/player'
+import { useBuffering } from '@xhub-reel/player'
 
 function BufferingIndicator() {
   const { isBuffering, bufferProgress } = useBuffering()
@@ -216,7 +216,7 @@ function BufferingIndicator() {
 Access feed state.
 
 ```tsx
-import { useFeed } from '@vortex/feed'
+import { useFeed } from '@xhub-reel/feed'
 
 function FeedControls() {
   const {
@@ -251,7 +251,7 @@ function FeedControls() {
 Control video activation.
 
 ```tsx
-import { useVideoActivation } from '@vortex/feed'
+import { useVideoActivation } from '@xhub-reel/feed'
 
 function VideoItem({ video }) {
   const { isActive, activate, deactivate, visibilityPercentage } = useVideoActivation(video.id)
@@ -272,7 +272,7 @@ function VideoItem({ video }) {
 Track element visibility.
 
 ```tsx
-import { useVideoVisibility } from '@vortex/feed'
+import { useVideoVisibility } from '@xhub-reel/feed'
 import { useRef } from 'react'
 
 function VideoItem({ video }) {
@@ -299,7 +299,7 @@ function VideoItem({ video }) {
 Complete gesture handling.
 
 ```tsx
-import { useVideoGestures } from '@vortex/gestures'
+import { useVideoGestures } from '@xhub-reel/gestures'
 
 function VideoWithGestures() {
   const bind = useVideoGestures({
@@ -327,7 +327,7 @@ function VideoWithGestures() {
 Tap detection only.
 
 ```tsx
-import { useTapGestures } from '@vortex/gestures'
+import { useTapGestures } from '@xhub-reel/gestures'
 
 const bind = useTapGestures({
   onSingleTap: (zone) => handleTap(zone),
@@ -344,7 +344,7 @@ const bind = useTapGestures({
 Long press detection.
 
 ```tsx
-import { useLongPress } from '@vortex/gestures'
+import { useLongPress } from '@xhub-reel/gestures'
 
 const bind = useLongPress({
   onLongPress: (event) => {
@@ -362,7 +362,7 @@ const bind = useLongPress({
 Swipe detection.
 
 ```tsx
-import { useSwipe } from '@vortex/gestures'
+import { useSwipe } from '@xhub-reel/gestures'
 
 const bind = useSwipe({
   onSwipeUp: () => next(),
@@ -381,7 +381,7 @@ const bind = useSwipe({
 Drag to seek.
 
 ```tsx
-import { useSeekDrag } from '@vortex/gestures'
+import { useSeekDrag } from '@xhub-reel/gestures'
 
 const bind = useSeekDrag({
   onSeekStart: () => setIsSeeking(true),
@@ -402,7 +402,7 @@ const bind = useSeekDrag({
 Toast notifications.
 
 ```tsx
-import { useToast } from '@vortex/ui'
+import { useToast } from '@xhub-reel/ui'
 
 function LikeButton({ videoId }) {
   const toast = useToast()
@@ -429,7 +429,7 @@ function LikeButton({ videoId }) {
 Modal state management.
 
 ```tsx
-import { useModal } from '@vortex/ui'
+import { useModal } from '@xhub-reel/ui'
 
 function App() {
   const { isOpen, open, close, data } = useModal()
@@ -454,7 +454,7 @@ function App() {
 Bottom sheet state.
 
 ```tsx
-import { useBottomSheet } from '@vortex/ui'
+import { useBottomSheet } from '@xhub-reel/ui'
 
 function App() {
   const sheet = useBottomSheet()

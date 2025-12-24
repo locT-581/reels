@@ -1,5 +1,5 @@
 /**
- * Vortex Design System - Tailwind Preset
+ * XHubReel Design System - Tailwind Preset
  *
  * Mobile-first, video-centric design system
  */
@@ -8,9 +8,9 @@
 module.exports = {
   theme: {
     extend: {
-      // Vortex Color Palette
+      // XHubReel Color Palette
       colors: {
-        vortex: {
+        'xhub-reel': {
           black: '#000000',
           violet: '#8B5CF6',
           red: '#FF2D55',
@@ -49,20 +49,20 @@ module.exports = {
 
       // Border Radius
       borderRadius: {
-        'vortex': '16px',
-        'vortex-lg': '24px',
-        'vortex-xl': '32px',
+        'xhub-reel': '16px',
+        'xhub-reel-lg': '24px',
+        'xhub-reel-xl': '32px',
       },
 
       // Custom Easing
       transitionTimingFunction: {
-        'vortex': 'cubic-bezier(0.32, 0.72, 0, 1)',
+        'xhub-reel': 'cubic-bezier(0.32, 0.72, 0, 1)',
         'bounce-out': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
       },
 
       // Animation Duration
       transitionDuration: {
-        'vortex': '300ms',
+        'xhub-reel': '300ms',
         'fast': '150ms',
         'slow': '500ms',
       },
@@ -106,14 +106,14 @@ module.exports = {
 
       // Box Shadow
       boxShadow: {
-        'vortex': '0 8px 32px rgba(0, 0, 0, 0.5)',
+        'xhub-reel': '0 8px 32px rgba(0, 0, 0, 0.5)',
         'glow-violet': '0 0 20px rgba(139, 92, 246, 0.3)',
         'glow-red': '0 0 20px rgba(255, 45, 85, 0.3)',
       },
 
       // Backdrop Blur
       backdropBlur: {
-        'vortex': '24px',
+        'xhub-reel': '24px',
       },
 
       // Custom Animations

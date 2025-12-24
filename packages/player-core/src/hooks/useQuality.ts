@@ -9,8 +9,8 @@
 'use client'
 
 import { useState, useCallback, useEffect } from 'react'
-import { usePlayerPreferencesStore } from '@vortex/core'
-import type { Quality, QualityLevel } from '@vortex/core'
+import { usePlayerPreferencesStore } from '@xhub-reel/core'
+import type { Quality, QualityLevel } from '@xhub-reel/core'
 import type { PlayerCore } from '../core/player-core'
 
 /**

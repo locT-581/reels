@@ -1,8 +1,8 @@
 /**
- * @vortex/core - Constants
- * Runtime configuration constants for VortexStream
+ * @xhub-reel/core - Constants
+ * Runtime configuration constants for XHubReel
  *
- * Note: Design tokens (colors, spacing, animation, typography) are in @vortex/design-tokens
+ * Note: Design tokens (colors, spacing, animation, typography) are in @xhub-reel/design-tokens
  */
 
 // Player constants

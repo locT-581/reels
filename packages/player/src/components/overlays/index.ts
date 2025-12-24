@@ -1,5 +1,5 @@
 /**
- * @vortex/player - Overlays
+ * @xhub-reel/player - Overlays
  */
 
 export { LoadingOverlay, type LoadingOverlayProps } from './LoadingOverlay'

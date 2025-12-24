@@ -1,19 +1,19 @@
 {
-  "name": "@vortex/ui",
+  "name": "@xhub-reel/ui",
   "version": "0.0.1",
-  "description": "UI components for VortexStream",
+  "description": "UI components for XHubReel",
   "license": "MIT",
-  "author": "VortexStream Team",
-  "homepage": "https://github.com/vortex-stream/vortex-stream#readme",
+  "author": "XHubReel Team",
+  "homepage": "https://github.com/xhub-reel/xhub-reel#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vortex-stream/vortex-stream.git",
+    "url": "https://github.com/xhub-reel/xhub-reel.git",
     "directory": "packages/ui"
   },
   "bugs": {
-    "url": "https://github.com/vortex-stream/vortex-stream/issues"
+    "url": "https://github.com/xhub-reel/xhub-reel/issues"
   },
-  "keywords": ["vortex", "ui", "components", "react", "video", "tiktok"],
+  "keywords": ["xhub-reel", "ui", "components", "react", "video", "tiktok"],
   "publishConfig": {
     "access": "public"
   },
@@ -36,8 +36,8 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
-    "@vortex/design-tokens": "workspace:*",
-    "@vortex/types": "workspace:*"
+    "@xhub-reel/design-tokens": "workspace:*",
+    "@xhub-reel/types": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

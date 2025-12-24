@@ -1,7 +1,7 @@
 {
-  "name": "@vortex/player-engine",
+  "name": "@xhub-reel/player-engine",
   "version": "0.0.1",
-  "description": "Pure Vanilla TypeScript video player engine for VortexStream",
+  "description": "Pure Vanilla TypeScript video player engine for XHubReel",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -25,7 +25,7 @@
     "hls.js": ">=1.5.0"
   },
   "devDependencies": {
-    "@vortex/types": "workspace:*",
+    "@xhub-reel/types": "workspace:*",
     "hls.js": "^1.5.17",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2"
@@ -33,7 +33,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vortexstream/vortex.git",
+    "url": "https://github.com/xhub-reel/xhub-reel.git",
     "directory": "packages/player-engine"
   },
   "keywords": [

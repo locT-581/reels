@@ -1,7 +1,7 @@
 /**
  * API Response Transformers
  *
- * Transform external API responses to VortexStream's internal format.
+ * Transform external API responses to XHubReel's internal format.
  * These are pre-built transformers for common API response structures.
  */
 
@@ -18,7 +18,7 @@ import type {
   ApiOwner,
   VideoListResponse,
   CommentsListResponse,
-} from '@vortex/types'
+} from '@xhub-reel/types'
 
 // =============================================================================
 // VIDEO/REEL TRANSFORMERS
@@ -51,7 +51,7 @@ const DEFAULT_USER: User = {
 }
 
 /**
- * Transform API owner to VortexStream Author
+ * Transform API owner to XHubReel Author
  */
 export function transformOwnerToAuthor(owner: ApiOwner | null, fallbackDisplayName?: string): Author {
   if (!owner) {
@@ -70,7 +70,7 @@ export function transformOwnerToAuthor(owner: ApiOwner | null, fallbackDisplayNa
 }
 
 /**
- * Transform API owner to VortexStream User
+ * Transform API owner to XHubReel User
  */
 export function transformOwnerToUser(owner: ApiOwner | null): User {
   if (!owner) {
@@ -89,7 +89,7 @@ export function transformOwnerToUser(owner: ApiOwner | null): User {
 }
 
 /**
- * Transform a single API Reel to VortexStream Video
+ * Transform a single API Reel to XHubReel Video
  */
 export function transformReelToVideo(reel: ApiReel): Video {
   // Get the first video media item
@@ -145,7 +145,7 @@ export function transformReelToVideo(reel: ApiReel): Video {
  *
  * @example
  * ```typescript
- * const config: VortexConfig = {
+ * const config: XHubReelConfig = {
  *   baseUrl: 'https://api.example.com',
  *   transformers: {
  *     transformVideoList: transformReelsResponse,
@@ -196,7 +196,7 @@ export function transformSingleReelResponse(response: unknown): Video {
 // =============================================================================
 
 /**
- * Transform API comment to VortexStream Comment
+ * Transform API comment to XHubReel Comment
  *
  * @param apiComment - Raw comment from API
  * @param videoId - Video ID that this comment belongs to
@@ -238,7 +238,7 @@ export function transformApiComment(
  *
  * @example
  * ```typescript
- * const config: VortexConfig = {
+ * const config: XHubReelConfig = {
  *   baseUrl: 'https://api.example.com',
  *   transformers: {
  *     transformComments: transformCommentsResponse,

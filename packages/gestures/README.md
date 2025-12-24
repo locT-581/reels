@@ -1,13 +1,13 @@
-# @vortex/gestures
+# @xhub-reel/gestures
 
-> Gesture system for VortexStream - Tap, swipe, long press, and more
+> Gesture system for XHubReel - Tap, swipe, long press, and more
 
 ## Installation
 
 ```bash
-npm install @vortex/gestures @vortex/core @use-gesture/react
+npm install @xhub-reel/gestures @xhub-reel/core @use-gesture/react
 # or
-pnpm add @vortex/gestures @vortex/core @use-gesture/react
+pnpm add @xhub-reel/gestures @xhub-reel/core @use-gesture/react
 ```
 
 ## Features
@@ -26,7 +26,7 @@ pnpm add @vortex/gestures @vortex/core @use-gesture/react
 Complete gesture handling for video players:
 
 ```tsx
-import { useVideoGestures } from '@vortex/gestures'
+import { useVideoGestures } from '@xhub-reel/gestures'
 
 function VideoPlayer() {
   const bind = useVideoGestures({
@@ -52,7 +52,7 @@ function VideoPlayer() {
 Single and double tap detection:
 
 ```tsx
-import { useTapGestures } from '@vortex/gestures'
+import { useTapGestures } from '@xhub-reel/gestures'
 
 const bind = useTapGestures({
   onSingleTap: () => console.log('Single tap'),
@@ -67,7 +67,7 @@ const bind = useTapGestures({
 Long press detection:
 
 ```tsx
-import { useLongPress } from '@vortex/gestures'
+import { useLongPress } from '@xhub-reel/gestures'
 
 const bind = useLongPress({
   onLongPress: () => openMenu(),
@@ -81,7 +81,7 @@ const bind = useLongPress({
 Continuous hold detection:
 
 ```tsx
-import { useHold } from '@vortex/gestures'
+import { useHold } from '@xhub-reel/gestures'
 
 const bind = useHold({
   onHoldStart: () => startFastForward(),
@@ -95,7 +95,7 @@ const bind = useHold({
 Swipe in any direction:
 
 ```tsx
-import { useSwipe } from '@vortex/gestures'
+import { useSwipe } from '@xhub-reel/gestures'
 
 const bind = useSwipe({
   onSwipeUp: () => nextVideo(),
@@ -112,7 +112,7 @@ const bind = useSwipe({
 Vertical swipe only:
 
 ```tsx
-import { useVerticalSwipe } from '@vortex/gestures'
+import { useVerticalSwipe } from '@xhub-reel/gestures'
 
 const bind = useVerticalSwipe({
   onSwipeUp: () => next(),
@@ -126,7 +126,7 @@ const bind = useVerticalSwipe({
 Horizontal swipe only:
 
 ```tsx
-import { useHorizontalSwipe } from '@vortex/gestures'
+import { useHorizontalSwipe } from '@xhub-reel/gestures'
 
 const bind = useHorizontalSwipe({
   onSwipeLeft: () => forward(),
@@ -140,7 +140,7 @@ const bind = useHorizontalSwipe({
 Drag to seek:
 
 ```tsx
-import { useSeekDrag } from '@vortex/gestures'
+import { useSeekDrag } from '@xhub-reel/gestures'
 
 const bind = useSeekDrag({
   onSeek: (amount) => seek(currentTime + amount),
@@ -156,7 +156,7 @@ const bind = useSeekDrag({
 Ripple effect on tap:
 
 ```tsx
-import { TapRipple } from '@vortex/gestures'
+import { TapRipple } from '@xhub-reel/gestures'
 
 {showRipple && (
   <TapRipple
@@ -172,7 +172,7 @@ import { TapRipple } from '@vortex/gestures'
 Swipe direction indicator:
 
 ```tsx
-import { GestureIndicator } from '@vortex/gestures'
+import { GestureIndicator } from '@xhub-reel/gestures'
 
 <GestureIndicator
   direction="up"
@@ -188,7 +188,7 @@ import { GestureIndicator } from '@vortex/gestures'
 Determine tap zone:
 
 ```tsx
-import { getGestureZone } from '@vortex/gestures'
+import { getGestureZone } from '@xhub-reel/gestures'
 
 const zone = getGestureZone(event, element)
 // Returns: 'left' | 'center' | 'right'
@@ -199,7 +199,7 @@ const zone = getGestureZone(event, element)
 Calculate seek amount from drag:
 
 ```tsx
-import { calculateSeekAmount } from '@vortex/gestures'
+import { calculateSeekAmount } from '@xhub-reel/gestures'
 
 const seekAmount = calculateSeekAmount(dragDistance, {
   ratio: 0.5,
@@ -229,7 +229,7 @@ The video player is divided into 3 zones:
 
 ## Configuration
 
-Default thresholds (from `@vortex/core/constants`):
+Default thresholds (from `@xhub-reel/core/constants`):
 
 ```typescript
 GESTURE.TAP.DOUBLE_TAP_DELAY    // 300ms

@@ -1,22 +1,22 @@
 /**
- * createVortexEmbed - Factory function for creating embed instances
+ * createXHubReelEmbed - Factory function for creating embed instances
  * For use in non-React environments (script tag integration)
  */
 
 import { createElement } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
-import { VortexEmbed, type VortexEmbedProps } from './VortexEmbed'
+import { XHubReelEmbed, type XHubReelEmbedProps } from './XHubReelEmbed'
 
-export interface VortexEmbedOptions extends Omit<VortexEmbedProps, 'className'> {
+export interface XHubReelEmbedOptions extends Omit<XHubReelEmbedProps, 'className'> {
   container: HTMLElement | string
 }
 
-export interface VortexEmbedInstance {
-  updateVideos: (videos: VortexEmbedProps['videos']) => void
+export interface XHubReelEmbedInstance {
+  updateVideos: (videos: XHubReelEmbedProps['videos']) => void
   destroy: () => void
 }
 
-export function createVortexEmbed(options: VortexEmbedOptions): VortexEmbedInstance {
+export function createXHubReelEmbed(options: XHubReelEmbedOptions): XHubReelEmbedInstance {
   const { container, ...props } = options
 
   // Get container element
@@ -24,7 +24,7 @@ export function createVortexEmbed(options: VortexEmbedOptions): VortexEmbedInsta
     typeof container === 'string' ? document.querySelector(container) : container
 
   if (!containerElement || !(containerElement instanceof HTMLElement)) {
-    throw new Error('[VortexEmbed] Invalid container element')
+    throw new Error('[XHubReelEmbed] Invalid container element')
   }
 
   // Create React root
@@ -32,9 +32,9 @@ export function createVortexEmbed(options: VortexEmbedOptions): VortexEmbedInsta
   let currentProps = props
 
   // Render function
-  const render = (newProps: Omit<VortexEmbedProps, 'className'>) => {
+  const render = (newProps: Omit<XHubReelEmbedProps, 'className'>) => {
     currentProps = newProps
-    root.render(createElement(VortexEmbed, newProps))
+    root.render(createElement(XHubReelEmbed, newProps))
   }
 
   // Initial render
@@ -52,6 +52,6 @@ export function createVortexEmbed(options: VortexEmbedOptions): VortexEmbedInsta
 
 // Global initialization for script tag usage
 if (typeof window !== 'undefined') {
-  ;(window as unknown as { VortexStream: typeof createVortexEmbed }).VortexStream = createVortexEmbed
+  ;(window as unknown as { XHubReel: typeof createXHubReelEmbed }).XHubReel = createXHubReelEmbed
 }
 

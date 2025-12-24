@@ -1,5 +1,5 @@
 /**
- * @vortex/ui - Base Components
+ * @xhub-reel/ui - Base Components
  */
 
 export { Button, type ButtonProps } from './Button'

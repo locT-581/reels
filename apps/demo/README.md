@@ -1,6 +1,6 @@
-# VortexStream Demo App
+# XHubReel Demo App
 
-> Final demo showcasing all VortexStream packages and features.
+> Final demo showcasing all XHubReel packages and features.
 
 ## 🎯 Purpose
 
@@ -14,7 +14,7 @@ This demo app serves as:
 ```bash
 # From monorepo root
 pnpm install
-pnpm --filter vortex-demo dev
+pnpm --filter xhub-reel-demo dev
 
 # Or start all packages in dev mode
 pnpm dev
@@ -37,11 +37,11 @@ Open [http://localhost:3001](http://localhost:3001) in your browser.
 ## 📦 Packages Used
 
 ```tsx
-import { VideoFeed, VideoFeedItem, ConnectedVideoFeed } from '@vortex/feed'
-import { VideoPlayer, Timeline, usePlayer } from '@vortex/player'
-import { ActionBar, BottomSheet, Toast, CommentSheet } from '@vortex/ui'
-import { useVideoGestures, useLongPress, useSwipe } from '@vortex/gestures'
-import { type Video, colors, spacing } from '@vortex/core'
+import { VideoFeed, VideoFeedItem, ConnectedVideoFeed } from '@xhub-reel/feed'
+import { VideoPlayer, Timeline, usePlayer } from '@xhub-reel/player'
+import { ActionBar, BottomSheet, Toast, CommentSheet } from '@xhub-reel/ui'
+import { useVideoGestures, useLongPress, useSwipe } from '@xhub-reel/gestures'
+import { type Video, colors, spacing } from '@xhub-reel/core'
 ```
 
 ## 🎨 Tech Stack
@@ -50,7 +50,7 @@ import { type Video, colors, spacing } from '@vortex/core'
 - **Styling**: Tailwind CSS 4
 - **Animation**: Motion (motion.dev)
 - **Icons**: Lucide React
-- **State**: Zustand (via @vortex/core)
+- **State**: Zustand (via @xhub-reel/core)
 
 ## 📂 Project Structure
 
@@ -66,7 +66,7 @@ apps/demo/
 │   │   ├── design/page.tsx    # Design system
 │   │   ├── docs/page.tsx      # Documentation
 │   │   ├── layout.tsx         # Root layout
-│   │   └── globals.css        # Global styles + Vortex theme
+│   │   └── globals.css        # Global styles + XHubReel theme
 │   ├── components/
 │   │   └── Navigation.tsx     # Nav component
 │   └── lib/
@@ -129,24 +129,24 @@ apps/demo/
 
 ```bash
 # Start dev server
-pnpm --filter vortex-demo dev
+pnpm --filter xhub-reel-demo dev
 
 # Build
-pnpm --filter vortex-demo build
+pnpm --filter xhub-reel-demo build
 
 # Type check
-pnpm --filter vortex-demo typecheck
+pnpm --filter xhub-reel-demo typecheck
 
 # Lint
-pnpm --filter vortex-demo lint
+pnpm --filter xhub-reel-demo lint
 ```
 
 ## 📝 For Developers
 
 This demo serves as a reference implementation. Key patterns to note:
 
-1. **State Management** - Using Zustand stores from `@vortex/core`
-2. **Gesture Handling** - Using hooks from `@vortex/gestures`
+1. **State Management** - Using Zustand stores from `@xhub-reel/core`
+2. **Gesture Handling** - Using hooks from `@xhub-reel/gestures`
 3. **Component Composition** - Layering video, overlays, and controls
 4. **Styling** - CSS variables for theming, Tailwind for utilities
 
@@ -165,5 +165,5 @@ For the best experience, test on mobile devices or use Chrome DevTools mobile em
 
 ---
 
-Built with ❤️ using VortexStream packages
+Built with ❤️ using XHubReel packages
 

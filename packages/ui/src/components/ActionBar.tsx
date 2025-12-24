@@ -9,7 +9,7 @@
 
 import { type CSSProperties, type ReactNode } from 'react'
 import { motion } from 'motion/react'
-import { colors, spacing, fontSizes, fontWeights, shadows, components, springs, mergeStyles } from '@vortex/design-tokens'
+import { colors, spacing, fontSizes, fontWeights, shadows, components, springs, mergeStyles } from '@xhub-reel/design-tokens'
 import { formatCount } from '../utils'
 
 export interface ActionBarProps {

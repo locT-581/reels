@@ -5,7 +5,7 @@
 'use client'
 
 import { useRef, useMemo, useState, useCallback, useEffect } from 'react'
-import type { Video } from '@vortex/core'
+import type { Video } from '@xhub-reel/core'
 import {
   useDoubleTapHeart,
   usePlayer,
@@ -13,8 +13,8 @@ import {
   type PowerInfo,
   type PlaybackMetrics,
   type PreloadManagerOptions,
-} from '@vortex/player'
-import { useVideoGestures } from '@vortex/gestures'
+} from '@xhub-reel/player'
+import { useVideoGestures } from '@xhub-reel/gestures'
 import { useVideoActivation } from '../../hooks/useVideoActivation'
 import { useMemoryManager } from '../../hooks/useMemoryManager'
 import type { PreloadPriority } from '../../hooks/usePreloader'

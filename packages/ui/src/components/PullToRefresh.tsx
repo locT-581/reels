@@ -8,7 +8,7 @@
 'use client'
 
 import { useRef, useState, useCallback, type ReactNode, type CSSProperties } from 'react'
-import { colors, spacing, fontSizes, radii, durations, easings, mergeStyles } from '@vortex/design-tokens'
+import { colors, spacing, fontSizes, radii, durations, easings, mergeStyles } from '@xhub-reel/design-tokens'
 
 export interface PullToRefreshProps {
   /** Content to render inside */
@@ -46,7 +46,7 @@ const ptrStyles = {
   content: {
     width: '100%',
     height: '100%',
-    transition: `transform ${durations.normal}ms ${easings.vortex}`,
+    transition: `transform ${durations.normal}ms ${easings.xhubReel}`,
   } satisfies CSSProperties,
 
   indicator: {
@@ -70,7 +70,7 @@ const ptrStyles = {
     borderColor: 'rgba(255, 255, 255, 0.3)',
     borderTopColor: colors.text,
     borderRadius: radii.full,
-    animation: 'vortex-spin 1s linear infinite',
+    animation: 'xhub-reel-spin 1s linear infinite',
   } satisfies CSSProperties,
 
   arrow: {
@@ -181,7 +181,7 @@ export function PullToRefresh({
     >
       {/* Inject keyframes */}
       <style>{`
-        @keyframes vortex-spin {
+        @keyframes xhub-reel-spin {
           to { transform: rotate(360deg); }
         }
       `}</style>

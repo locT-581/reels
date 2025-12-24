@@ -4,14 +4,14 @@ sidebar_position: 4
 
 # Components
 
-React components từ VortexStream.
+React components từ XHubReel.
 
 ## Video Components
 
 ### VideoPlayer
 
 ```tsx
-import { VideoPlayer } from '@vortex/player'
+import { VideoPlayer } from '@xhub-reel/player'
 
 <VideoPlayer
   // Source
@@ -54,7 +54,7 @@ import { VideoPlayer } from '@vortex/player'
 ### VideoFeed
 
 ```tsx
-import { VideoFeed } from '@vortex/feed'
+import { VideoFeed } from '@xhub-reel/feed'
 
 <VideoFeed
   // Data
@@ -80,12 +80,12 @@ import { VideoFeed } from '@vortex/feed'
 
 ---
 
-### VortexEmbed
+### XHubReelEmbed
 
 ```tsx
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 
-<VortexEmbed
+<XHubReelEmbed
   // Data
   videos={videos}
   
@@ -127,7 +127,7 @@ import { VortexEmbed } from '@vortex/embed'
 ### Button
 
 ```tsx
-import { Button } from '@vortex/ui'
+import { Button } from '@xhub-reel/ui'
 
 <Button
   variant="primary"  // 'primary' | 'secondary' | 'ghost' | 'danger'
@@ -146,7 +146,7 @@ import { Button } from '@vortex/ui'
 ### IconButton
 
 ```tsx
-import { IconButton } from '@vortex/ui'
+import { IconButton } from '@xhub-reel/ui'
 import { Heart } from 'lucide-react'
 
 <IconButton
@@ -166,7 +166,7 @@ import { Heart } from 'lucide-react'
 ### Avatar
 
 ```tsx
-import { Avatar } from '@vortex/ui'
+import { Avatar } from '@xhub-reel/ui'
 
 <Avatar
   src="https://example.com/avatar.jpg"
@@ -185,7 +185,7 @@ import { Avatar } from '@vortex/ui'
 ### LikeButton
 
 ```tsx
-import { LikeButton } from '@vortex/ui'
+import { LikeButton } from '@xhub-reel/ui'
 
 <LikeButton
   count={5000}
@@ -201,7 +201,7 @@ import { LikeButton } from '@vortex/ui'
 ### CommentButton
 
 ```tsx
-import { CommentButton } from '@vortex/ui'
+import { CommentButton } from '@xhub-reel/ui'
 
 <CommentButton
   count={500}
@@ -215,7 +215,7 @@ import { CommentButton } from '@vortex/ui'
 ### ShareButton
 
 ```tsx
-import { ShareButton } from '@vortex/ui'
+import { ShareButton } from '@xhub-reel/ui'
 
 <ShareButton
   count={100}
@@ -229,7 +229,7 @@ import { ShareButton } from '@vortex/ui'
 ### SaveButton
 
 ```tsx
-import { SaveButton } from '@vortex/ui'
+import { SaveButton } from '@xhub-reel/ui'
 
 <SaveButton
   isSaved={false}
@@ -243,7 +243,7 @@ import { SaveButton } from '@vortex/ui'
 ### Text
 
 ```tsx
-import { Text } from '@vortex/ui'
+import { Text } from '@xhub-reel/ui'
 
 <Text
   variant="body"  // 'display' | 'title' | 'heading' | 'body' | 'caption' | 'small'
@@ -262,7 +262,7 @@ import { Text } from '@vortex/ui'
 ### Counter
 
 ```tsx
-import { Counter } from '@vortex/ui'
+import { Counter } from '@xhub-reel/ui'
 
 <Counter
   value={1234}
@@ -277,7 +277,7 @@ import { Counter } from '@vortex/ui'
 ### Modal
 
 ```tsx
-import { Modal } from '@vortex/ui'
+import { Modal } from '@xhub-reel/ui'
 
 <Modal
   isOpen={isOpen}
@@ -294,7 +294,7 @@ import { Modal } from '@vortex/ui'
 ### BottomSheet
 
 ```tsx
-import { BottomSheet } from '@vortex/ui'
+import { BottomSheet } from '@xhub-reel/ui'
 
 <BottomSheet
   isOpen={isOpen}
@@ -313,7 +313,7 @@ import { BottomSheet } from '@vortex/ui'
 ### CommentSheet
 
 ```tsx
-import { CommentSheet } from '@vortex/ui'
+import { CommentSheet } from '@xhub-reel/ui'
 
 <CommentSheet
   isOpen={isOpen}
@@ -333,13 +333,13 @@ import { CommentSheet } from '@vortex/ui'
 ### ShareSheet
 
 ```tsx
-import { ShareSheet } from '@vortex/ui'
+import { ShareSheet } from '@xhub-reel/ui'
 
 <ShareSheet
   isOpen={isOpen}
   onClose={() => setIsOpen(false)}
   video={video}
-  shareUrl="https://vortex.app/v/123"
+  shareUrl="https://xhubreel.app/v/123"
   onShare={(platform) => {}}
   onCopyLink={() => {}}
 />
@@ -350,7 +350,7 @@ import { ShareSheet } from '@vortex/ui'
 ### Skeleton
 
 ```tsx
-import { Skeleton } from '@vortex/ui'
+import { Skeleton } from '@xhub-reel/ui'
 
 <Skeleton
   variant="text"        // 'text' | 'circular' | 'rectangular' | 'video'
@@ -364,7 +364,7 @@ import { Skeleton } from '@vortex/ui'
 ### DoubleTapHeart
 
 ```tsx
-import { DoubleTapHeart } from '@vortex/ui'
+import { DoubleTapHeart } from '@xhub-reel/ui'
 
 {showHeart && (
   <DoubleTapHeart
@@ -382,7 +382,7 @@ import { DoubleTapHeart } from '@vortex/ui'
 ### PlayPauseOverlay
 
 ```tsx
-import { PlayPauseOverlay } from '@vortex/ui'
+import { PlayPauseOverlay } from '@xhub-reel/ui'
 
 <PlayPauseOverlay
   isPlaying={isPlaying}
@@ -398,7 +398,7 @@ import { PlayPauseOverlay } from '@vortex/ui'
 ### TapRipple
 
 ```tsx
-import { TapRipple } from '@vortex/gestures'
+import { TapRipple } from '@xhub-reel/gestures'
 
 {showRipple && (
   <TapRipple
@@ -416,7 +416,7 @@ import { TapRipple } from '@vortex/gestures'
 ### GestureIndicator
 
 ```tsx
-import { GestureIndicator } from '@vortex/gestures'
+import { GestureIndicator } from '@xhub-reel/gestures'
 
 <GestureIndicator
   direction="up"  // 'up' | 'down' | 'left' | 'right'
@@ -430,7 +430,7 @@ import { GestureIndicator } from '@vortex/gestures'
 ### SeekIndicator
 
 ```tsx
-import { SeekIndicator } from '@vortex/gestures'
+import { SeekIndicator } from '@xhub-reel/gestures'
 
 <SeekIndicator
   amount={10}       // +10 or -10 seconds

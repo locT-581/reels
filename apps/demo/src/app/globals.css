@@ -1,67 +1,67 @@
 @import "tailwindcss";
 
 /* =============================================================================
-   VORTEX DESIGN SYSTEM - CSS Variables
+   XHubReel design SYSTEM - CSS Variables
    ============================================================================= */
 
 @theme {
   /* Colors - Pitch Black OLED Optimized */
-  --color-vortex-bg: #000000;
-  --color-vortex-surface: #111111;
-  --color-vortex-surface-elevated: #1a1a1a;
-  --color-vortex-border: rgba(255, 255, 255, 0.1);
+  --color-xhub-reel-bg: #000000;
+  --color-xhub-reel-surface: #111111;
+  --color-xhub-reel-surface-elevated: #1a1a1a;
+  --color-xhub-reel-border: rgba(255, 255, 255, 0.1);
 
   /* Text Colors */
-  --color-vortex-text: #ffffff;
-  --color-vortex-text-secondary: rgba(255, 255, 255, 0.7);
-  --color-vortex-text-muted: rgba(255, 255, 255, 0.5);
+  --color-xhub-reel-text: #ffffff;
+  --color-xhub-reel-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-xhub-reel-text-muted: rgba(255, 255, 255, 0.5);
 
   /* Accent Colors */
-  --color-vortex-accent: #8B5CF6;
-  --color-vortex-accent-hover: #7C3AED;
-  --color-vortex-accent-glow: rgba(139, 92, 246, 0.4);
+  --color-xhub-reel-accent: #8B5CF6;
+  --color-xhub-reel-accent-hover: #7C3AED;
+  --color-xhub-reel-accent-glow: rgba(139, 92, 246, 0.4);
 
   /* Action Colors */
-  --color-vortex-like: #FF2D55;
-  --color-vortex-success: #34D399;
-  --color-vortex-warning: #FBBF24;
-  --color-vortex-error: #EF4444;
+  --color-xhub-reel-like: #FF2D55;
+  --color-xhub-reel-success: #34D399;
+  --color-xhub-reel-warning: #FBBF24;
+  --color-xhub-reel-error: #EF4444;
 
   /* Glassmorphism */
-  --color-vortex-glass: rgba(0, 0, 0, 0.8);
-  --color-vortex-glass-light: rgba(255, 255, 255, 0.05);
+  --color-xhub-reel-glass: rgba(0, 0, 0, 0.8);
+  --color-xhub-reel-glass-light: rgba(255, 255, 255, 0.05);
 
   /* Spacing - 8pt Grid */
-  --spacing-vortex-xs: 4px;
-  --spacing-vortex-sm: 8px;
-  --spacing-vortex-md: 16px;
-  --spacing-vortex-lg: 24px;
-  --spacing-vortex-xl: 32px;
-  --spacing-vortex-2xl: 48px;
-  --spacing-vortex-3xl: 64px;
+  --spacing-xhub-reel-xs: 4px;
+  --spacing-xhub-reel-sm: 8px;
+  --spacing-xhub-reel-md: 16px;
+  --spacing-xhub-reel-lg: 24px;
+  --spacing-xhub-reel-xl: 32px;
+  --spacing-xhub-reel-2xl: 48px;
+  --spacing-xhub-reel-3xl: 64px;
 
   /* Border Radius */
-  --radius-vortex-sm: 8px;
-  --radius-vortex-md: 12px;
-  --radius-vortex-lg: 16px;
-  --radius-vortex-xl: 24px;
-  --radius-vortex-full: 9999px;
+  --radius-xhub-reel-sm: 8px;
+  --radius-xhub-reel-md: 12px;
+  --radius-xhub-reel-lg: 16px;
+  --radius-xhub-reel-xl: 24px;
+  --radius-xhub-reel-full: 9999px;
 
   /* Shadows */
-  --shadow-vortex-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-vortex-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-vortex-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-vortex-glow: 0 0 20px var(--color-vortex-accent-glow);
+  --shadow-xhub-reel-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-xhub-reel-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-xhub-reel-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-xhub-reel-glow: 0 0 20px var(--color-xhub-reel-accent-glow);
 
   /* Typography */
-  --font-vortex-sans: "Geist", "Inter", system-ui, -apple-system, sans-serif;
-  --font-vortex-mono: "Geist Mono", "JetBrains Mono", monospace;
+  --font-xhub-reel-sans: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+  --font-xhub-reel-mono: "Geist Mono", "JetBrains Mono", monospace;
 
   /* Animation */
-  --ease-vortex-spring: cubic-bezier(0.32, 0.72, 0, 1);
-  --duration-vortex-fast: 150ms;
-  --duration-vortex-normal: 300ms;
-  --duration-vortex-slow: 500ms;
+  --ease-xhub-reel-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-xhub-reel-fast: 150ms;
+  --duration-xhub-reel-normal: 300ms;
+  --duration-xhub-reel-slow: 500ms;
 }
 
 /* =============================================================================
@@ -76,9 +76,9 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--color-vortex-bg);
-  color: var(--color-vortex-text);
-  font-family: var(--font-vortex-sans);
+  background-color: var(--color-xhub-reel-bg);
+  color: var(--color-xhub-reel-text);
+  font-family: var(--font-xhub-reel-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -91,34 +91,34 @@ body {
 
 /* Focus styles */
 :focus-visible {
-  outline: 2px solid var(--color-vortex-accent);
+  outline: 2px solid var(--color-xhub-reel-accent);
   outline-offset: 2px;
 }
 
 /* Video text shadow for readability */
-.vortex-text-shadow {
+.xhub-reel-text-shadow {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 /* Glassmorphism effect */
-.vortex-glass {
-  background: var(--color-vortex-glass);
+.xhub-reel-glass {
+  background: var(--color-xhub-reel-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
 /* Button glow effect */
-.vortex-glow {
-  box-shadow: var(--shadow-vortex-glow);
+.xhub-reel-glow {
+  box-shadow: var(--shadow-xhub-reel-glow);
 }
 
 /* Spring transition */
-.vortex-transition {
-  transition: all var(--duration-vortex-normal) var(--ease-vortex-spring);
+.xhub-reel-transition {
+  transition: all var(--duration-xhub-reel-normal) var(--ease-xhub-reel-spring);
 }
 
 /* Safe area padding for notch devices */
-.vortex-safe-area {
+.xhub-reel-safe-area {
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
@@ -129,13 +129,13 @@ body {
    ANIMATIONS
    ============================================================================= */
 
-@keyframes vortex-spin {
+@keyframes xhub-reel-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-@keyframes vortex-pulse {
+@keyframes xhub-reel-pulse {
   0%, 100% {
     opacity: 1;
   }
@@ -144,7 +144,7 @@ body {
   }
 }
 
-@keyframes vortex-bounce {
+@keyframes xhub-reel-bounce {
   0%, 100% {
     transform: translateY(0);
   }
@@ -153,7 +153,7 @@ body {
   }
 }
 
-@keyframes vortex-fade-in {
+@keyframes xhub-reel-fade-in {
   from {
     opacity: 0;
     transform: translateY(10px);
@@ -164,7 +164,7 @@ body {
   }
 }
 
-@keyframes vortex-scale-in {
+@keyframes xhub-reel-scale-in {
   from {
     opacity: 0;
     transform: scale(0.9);
@@ -175,7 +175,7 @@ body {
   }
 }
 
-@keyframes vortex-slide-up {
+@keyframes xhub-reel-slide-up {
   from {
     opacity: 0;
     transform: translateY(100%);
@@ -187,28 +187,28 @@ body {
 }
 
 /* Animation utilities */
-.animate-vortex-spin {
-  animation: vortex-spin 1s linear infinite;
+.animate-xhub-reel-spin {
+  animation: xhub-reel-spin 1s linear infinite;
 }
 
-.animate-vortex-pulse {
-  animation: vortex-pulse 2s ease-in-out infinite;
+.animate-xhub-reel-pulse {
+  animation: xhub-reel-pulse 2s ease-in-out infinite;
 }
 
-.animate-vortex-bounce {
-  animation: vortex-bounce 1s ease-in-out infinite;
+.animate-xhub-reel-bounce {
+  animation: xhub-reel-bounce 1s ease-in-out infinite;
 }
 
-.animate-vortex-fade-in {
-  animation: vortex-fade-in 0.3s var(--ease-vortex-spring);
+.animate-xhub-reel-fade-in {
+  animation: xhub-reel-fade-in 0.3s var(--ease-xhub-reel-spring);
 }
 
-.animate-vortex-scale-in {
-  animation: vortex-scale-in 0.3s var(--ease-vortex-spring);
+.animate-xhub-reel-scale-in {
+  animation: xhub-reel-scale-in 0.3s var(--ease-xhub-reel-spring);
 }
 
-.animate-vortex-slide-up {
-  animation: vortex-slide-up 0.4s var(--ease-vortex-spring);
+.animate-xhub-reel-slide-up {
+  animation: xhub-reel-slide-up 0.4s var(--ease-xhub-reel-spring);
 }
 
 /* =============================================================================
@@ -216,89 +216,89 @@ body {
    ============================================================================= */
 
 /* Card component */
-.vortex-card {
-  background: var(--color-vortex-surface);
-  border: 1px solid var(--color-vortex-border);
-  border-radius: var(--radius-vortex-lg);
-  padding: var(--spacing-vortex-md);
+.xhub-reel-card {
+  background: var(--color-xhub-reel-surface);
+  border: 1px solid var(--color-xhub-reel-border);
+  border-radius: var(--radius-xhub-reel-lg);
+  padding: var(--spacing-xhub-reel-md);
 }
 
 /* Button base */
-.vortex-btn {
+.xhub-reel-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-vortex-sm);
-  padding: var(--spacing-vortex-sm) var(--spacing-vortex-md);
-  border-radius: var(--radius-vortex-md);
+  gap: var(--spacing-xhub-reel-sm);
+  padding: var(--spacing-xhub-reel-sm) var(--spacing-xhub-reel-md);
+  border-radius: var(--radius-xhub-reel-md);
   font-weight: 600;
   font-size: 14px;
-  transition: all var(--duration-vortex-fast) var(--ease-vortex-spring);
+  transition: all var(--duration-xhub-reel-fast) var(--ease-xhub-reel-spring);
   cursor: pointer;
   border: none;
   min-height: 48px;
   min-width: 48px;
 }
 
-.vortex-btn-primary {
-  background: var(--color-vortex-accent);
+.xhub-reel-btn-primary {
+  background: var(--color-xhub-reel-accent);
   color: white;
 }
 
-.vortex-btn-primary:hover {
-  background: var(--color-vortex-accent-hover);
-  box-shadow: var(--shadow-vortex-glow);
+.xhub-reel-btn-primary:hover {
+  background: var(--color-xhub-reel-accent-hover);
+  box-shadow: var(--shadow-xhub-reel-glow);
 }
 
-.vortex-btn-secondary {
-  background: var(--color-vortex-surface);
-  color: var(--color-vortex-text);
-  border: 1px solid var(--color-vortex-border);
+.xhub-reel-btn-secondary {
+  background: var(--color-xhub-reel-surface);
+  color: var(--color-xhub-reel-text);
+  border: 1px solid var(--color-xhub-reel-border);
 }
 
-.vortex-btn-secondary:hover {
-  background: var(--color-vortex-surface-elevated);
+.xhub-reel-btn-secondary:hover {
+  background: var(--color-xhub-reel-surface-elevated);
 }
 
-.vortex-btn-ghost {
+.xhub-reel-btn-ghost {
   background: transparent;
-  color: var(--color-vortex-text);
+  color: var(--color-xhub-reel-text);
 }
 
-.vortex-btn-ghost:hover {
-  background: var(--color-vortex-glass-light);
+.xhub-reel-btn-ghost:hover {
+  background: var(--color-xhub-reel-glass-light);
 }
 
 /* Badge */
-.vortex-badge {
+.xhub-reel-badge {
   display: inline-flex;
   align-items: center;
   padding: 4px 12px;
-  border-radius: var(--radius-vortex-full);
+  border-radius: var(--radius-xhub-reel-full);
   font-size: 12px;
   font-weight: 600;
-  background: var(--color-vortex-accent);
+  background: var(--color-xhub-reel-accent);
   color: white;
 }
 
 /* Input */
-.vortex-input {
+.xhub-reel-input {
   width: 100%;
-  padding: var(--spacing-vortex-sm) var(--spacing-vortex-md);
-  background: var(--color-vortex-surface);
-  border: 1px solid var(--color-vortex-border);
-  border-radius: var(--radius-vortex-md);
-  color: var(--color-vortex-text);
+  padding: var(--spacing-xhub-reel-sm) var(--spacing-xhub-reel-md);
+  background: var(--color-xhub-reel-surface);
+  border: 1px solid var(--color-xhub-reel-border);
+  border-radius: var(--radius-xhub-reel-md);
+  color: var(--color-xhub-reel-text);
   font-size: 16px;
-  transition: border-color var(--duration-vortex-fast);
+  transition: border-color var(--duration-xhub-reel-fast);
 }
 
-.vortex-input:focus {
-  border-color: var(--color-vortex-accent);
+.xhub-reel-input:focus {
+  border-color: var(--color-xhub-reel-accent);
   outline: none;
 }
 
-.vortex-input::placeholder {
-  color: var(--color-vortex-text-muted);
+.xhub-reel-input::placeholder {
+  color: var(--color-xhub-reel-text-muted);
 }
 

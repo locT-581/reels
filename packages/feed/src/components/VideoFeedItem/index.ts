@@ -3,7 +3,7 @@
  *
  * @example Basic usage (auto-composed)
  * ```tsx
- * import { VideoFeedItem } from '@vortex/feed'
+ * import { VideoFeedItem } from '@xhub-reel/feed'
  *
  * <VideoFeedItem
  *   video={video}
@@ -20,7 +20,7 @@
  *   VideoFeedItemOverlay,
  *   VideoFeedItemActions,
  *   VideoFeedItemTimeline,
- * } from '@vortex/feed'
+ * } from '@xhub-reel/feed'
  *
  * <VideoFeedItem video={video} isActive={isActive}>
  *   <VideoFeedItemPlayer />

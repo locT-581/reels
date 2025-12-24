@@ -9,7 +9,7 @@
  * - Bandwidth estimation from resource timing
  */
 
-import type { PlayerState, QualityLevel } from '@vortex/types'
+import type { PlayerState, QualityLevel } from '@xhub-reel/types'
 import type { PlayResult } from '../types/playback'
 import { safePlay } from '../utils/safePlay'
 

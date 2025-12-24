@@ -6,7 +6,7 @@
 
 import { motion } from 'motion/react'
 import { Maximize, Minimize } from 'lucide-react'
-import { SPRING } from '@vortex/core'
+import { SPRING } from '@xhub-reel/core'
 
 export interface FullscreenButtonProps {
   isFullscreen: boolean

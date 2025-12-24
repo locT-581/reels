@@ -1,5 +1,5 @@
 /**
- * @vortex/ui - Icon Exports
+ * @xhub-reel/ui - Icon Exports
  * 
  * Re-export commonly used Lucide icons for consistency
  */

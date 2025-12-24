@@ -1,7 +1,7 @@
 /**
  * Comment Queries - TanStack Query hooks for comments
  *
- * Uses VortexApiClient from context for configurable endpoints
+ * Uses XHubReelApiClient from context for configurable endpoints
  */
 
 'use client'
@@ -13,7 +13,7 @@ import {
   type UseInfiniteQueryOptions,
   type QueryClient,
 } from '@tanstack/react-query'
-import { useVortexApiClient } from '../useVortexApiClient'
+import { useXHubReelApiClient } from '../useXHubReelApiClient'
 import { queryKeys } from '../query-client'
 import type { CommentsListResponse, RepliesListResponse } from '../../types'
 
@@ -40,7 +40,7 @@ export interface ReplyFetchParams {
 /**
  * Hook for infinite comments list
  *
- * Requires VortexProvider with config
+ * Requires XHubReelProvider with config
  *
  * @example
  * ```tsx
@@ -60,7 +60,7 @@ export function useCommentsInfiniteQuery(
   params: CommentFetchParams,
   options?: Partial<UseInfiniteQueryOptions<CommentsListResponse, Error>>
 ) {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
 
   return useInfiniteQuery({
     queryKey: queryKeys.comments.list(params.videoId),
@@ -81,7 +81,7 @@ export function useCommentsInfiniteQuery(
 /**
  * Hook for infinite replies list
  *
- * Note: VortexApiClient doesn't have a fetchReplies method yet,
+ * Note: XHubReelApiClient doesn't have a fetchReplies method yet,
  * so this uses the generic get method with the replies endpoint
  *
  * @example
@@ -102,12 +102,12 @@ export function useRepliesInfiniteQuery(
   params: ReplyFetchParams,
   options?: Partial<UseInfiniteQueryOptions<RepliesListResponse, Error>>
 ) {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
 
   return useInfiniteQuery({
     queryKey: queryKeys.comments.replies(params.commentId),
     queryFn: async ({ pageParam }) => {
-      // Use generic get since VortexApiClient doesn't have fetchReplies
+      // Use generic get since XHubReelApiClient doesn't have fetchReplies
       // The endpoint follows pattern: /comments/:commentId/replies
       return apiClient.get<RepliesListResponse>(
         `/comments/${params.commentId}/replies`,
@@ -140,7 +140,7 @@ export function useCommentCountQuery(
   videoId: string,
   options?: Partial<UseQueryOptions<number, Error>>
 ) {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
 
   return useQuery({
     queryKey: [...queryKeys.comments.list(videoId), 'count'],
@@ -163,7 +163,7 @@ export function useCommentCountQuery(
  * ```tsx
  * // Prefetch when video comes into view
  * const queryClient = useQueryClient()
- * const apiClient = useVortexApiClient()
+ * const apiClient = useXHubReelApiClient()
  *
  * useEffect(() => {
  *   prefetchComments(queryClient, apiClient, videoId)

@@ -2,21 +2,21 @@
 sidebar_position: 5
 ---
 
-# @vortex/ui
+# @xhub-reel/ui
 
-UI components với Vortex Design System.
+UI components với XHubReel Design System.
 
 ## Cài đặt
 
 ```bash npm2yarn
-npm install @vortex/ui @vortex/core motion lucide-react
+npm install @xhub-reel/ui @xhub-reel/core motion lucide-react
 ```
 
 ## Tổng quan
 
-`@vortex/ui` cung cấp:
+`@xhub-reel/ui` cung cấp:
 
-- 🎨 **Vortex Design System** - Dark-first, video-centric
+- 🎨 **XHubReel Design System** - Dark-first, video-centric
 - ✨ **Motion Animations** - Spring physics, smooth transitions
 - 📱 **Mobile-First** - Touch-optimized, 48px tap targets
 - 🌙 **OLED Black** - #000000 backgrounds
@@ -28,11 +28,11 @@ npm install @vortex/ui @vortex/core motion lucide-react
 
 | Color | Value | Usage |
 |-------|-------|-------|
-| `vortex-black` | `#000000` | Background |
-| `vortex-violet` | `#8B5CF6` | Primary accent |
-| `vortex-violet-light` | `#A78BFA` | Hover states |
-| `vortex-like` | `#FF2D55` | Like button active |
-| `vortex-gray-*` | `#18181B` - `#F4F4F5` | Text, borders |
+| `xhub-reel-black` | `#000000` | Background |
+| `xhub-reel-violet` | `#8B5CF6` | Primary accent |
+| `xhub-reel-violet-light` | `#A78BFA` | Hover states |
+| `xhub-reel-like` | `#FF2D55` | Like button active |
+| `xhub-reel-gray-*` | `#18181B` - `#F4F4F5` | Text, borders |
 
 ### Animation
 
@@ -59,7 +59,7 @@ const DURATION = {
 ### Button
 
 ```tsx
-import { Button } from '@vortex/ui'
+import { Button } from '@xhub-reel/ui'
 
 // Variants
 <Button variant="primary">Primary</Button>
@@ -83,7 +83,7 @@ import { Button } from '@vortex/ui'
 ### IconButton
 
 ```tsx
-import { IconButton } from '@vortex/ui'
+import { IconButton } from '@xhub-reel/ui'
 import { Heart, Share2, MessageCircle } from 'lucide-react'
 
 // Basic
@@ -109,7 +109,7 @@ import { Heart, Share2, MessageCircle } from 'lucide-react'
 ### Avatar
 
 ```tsx
-import { Avatar } from '@vortex/ui'
+import { Avatar } from '@xhub-reel/ui'
 
 // With image
 <Avatar 
@@ -142,7 +142,7 @@ import { Avatar } from '@vortex/ui'
 ### Text
 
 ```tsx
-import { Text } from '@vortex/ui'
+import { Text } from '@xhub-reel/ui'
 
 // Variants
 <Text variant="display">Display Text</Text>
@@ -167,7 +167,7 @@ import { Text } from '@vortex/ui'
 ### Counter
 
 ```tsx
-import { Counter } from '@vortex/ui'
+import { Counter } from '@xhub-reel/ui'
 
 // Auto format
 <Counter value={1234} />    // "1.2K"
@@ -186,7 +186,7 @@ import { Counter } from '@vortex/ui'
 ### Marquee
 
 ```tsx
-import { Marquee } from '@vortex/ui'
+import { Marquee } from '@xhub-reel/ui'
 
 <Marquee speed={50} pauseOnHover>
   This text will scroll if it overflows the container
@@ -203,7 +203,7 @@ import { Marquee } from '@vortex/ui'
 ### LikeButton
 
 ```tsx
-import { LikeButton } from '@vortex/ui'
+import { LikeButton } from '@xhub-reel/ui'
 
 function VideoActions({ video }) {
   const [isLiked, setIsLiked] = useState(false)
@@ -230,7 +230,7 @@ function VideoActions({ video }) {
 ### CommentButton
 
 ```tsx
-import { CommentButton } from '@vortex/ui'
+import { CommentButton } from '@xhub-reel/ui'
 
 <CommentButton
   count={video.stats.comments}
@@ -241,7 +241,7 @@ import { CommentButton } from '@vortex/ui'
 ### ShareButton
 
 ```tsx
-import { ShareButton } from '@vortex/ui'
+import { ShareButton } from '@xhub-reel/ui'
 
 <ShareButton
   count={video.stats.shares}
@@ -252,7 +252,7 @@ import { ShareButton } from '@vortex/ui'
 ### SaveButton
 
 ```tsx
-import { SaveButton } from '@vortex/ui'
+import { SaveButton } from '@xhub-reel/ui'
 
 <SaveButton
   isSaved={isSaved}
@@ -263,7 +263,7 @@ import { SaveButton } from '@vortex/ui'
 ### FollowButton
 
 ```tsx
-import { FollowButton } from '@vortex/ui'
+import { FollowButton } from '@xhub-reel/ui'
 
 <FollowButton
   isFollowing={isFollowing}
@@ -277,7 +277,7 @@ import { FollowButton } from '@vortex/ui'
 ### Modal
 
 ```tsx
-import { Modal } from '@vortex/ui'
+import { Modal } from '@xhub-reel/ui'
 
 <Modal
   isOpen={isOpen}
@@ -293,7 +293,7 @@ import { Modal } from '@vortex/ui'
 ### BottomSheet
 
 ```tsx
-import { BottomSheet } from '@vortex/ui'
+import { BottomSheet } from '@xhub-reel/ui'
 
 <BottomSheet
   isOpen={isOpen}
@@ -312,7 +312,7 @@ import { BottomSheet } from '@vortex/ui'
 ### CommentSheet
 
 ```tsx
-import { CommentSheet } from '@vortex/ui'
+import { CommentSheet } from '@xhub-reel/ui'
 
 <CommentSheet
   isOpen={isOpen}
@@ -336,13 +336,13 @@ import { CommentSheet } from '@vortex/ui'
 ### ShareSheet
 
 ```tsx
-import { ShareSheet } from '@vortex/ui'
+import { ShareSheet } from '@xhub-reel/ui'
 
 <ShareSheet
   isOpen={isOpen}
   onClose={() => setIsOpen(false)}
   video={video}
-  shareUrl={`https://vortex.app/v/${video.id}`}
+  shareUrl={`https://xhubreel.app/v/${video.id}`}
   onShare={(platform) => {
     trackShare(video.id, platform)
   }}
@@ -355,7 +355,7 @@ import { ShareSheet } from '@vortex/ui'
 ### ContextMenu
 
 ```tsx
-import { ContextMenu } from '@vortex/ui'
+import { ContextMenu } from '@xhub-reel/ui'
 
 <ContextMenu
   isOpen={isOpen}
@@ -376,7 +376,7 @@ import { ContextMenu } from '@vortex/ui'
 ### Skeleton
 
 ```tsx
-import { Skeleton } from '@vortex/ui'
+import { Skeleton } from '@xhub-reel/ui'
 
 // Variants
 <Skeleton variant="text" className="w-48" />
@@ -393,7 +393,7 @@ import { Skeleton } from '@vortex/ui'
 ### BlurPlaceholder
 
 ```tsx
-import { BlurPlaceholder } from '@vortex/ui'
+import { BlurPlaceholder } from '@xhub-reel/ui'
 
 <BlurPlaceholder
   src={video.thumbnail}
@@ -405,7 +405,7 @@ import { BlurPlaceholder } from '@vortex/ui'
 ### Spinner
 
 ```tsx
-import { Spinner } from '@vortex/ui'
+import { Spinner } from '@xhub-reel/ui'
 
 <Spinner size="sm" />
 <Spinner size="md" />
@@ -420,7 +420,7 @@ import { Spinner } from '@vortex/ui'
 ### DoubleTapHeart
 
 ```tsx
-import { DoubleTapHeart } from '@vortex/ui'
+import { DoubleTapHeart } from '@xhub-reel/ui'
 
 function VideoPlayer() {
   const [showHeart, setShowHeart] = useState(false)
@@ -448,7 +448,7 @@ function VideoPlayer() {
 ### PlayPauseOverlay
 
 ```tsx
-import { PlayPauseOverlay } from '@vortex/ui'
+import { PlayPauseOverlay } from '@xhub-reel/ui'
 
 <PlayPauseOverlay
   isPlaying={isPlaying}
@@ -460,7 +460,7 @@ import { PlayPauseOverlay } from '@vortex/ui'
 ## Toast
 
 ```tsx
-import { useToast, ToastProvider } from '@vortex/ui'
+import { useToast, ToastProvider } from '@xhub-reel/ui'
 
 // Wrap app
 <ToastProvider>
@@ -524,17 +524,17 @@ import {
   
   // Other
   Search, Settings, Home, TrendingUp, Music,
-} from '@vortex/ui'
+} from '@xhub-reel/ui'
 ```
 
 ## Tailwind Preset
 
 ```js title="tailwind.config.js"
 module.exports = {
-  presets: [require('@vortex/ui/tailwind.preset')],
+  presets: [require('@xhub-reel/ui/tailwind.preset')],
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@vortex/ui/dist/**/*.js',
+    './node_modules/@xhub-reel/ui/dist/**/*.js',
   ],
 }
 ```
@@ -543,21 +543,21 @@ module.exports = {
 
 ```css
 /* Colors */
-.bg-vortex-black      /* #000000 */
-.bg-vortex-violet     /* #8B5CF6 */
-.text-vortex-like     /* #FF2D55 */
+.bg-xhub-reel-black      /* #000000 */
+.bg-xhub-reel-violet     /* #8B5CF6 */
+.text-xhub-reel-like     /* #FF2D55 */
 
 /* Safe areas */
 .pt-safe              /* padding-top: env(safe-area-inset-top) */
 .pb-safe              /* padding-bottom: env(safe-area-inset-bottom) */
 
 /* Animations */
-.animate-vortex-bounce
+.animate-xhub-reel-bounce
 .animate-shimmer
 .animate-heart-pop
 
 /* Transitions */
-.transition-vortex    /* 300ms cubic-bezier(0.32, 0.72, 0, 1) */
+.transition-xhub-reel    /* 300ms cubic-bezier(0.32, 0.72, 0, 1) */
 ```
 
 ## Theming
@@ -566,19 +566,19 @@ module.exports = {
 
 ```css
 :root {
-  --vortex-violet: #8B5CF6;
-  --vortex-violet-light: #A78BFA;
-  --vortex-violet-dark: #7C3AED;
-  --vortex-like: #FF2D55;
-  --vortex-black: #000000;
-  --vortex-easing: cubic-bezier(0.32, 0.72, 0, 1);
+  --xhub-reel-violet: #8B5CF6;
+  --xhub-reel-violet-light: #A78BFA;
+  --xhub-reel-violet-dark: #7C3AED;
+  --xhub-reel-like: #FF2D55;
+  --xhub-reel-black: #000000;
+  --xhub-reel-easing: cubic-bezier(0.32, 0.72, 0, 1);
 }
 ```
 
 ### Custom theme
 
 ```tsx
-import { ThemeProvider } from '@vortex/ui'
+import { ThemeProvider } from '@xhub-reel/ui'
 
 <ThemeProvider
   theme={{

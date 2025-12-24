@@ -25,18 +25,18 @@ export default defineConfig({
     'zustand/middleware',
     'clsx',
     'tailwind-merge',
-    // Design tokens needs to be external since it's referenced by @vortex/core
-    '@vortex/design-tokens',
+    // Design tokens needs to be external since it's referenced by @xhub-reel/core
+    '@xhub-reel/design-tokens',
   ],
-  // Bundle only vortex packages (excluding design-tokens)
+  // Bundle only xhub-reel packages (excluding design-tokens)
   noExternal: [
-    '@vortex/core',
-    '@vortex/player',
-    '@vortex/player-core',
-    '@vortex/player-engine',
-    '@vortex/ui',
-    '@vortex/gestures',
-    '@vortex/feed',
-    '@vortex/types',
+    '@xhub-reel/core',
+    '@xhub-reel/player',
+    '@xhub-reel/player-core',
+    '@xhub-reel/player-engine',
+    '@xhub-reel/ui',
+    '@xhub-reel/gestures',
+    '@xhub-reel/feed',
+    '@xhub-reel/types',
   ],
 })

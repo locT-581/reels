@@ -9,7 +9,7 @@
 
 import { useEffect, useCallback, type ReactNode, type CSSProperties } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { colors, radii, spacing, zIndices, springs, components, mergeStyles } from '@vortex/design-tokens'
+import { colors, radii, spacing, zIndices, springs, components, mergeStyles } from '@xhub-reel/design-tokens'
 
 export interface BottomSheetProps {
   /** Whether the sheet is open */

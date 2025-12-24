@@ -9,7 +9,7 @@ Ví dụ embed single video player.
 ## Basic Player
 
 ```tsx
-import { VideoPlayer } from '@vortex/player'
+import { VideoPlayer } from '@xhub-reel/player'
 
 export default function SinglePlayer() {
   return (
@@ -30,8 +30,8 @@ export default function SinglePlayer() {
 ## With Video Object
 
 ```tsx
-import { VideoPlayer } from '@vortex/player'
-import type { Video } from '@vortex/core'
+import { VideoPlayer } from '@xhub-reel/player'
+import type { Video } from '@xhub-reel/core'
 
 const video: Video = {
   id: '1',
@@ -70,7 +70,7 @@ export default function VideoPage() {
 ## Custom Controls
 
 ```tsx
-import { VideoPlayer, usePlayer } from '@vortex/player'
+import { VideoPlayer, usePlayer } from '@xhub-reel/player'
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react'
 
 export default function CustomControlsPlayer() {

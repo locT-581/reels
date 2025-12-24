@@ -5,7 +5,7 @@
 'use client'
 
 import { createContext, useContext, type RefObject } from 'react'
-import type { Video } from '@vortex/core'
+import type { Video } from '@xhub-reel/core'
 
 export interface VideoFeedItemContextValue {
   // Video data

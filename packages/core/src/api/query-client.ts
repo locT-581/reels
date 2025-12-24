@@ -25,7 +25,7 @@ const DEFAULT_CONFIG: QueryClientConfig = {
 }
 
 /**
- * Create a configured QueryClient for VortexStream
+ * Create a configured QueryClient for XHubReel
  */
 export function createQueryClient(config: QueryClientConfig = {}): QueryClient {
   const mergedConfig = { ...DEFAULT_CONFIG, ...config }
@@ -33,13 +33,13 @@ export function createQueryClient(config: QueryClientConfig = {}): QueryClient {
   return new QueryClient({
     queryCache: new QueryCache({
       onError: (error) => {
-        console.error('[VortexQuery] Query error:', error)
+        console.error('[XHubReelQuery] Query error:', error)
         mergedConfig.onError?.(error as Error)
       },
     }),
     mutationCache: new MutationCache({
       onError: (error) => {
-        console.error('[VortexQuery] Mutation error:', error)
+        console.error('[XHubReelQuery] Mutation error:', error)
         mergedConfig.onError?.(error as Error)
       },
     }),

@@ -2,19 +2,19 @@
 sidebar_position: 4
 ---
 
-# @vortex/gestures
+# @xhub-reel/gestures
 
-Gesture system cho VortexStream - Tap, swipe, long press, và more.
+Gesture system cho XHubReel - Tap, swipe, long press, và more.
 
 ## Cài đặt
 
 ```bash npm2yarn
-npm install @vortex/gestures @vortex/core @use-gesture/react
+npm install @xhub-reel/gestures @xhub-reel/core @use-gesture/react
 ```
 
 ## Tổng quan
 
-`@vortex/gestures` cung cấp:
+`@xhub-reel/gestures` cung cấp:
 
 - 👆 **Tap Detection** - Single và double tap với zone detection
 - 👆👆 **Long Press** - Configurable threshold với haptic
@@ -47,7 +47,7 @@ Video player được chia thành 3 zones:
 Hook chính để xử lý tất cả gestures:
 
 ```tsx
-import { useVideoGestures } from '@vortex/gestures'
+import { useVideoGestures } from '@xhub-reel/gestures'
 
 function VideoPlayer({ video }) {
   const [isPlaying, setIsPlaying] = useState(true)
@@ -114,7 +114,7 @@ function VideoPlayer({ video }) {
 Single và double tap detection:
 
 ```tsx
-import { useTapGestures } from '@vortex/gestures'
+import { useTapGestures } from '@xhub-reel/gestures'
 
 function TappableArea() {
   const bind = useTapGestures({
@@ -140,7 +140,7 @@ function TappableArea() {
 Long press detection:
 
 ```tsx
-import { useLongPress } from '@vortex/gestures'
+import { useLongPress } from '@xhub-reel/gestures'
 
 function LongPressable() {
   const bind = useLongPress({
@@ -164,7 +164,7 @@ function LongPressable() {
 Continuous hold detection:
 
 ```tsx
-import { useHold } from '@vortex/gestures'
+import { useHold } from '@xhub-reel/gestures'
 
 function Holdable() {
   const bind = useHold({
@@ -194,7 +194,7 @@ function Holdable() {
 Swipe detection:
 
 ```tsx
-import { useSwipe } from '@vortex/gestures'
+import { useSwipe } from '@xhub-reel/gestures'
 
 function Swipeable() {
   const bind = useSwipe({
@@ -218,7 +218,7 @@ function Swipeable() {
 Chỉ vertical swipe:
 
 ```tsx
-import { useVerticalSwipe } from '@vortex/gestures'
+import { useVerticalSwipe } from '@xhub-reel/gestures'
 
 function VerticalSwipeable() {
   const bind = useVerticalSwipe({
@@ -238,7 +238,7 @@ function VerticalSwipeable() {
 Chỉ horizontal swipe:
 
 ```tsx
-import { useHorizontalSwipe } from '@vortex/gestures'
+import { useHorizontalSwipe } from '@xhub-reel/gestures'
 
 function HorizontalSwipeable() {
   const bind = useHorizontalSwipe({
@@ -258,7 +258,7 @@ function HorizontalSwipeable() {
 Drag to seek:
 
 ```tsx
-import { useSeekDrag } from '@vortex/gestures'
+import { useSeekDrag } from '@xhub-reel/gestures'
 
 function VideoWithSeek({ duration, currentTime }) {
   const bind = useSeekDrag({
@@ -291,7 +291,7 @@ function VideoWithSeek({ duration, currentTime }) {
 Ripple effect khi tap:
 
 ```tsx
-import { TapRipple } from '@vortex/gestures'
+import { TapRipple } from '@xhub-reel/gestures'
 import { useState } from 'react'
 
 function VideoWithRipple() {
@@ -322,7 +322,7 @@ function VideoWithRipple() {
 Swipe direction indicator:
 
 ```tsx
-import { GestureIndicator } from '@vortex/gestures'
+import { GestureIndicator } from '@xhub-reel/gestures'
 
 function SwipeableWithIndicator() {
   const [swipeState, setSwipeState] = useState({
@@ -357,7 +357,7 @@ function SwipeableWithIndicator() {
 Seek amount indicator:
 
 ```tsx
-import { SeekIndicator } from '@vortex/gestures'
+import { SeekIndicator } from '@xhub-reel/gestures'
 
 function VideoWithSeekIndicator() {
   const [seekAmount, setSeekAmount] = useState<number | null>(null)
@@ -392,7 +392,7 @@ function VideoWithSeekIndicator() {
 Xác định zone từ tap position:
 
 ```tsx
-import { getGestureZone } from '@vortex/gestures'
+import { getGestureZone } from '@xhub-reel/gestures'
 
 function handleTap(event) {
   const zone = getGestureZone(event, containerRef.current)
@@ -409,7 +409,7 @@ function handleTap(event) {
 Tính seek amount từ drag:
 
 ```tsx
-import { calculateSeekAmount } from '@vortex/gestures'
+import { calculateSeekAmount } from '@xhub-reel/gestures'
 
 function handleDrag(movement) {
   const seekAmount = calculateSeekAmount(movement[0], {
@@ -428,7 +428,7 @@ function handleDrag(movement) {
 ### Default thresholds
 
 ```typescript
-import { GESTURE } from '@vortex/core/constants'
+import { GESTURE } from '@xhub-reel/core/constants'
 
 // Tap
 GESTURE.TAP.DOUBLE_TAP_DELAY       // 300ms
@@ -475,7 +475,7 @@ GESTURE.SEEK.RATIO                 // 0.5 (1px = 0.5s)
 ### Multiple gestures on same element
 
 ```tsx
-import { useGesture } from '@vortex/gestures'
+import { useGesture } from '@xhub-reel/gestures'
 
 function ComplexGesture() {
   const bind = useGesture({
@@ -497,7 +497,7 @@ function ComplexGesture() {
 ## Haptic Feedback
 
 ```tsx
-import { haptic } from '@vortex/core'
+import { haptic } from '@xhub-reel/core'
 
 // Light - cho tap
 haptic.light()
@@ -542,7 +542,7 @@ const bind = useVideoGestures({
 ### 2. Debounce handlers
 
 ```tsx
-import { useDebounce } from '@vortex/core'
+import { useDebounce } from '@xhub-reel/core'
 
 const debouncedSeek = useDebounce((amount) => {
   player.seek(amount)

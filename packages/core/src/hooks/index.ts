@@ -1,5 +1,5 @@
 /**
- * @vortex/core - Custom Hooks
+ * @xhub-reel/core - Custom Hooks
  */
 
 // Utility hooks

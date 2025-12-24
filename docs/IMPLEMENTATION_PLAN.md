@@ -1,4 +1,4 @@
-# VortexStream Implementation Plan
+# XHubReel Implementation Plan
 
 > **Trạng thái:** 🚧 Đang triển khai
 > **Cập nhật lần cuối:** 2025-12-23
@@ -43,7 +43,7 @@
 - [x] Tạo file `turbo.json` với pipeline config
 - [x] Tạo cấu trúc thư mục:
   ```
-  vortex-stream/
+  xhub-reel/
   ├── apps/
   │   ├── web/
   │   └── docs/
@@ -72,15 +72,15 @@
 - [x] Khởi tạo `apps/web` với Next.js 15
 - [x] Cấu hình App Router
 - [x] Cấu hình Turbopack
-- [x] Tạo layout cơ bản với Vortex Design System
+- [x] Tạo layout cơ bản với XHubReel Design System
 
 ### 0.5 Khởi tạo các packages
-- [x] Tạo `package.json` cho `@vortex/core`
-- [x] Tạo `package.json` cho `@vortex/player`
-- [x] Tạo `package.json` cho `@vortex/ui`
-- [x] Tạo `package.json` cho `@vortex/gestures`
-- [x] Tạo `package.json` cho `@vortex/feed`
-- [x] Tạo `package.json` cho `@vortex/embed`
+- [x] Tạo `package.json` cho `@xhub-reel/core`
+- [x] Tạo `package.json` cho `@xhub-reel/player`
+- [x] Tạo `package.json` cho `@xhub-reel/ui`
+- [x] Tạo `package.json` cho `@xhub-reel/gestures`
+- [x] Tạo `package.json` cho `@xhub-reel/feed`
+- [x] Tạo `package.json` cho `@xhub-reel/embed`
 - [x] Cấu hình build script với tsup cho mỗi package
 
 ### 0.6 Cài đặt Dependencies
@@ -97,7 +97,7 @@
 
 ## Phase 1: Core Infrastructure (Ước tính: 2 ngày)
 
-**Mục tiêu:** Xây dựng @vortex/core với types, utils, và stores cơ bản
+**Mục tiêu:** Xây dựng @xhub-reel/core với types, utils, và stores cơ bản
 
 ### 1.1 Định nghĩa Types
 - [x] Tạo `packages/core/src/types/video.ts`
@@ -124,12 +124,12 @@
   - [x] Player thresholds
   - [x] Quality presets
 - [x] Tạo `packages/core/src/constants/animation.ts`
-  - [x] Easing curves (vortex cubic-bezier)
+  - [x] Easing curves (xhub-reel cubic-bezier)
   - [x] Duration presets
   - [x] Spring configs
 - [x] Tạo `packages/core/src/constants/breakpoints.ts`
 - [x] Tạo `packages/core/src/constants/colors.ts`
-  - [x] Vortex color palette (#000000, #8B5CF6, etc.)
+  - [x] XHubReel color palette (#000000, #8B5CF6, etc.)
 
 ### 1.3 Utility Functions
 - [x] Tạo `packages/core/src/utils/format.ts`
@@ -183,7 +183,7 @@
 
 ## Phase 2: Video Player (Ước tính: 5 ngày)
 
-**Mục tiêu:** Xây dựng @vortex/player với HLS support, controls, và states
+**Mục tiêu:** Xây dựng @xhub-reel/player với HLS support, controls, và states
 
 ### 2.1 HLS Engine
 - [ ] Tạo `packages/player/src/core/hls-engine.ts`
@@ -308,7 +308,7 @@
 
 ## Phase 3: Feed System (Ước tính: 4 ngày)
 
-**Mục tiêu:** Xây dựng @vortex/feed với virtualization và scroll behaviors
+**Mục tiêu:** Xây dựng @xhub-reel/feed với virtualization và scroll behaviors
 
 ### 3.1 Virtualization Setup
 - [x] Tạo `packages/feed/src/hooks/useVirtualFeed.ts`
@@ -400,7 +400,7 @@
 
 ## Phase 4: Gesture System (Ước tính: 3 ngày)
 
-**Mục tiêu:** Xây dựng @vortex/gestures với full gesture support
+**Mục tiêu:** Xây dựng @xhub-reel/gestures với full gesture support
 
 ### 4.1 Tap Gestures
 - [x] Tạo `packages/gestures/src/hooks/useTapGestures.ts`
@@ -439,7 +439,7 @@
   - [x] Gesture priority handling
 
 ### 4.5 Haptic Feedback Integration
-- [x] Haptic utils đã có trong `@vortex/core`
+- [x] Haptic utils đã có trong `@xhub-reel/core`
   - [x] Light impact cho Like
   - [x] Medium impact cho Long press
   - [x] Pattern cho special actions
@@ -564,7 +564,7 @@
 
 ## Phase 6: UI Components (Ước tính: 4 ngày)
 
-**Mục tiêu:** Xây dựng @vortex/ui với component library
+**Mục tiêu:** Xây dựng @xhub-reel/ui với component library
 
 ### 6.1 Base Components
 - [x] Tạo `packages/ui/src/components/base/Button.tsx`
@@ -626,9 +626,9 @@
 
 ### 6.6 Tailwind Config
 - [x] Tạo `packages/ui/tailwind.preset.js`
-  - [x] Vortex color palette
+  - [x] XHubReel color palette
   - [x] 8pt spacing system
-  - [x] Custom easing (vortex cubic-bezier)
+  - [x] Custom easing (xhub-reel cubic-bezier)
   - [x] Safe area insets
   - [x] Custom animations (shimmer, bounce-in, slide-up, etc.)
   - [x] Utility classes (text-video-overlay, scrollbar-hide, etc.)
@@ -688,7 +688,7 @@
 
 ### 7.4 IndexedDB Storage
 - [x] Tạo `packages/core/src/storage/db.ts`
-  - [x] VortexDB schema (idb library)
+  - [x] XHubReelDB schema (idb library)
   - [x] videos, segments, watchHistory, savedVideos, preferences, actionQueue stores
   - [x] getDB(), closeDB(), deleteDB()
   - [x] getStorageUsage()
@@ -842,12 +842,12 @@
 **Mục tiêu:** Hoàn thiện docs và deploy
 
 ### 10.1 API Documentation
-- [x] Document @vortex/core exports (README.md)
-- [x] Document @vortex/player API (README.md)
-- [x] Document @vortex/feed API (README.md)
-- [x] Document @vortex/gestures API (README.md)
-- [x] Document @vortex/ui components (README.md)
-- [x] Document @vortex/embed API (README.md)
+- [x] Document @xhub-reel/core exports (README.md)
+- [x] Document @xhub-reel/player API (README.md)
+- [x] Document @xhub-reel/feed API (README.md)
+- [x] Document @xhub-reel/gestures API (README.md)
+- [x] Document @xhub-reel/ui components (README.md)
+- [x] Document @xhub-reel/embed API (README.md)
 
 ### 10.2 Integration Guide
 - [x] Quick start guide (docs/GETTING_STARTED.md)
@@ -921,8 +921,8 @@
 |------|-------|----------|
 | 2024-12-21 | - | Khởi tạo Implementation Plan |
 | 2025-12-23 | apps/example | Cập nhật Example app theo hướng "customer-ready": bỏ inline styles ở pages chính, chuyển API feed sang env config, thêm màn hình hướng dẫn cấu hình |
-| 2025-12-23 | packages/core, packages/player-core | Refactor: bỏ export `api/storage/offline` khỏi root `@vortex/core` (dùng subpath `@vortex/core/api|storage|offline`), và unify autoplay handling qua `safePlay()` để tránh drift giữa PlayerCore và hooks |
-| 2025-12-23 | apps/demo | ✨ **Tạo Demo App hoàn chỉnh**: Next.js 15 + Tailwind v4 showcase đầy đủ features của VortexStream packages - Video Feed, Single Player, UI Components, Gesture System, Design System. Sử dụng làm reference guide cho khách hàng và internal team. |
+| 2025-12-23 | packages/core, packages/player-core | Refactor: bỏ export `api/storage/offline` khỏi root `@xhub-reel/core` (dùng subpath `@xhub-reel/core/api|storage|offline`), và unify autoplay handling qua `safePlay()` để tránh drift giữa PlayerCore và hooks |
+| 2025-12-23 | apps/demo | ✨ **Tạo Demo App hoàn chỉnh**: Next.js 15 + Tailwind v4 showcase đầy đủ features của XHubReel packages - Video Feed, Single Player, UI Components, Gesture System, Design System. Sử dụng làm reference guide cho khách hàng và internal team. |
 
 ---
 

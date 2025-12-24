@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Types
 
-TypeScript type definitions cho VortexStream.
+TypeScript type definitions cho XHubReel.
 
 ## Video
 

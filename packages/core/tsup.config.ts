@@ -15,10 +15,10 @@ export default defineConfig({
   },
   format: ['esm', 'cjs'],
   dts: {
-    resolve: ['@vortex/design-tokens'],
+    resolve: ['@xhub-reel/design-tokens'],
   },
   clean: true,
-  external: ['react', 'react-dom', '@vortex/design-tokens'],
+  external: ['react', 'react-dom', '@xhub-reel/design-tokens'],
   treeshake: true,
   splitting: false,
 })

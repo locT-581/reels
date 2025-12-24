@@ -1,14 +1,14 @@
 /**
- * VortexEmbed - Main embeddable component
+ * XHubReelEmbed - Main embeddable component
  */
 
 'use client'
 
 import { useCallback, useRef } from 'react'
-import type { Video } from '@vortex/core'
-import { VideoFeed, type VideoFeedRef } from '@vortex/feed'
+import type { Video } from '@xhub-reel/core'
+import { VideoFeed, type VideoFeedRef } from '@xhub-reel/feed'
 
-export interface VortexEmbedProps {
+export interface XHubReelEmbedProps {
   /** Videos to display */
   videos: Video[]
   /** Initial video index */
@@ -33,7 +33,7 @@ export interface VortexEmbedProps {
   className?: string
 }
 
-export function VortexEmbed({
+export function XHubReelEmbed({
   videos,
   initialIndex = 0,
   onLoadMore,
@@ -45,7 +45,7 @@ export function VortexEmbed({
   onAuthorClick,
   onVideoChange,
   className = '',
-}: VortexEmbedProps) {
+}: XHubReelEmbedProps) {
   const feedRef = useRef<VideoFeedRef>(null)
 
   // Handle video change

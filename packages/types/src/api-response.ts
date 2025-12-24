@@ -2,7 +2,7 @@
  * External API Response Types
  *
  * These types represent common external API response structures
- * that can be transformed to VortexStream's internal format.
+ * that can be transformed to XHubReel's internal format.
  */
 
 // =============================================================================
@@ -141,7 +141,7 @@ export interface ApiSingleResponse<T> {
 }
 
 /**
- * External API error response (different from internal VortexError)
+ * External API error response (different from internal XHubReelError)
  */
 export interface ExternalApiErrorResponse {
   success: false

@@ -4,12 +4,12 @@ sidebar_position: 1
 
 # Basic Integration
 
-Hướng dẫn tích hợp VortexStream vào dự án React cơ bản.
+Hướng dẫn tích hợp XHubReel vào dự án React cơ bản.
 
 ## Bước 1: Cài đặt
 
 ```bash npm2yarn
-npm install @vortex/embed
+npm install @xhub-reel/embed
 npm install react react-dom hls.js motion lucide-react @tanstack/react-virtual @use-gesture/react zustand
 ```
 
@@ -18,7 +18,7 @@ npm install react react-dom hls.js motion lucide-react @tanstack/react-virtual @
 Tạo file chứa video data:
 
 ```tsx title="src/data/videos.ts"
-import type { Video } from '@vortex/core'
+import type { Video } from '@xhub-reel/core'
 
 export const mockVideos: Video[] = [
   {
@@ -56,7 +56,7 @@ export const mockVideos: Video[] = [
 ```tsx title="src/components/VideoFeed.tsx"
 'use client' // Nếu dùng Next.js
 
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 import { mockVideos } from '../data/videos'
 import { useState } from 'react'
 
@@ -80,12 +80,12 @@ export function VideoFeed() {
 
   const handleComment = (videoId: string) => {
     console.log('Open comments for:', videoId)
-    // VortexEmbed sẽ tự mở comment sheet
+    // XHubReelEmbed sẽ tự mở comment sheet
   }
 
   const handleShare = (videoId: string) => {
     console.log('Share video:', videoId)
-    // VortexEmbed sẽ tự mở share sheet
+    // XHubReelEmbed sẽ tự mở share sheet
   }
 
   const handleVideoChange = (video: Video) => {
@@ -96,7 +96,7 @@ export function VideoFeed() {
 
   return (
     <div className="h-screen w-screen bg-black">
-      <VortexEmbed
+      <XHubReelEmbed
         videos={videos}
         config={{
           autoPlay: true,
@@ -170,7 +170,7 @@ html, body {
 
 ```tsx title="src/hooks/useVideos.ts"
 import { useState, useEffect, useCallback } from 'react'
-import type { Video } from '@vortex/core'
+import type { Video } from '@xhub-reel/core'
 
 export function useVideos() {
   const [videos, setVideos] = useState<Video[]>([])
@@ -242,7 +242,7 @@ export function useVideos() {
 ### Sử dụng hook
 
 ```tsx title="src/components/VideoFeed.tsx"
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 import { useVideos } from '../hooks/useVideos'
 
 export function VideoFeed() {
@@ -258,7 +258,7 @@ export function VideoFeed() {
 
   return (
     <div className="h-screen w-screen bg-black">
-      <VortexEmbed
+      <XHubReelEmbed
         videos={videos}
         config={{
           autoPlay: true,
@@ -278,21 +278,21 @@ export function VideoFeed() {
 
 ```js title="tailwind.config.js"
 module.exports = {
-  presets: [require('@vortex/ui/tailwind.preset')],
+  presets: [require('@xhub-reel/ui/tailwind.preset')],
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@vortex/**/*.js',
+    './node_modules/@xhub-reel/**/*.js',
   ],
 }
 ```
 
 ### CSS Variables
 
-```css title="src/styles/vortex.css"
+```css title="src/styles/xhub-reel.css"
 :root {
-  --vortex-violet: #8B5CF6;
-  --vortex-like: #FF2D55;
-  --vortex-black: #000000;
+  --xhub-reel-violet: #8B5CF6;
+  --xhub-reel-like: #FF2D55;
+  --xhub-reel-black: #000000;
 }
 ```
 

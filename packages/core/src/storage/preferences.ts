@@ -153,7 +153,7 @@ export async function resetAllPreferences(): Promise<void> {
 // Cross-Tab Sync
 // ============================================
 
-const BROADCAST_CHANNEL_NAME = 'vortex-preferences'
+const BROADCAST_CHANNEL_NAME = 'xhub-reel-preferences'
 let broadcastChannel: BroadcastChannel | null = null
 
 function getBroadcastChannel(): BroadcastChannel | null {

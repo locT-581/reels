@@ -1,7 +1,7 @@
 /**
  * Video Queries - TanStack Query hooks for video data
  *
- * Uses VortexApiClient from context for configurable endpoints
+ * Uses XHubReelApiClient from context for configurable endpoints
  */
 
 'use client'
@@ -13,7 +13,7 @@ import {
   type UseQueryOptions,
   type UseInfiniteQueryOptions,
 } from '@tanstack/react-query'
-import { useVortexApiClient } from '../useVortexApiClient'
+import { useXHubReelApiClient } from '../useXHubReelApiClient'
 import { queryKeys } from '../query-client'
 import type { Video, VideoMetadata, VideoListResponse, VideoFetchParams } from '../../types'
 
@@ -24,7 +24,7 @@ import type { Video, VideoMetadata, VideoListResponse, VideoFetchParams } from '
 /**
  * Hook for infinite video feed
  *
- * Requires VortexProvider with config
+ * Requires XHubReelProvider with config
  *
  * @example
  * ```tsx
@@ -43,7 +43,7 @@ export function useVideosInfiniteQuery(
   params: VideoFetchParams = {},
   options?: Partial<UseInfiniteQueryOptions<VideoListResponse, Error>>
 ) {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
 
   return useInfiniteQuery({
     queryKey: queryKeys.videos.list(params as Record<string, unknown>),
@@ -60,7 +60,7 @@ export function useVideosInfiniteQuery(
 /**
  * Hook for single video
  *
- * Requires VortexProvider with config
+ * Requires XHubReelProvider with config
  *
  * @example
  * ```tsx
@@ -78,7 +78,7 @@ export function useVideoQuery(
   videoId: string,
   options?: Partial<UseQueryOptions<Video, Error>>
 ) {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
 
   return useQuery({
     queryKey: queryKeys.videos.detail(videoId),
@@ -109,7 +109,7 @@ export function useVideoMetadataQuery(
   videoId: string,
   options?: Partial<UseQueryOptions<VideoMetadata, Error>>
 ) {
-  const apiClient = useVortexApiClient()
+  const apiClient = useXHubReelApiClient()
 
   return useQuery({
     queryKey: [...queryKeys.videos.detail(videoId), 'metadata'],
@@ -123,12 +123,12 @@ export function useVideoMetadataQuery(
 /**
  * Prefetch videos for feed
  *
- * Requires passing VortexApiClient instance
+ * Requires passing XHubReelApiClient instance
  *
  * @example
  * ```tsx
  * // In a server component or loader
- * const client = createVortexApiClient(config)
+ * const client = createXHubReelApiClient(config)
  * await prefetchVideos(queryClient, client)
  * ```
  */
@@ -152,7 +152,7 @@ export function prefetchVideos(
  * ```tsx
  * // Prefetch on hover
  * const queryClient = useQueryClient()
- * const apiClient = useVortexApiClient()
+ * const apiClient = useXHubReelApiClient()
  *
  * onMouseEnter={() => prefetchVideo(queryClient, apiClient, video.id)}
  * ```

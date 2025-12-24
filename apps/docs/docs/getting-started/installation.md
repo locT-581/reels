@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Cài đặt
 
-Hướng dẫn cài đặt VortexStream vào dự án của bạn.
+Hướng dẫn cài đặt XHubReel vào dự án của bạn.
 
 ## Yêu cầu
 
@@ -16,18 +16,18 @@ Hướng dẫn cài đặt VortexStream vào dự án của bạn.
 
 ### Option 1: All-in-One (Khuyến nghị)
 
-Cách đơn giản nhất để bắt đầu là cài đặt `@vortex/embed` - package bao gồm mọi thứ bạn cần:
+Cách đơn giản nhất để bắt đầu là cài đặt `@xhub-reel/embed` - package bao gồm mọi thứ bạn cần:
 
 ```bash npm2yarn
-npm install @vortex/embed
+npm install @xhub-reel/embed
 ```
 
 Package này bao gồm:
-- `@vortex/core` - Types, stores, utilities
-- `@vortex/player` - Video player
-- `@vortex/feed` - Video feed
-- `@vortex/gestures` - Gesture system
-- `@vortex/ui` - UI components
+- `@xhub-reel/core` - Types, stores, utilities
+- `@xhub-reel/player` - Video player
+- `@xhub-reel/feed` - Video feed
+- `@xhub-reel/gestures` - Gesture system
+- `@xhub-reel/ui` - UI components
 
 ### Peer Dependencies
 
@@ -43,24 +43,24 @@ Nếu bạn chỉ cần một số tính năng, bạn có thể cài đặt từ
 
 ```bash npm2yarn
 # Core (bắt buộc)
-npm install @vortex/core
+npm install @xhub-reel/core
 
 # Video player
-npm install @vortex/player hls.js
+npm install @xhub-reel/player hls.js
 
 # UI components
-npm install @vortex/ui motion lucide-react
+npm install @xhub-reel/ui motion lucide-react
 
 # Gesture system
-npm install @vortex/gestures @use-gesture/react
+npm install @xhub-reel/gestures @use-gesture/react
 
 # Video feed
-npm install @vortex/feed @tanstack/react-virtual
+npm install @xhub-reel/feed @tanstack/react-virtual
 ```
 
 ## Cấu hình TypeScript
 
-VortexStream được viết bằng TypeScript và cung cấp đầy đủ type definitions. Thêm vào `tsconfig.json`:
+XHubReel được viết bằng TypeScript và cung cấp đầy đủ type definitions. Thêm vào `tsconfig.json`:
 
 ```json title="tsconfig.json"
 {
@@ -75,21 +75,21 @@ VortexStream được viết bằng TypeScript và cung cấp đầy đủ type 
 
 ## Cấu hình Tailwind CSS
 
-Nếu bạn sử dụng Tailwind CSS, thêm preset của Vortex:
+Nếu bạn sử dụng Tailwind CSS, thêm preset của XHubReel:
 
 ```js title="tailwind.config.js"
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  presets: [require('@vortex/ui/tailwind.preset')],
+  presets: [require('@xhub-reel/ui/tailwind.preset')],
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@vortex/**/*.js',
+    './node_modules/@xhub-reel/**/*.js',
   ],
 }
 ```
 
 Preset này bao gồm:
-- Vortex colors (`vortex-violet`, `vortex-like`, `vortex-black`)
+- XHubReel colors (`xhub-reel-violet`, `xhub-reel-like`, `xhub-reel-black`)
 - 8pt spacing system
 - Custom animations
 - Safe area utilities
@@ -102,12 +102,12 @@ Preset này bao gồm:
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: [
-    '@vortex/core',
-    '@vortex/player',
-    '@vortex/ui',
-    '@vortex/gestures',
-    '@vortex/feed',
-    '@vortex/embed',
+    '@xhub-reel/core',
+    '@xhub-reel/player',
+    '@xhub-reel/ui',
+    '@xhub-reel/gestures',
+    '@xhub-reel/feed',
+    '@xhub-reel/embed',
   ],
 }
 
@@ -116,15 +116,15 @@ module.exports = nextConfig
 
 ### App Router
 
-Với Next.js App Router, hãy đảm bảo sử dụng `'use client'` directive cho components sử dụng VortexStream:
+Với Next.js App Router, hãy đảm bảo sử dụng `'use client'` directive cho components sử dụng XHubReel:
 
 ```tsx title="app/feed/page.tsx"
 'use client'
 
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 
 export default function FeedPage() {
-  return <VortexEmbed videos={videos} />
+  return <XHubReelEmbed videos={videos} />
 }
 ```
 
@@ -132,10 +132,10 @@ export default function FeedPage() {
 
 Tạo một component đơn giản để kiểm tra:
 
-```tsx title="TestVortex.tsx"
-import { VideoPlayer } from '@vortex/player'
+```tsx title="TestXHubReel.tsx"
+import { VideoPlayer } from '@xhub-reel/player'
 
-export function TestVortex() {
+export function TestXHubReel() {
   return (
     <div className="h-screen w-screen bg-black">
       <VideoPlayer
@@ -150,7 +150,7 @@ export function TestVortex() {
 
 ## Xử lý lỗi thường gặp
 
-### "Cannot find module '@vortex/xxx'"
+### "Cannot find module '@xhub-reel/xxx'"
 
 Đảm bảo bạn đã cài đặt tất cả peer dependencies và restart development server.
 
@@ -162,7 +162,7 @@ Video player cần chạy client-side. Thêm `'use client'` vào đầu file ho�
 import dynamic from 'next/dynamic'
 
 const VideoPlayer = dynamic(
-  () => import('@vortex/player').then((mod) => mod.VideoPlayer),
+  () => import('@xhub-reel/player').then((mod) => mod.VideoPlayer),
   { ssr: false }
 )
 ```

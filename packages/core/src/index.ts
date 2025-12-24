@@ -1,7 +1,7 @@
 /**
- * @vortex/core
+ * @xhub-reel/core
  *
- * Core logic, types, stores, and utilities for VortexStream
+ * Core logic, types, stores, and utilities for XHubReel
  * Mobile-first short-form video platform
  */
 

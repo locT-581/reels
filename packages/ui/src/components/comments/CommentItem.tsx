@@ -8,8 +8,8 @@
 'use client'
 
 import { type CSSProperties } from 'react'
-import type { Comment } from '@vortex/types'
-import { colors, spacing, fontSizes, fontWeights, mergeStyles } from '@vortex/design-tokens'
+import type { Comment } from '@xhub-reel/types'
+import { colors, spacing, fontSizes, fontWeights, mergeStyles } from '@xhub-reel/design-tokens'
 import { Avatar } from '../base/Avatar'
 
 export interface CommentItemProps {

@@ -303,7 +303,7 @@ export function useHold({
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       console.warn(
-        '[VortexStream] useHold is deprecated. Use useLongPress with onHoldProgress instead.'
+        '[XHubReel] useHold is deprecated. Use useLongPress with onHoldProgress instead.'
       )
     }
   }, [])

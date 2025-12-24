@@ -1,19 +1,19 @@
 {
-  "name": "@vortex/gestures",
+  "name": "@xhub-reel/gestures",
   "version": "0.0.1",
-  "description": "Gesture system for VortexStream",
+  "description": "Gesture system for XHubReel",
   "license": "MIT",
-  "author": "VortexStream Team",
-  "homepage": "https://github.com/vortex-stream/vortex-stream#readme",
+  "author": "XHubReel Team",
+  "homepage": "https://github.com/xhub-reel/xhub-reel#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vortex-stream/vortex-stream.git",
+    "url": "https://github.com/xhub-reel/xhub-reel.git",
     "directory": "packages/gestures"
   },
   "bugs": {
-    "url": "https://github.com/vortex-stream/vortex-stream/issues"
+    "url": "https://github.com/xhub-reel/xhub-reel/issues"
   },
-  "keywords": ["vortex", "gestures", "swipe", "tap", "react", "mobile"],
+  "keywords": ["xhub-reel", "gestures", "swipe", "tap", "react", "mobile"],
   "publishConfig": {
     "access": "public"
   },

@@ -1,19 +1,19 @@
 {
-  "name": "@vortex/embed",
+  "name": "@xhub-reel/embed",
   "version": "0.0.1",
-  "description": "Embeddable widget for VortexStream",
+  "description": "Embeddable widget for XHubReel",
   "license": "MIT",
-  "author": "VortexStream Team",
-  "homepage": "https://github.com/vortex-stream/vortex-stream#readme",
+  "author": "XHubReel Team",
+  "homepage": "https://github.com/xhub-reel/xhub-reel#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vortex-stream/vortex-stream.git",
+    "url": "https://github.com/xhub-reel/xhub-reel.git",
     "directory": "packages/embed"
   },
   "bugs": {
-    "url": "https://github.com/vortex-stream/vortex-stream/issues"
+    "url": "https://github.com/xhub-reel/xhub-reel/issues"
   },
-  "keywords": ["vortex", "embed", "widget", "iframe", "react", "video"],
+  "keywords": ["xhub-reel", "embed", "widget", "iframe", "react", "video"],
   "publishConfig": {
     "access": "public"
   },
@@ -36,15 +36,15 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
-    "@vortex/core": "workspace:*",
-    "@vortex/design-tokens": "workspace:*",
-    "@vortex/feed": "workspace:*",
-    "@vortex/gestures": "workspace:*",
-    "@vortex/player": "workspace:*",
-    "@vortex/player-core": "workspace:*",
-    "@vortex/player-engine": "workspace:*",
-    "@vortex/types": "workspace:*",
-    "@vortex/ui": "workspace:*"
+    "@xhub-reel/core": "workspace:*",
+    "@xhub-reel/design-tokens": "workspace:*",
+    "@xhub-reel/feed": "workspace:*",
+    "@xhub-reel/gestures": "workspace:*",
+    "@xhub-reel/player": "workspace:*",
+    "@xhub-reel/player-core": "workspace:*",
+    "@xhub-reel/player-engine": "workspace:*",
+    "@xhub-reel/types": "workspace:*",
+    "@xhub-reel/ui": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

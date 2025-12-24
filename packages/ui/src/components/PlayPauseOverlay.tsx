@@ -13,7 +13,7 @@
 
 import { useEffect, useState, useCallback, type CSSProperties } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { colors, zIndices, springs, mergeStyles } from '@vortex/design-tokens'
+import { colors, zIndices, springs, mergeStyles } from '@xhub-reel/design-tokens'
 
 export interface PlayPauseOverlayProps {
   /** Whether video is playing */

@@ -7,7 +7,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { lightHaptic } from '../utils/haptic'
 
-const STORAGE_KEY = 'vortex_saved_videos'
+const STORAGE_KEY = 'xhub_reel_saved_videos'
 
 export interface UseSaveOptions {
   /** Video ID */

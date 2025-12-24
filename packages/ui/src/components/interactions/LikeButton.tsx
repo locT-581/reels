@@ -89,7 +89,7 @@ export function LikeButton({
             size={config.icon}
             className={`transition-colors duration-200 ${
               isLiked
-                ? 'fill-vortex-red text-vortex-red'
+                ? 'fill-xhub-reel-red text-xhub-reel-red'
                 : 'text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]'
             }`}
           />
@@ -102,7 +102,7 @@ export function LikeButton({
               {[...Array(6)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-1.5 h-1.5 rounded-full bg-vortex-red"
+                  className="absolute w-1.5 h-1.5 rounded-full bg-xhub-reel-red"
                   initial={{
                     scale: 0,
                     x: 0,

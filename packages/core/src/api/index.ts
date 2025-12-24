@@ -1,5 +1,5 @@
 /**
- * @vortex/core - API Layer
+ * @xhub-reel/core - API Layer
  */
 
 export {
@@ -16,27 +16,27 @@ export {
   type ApiResponse,
 } from './api-client'
 
-// Vortex Provider (for API integration)
+// XHubReel Provider (for API integration)
 export {
-  VortexProvider,
-  useVortexConfig,
-  useVortexApiMode,
+  XHubReelProvider,
+  useXHubReelConfig,
+  useXHubReelApiMode,
   useRequireConfig,
-  VortexContext,
-} from './vortex-provider'
+  XHubReelContext,
+} from './xhub-reel-provider'
 
-// Vortex API Client (for custom implementations)
+// XHubReel API Client (for custom implementations)
 export {
-  VortexApiClient,
-  createVortexApiClient,
-} from './vortex-api-client'
+  XHubReelApiClient,
+  createXHubReelApiClient,
+} from './xhub-reel-api-client'
 
-// Vortex API Client Hook (for use in components)
+// XHubReel API Client Hook (for use in components)
 export {
-  useVortexApiClient,
-  useVortexApiClientOptional,
+  useXHubReelApiClient,
+  useXHubReelApiClientOptional,
   createApiClientFromConfig,
-} from './useVortexApiClient'
+} from './useXHubReelApiClient'
 
 // Queries
 export * from './queries/videos'

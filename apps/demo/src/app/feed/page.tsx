@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useCallback, useRef, useMemo } from 'react'
-import { VideoFeed, ConnectedVideoFeed, type VideoFeedRef } from '@vortex/feed'
-import type { Video } from '@vortex/core'
-import { CommentSheet, ShareSheet, Toast } from '@vortex/ui'
+import { VideoFeed, ConnectedVideoFeed, type VideoFeedRef } from '@xhub-reel/feed'
+import type { Video } from '@xhub-reel/core'
+import { CommentSheet, ShareSheet, Toast } from '@xhub-reel/ui'
 import { mockVideos, mockComments } from '@/lib/mock-data'
-import { useDemoConfig, toVortexConfig } from '@/lib/demo-config'
+import { useDemoConfig, toXHubReelConfig } from '@/lib/demo-config'
 import { Navigation } from '@/components/Navigation'
 import { Settings, Wifi, WifiOff } from 'lucide-react'
 import Link from 'next/link'
@@ -21,11 +21,11 @@ export default function FeedPage() {
   const endpoints = useDemoConfig((state) => state.endpoints)
   const debugMode = useDemoConfig((state) => state.debugMode)
 
-  const vortexConfig = useMemo(() => {
+  const xhubReelConfig = useMemo(() => {
     if (mode === 'mock' || !baseUrl) {
       return null
     }
-    return toVortexConfig({
+    return toXHubReelConfig({
       mode,
       baseUrl,
       apiKey,
@@ -33,10 +33,10 @@ export default function FeedPage() {
       refreshToken,
       endpoints,
       debugMode,
-    } as Parameters<typeof toVortexConfig>[0])
+    } as Parameters<typeof toXHubReelConfig>[0])
   }, [mode, baseUrl, apiKey, accessToken, refreshToken, endpoints, debugMode])
 
-  const isApiMode = mode === 'api' && vortexConfig !== null
+  const isApiMode = mode === 'api' && xhubReelConfig !== null
 
   // State for mock mode
   const [videos, setVideos] = useState<Video[]>(mockVideos)
@@ -117,14 +117,14 @@ export default function FeedPage() {
   }), [handleVideoChange, handleLike, handleComment, handleShare, handleAuthorClick])
 
   return (
-    <div className="min-h-screen bg-vortex-bg">
+    <div className="min-h-screen bg-xhub-reel-bg">
       <Navigation />
 
       {/* Video Feed - Switch between mock and API mode */}
       {isApiMode ? (
         <ConnectedVideoFeed
           ref={feedRef}
-          config={vortexConfig}
+          config={xhubReelConfig}
           pageSize={10}
           {...feedProps}
         />
@@ -173,30 +173,30 @@ export default function FeedPage() {
 
       {/* Mode Indicator - Top Left */}
       <div className="fixed top-4 left-4 z-40 pointer-events-none">
-        <div className="vortex-glass rounded-xl px-4 py-3 max-w-[220px] pointer-events-auto">
+        <div className="xhub-reel-glass rounded-xl px-4 py-3 max-w-[220px] pointer-events-auto">
           <div className="flex items-center gap-2 mb-2">
             {isApiMode ? (
               <Wifi className="w-4 h-4 text-green-400" />
             ) : (
-              <WifiOff className="w-4 h-4 text-vortex-text-muted" />
+              <WifiOff className="w-4 h-4 text-xhub-reel-text-muted" />
             )}
-            <span className="text-xs font-medium text-vortex-text">
+            <span className="text-xs font-medium text-xhub-reel-text">
               {isApiMode ? 'API Mode' : 'Mock Mode'}
             </span>
             <Link
               href="/settings"
-              className="ml-auto p-1 rounded hover:bg-vortex-surface transition-colors"
+              className="ml-auto p-1 rounded hover:bg-xhub-reel-surface transition-colors"
               title="Settings"
             >
-              <Settings className="w-3.5 h-3.5 text-vortex-text-muted" />
+              <Settings className="w-3.5 h-3.5 text-xhub-reel-text-muted" />
             </Link>
           </div>
           {isApiMode && baseUrl && (
-            <div className="text-xs text-vortex-text-muted truncate">
+            <div className="text-xs text-xhub-reel-text-muted truncate">
               {baseUrl}
             </div>
           )}
-          <div className="text-xs text-vortex-text-secondary mt-1">
+          <div className="text-xs text-xhub-reel-text-secondary mt-1">
             {currentVideo?.author.displayName || 'Video'} •{' '}
             {feedRef.current ? `${feedRef.current.activeIndex + 1}/${feedRef.current.totalSlides}` : '1/?'}
           </div>
@@ -205,8 +205,8 @@ export default function FeedPage() {
 
       {/* Instructions - Bottom Center */}
       <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-40 pointer-events-none">
-        <div className="vortex-glass rounded-full px-6 py-3 animate-vortex-fade-in">
-          <p className="text-sm text-vortex-text-secondary text-center whitespace-nowrap">
+        <div className="xhub-reel-glass rounded-full px-6 py-3 animate-xhub-reel-fade-in">
+          <p className="text-sm text-xhub-reel-text-secondary text-center whitespace-nowrap">
             ⬆️ Vuốt lên/xuống để chuyển video • 👆 Tap để pause • 👆👆 Double-tap để like
           </p>
         </div>

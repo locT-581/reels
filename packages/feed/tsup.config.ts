@@ -8,8 +8,8 @@ export default defineConfig({
   external: [
     'react',
     'react-dom',
-    '@vortex/core',
-    '@vortex/player',
+    '@xhub-reel/core',
+    '@xhub-reel/player',
     '@tanstack/react-query',
     'motion',
     'motion/react',

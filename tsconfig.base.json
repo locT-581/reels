@@ -24,18 +24,18 @@
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "paths": {
-      "@vortex/core": ["./packages/core/src"],
-      "@vortex/core/*": ["./packages/core/src/*"],
-      "@vortex/player": ["./packages/player/src"],
-      "@vortex/player/*": ["./packages/player/src/*"],
-      "@vortex/ui": ["./packages/ui/src"],
-      "@vortex/ui/*": ["./packages/ui/src/*"],
-      "@vortex/gestures": ["./packages/gestures/src"],
-      "@vortex/gestures/*": ["./packages/gestures/src/*"],
-      "@vortex/feed": ["./packages/feed/src"],
-      "@vortex/feed/*": ["./packages/feed/src/*"],
-      "@vortex/embed": ["./packages/embed/src"],
-      "@vortex/embed/*": ["./packages/embed/src/*"]
+      "@xhub-reel/core": ["./packages/core/src"],
+      "@xhub-reel/core/*": ["./packages/core/src/*"],
+      "@xhub-reel/player": ["./packages/player/src"],
+      "@xhub-reel/player/*": ["./packages/player/src/*"],
+      "@xhub-reel/ui": ["./packages/ui/src"],
+      "@xhub-reel/ui/*": ["./packages/ui/src/*"],
+      "@xhub-reel/gestures": ["./packages/gestures/src"],
+      "@xhub-reel/gestures/*": ["./packages/gestures/src/*"],
+      "@xhub-reel/feed": ["./packages/feed/src"],
+      "@xhub-reel/feed/*": ["./packages/feed/src/*"],
+      "@xhub-reel/embed": ["./packages/embed/src"],
+      "@xhub-reel/embed/*": ["./packages/embed/src/*"]
     }
   },
   "exclude": ["node_modules", "dist", ".next", "coverage"]

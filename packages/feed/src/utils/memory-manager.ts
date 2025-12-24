@@ -7,7 +7,7 @@
  * - Total memory cap 150MB
  */
 
-import { MEMORY_CONFIG } from '@vortex/core'
+import { MEMORY_CONFIG } from '@xhub-reel/core'
 
 export interface MemoryState {
   videosInDom: number

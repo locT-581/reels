@@ -5,7 +5,7 @@
 'use client'
 
 import type { PlayerStateMachine } from './player-state-machine'
-import type { PlayerState } from '@vortex/core'
+import type { PlayerState } from '@xhub-reel/core'
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { createPlayerStateMachine } from './player-state-machine'
 

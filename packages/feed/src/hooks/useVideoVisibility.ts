@@ -5,7 +5,7 @@
 'use client'
 
 import { useState, useEffect, useRef, type RefObject } from 'react'
-import { VIDEO_ACTIVATION } from '@vortex/core'
+import { VIDEO_ACTIVATION } from '@xhub-reel/core'
 
 export interface UseVideoVisibilityOptions {
   /** Element to observe */

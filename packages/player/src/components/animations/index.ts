@@ -1,5 +1,5 @@
 /**
- * @vortex/player - Animations
+ * @xhub-reel/player - Animations
  */
 
 export {

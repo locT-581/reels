@@ -4,7 +4,7 @@
  * State Architecture:
  * - usePlayerRuntimeStore: Transient playback state (currentVideo, isPlaying, etc.)
  * - usePlayerPreferencesStore: Persisted preferences (volume, muted, speed, quality)
- * - PlayerStateMachine: State transition validation (in @vortex/player-core)
+ * - PlayerStateMachine: State transition validation (in @xhub-reel/player-core)
  */
 
 // Re-export individual stores

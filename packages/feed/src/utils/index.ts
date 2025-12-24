@@ -1,5 +1,5 @@
 /**
- * @vortex/feed - Utils
+ * @xhub-reel/feed - Utils
  */
 
 export { memoryManager, type MemoryState, type VideoMemoryEntry } from './memory-manager'

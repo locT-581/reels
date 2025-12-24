@@ -8,7 +8,7 @@
 'use client'
 
 import { forwardRef, type ButtonHTMLAttributes, type CSSProperties } from 'react'
-import { colors, spacing, radii, fontSizes, fontWeights, durations, easings, mergeStyles } from '@vortex/design-tokens'
+import { colors, spacing, radii, fontSizes, fontWeights, durations, easings, mergeStyles } from '@xhub-reel/design-tokens'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Button variant */
@@ -37,7 +37,7 @@ const baseStyles: CSSProperties = {
   cursor: 'pointer',
   transitionProperty: 'background-color, color, transform, opacity',
   transitionDuration: durations.normal,
-  transitionTimingFunction: easings.vortex,
+  transitionTimingFunction: easings.xhubReel,
   userSelect: 'none',
 }
 
@@ -136,7 +136,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               borderColor: 'currentColor',
               borderTopColor: 'transparent',
               borderRadius: '50%',
-              animation: 'vortex-spin 1s linear infinite',
+              animation: 'xhub-reel-spin 1s linear infinite',
             }}
           />
         ) : (

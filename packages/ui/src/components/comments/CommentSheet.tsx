@@ -8,8 +8,8 @@
 'use client'
 
 import { useState, useCallback, useRef, type CSSProperties } from 'react'
-import { colors, spacing, fontSizes, fontWeights } from '@vortex/design-tokens'
-import type { Comment } from '@vortex/types'
+import { colors, spacing, fontSizes, fontWeights } from '@xhub-reel/design-tokens'
+import type { Comment } from '@xhub-reel/types'
 import { formatCount } from '../../utils'
 import { BottomSheet } from '../BottomSheet'
 import { CommentItem } from './CommentItem'

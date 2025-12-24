@@ -2,19 +2,19 @@
 sidebar_position: 2
 ---
 
-# @vortex/player
+# @xhub-reel/player
 
 HLS video player tối ưu cho short-form content.
 
 ## Cài đặt
 
 ```bash npm2yarn
-npm install @vortex/player @vortex/core hls.js
+npm install @xhub-reel/player @xhub-reel/core hls.js
 ```
 
 ## Tổng quan
 
-`@vortex/player` cung cấp video player với:
+`@xhub-reel/player` cung cấp video player với:
 
 - 🎬 **HLS Streaming** - Adaptive bitrate với hls.js
 - ⚡ **Fast Start** - Time to first frame < 500ms
@@ -28,7 +28,7 @@ npm install @vortex/player @vortex/core hls.js
 ### Đơn giản nhất
 
 ```tsx
-import { VideoPlayer } from '@vortex/player'
+import { VideoPlayer } from '@xhub-reel/player'
 
 function App() {
   return (
@@ -45,8 +45,8 @@ function App() {
 ### Với Video object
 
 ```tsx
-import { VideoPlayer } from '@vortex/player'
-import type { Video } from '@vortex/core'
+import { VideoPlayer } from '@xhub-reel/player'
+import type { Video } from '@xhub-reel/core'
 
 function VideoPage({ video }: { video: Video }) {
   return (
@@ -72,7 +72,7 @@ function VideoPage({ video }: { video: Video }) {
 | Prop | Type | Default | Mô tả |
 |------|------|---------|-------|
 | `src` | `string` | - | Video URL (MP4 hoặc HLS) |
-| `video` | `Video` | - | Video object từ @vortex/core |
+| `video` | `Video` | - | Video object từ @xhub-reel/core |
 | `poster` | `string` | - | Poster image URL |
 | `autoPlay` | `boolean` | `false` | Auto-play khi mount |
 | `muted` | `boolean` | `true` | Bắt đầu muted |
@@ -103,7 +103,7 @@ function VideoPage({ video }: { video: Video }) {
 Truy cập player controls programmatically:
 
 ```tsx
-import { VideoPlayer, usePlayer } from '@vortex/player'
+import { VideoPlayer, usePlayer } from '@xhub-reel/player'
 
 function CustomPlayer() {
   const {
@@ -164,7 +164,7 @@ function CustomPlayer() {
 Theo dõi video progress:
 
 ```tsx
-import { useVideoProgress } from '@vortex/player'
+import { useVideoProgress } from '@xhub-reel/player'
 
 function ProgressBar() {
   const {
@@ -195,7 +195,7 @@ function ProgressBar() {
 Theo dõi buffering state:
 
 ```tsx
-import { useBuffering } from '@vortex/player'
+import { useBuffering } from '@xhub-reel/player'
 
 function BufferingIndicator() {
   const { isBuffering, bufferProgress } = useBuffering()
@@ -216,7 +216,7 @@ function BufferingIndicator() {
 ### Direct access
 
 ```tsx
-import { HLSEngine } from '@vortex/player'
+import { HLSEngine } from '@xhub-reel/player'
 
 // Tạo engine instance
 const engine = new HLSEngine(videoElement, {
@@ -245,7 +245,7 @@ engine.destroy()
 ### Custom HLS config
 
 ```tsx
-import { VideoPlayer } from '@vortex/player'
+import { VideoPlayer } from '@xhub-reel/player'
 
 <VideoPlayer
   src="https://example.com/video.m3u8"
@@ -292,7 +292,7 @@ import { VideoPlayer } from '@vortex/player'
 High-performance video progress bar với RAF-based updates (zero re-renders).
 
 ```tsx
-import { Timeline } from '@vortex/player'
+import { Timeline } from '@xhub-reel/player'
 import { useRef } from 'react'
 
 function VideoWithTimeline() {
@@ -334,7 +334,7 @@ function VideoWithTimeline() {
 ### QualitySelector
 
 ```tsx
-import { QualitySelector } from '@vortex/player'
+import { QualitySelector } from '@xhub-reel/player'
 
 <QualitySelector
   currentQuality="auto"
@@ -346,7 +346,7 @@ import { QualitySelector } from '@vortex/player'
 ### SpeedSelector
 
 ```tsx
-import { SpeedSelector } from '@vortex/player'
+import { SpeedSelector } from '@xhub-reel/player'
 
 <SpeedSelector
   currentSpeed={1}
@@ -399,7 +399,7 @@ const defaultHLSConfig = {
 import dynamic from 'next/dynamic'
 
 const VideoPlayer = dynamic(
-  () => import('@vortex/player').then(mod => mod.VideoPlayer),
+  () => import('@xhub-reel/player').then(mod => mod.VideoPlayer),
   { ssr: false }
 )
 ```
@@ -407,7 +407,7 @@ const VideoPlayer = dynamic(
 ### 3. Dispose khi không dùng
 
 ```tsx
-import { usePlayer } from '@vortex/player'
+import { usePlayer } from '@xhub-reel/player'
 
 useEffect(() => {
   return () => {
@@ -428,7 +428,7 @@ const MAX_ACTIVE_PLAYERS = 3
 Safari hỗ trợ native HLS, không cần hls.js:
 
 ```tsx
-import { VideoPlayer } from '@vortex/player'
+import { VideoPlayer } from '@xhub-reel/player'
 
 // Tự động detect và sử dụng native HLS trên Safari
 <VideoPlayer
@@ -440,7 +440,7 @@ import { VideoPlayer } from '@vortex/player'
 ## Error Handling
 
 ```tsx
-import { VideoPlayer, PlayerError } from '@vortex/player'
+import { VideoPlayer, PlayerError } from '@xhub-reel/player'
 
 <VideoPlayer
   src="..."

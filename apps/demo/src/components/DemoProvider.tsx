@@ -2,8 +2,8 @@
 
 import { useMemo } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { VortexProvider } from '@vortex/core/api'
-import { useDemoConfig, toVortexConfig } from '@/lib/demo-config'
+import { XHubReelProvider } from '@xhub-reel/core/api'
+import { useDemoConfig, toXHubReelConfig } from '@/lib/demo-config'
 
 // Create a client
 const queryClient = new QueryClient({
@@ -29,12 +29,12 @@ export function DemoProvider({ children }: DemoProviderProps) {
   const endpoints = useDemoConfig((state) => state.endpoints)
   const debugMode = useDemoConfig((state) => state.debugMode)
 
-  // ✅ Memoize vortexConfig với dependencies cụ thể
-  const vortexConfig = useMemo(() => {
+  // ✅ Memoize xhubReelConfig với dependencies cụ thể
+  const xhubReelConfig = useMemo(() => {
     if (mode === 'mock' || !baseUrl) {
       return undefined
     }
-    return (toVortexConfig({
+    return (toXHubReelConfig({
       mode,
       baseUrl,
       apiKey,
@@ -42,14 +42,14 @@ export function DemoProvider({ children }: DemoProviderProps) {
       refreshToken,
       endpoints,
       debugMode,
-    } as Parameters<typeof toVortexConfig>[0]) ?? undefined)
+    } as Parameters<typeof toXHubReelConfig>[0]) ?? undefined)
   }, [mode, baseUrl, apiKey, accessToken, refreshToken, endpoints, debugMode])
 
   return (
     <QueryClientProvider client={queryClient}>
-      <VortexProvider config={vortexConfig}>
+      <XHubReelProvider config={xhubReelConfig}>
         {children}
-      </VortexProvider>
+      </XHubReelProvider>
     </QueryClientProvider>
   )
 }

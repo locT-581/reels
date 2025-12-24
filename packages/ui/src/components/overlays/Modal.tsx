@@ -7,7 +7,7 @@
 import { useEffect, useCallback, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { X } from 'lucide-react'
-import { SPRING } from '@vortex/design-tokens'
+import { SPRING } from '@xhub-reel/design-tokens'
 
 export interface ModalProps {
   /** Whether the modal is open */

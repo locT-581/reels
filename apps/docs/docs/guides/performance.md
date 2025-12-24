@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Performance
 
-Hướng dẫn tối ưu hiệu suất VortexStream.
+Hướng dẫn tối ưu hiệu suất XHubReel.
 
 ## Performance Targets
 
@@ -21,12 +21,12 @@ Hướng dẫn tối ưu hiệu suất VortexStream.
 
 | Package | Target |
 |---------|--------|
-| `@vortex/core` | < 5KB |
-| `@vortex/player` | < 70KB |
-| `@vortex/ui` | < 15KB |
-| `@vortex/gestures` | < 15KB |
-| `@vortex/feed` | < 8KB |
-| `@vortex/embed` | < 100KB |
+| `@xhub-reel/core` | < 5KB |
+| `@xhub-reel/player` | < 70KB |
+| `@xhub-reel/ui` | < 15KB |
+| `@xhub-reel/gestures` | < 15KB |
+| `@xhub-reel/feed` | < 8KB |
+| `@xhub-reel/embed` | < 100KB |
 | **Total** | < 150KB |
 
 ## Video Optimization
@@ -58,7 +58,7 @@ const optimizedHLSConfig = {
 ### Preloading Strategy
 
 ```tsx
-import { usePreload } from '@vortex/feed'
+import { usePreload } from '@xhub-reel/feed'
 
 function OptimizedFeed({ videos, currentIndex }) {
   // Preload 2 videos ahead
@@ -76,7 +76,7 @@ function OptimizedFeed({ videos, currentIndex }) {
 
 ```tsx
 import { useEffect } from 'react'
-import { cleanupMemory, getMemoryUsage } from '@vortex/core'
+import { cleanupMemory, getMemoryUsage } from '@xhub-reel/core'
 
 function MemoryOptimizedFeed() {
   // Monitor memory
@@ -100,7 +100,7 @@ function MemoryOptimizedFeed() {
 ### Feed Virtualization
 
 ```tsx
-import { VideoFeed } from '@vortex/feed'
+import { VideoFeed } from '@xhub-reel/feed'
 
 <VideoFeed
   videos={videos}
@@ -150,18 +150,18 @@ import dynamic from 'next/dynamic'
 
 // Lazy load heavy components
 const CommentSheet = dynamic(
-  () => import('@vortex/ui').then((m) => m.CommentSheet),
+  () => import('@xhub-reel/ui').then((m) => m.CommentSheet),
   { ssr: false }
 )
 
 const ShareSheet = dynamic(
-  () => import('@vortex/ui').then((m) => m.ShareSheet),
+  () => import('@xhub-reel/ui').then((m) => m.ShareSheet),
   { ssr: false }
 )
 
-// Lazy load VortexEmbed
-const VortexEmbed = dynamic(
-  () => import('@vortex/embed').then((m) => m.VortexEmbed),
+// Lazy load XHubReelEmbed
+const XHubReelEmbed = dynamic(
+  () => import('@xhub-reel/embed').then((m) => m.XHubReelEmbed),
   {
     ssr: false,
     loading: () => <FeedSkeleton />,
@@ -173,10 +173,10 @@ const VortexEmbed = dynamic(
 
 ```tsx
 // Split gestures
-const { useVideoGestures } = await import('@vortex/gestures')
+const { useVideoGestures } = await import('@xhub-reel/gestures')
 
 // Split UI components
-const { LikeButton, CommentButton } = await import('@vortex/ui')
+const { LikeButton, CommentButton } = await import('@xhub-reel/ui')
 ```
 
 ## Image Optimization
@@ -184,7 +184,7 @@ const { LikeButton, CommentButton } = await import('@vortex/ui')
 ### Blur placeholder
 
 ```tsx
-import { BlurPlaceholder } from '@vortex/ui'
+import { BlurPlaceholder } from '@xhub-reel/ui'
 
 <BlurPlaceholder
   src={thumbnail}
@@ -271,7 +271,7 @@ const bind = useVideoGestures({
 ### Throttle/Debounce
 
 ```tsx
-import { useThrottle, useDebounce } from '@vortex/core'
+import { useThrottle, useDebounce } from '@xhub-reel/core'
 
 // Throttle scroll handler
 const throttledScroll = useThrottle(handleScroll, 100)
@@ -317,7 +317,7 @@ function Feed({ videos }) {
 ### Request batching
 
 ```tsx
-import { batchRequests } from '@vortex/core'
+import { batchRequests } from '@xhub-reel/core'
 
 // Batch multiple like requests
 const batchedLike = batchRequests(likeVideo, {
@@ -366,7 +366,7 @@ onTTFB(reportWebVitals)
 ### Video metrics
 
 ```tsx
-import { trackVideoMetrics } from '@vortex/core'
+import { trackVideoMetrics } from '@xhub-reel/core'
 
 function TrackedVideoPlayer({ video }) {
   const metrics = trackVideoMetrics(video.id)

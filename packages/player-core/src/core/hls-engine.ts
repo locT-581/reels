@@ -4,8 +4,8 @@
  */
 
 import Hls, { type HlsConfig, Events, ErrorTypes } from 'hls.js'
-import { HLS_CONFIG } from '@vortex/core'
-import type { PlayerState, QualityLevel } from '@vortex/core'
+import { HLS_CONFIG } from '@xhub-reel/core'
+import type { PlayerState, QualityLevel } from '@xhub-reel/core'
 
 export interface HLSEngineCallbacks {
   onStateChange?: (state: PlayerState) => void

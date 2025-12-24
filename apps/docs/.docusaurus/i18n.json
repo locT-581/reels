@@ -14,7 +14,7 @@
       "calendar": "gregory",
       "path": "vi",
       "translate": false,
-      "url": "https://vortexstream.dev",
+      "url": "https://xhubreel.dev",
       "baseUrl": "/"
     },
     "en": {
@@ -24,7 +24,7 @@
       "calendar": "gregory",
       "path": "en",
       "translate": false,
-      "url": "https://vortexstream.dev",
+      "url": "https://xhubreel.dev",
       "baseUrl": "/en/"
     }
   }

@@ -10,8 +10,8 @@ import {
   useHorizontalSwipe,
   getGestureZone,
   calculateSeekAmount,
-} from '@vortex/gestures'
-import { DoubleTapHeart, useDoubleTapHeart, Toast } from '@vortex/ui'
+} from '@xhub-reel/gestures'
+import { DoubleTapHeart, useDoubleTapHeart, Toast } from '@xhub-reel/ui'
 import { Navigation } from '@/components/Navigation'
 import { Play, Pause, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Hand, Zap } from 'lucide-react'
 
@@ -262,14 +262,14 @@ export default function GesturesPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-vortex-bg" ref={containerRef}>
+    <div className="min-h-screen bg-xhub-reel-bg" ref={containerRef}>
       <Navigation />
 
       {/* Page Header */}
-      <div className="sticky top-0 z-30 pt-4 px-6 pb-4 vortex-glass">
+      <div className="sticky top-0 z-30 pt-4 px-6 pb-4 xhub-reel-glass">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-2xl font-bold text-vortex-text">Gesture System</h1>
-          <p className="text-sm text-vortex-text-muted">
+          <h1 className="text-2xl font-bold text-xhub-reel-text">Gesture System</h1>
+          <p className="text-sm text-xhub-reel-text-muted">
             Touch-optimized interactions demo
           </p>
         </div>
@@ -278,25 +278,25 @@ export default function GesturesPage() {
       <main className="px-6 pb-32 pt-6">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Status Bar */}
-          <div className="vortex-card flex flex-wrap items-center gap-4">
+          <div className="xhub-reel-card flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-2">
-              <Hand className="w-5 h-5 text-vortex-accent" />
-              <span className="text-sm text-vortex-text-muted">Last Gesture:</span>
-              <span className="font-semibold text-vortex-text">{lastGesture || 'None'}</span>
+              <Hand className="w-5 h-5 text-xhub-reel-accent" />
+              <span className="text-sm text-xhub-reel-text-muted">Last Gesture:</span>
+              <span className="font-semibold text-xhub-reel-text">{lastGesture || 'None'}</span>
             </div>
             <div className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-vortex-accent" />
-              <span className="text-sm text-vortex-text-muted">Tap Count:</span>
-              <span className="font-semibold text-vortex-text">{tapCount}</span>
+              <Zap className="w-5 h-5 text-xhub-reel-accent" />
+              <span className="text-sm text-xhub-reel-text-muted">Tap Count:</span>
+              <span className="font-semibold text-xhub-reel-text">{tapCount}</span>
             </div>
           </div>
 
           {/* Demo 1: Complete Video Gestures */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-4">1. Video Gestures (Combined)</h2>
-            <div className="vortex-card">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-4">1. Video Gestures (Combined)</h2>
+            <div className="xhub-reel-card">
               <div
-                className="relative h-[300px] bg-linear-to-b from-vortex-surface-elevated to-vortex-surface rounded-xl overflow-hidden cursor-pointer select-none"
+                className="relative h-[300px] bg-linear-to-b from-xhub-reel-surface-elevated to-xhub-reel-surface rounded-xl overflow-hidden cursor-pointer select-none"
                 {...videoGestureBindings()}
               >
                 {/* Video placeholder */}
@@ -306,23 +306,23 @@ export default function GesturesPage() {
                     transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                   >
                     {videoPlaying ? (
-                      <Pause className="w-16 h-16 text-vortex-text/50" />
+                      <Pause className="w-16 h-16 text-xhub-reel-text/50" />
                     ) : (
-                      <Play className="w-16 h-16 text-vortex-text/50" />
+                      <Play className="w-16 h-16 text-xhub-reel-text/50" />
                     )}
                   </motion.div>
                 </div>
 
                 {/* Zone indicators */}
                 <div className="absolute inset-0 flex">
-                  <div className={`flex-1 flex items-center justify-center border-r border-vortex-border/30 transition-colors ${gestureZone === 'left' ? 'bg-vortex-accent/20' : ''}`}>
-                    <span className="text-xs text-vortex-text-muted">Left Zone</span>
+                  <div className={`flex-1 flex items-center justify-center border-r border-xhub-reel-border/30 transition-colors ${gestureZone === 'left' ? 'bg-xhub-reel-accent/20' : ''}`}>
+                    <span className="text-xs text-xhub-reel-text-muted">Left Zone</span>
                   </div>
-                  <div className={`flex-1 flex items-center justify-center border-r border-vortex-border/30 transition-colors ${gestureZone === 'center' ? 'bg-vortex-like/20' : ''}`}>
-                    <span className="text-xs text-vortex-text-muted">Center Zone</span>
+                  <div className={`flex-1 flex items-center justify-center border-r border-xhub-reel-border/30 transition-colors ${gestureZone === 'center' ? 'bg-xhub-reel-like/20' : ''}`}>
+                    <span className="text-xs text-xhub-reel-text-muted">Center Zone</span>
                   </div>
-                  <div className={`flex-1 flex items-center justify-center transition-colors ${gestureZone === 'right' ? 'bg-vortex-accent/20' : ''}`}>
-                    <span className="text-xs text-vortex-text-muted">Right Zone</span>
+                  <div className={`flex-1 flex items-center justify-center transition-colors ${gestureZone === 'right' ? 'bg-xhub-reel-accent/20' : ''}`}>
+                    <span className="text-xs text-xhub-reel-text-muted">Right Zone</span>
                   </div>
                 </div>
 
@@ -336,7 +336,7 @@ export default function GesturesPage() {
 
                 {/* Instructions */}
                 <div className="absolute bottom-4 left-4 right-4 text-center">
-                  <p className="text-xs text-vortex-text-muted">
+                  <p className="text-xs text-xhub-reel-text-muted">
                     Tap: Play/Pause • Double-tap: Seek/Like • Long-press: Menu
                   </p>
                 </div>
@@ -346,15 +346,15 @@ export default function GesturesPage() {
 
           {/* Demo 2: Tap with Ripple */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-4">2. Tap with Ripple Effect</h2>
-            <div className="vortex-card">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-4">2. Tap with Ripple Effect</h2>
+            <div className="xhub-reel-card">
               <div
-                className="relative h-[200px] bg-linear-to-b from-vortex-surface-elevated to-vortex-surface rounded-xl overflow-hidden cursor-pointer select-none"
+                className="relative h-[200px] bg-linear-to-b from-xhub-reel-surface-elevated to-xhub-reel-surface rounded-xl overflow-hidden cursor-pointer select-none"
                 onPointerDown={handleTapWithRipple}
               >
                 <Ripples />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-vortex-text-muted">Tap anywhere for ripple effect</span>
+                  <span className="text-xhub-reel-text-muted">Tap anywhere for ripple effect</span>
                 </div>
                 <DoubleTapHeart show={showHeart} position={heartPosition} size={60} />
               </div>
@@ -363,17 +363,17 @@ export default function GesturesPage() {
 
           {/* Demo 3: Long Press */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-4">3. Long Press</h2>
-            <div className="vortex-card">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-4">3. Long Press</h2>
+            <div className="xhub-reel-card">
               <div
-                className="relative h-[150px] bg-linear-to-b from-vortex-surface-elevated to-vortex-surface rounded-xl overflow-hidden cursor-pointer select-none"
+                className="relative h-[150px] bg-linear-to-b from-xhub-reel-surface-elevated to-xhub-reel-surface rounded-xl overflow-hidden cursor-pointer select-none"
                 {...longPressProps}
               >
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                  <div className={`w-16 h-16 rounded-full border-4 flex items-center justify-center transition-colors ${isPressing ? 'border-vortex-accent bg-vortex-accent/20' : 'border-vortex-border'} ${isHolding ? 'bg-vortex-accent/40' : ''}`}>
-                    <Hand className={`w-8 h-8 transition-colors ${isPressing ? 'text-vortex-accent' : 'text-vortex-text-muted'}`} />
+                  <div className={`w-16 h-16 rounded-full border-4 flex items-center justify-center transition-colors ${isPressing ? 'border-xhub-reel-accent bg-xhub-reel-accent/20' : 'border-xhub-reel-border'} ${isHolding ? 'bg-xhub-reel-accent/40' : ''}`}>
+                    <Hand className={`w-8 h-8 transition-colors ${isPressing ? 'text-xhub-reel-accent' : 'text-xhub-reel-text-muted'}`} />
                   </div>
-                  <span className="text-sm text-vortex-text-muted">
+                  <span className="text-sm text-xhub-reel-text-muted">
                     {isHolding ? 'Holding!' : isPressing ? 'Keep holding...' : 'Press and hold'}
                   </span>
                 </div>
@@ -383,10 +383,10 @@ export default function GesturesPage() {
 
           {/* Demo 4: Vertical Swipe */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-4">4. Vertical Swipe</h2>
-            <div className="vortex-card">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-4">4. Vertical Swipe</h2>
+            <div className="xhub-reel-card">
               <div
-                className="relative h-[200px] bg-linear-to-b from-vortex-surface-elevated to-vortex-surface rounded-xl overflow-hidden cursor-grab active:cursor-grabbing touch-none"
+                className="relative h-[200px] bg-linear-to-b from-xhub-reel-surface-elevated to-xhub-reel-surface rounded-xl overflow-hidden cursor-grab active:cursor-grabbing touch-none"
                 {...verticalSwipeBind()}
               >
                 <motion.div
@@ -394,9 +394,9 @@ export default function GesturesPage() {
                   style={{ y: verticalOffset }}
                 >
                   <div className="flex flex-col items-center gap-4">
-                    <ChevronUp className={`w-8 h-8 transition-colors ${swipeDirection === 'up' ? 'text-vortex-accent' : 'text-vortex-text-muted'}`} />
-                    <span className="text-vortex-text">Swipe Up/Down</span>
-                    <ChevronDown className={`w-8 h-8 transition-colors ${swipeDirection === 'down' ? 'text-vortex-accent' : 'text-vortex-text-muted'}`} />
+                    <ChevronUp className={`w-8 h-8 transition-colors ${swipeDirection === 'up' ? 'text-xhub-reel-accent' : 'text-xhub-reel-text-muted'}`} />
+                    <span className="text-xhub-reel-text">Swipe Up/Down</span>
+                    <ChevronDown className={`w-8 h-8 transition-colors ${swipeDirection === 'down' ? 'text-xhub-reel-accent' : 'text-xhub-reel-text-muted'}`} />
                   </div>
                 </motion.div>
               </div>
@@ -405,10 +405,10 @@ export default function GesturesPage() {
 
           {/* Demo 5: Horizontal Swipe */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-4">5. Horizontal Swipe</h2>
-            <div className="vortex-card">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-4">5. Horizontal Swipe</h2>
+            <div className="xhub-reel-card">
               <div
-                className="relative h-[150px] bg-linear-to-b from-vortex-surface-elevated to-vortex-surface rounded-xl overflow-hidden cursor-grab active:cursor-grabbing touch-none"
+                className="relative h-[150px] bg-linear-to-b from-xhub-reel-surface-elevated to-xhub-reel-surface rounded-xl overflow-hidden cursor-grab active:cursor-grabbing touch-none"
                 {...horizontalSwipeBind()}
               >
                 <motion.div
@@ -416,9 +416,9 @@ export default function GesturesPage() {
                   style={{ x: horizontalOffset }}
                 >
                   <div className="flex items-center gap-8">
-                    <ChevronLeft className={`w-8 h-8 transition-colors ${swipeDirection === 'left' ? 'text-vortex-accent' : 'text-vortex-text-muted'}`} />
-                    <span className="text-vortex-text">Swipe Left/Right</span>
-                    <ChevronRight className={`w-8 h-8 transition-colors ${swipeDirection === 'right' ? 'text-vortex-accent' : 'text-vortex-text-muted'}`} />
+                    <ChevronLeft className={`w-8 h-8 transition-colors ${swipeDirection === 'left' ? 'text-xhub-reel-accent' : 'text-xhub-reel-text-muted'}`} />
+                    <span className="text-xhub-reel-text">Swipe Left/Right</span>
+                    <ChevronRight className={`w-8 h-8 transition-colors ${swipeDirection === 'right' ? 'text-xhub-reel-accent' : 'text-xhub-reel-text-muted'}`} />
                   </div>
                 </motion.div>
               </div>
@@ -427,26 +427,26 @@ export default function GesturesPage() {
 
           {/* Demo 6: Zone Detection */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-4">6. Gesture Zone Detection</h2>
-            <div className="vortex-card">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-4">6. Gesture Zone Detection</h2>
+            <div className="xhub-reel-card">
               <div
-                className="relative h-[120px] bg-linear-to-b from-vortex-surface-elevated to-vortex-surface rounded-xl overflow-hidden cursor-crosshair"
+                className="relative h-[120px] bg-linear-to-b from-xhub-reel-surface-elevated to-xhub-reel-surface rounded-xl overflow-hidden cursor-crosshair"
                 onPointerDown={handleZoneDetection}
               >
                 <div className="absolute inset-0 flex">
                   {['left', 'center', 'right'].map((zone) => (
                     <div
                       key={zone}
-                      className={`flex-1 flex items-center justify-center border-r last:border-r-0 border-vortex-border/30 transition-colors ${gestureZone === zone ? 'bg-vortex-accent/20' : ''}`}
+                      className={`flex-1 flex items-center justify-center border-r last:border-r-0 border-xhub-reel-border/30 transition-colors ${gestureZone === zone ? 'bg-xhub-reel-accent/20' : ''}`}
                     >
-                      <span className={`text-sm font-medium capitalize ${gestureZone === zone ? 'text-vortex-accent' : 'text-vortex-text-muted'}`}>
+                      <span className={`text-sm font-medium capitalize ${gestureZone === zone ? 'text-xhub-reel-accent' : 'text-xhub-reel-text-muted'}`}>
                         {zone}
                       </span>
                     </div>
                   ))}
                 </div>
               </div>
-              <p className="text-xs text-vortex-text-muted mt-2">
+              <p className="text-xs text-xhub-reel-text-muted mt-2">
                 Click anywhere to detect zone (33% / 34% / 33% split)
               </p>
             </div>
@@ -454,18 +454,18 @@ export default function GesturesPage() {
 
           {/* Demo 7: Seek Amount */}
           <section>
-            <h2 className="text-xl font-semibold text-vortex-text mb-4">7. Seek Amount Calculation</h2>
-            <div className="vortex-card">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-4">7. Seek Amount Calculation</h2>
+            <div className="xhub-reel-card">
               <div
-                className="relative h-[120px] bg-linear-to-b from-vortex-surface-elevated to-vortex-surface rounded-xl overflow-hidden cursor-pointer"
+                className="relative h-[120px] bg-linear-to-b from-xhub-reel-surface-elevated to-xhub-reel-surface rounded-xl overflow-hidden cursor-pointer"
                 onPointerDown={handleSeekCalculation}
               >
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <span className="text-3xl font-bold text-vortex-text">
+                    <span className="text-3xl font-bold text-xhub-reel-text">
                       {seekAmount > 0 ? '+' : ''}{seekAmount}s
                     </span>
-                    <p className="text-sm text-vortex-text-muted mt-1">
+                    <p className="text-sm text-xhub-reel-text-muted mt-1">
                       (60s video)
                     </p>
                   </div>
@@ -473,13 +473,13 @@ export default function GesturesPage() {
 
                 {/* Zone indicators */}
                 <div className="absolute bottom-0 left-0 right-0 flex">
-                  <div className="flex-1 py-2 text-center text-xs text-vortex-text-muted border-r border-vortex-border/30">
+                  <div className="flex-1 py-2 text-center text-xs text-xhub-reel-text-muted border-r border-xhub-reel-border/30">
                     -10s
                   </div>
-                  <div className="flex-1 py-2 text-center text-xs text-vortex-text-muted border-r border-vortex-border/30">
+                  <div className="flex-1 py-2 text-center text-xs text-xhub-reel-text-muted border-r border-xhub-reel-border/30">
                     0s (like)
                   </div>
-                  <div className="flex-1 py-2 text-center text-xs text-vortex-text-muted">
+                  <div className="flex-1 py-2 text-center text-xs text-xhub-reel-text-muted">
                     +10s
                   </div>
                 </div>
@@ -488,36 +488,36 @@ export default function GesturesPage() {
           </section>
 
           {/* API Reference */}
-          <section className="vortex-card">
-            <h2 className="text-xl font-semibold text-vortex-text mb-4">API Reference</h2>
+          <section className="xhub-reel-card">
+            <h2 className="text-xl font-semibold text-xhub-reel-text mb-4">API Reference</h2>
             <div className="space-y-4 text-sm">
               <div>
-                <h3 className="font-medium text-vortex-text mb-2">useVideoGestures</h3>
-                <code className="text-vortex-text-secondary bg-vortex-surface-elevated px-2 py-1 rounded">
+                <h3 className="font-medium text-xhub-reel-text mb-2">useVideoGestures</h3>
+                <code className="text-xhub-reel-text-secondary bg-xhub-reel-surface-elevated px-2 py-1 rounded">
                   Combined hook for single tap, double tap (with zone), and long press
                 </code>
               </div>
               <div>
-                <h3 className="font-medium text-vortex-text mb-2">useTapGestures</h3>
-                <code className="text-vortex-text-secondary bg-vortex-surface-elevated px-2 py-1 rounded">
+                <h3 className="font-medium text-xhub-reel-text mb-2">useTapGestures</h3>
+                <code className="text-xhub-reel-text-secondary bg-xhub-reel-surface-elevated px-2 py-1 rounded">
                   Single and double tap detection with zone support
                 </code>
               </div>
               <div>
-                <h3 className="font-medium text-vortex-text mb-2">useLongPress</h3>
-                <code className="text-vortex-text-secondary bg-vortex-surface-elevated px-2 py-1 rounded">
+                <h3 className="font-medium text-xhub-reel-text mb-2">useLongPress</h3>
+                <code className="text-xhub-reel-text-secondary bg-xhub-reel-surface-elevated px-2 py-1 rounded">
                   Long press with hold tracking
                 </code>
               </div>
               <div>
-                <h3 className="font-medium text-vortex-text mb-2">useVerticalSwipe / useHorizontalSwipe</h3>
-                <code className="text-vortex-text-secondary bg-vortex-surface-elevated px-2 py-1 rounded">
+                <h3 className="font-medium text-xhub-reel-text mb-2">useVerticalSwipe / useHorizontalSwipe</h3>
+                <code className="text-xhub-reel-text-secondary bg-xhub-reel-surface-elevated px-2 py-1 rounded">
                   Directional swipe with progress tracking
                 </code>
               </div>
               <div>
-                <h3 className="font-medium text-vortex-text mb-2">useSeekDrag</h3>
-                <code className="text-vortex-text-secondary bg-vortex-surface-elevated px-2 py-1 rounded">
+                <h3 className="font-medium text-xhub-reel-text mb-2">useSeekDrag</h3>
+                <code className="text-xhub-reel-text-secondary bg-xhub-reel-surface-elevated px-2 py-1 rounded">
                   Drag-based seek interaction for video timeline
                 </code>
               </div>

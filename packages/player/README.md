@@ -1,13 +1,13 @@
-# @vortex/player
+# @xhub-reel/player
 
 > HLS video player optimized for short-form content
 
 ## Installation
 
 ```bash
-npm install @vortex/player @vortex/core hls.js
+npm install @xhub-reel/player @xhub-reel/core hls.js
 # or
-pnpm add @vortex/player @vortex/core hls.js
+pnpm add @xhub-reel/player @xhub-reel/core hls.js
 ```
 
 ## Features
@@ -26,7 +26,7 @@ pnpm add @vortex/player @vortex/core hls.js
 ### Basic Usage
 
 ```tsx
-import { VideoPlayer } from '@vortex/player'
+import { VideoPlayer } from '@xhub-reel/player'
 
 function App() {
   return (
@@ -43,8 +43,8 @@ function App() {
 ### With Video Object
 
 ```tsx
-import { VideoPlayer } from '@vortex/player'
-import type { Video } from '@vortex/core'
+import { VideoPlayer } from '@xhub-reel/player'
+import type { Video } from '@xhub-reel/core'
 
 function VideoPage({ video }: { video: Video }) {
   return (
@@ -63,7 +63,7 @@ function VideoPage({ video }: { video: Video }) {
 ### With Controls
 
 ```tsx
-import { VideoPlayer, usePlayer } from '@vortex/player'
+import { VideoPlayer, usePlayer } from '@xhub-reel/player'
 
 function CustomPlayer() {
   const { play, pause, seek, setQuality } = usePlayer()
@@ -83,7 +83,7 @@ function CustomPlayer() {
 ### HLS Engine Direct Access
 
 ```tsx
-import { HLSEngine } from '@vortex/player'
+import { HLSEngine } from '@xhub-reel/player'
 
 const engine = new HLSEngine(videoElement, {
   maxBufferLength: 30,
@@ -101,7 +101,7 @@ engine.on('levelSwitched', (level) => {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `src` | `string` | - | Video URL (MP4 or HLS) |
-| `video` | `Video` | - | Video object from @vortex/core |
+| `video` | `Video` | - | Video object from @xhub-reel/core |
 | `poster` | `string` | - | Poster image URL |
 | `autoPlay` | `boolean` | `false` | Auto-play on mount |
 | `muted` | `boolean` | `true` | Start muted |

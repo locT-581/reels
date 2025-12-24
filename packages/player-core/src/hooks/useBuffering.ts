@@ -5,7 +5,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef, type RefObject } from 'react'
-import type { BufferedRange } from '@vortex/core'
+import type { BufferedRange } from '@xhub-reel/core'
 
 /**
  * useBuffering - Hook for video buffering state

@@ -9,7 +9,7 @@
  *   VideoFeedItemOverlay,
  *   VideoFeedItemActions,
  *   VideoFeedItemTimeline,
- * } from '@vortex/feed'
+ * } from '@xhub-reel/feed'
  *
  * <VideoFeedItem video={video} isActive={isActive}>
  *   <VideoFeedItemPlayer />
@@ -28,7 +28,7 @@
 'use client'
 
 import { forwardRef, type ReactNode, type CSSProperties } from 'react'
-import { mergeStyles, type Video } from '@vortex/core'
+import { mergeStyles, type Video } from '@xhub-reel/core'
 import type { PreloadPriority } from '../../hooks/usePreloader'
 import { videoFeedItemStyles } from '../styles'
 import { VideoFeedItemContext } from './context'

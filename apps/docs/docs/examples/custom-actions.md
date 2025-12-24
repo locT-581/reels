@@ -9,7 +9,7 @@ Ví dụ tùy biến action buttons.
 ## Custom Action Bar
 
 ```tsx
-import { VideoFeed, VideoFeedItem } from '@vortex/feed'
+import { VideoFeed, VideoFeedItem } from '@xhub-reel/feed'
 import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useState } from 'react'

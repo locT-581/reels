@@ -11,7 +11,7 @@
 
 import { HLSEngine } from './hls-engine'
 import { NativeHLS } from './native-hls'
-import type { QualityLevel, PlaybackSpeed, PlayerState } from '@vortex/types'
+import type { QualityLevel, PlaybackSpeed, PlayerState } from '@xhub-reel/types'
 import type { PlayResult } from '../types/playback'
 import {
   NetworkDetector,

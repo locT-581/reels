@@ -45,7 +45,7 @@
 
 .sectionSubtitle {
   text-align: center;
-  color: var(--vortex-gray-400);
+  color: var(--xhub-reel-gray-400);
   margin-bottom: 2rem;
 }
 
@@ -59,7 +59,7 @@
 
 .packageCard {
   background: var(--ifm-background-surface-color);
-  border: 1px solid var(--vortex-gray-800);
+  border: 1px solid var(--xhub-reel-gray-800);
   border-radius: 16px;
   padding: 1.5rem;
   transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
@@ -68,21 +68,21 @@
 }
 
 .packageCard:hover {
-  border-color: var(--vortex-violet);
+  border-color: var(--xhub-reel-violet);
   transform: translateY(-4px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
 .packageName {
   font-family: 'JetBrains Mono', monospace;
-  color: var(--vortex-violet-light);
+  color: var(--xhub-reel-violet-light);
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .packageDescription {
-  color: var(--vortex-gray-400);
+  color: var(--xhub-reel-gray-400);
   font-size: 0.875rem;
   line-height: 1.5;
 }
@@ -90,7 +90,7 @@
 .packageSize {
   display: inline-block;
   background: rgba(139, 92, 246, 0.1);
-  color: var(--vortex-violet-light);
+  color: var(--xhub-reel-violet-light);
   padding: 2px 8px;
   border-radius: 4px;
   font-size: 0.75rem;
@@ -122,7 +122,7 @@
 }
 
 .featureDescription {
-  color: var(--vortex-gray-400);
+  color: var(--xhub-reel-gray-400);
   font-size: 0.9rem;
   line-height: 1.6;
 }
@@ -138,8 +138,8 @@
 }
 
 .codeBlock pre {
-  background: var(--vortex-gray-900);
-  border: 1px solid var(--vortex-gray-800);
+  background: var(--xhub-reel-gray-900);
+  border: 1px solid var(--xhub-reel-gray-800);
   border-radius: 12px;
   padding: 1.5rem;
   overflow-x: auto;

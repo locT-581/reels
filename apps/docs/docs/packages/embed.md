@@ -2,14 +2,14 @@
 sidebar_position: 6
 ---
 
-# @vortex/embed
+# @xhub-reel/embed
 
 All-in-one embeddable video widget.
 
 ## Cài đặt
 
 ```bash npm2yarn
-npm install @vortex/embed
+npm install @xhub-reel/embed
 ```
 
 ### Peer Dependencies
@@ -20,7 +20,7 @@ npm install react react-dom hls.js motion lucide-react @tanstack/react-virtual @
 
 ## Tổng quan
 
-`@vortex/embed` là package all-in-one bao gồm:
+`@xhub-reel/embed` là package all-in-one bao gồm:
 
 - 📦 **All packages bundled** - core, player, feed, gestures, ui
 - 🎨 **Customizable** - Theme, colors, features
@@ -30,11 +30,11 @@ npm install react react-dom hls.js motion lucide-react @tanstack/react-virtual @
 
 ## Basic Usage
 
-### VortexEmbed
+### XHubReelEmbed
 
 ```tsx
-import { VortexEmbed } from '@vortex/embed'
-import type { Video } from '@vortex/core'
+import { XHubReelEmbed } from '@xhub-reel/embed'
+import type { Video } from '@xhub-reel/core'
 
 const videos: Video[] = [
   {
@@ -64,7 +64,7 @@ const videos: Video[] = [
 function App() {
   return (
     <div className="h-screen w-screen bg-black">
-      <VortexEmbed
+      <XHubReelEmbed
         videos={videos}
         config={{
           autoPlay: true,
@@ -80,7 +80,7 @@ function App() {
 
 ## Props
 
-### VortexEmbed
+### XHubReelEmbed
 
 | Prop | Type | Default | Mô tả |
 |------|------|---------|-------|
@@ -129,7 +129,7 @@ interface EmbedConfig {
 ## Full Configuration Example
 
 ```tsx
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   width="100%"
   height="100vh"
@@ -162,7 +162,7 @@ interface EmbedConfig {
     await api.likeVideo(videoId)
   }}
   onComment={(videoId) => {
-    // VortexEmbed sẽ mở comment sheet
+    // XHubReelEmbed sẽ mở comment sheet
     // Bạn có thể override behavior ở đây
   }}
   onShare={(videoId) => {
@@ -185,9 +185,9 @@ interface EmbedConfig {
 Để embed single video:
 
 ```tsx
-import { VortexPlayer } from '@vortex/embed'
+import { XHubReelPlayer } from '@xhub-reel/embed'
 
-<VortexPlayer
+<XHubReelPlayer
   video={video}
   autoPlay
   muted
@@ -203,7 +203,7 @@ import { VortexPlayer } from '@vortex/embed'
 ### Fixed size
 
 ```tsx
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   width={375}    // px
   height={667}   // px
@@ -213,7 +213,7 @@ import { VortexPlayer } from '@vortex/embed'
 ### Percentage
 
 ```tsx
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   width="100%"
   height="100vh"
@@ -224,7 +224,7 @@ import { VortexPlayer } from '@vortex/embed'
 
 ```tsx
 <div className="aspect-[9/16] max-w-[400px] mx-auto">
-  <VortexEmbed
+  <XHubReelEmbed
     videos={videos}
     width="100%"
     height="100%"
@@ -245,11 +245,11 @@ import { VortexPlayer } from '@vortex/embed'
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   
-  <!-- VortexStream -->
-  <script src="https://unpkg.com/@vortex/embed"></script>
+  <!-- XHubReel -->
+  <script src="https://unpkg.com/@xhub-reel/embed"></script>
 </head>
 <body>
-  <div id="vortex-container" style="width: 100%; height: 100vh;"></div>
+  <div id="xhub-reel-container" style="width: 100%; height: 100vh;"></div>
   
   <script>
     const videos = [
@@ -270,7 +270,7 @@ import { VortexPlayer } from '@vortex/embed'
       }
     ];
 
-    VortexEmbed.render('#vortex-container', {
+    XHubReelEmbed.render('#xhub-reel-container', {
       videos: videos,
       config: {
         autoPlay: true,
@@ -288,11 +288,11 @@ import { VortexPlayer } from '@vortex/embed'
 
 ```html
 <script type="module">
-  import { createVortexFeed } from 'https://cdn.jsdelivr.net/npm/@vortex/embed/+esm'
+  import { createXHubReelFeed } from 'https://cdn.jsdelivr.net/npm/@xhub-reel/embed/+esm'
   
   const videos = await fetchVideos()
   
-  createVortexFeed(document.getElementById('container'), {
+  createXHubReelFeed(document.getElementById('container'), {
     videos,
     config: { autoPlay: true, muted: true },
   })
@@ -305,7 +305,7 @@ Cho cross-origin embedding:
 
 ```html
 <iframe
-  src="https://vortex.stream/embed?v=VIDEO_ID"
+  src="https://xhubreel.stream/embed?v=VIDEO_ID"
   width="375"
   height="667"
   frameborder="0"
@@ -318,7 +318,7 @@ Cho cross-origin embedding:
 
 ```html
 <iframe
-  src="https://vortex.stream/embed?feed=FEED_ID"
+  src="https://xhubreel.stream/embed?feed=FEED_ID"
   width="100%"
   height="100vh"
   frameborder="0"
@@ -332,20 +332,20 @@ Package này re-export từ các packages khác:
 
 ```typescript
 // Components
-export { VortexEmbed, VortexPlayer } from '@vortex/embed'
-export { VideoFeed, VideoFeedItem } from '@vortex/feed'
-export { VideoPlayer } from '@vortex/player'
-export { LikeButton, Avatar, Button, /* ... */ } from '@vortex/ui'
+export { XHubReelEmbed, XHubReelPlayer } from '@xhub-reel/embed'
+export { VideoFeed, VideoFeedItem } from '@xhub-reel/feed'
+export { VideoPlayer } from '@xhub-reel/player'
+export { LikeButton, Avatar, Button, /* ... */ } from '@xhub-reel/ui'
 
 // Hooks
-export { usePlayer, useVideoProgress } from '@vortex/player'
-export { useFeed, useVideoActivation } from '@vortex/feed'
-export { useVideoGestures, useTapGestures } from '@vortex/gestures'
-export { usePlayerStore, useFeedStore, useUIStore } from '@vortex/core'
+export { usePlayer, useVideoProgress } from '@xhub-reel/player'
+export { useFeed, useVideoActivation } from '@xhub-reel/feed'
+export { useVideoGestures, useTapGestures } from '@xhub-reel/gestures'
+export { usePlayerStore, useFeedStore, useUIStore } from '@xhub-reel/core'
 
 // Types
-export type { Video, Author, Comment } from '@vortex/core'
-export type { EmbedConfig, EmbedProps } from '@vortex/embed'
+export type { Video, Author, Comment } from '@xhub-reel/core'
+export type { EmbedConfig, EmbedProps } from '@xhub-reel/embed'
 ```
 
 ## Custom Styling
@@ -355,15 +355,15 @@ export type { EmbedConfig, EmbedProps } from '@vortex/embed'
 ```css
 /* Trong CSS của bạn */
 :root {
-  --vortex-violet: #FF6B00;  /* Custom accent */
-  --vortex-like: #FF0000;    /* Custom like color */
+  --xhub-reel-violet: #FF6B00;  /* Custom accent */
+  --xhub-reel-like: #FF0000;    /* Custom like color */
 }
 ```
 
 ### Tailwind classes
 
 ```tsx
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   className="rounded-2xl overflow-hidden shadow-2xl"
 />
@@ -376,7 +376,7 @@ export type { EmbedConfig, EmbedProps } from '@vortex/embed'
 ```tsx title="app/feed/page.tsx"
 'use client'
 
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 import { useVideos } from '@/hooks/useVideos'
 
 export default function FeedPage() {
@@ -384,7 +384,7 @@ export default function FeedPage() {
 
   return (
     <main className="h-screen">
-      <VortexEmbed
+      <XHubReelEmbed
         videos={videos}
         onEndReached={loadMore}
       />
@@ -396,7 +396,7 @@ export default function FeedPage() {
 ### React with API
 
 ```tsx
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 import { useQuery, useMutation } from '@tanstack/react-query'
 
 function VideoFeed() {
@@ -411,7 +411,7 @@ function VideoFeed() {
   })
 
   return (
-    <VortexEmbed
+    <XHubReelEmbed
       videos={videos ?? []}
       onLike={(videoId) => likeMutation.mutate(videoId)}
     />
@@ -428,12 +428,12 @@ function VideoFeed() {
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { createVortexFeed } from '@vortex/embed'
+import { createXHubReelFeed } from '@xhub-reel/embed'
 
 const container = ref(null)
 
 onMounted(() => {
-  createVortexFeed(container.value, {
+  createXHubReelFeed(container.value, {
     videos: videos.value,
     config: { autoPlay: true, muted: true },
   })
@@ -445,7 +445,7 @@ onMounted(() => {
 
 | Bundle | Size (gzip) |
 |--------|-------------|
-| @vortex/embed (code only) | ~12KB |
+| @xhub-reel/embed (code only) | ~12KB |
 | + peer dependencies | ~150KB total |
 
 :::tip
@@ -458,7 +458,7 @@ Nếu đã sử dụng React, HLS.js, etc. trong app, actual bundle added chỉ 
 
 ```tsx
 // Browsers require muted for autoplay
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   config={{ autoPlay: true, muted: true }}
 />
@@ -481,8 +481,8 @@ const videos = [
 
 ```tsx
 // Import types
-import { VortexEmbed } from '@vortex/embed'
-import type { Video, EmbedConfig } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
+import type { Video, EmbedConfig } from '@xhub-reel/embed'
 
 const config: EmbedConfig = {
   autoPlay: true,
@@ -494,5 +494,5 @@ const videos: Video[] = [/* ... */]
 
 ## API Reference
 
-Xem [Components API](/docs/api/components#vortexembed) để biết đầy đủ props và methods.
+Xem [Components API](/docs/api/components#xhubrelembed) để biết đầy đủ props và methods.
 

@@ -1,14 +1,14 @@
 {
   "id": "packages/core",
-  "title": "@vortex/core",
-  "description": "Core logic, types, stores, và utilities cho VortexStream.",
+  "title": "@xhub-reel/core",
+  "description": "Core logic, types, stores, và utilities cho XHubReel.",
   "source": "@site/docs/packages/core.md",
   "sourceDirName": "packages",
   "slug": "/packages/core",
   "permalink": "/en/docs/packages/core",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/packages/core.md",
+  "editUrl": "https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/docs/packages/core.md",
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "locT-581",
@@ -23,7 +23,7 @@
     "permalink": "/en/docs/guides/performance"
   },
   "next": {
-    "title": "@vortex/player",
+    "title": "@xhub-reel/player",
     "permalink": "/en/docs/packages/player"
   }
 }

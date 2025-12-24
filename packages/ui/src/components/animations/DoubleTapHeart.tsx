@@ -13,7 +13,7 @@
 
 import { useState, useCallback, type CSSProperties } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { colors, zIndices } from '@vortex/design-tokens'
+import { colors, zIndices } from '@xhub-reel/design-tokens'
 
 export interface DoubleTapHeartProps {
   /** Whether to show the heart */

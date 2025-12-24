@@ -7,7 +7,7 @@
 "@vortex/embed": minor
 ---
 
-🎉 Initial release of VortexStream packages
+🎉 Initial release of XHubReel packages
 
 ## @vortex/core
 - Types, constants, and utilities

@@ -1,9 +1,9 @@
-# VortexStream 🌀
+# XHubReel 🌀
 
 > Short-form video platform SDK - Build TikTok-like experiences
 
-[![npm version](https://img.shields.io/npm/v/@vortex/core.svg)](https://www.npmjs.com/package/@vortex/core)
-[![Bundle Size](https://img.shields.io/badge/bundle-<150KB-green.svg)](https://bundlephobia.com/package/@vortex/core)
+[![npm version](https://img.shields.io/npm/v/@xhub-reel/core.svg)](https://www.npmjs.com/package/@xhub-reel/core)
+[![Bundle Size](https://img.shields.io/badge/bundle-<150KB-green.svg)](https://bundlephobia.com/package/@xhub-reel/core)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
@@ -20,14 +20,14 @@
 
 ```bash
 # Install the embed package (all-in-one)
-npm install @vortex/embed react react-dom hls.js motion lucide-react
+npm install @xhub-reel/embed react react-dom hls.js motion lucide-react
 
 # Or install individual packages
-npm install @vortex/core @vortex/player @vortex/feed @vortex/ui @vortex/gestures
+npm install @xhub-reel/core @xhub-reel/player @xhub-reel/feed @xhub-reel/ui @xhub-reel/gestures
 ```
 
 ```tsx
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 
 function App() {
   const videos = [
@@ -44,7 +44,7 @@ function App() {
   ]
 
   return (
-    <VortexEmbed
+    <XHubReelEmbed
       videos={videos}
       width={375}
       height={667}
@@ -61,12 +61,12 @@ function App() {
 
 | Package | Description | Size |
 |---------|-------------|------|
-| [@vortex/core](./packages/core) | Types, stores, utilities | ~21KB |
-| [@vortex/player](./packages/player) | HLS video player | ~15KB |
-| [@vortex/ui](./packages/ui) | UI components | ~14KB |
-| [@vortex/gestures](./packages/gestures) | Gesture system | ~3KB |
-| [@vortex/feed](./packages/feed) | Virtualized feed | ~8KB |
-| [@vortex/embed](./packages/embed) | All-in-one widget | ~12KB |
+| [@xhub-reel/core](./packages/core) | Types, stores, utilities | ~21KB |
+| [@xhub-reel/player](./packages/player) | HLS video player | ~15KB |
+| [@xhub-reel/ui](./packages/ui) | UI components | ~14KB |
+| [@xhub-reel/gestures](./packages/gestures) | Gesture system | ~3KB |
+| [@xhub-reel/feed](./packages/feed) | Virtualized feed | ~8KB |
+| [@xhub-reel/embed](./packages/embed) | All-in-one widget | ~12KB |
 
 **Total: ~73KB gzip** (budget: < 150KB) ✅
 
@@ -82,7 +82,7 @@ function App() {
 ### React
 
 ```tsx
-import { VideoFeed } from '@vortex/feed'
+import { VideoFeed } from '@xhub-reel/feed'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
 function Feed() {
@@ -102,12 +102,12 @@ function Feed() {
 
 ```tsx
 // app/page.tsx
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 
 export default function Home() {
   return (
     <main className="h-screen">
-      <VortexEmbed videos={videos} />
+      <XHubReelEmbed videos={videos} />
     </main>
   )
 }
@@ -116,7 +116,7 @@ export default function Home() {
 ### Single Video
 
 ```tsx
-import { VideoPlayer } from '@vortex/player'
+import { VideoPlayer } from '@xhub-reel/player'
 
 <VideoPlayer
   src="https://example.com/video.m3u8"
@@ -128,7 +128,7 @@ import { VideoPlayer } from '@vortex/player'
 
 ## Design System
 
-VortexStream uses the **Vortex Design System**:
+XHubReel uses the **XHubReel Design System**:
 
 - **Background**: #000000 (OLED black)
 - **Accent**: #8B5CF6 (Electric Violet)
@@ -181,7 +181,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
 ## License
 
-MIT © VortexStream Team
+MIT © XHubReel Team
 
 ---
 

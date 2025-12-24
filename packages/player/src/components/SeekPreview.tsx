@@ -5,7 +5,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'motion/react'
-import { formatDuration, SPRING } from '@vortex/core'
+import { formatDuration, SPRING } from '@xhub-reel/core'
 
 export interface SeekPreviewProps {
   /** Whether preview is visible */

@@ -1,8 +1,8 @@
 /**
- * @vortex/ui
+ * @xhub-reel/ui
  *
- * UI components for VortexStream
- * Vortex Design System implementation
+ * UI components for XHubReel
+ * XHubReel design System implementation
  */
 
 // ============================================

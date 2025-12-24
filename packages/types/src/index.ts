@@ -1,6 +1,6 @@
 /**
- * @vortex/core - Type definitions
- * Core types for VortexStream video platform
+ * @xhub-reel/core - Type definitions
+ * Core types for XHubReel video platform
  */
 
 // Video types
@@ -72,20 +72,20 @@ export type {
 // Error types
 export type {
   ErrorType,
-  VortexError,
+  XHubReelError,
   ApiErrorResponse,
   ErrorFallbackProps,
 } from './error'
 
 // Config types (API integration)
 export type {
-  VortexConfig,
-  VortexProviderProps,
-  VortexContextValue,
-  VortexApiEndpoints,
-  VortexAuthConfig,
-  VortexResponseTransformers,
-  VortexInterceptors,
+  XHubReelConfig,
+  XHubReelProviderProps,
+  XHubReelContextValue,
+  XHubReelApiEndpoints,
+  XHubReelAuthConfig,
+  XHubReelResponseTransformers,
+  XHubReelInterceptors,
   VideoListResponse,
   VideoDetailResponse,
   CommentsListResponse,

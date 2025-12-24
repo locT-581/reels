@@ -1,8 +1,8 @@
 /**
- * VortexStream Styles
+ * XHubReel Styles
  *
- * Re-exports from @vortex/design-tokens for convenience.
- * Users can import directly from @vortex/design-tokens or from @vortex/core.
+ * Re-exports from @xhub-reel/design-tokens for convenience.
+ * Users can import directly from @xhub-reel/design-tokens or from @xhub-reel/core.
  */
 
 // Re-export all design tokens
@@ -52,7 +52,7 @@ export {
 
   // Types
   type Tokens,
-} from '@vortex/design-tokens'
+} from '@xhub-reel/design-tokens'
 
 // Re-export style utilities
 export {

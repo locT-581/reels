@@ -9,12 +9,12 @@
 
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { VortexConfig } from '@vortex/core'
+import type { XHubReelConfig } from '@xhub-reel/core'
 import {
   transformReelsResponse,
   transformSingleReelResponse,
   transformCommentsResponse,
-} from '@vortex/core'
+} from '@xhub-reel/core'
 
 // =============================================================================
 // TYPES
@@ -110,7 +110,7 @@ export const useDemoConfig = create<DemoConfigState>()(
       resetConfig: () => set(DEFAULT_CONFIG),
     }),
     {
-      name: 'vortex-demo-config',
+      name: 'xhub-reel-demo-config',
       partialize: (state) => ({
         mode: state.mode,
         baseUrl: state.baseUrl,
@@ -129,9 +129,9 @@ export const useDemoConfig = create<DemoConfigState>()(
 // =============================================================================
 
 /**
- * Convert demo config to VortexConfig
+ * Convert demo config to XHubReelConfig
  */
-export function toVortexConfig(config: DemoConfigState): VortexConfig | null {
+export function toXHubReelConfig(config: DemoConfigState): XHubReelConfig | null {
   if (config.mode === 'mock' || !config.baseUrl) {
     return null
   }
@@ -149,9 +149,9 @@ export function toVortexConfig(config: DemoConfigState): VortexConfig | null {
       videos: config.endpoints.videos,
       comments: config.endpoints.comments,
     },
-    // Sử dụng pre-built transformers để chuyển đổi API response sang VortexStream format
+    // Sử dụng pre-built transformers để chuyển đổi API response sang XHubReel format
     // BE response: { code, data: { reels: [...], has_next, next_cursor } }
-    // -> VortexStream format: { videos: [...], hasMore, nextCursor }
+    // -> XHubReel format: { videos: [...], hasMore, nextCursor }
     transformers: {
       transformVideoList: transformReelsResponse,
       transformVideo: transformSingleReelResponse,

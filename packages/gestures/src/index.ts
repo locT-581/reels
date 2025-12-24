@@ -1,7 +1,7 @@
 /**
- * @vortex/gestures
+ * @xhub-reel/gestures
  *
- * Gesture system for VortexStream
+ * Gesture system for XHubReel
  * Touch-optimized interactions for video player
  */
 

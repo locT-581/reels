@@ -1,7 +1,7 @@
 /**
- * @vortex/design-tokens
+ * @xhub-reel/design-tokens
  *
- * CSS Variables-based design system for VortexStream.
+ * CSS Variables-based design system for XHubReel.
  * Zero dependencies, maximum customizability.
  */
 

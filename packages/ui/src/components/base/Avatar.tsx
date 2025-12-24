@@ -8,7 +8,7 @@
 'use client'
 
 import { useState, type CSSProperties } from 'react'
-import { colors, components, mergeStyles } from '@vortex/design-tokens'
+import { colors, components, mergeStyles } from '@xhub-reel/design-tokens'
 
 export interface AvatarProps {
   /** Image source URL */

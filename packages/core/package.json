@@ -1,19 +1,19 @@
 {
-  "name": "@vortex/core",
+  "name": "@xhub-reel/core",
   "version": "0.0.1",
-  "description": "Core logic, types, stores, and utilities for VortexStream",
+  "description": "Core logic, types, stores, and utilities for XHubReel",
   "license": "MIT",
-  "author": "VortexStream Team",
-  "homepage": "https://github.com/vortex-stream/vortex-stream#readme",
+  "author": "XHubReel Team",
+  "homepage": "https://github.com/xhub-reel/xhub-reel#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vortex-stream/vortex-stream.git",
+    "url": "https://github.com/xhub-reel/xhub-reel.git",
     "directory": "packages/core"
   },
   "bugs": {
-    "url": "https://github.com/vortex-stream/vortex-stream/issues"
+    "url": "https://github.com/xhub-reel/xhub-reel/issues"
   },
-  "keywords": ["vortex", "video", "player", "react", "tiktok", "short-form"],
+  "keywords": ["xhub-reel", "video", "player", "react", "tiktok", "short-form"],
   "publishConfig": {
     "access": "public"
   },
@@ -82,8 +82,8 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.0",
-    "@vortex/design-tokens": "workspace:*",
-    "@vortex/types": "workspace:*",
+    "@xhub-reel/design-tokens": "workspace:*",
+    "@xhub-reel/types": "workspace:*",
     "idb": "^8.0.0",
     "zustand": "^5.0.2"
   },

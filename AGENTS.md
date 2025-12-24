@@ -1,4 +1,4 @@
-# VortexStream - AI Agent Instructions
+# XHubReel - AI Agent Instructions
 
 > Short-form video platform focused on mobile viewing experience. No SEO needed, 100% client-side.
 
@@ -14,7 +14,7 @@
 - **Gestures**: @use-gesture/react
 - **Virtualization**: @tanstack/react-virtual
 
-### Design System (Vortex)
+### Design System (XHubReel)
 - **Background**: Always `#000000` (OLED optimized)
 - **Accent**: `#8B5CF6` (Electric Violet)
 - **Like Color**: `#FF2D55`
@@ -48,8 +48,8 @@
 // File structure: imports → types → constants → component → exports
 import { useRef } from 'react'
 import { motion } from 'motion/react'
-import { usePlayer } from '@vortex/core'
-import type { Video } from '@vortex/core/types'
+import { usePlayer } from '@xhub-reel/core'
+import type { Video } from '@xhub-reel/core/types'
 
 interface VideoPlayerProps {
   video: Video

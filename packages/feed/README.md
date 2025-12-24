@@ -1,13 +1,13 @@
-# @vortex/feed
+# @xhub-reel/feed
 
-> Virtualized video feed for VortexStream - TikTok-style infinite scroll
+> Virtualized video feed for XHubReel - TikTok-style infinite scroll
 
 ## Installation
 
 ```bash
-npm install @vortex/feed @vortex/core @vortex/player @vortex/ui
+npm install @xhub-reel/feed @xhub-reel/core @xhub-reel/player @xhub-reel/ui
 # or
-pnpm add @vortex/feed @vortex/core @vortex/player @vortex/ui
+pnpm add @xhub-reel/feed @xhub-reel/core @xhub-reel/player @xhub-reel/ui
 ```
 
 ## Features
@@ -15,25 +15,25 @@ pnpm add @vortex/feed @vortex/core @vortex/player @vortex/ui
 - 📜 **3-Node Carousel** - Only renders prev/current/next videos (minimal DOM)
 - ♾️ **Infinite Scroll** - Automatic loading of more content
 - 🎯 **Video Activation** - Smart play/pause based on viewport
-- ⚡ **Preloading** - Preloads next videos for instant playback via @vortex/player-core
+- ⚡ **Preloading** - Preloads next videos for instant playback via @xhub-reel/player-core
 - 🔄 **Pull to Refresh** - Native-feeling refresh gesture
 - 💾 **Memory Efficient** - Max 5 videos in DOM at once
 - 🔌 **Two Modes** - Manual (pass videos) or API (automatic fetching)
-- 🎨 **Design System** - Uses tokens from @vortex/core
-- 🧩 **Composable** - VideoOverlay and ActionBar from @vortex/ui
+- 🎨 **Design System** - Uses tokens from @xhub-reel/core
+- 🧩 **Composable** - VideoOverlay and ActionBar from @xhub-reel/ui
 
 ## Breaking Changes in v0.0.1
 
 ### usePreloader Hook
 
-`usePreloader` now re-exports `usePreload` from @vortex/player-core:
+`usePreloader` now re-exports `usePreload` from @xhub-reel/player-core:
 
 ```tsx
 // Before (v0.0.0)
 const { preloadStates, preloadVideo } = usePreloader({ videos, currentIndex })
 
 // After (v0.0.1)
-import { usePreload, getPreloadPriorityForFeed } from '@vortex/feed'
+import { usePreload, getPreloadPriorityForFeed } from '@xhub-reel/feed'
 
 const { preload, statuses, isPreloaded } = usePreload({ enabled: true })
 const priority = getPreloadPriorityForFeed(index, currentIndex)
@@ -42,15 +42,15 @@ preload(video.url, priority, 'segment')
 
 ### ActionBar Integration
 
-VideoFeedItem now uses ActionBar from @vortex/ui internally. No API changes, but custom styling may behave differently.
+VideoFeedItem now uses ActionBar from @xhub-reel/ui internally. No API changes, but custom styling may behave differently.
 
 ## Usage
 
 ### Manual Mode (Pass Videos Directly)
 
 ```tsx
-import { VideoFeed } from '@vortex/feed'
-import type { Video } from '@vortex/core'
+import { VideoFeed } from '@xhub-reel/feed'
+import type { Video } from '@xhub-reel/core'
 
 function App() {
   const videos: Video[] = [...]
@@ -74,12 +74,12 @@ function App() {
 Use `ConnectedVideoFeed` for automatic data fetching from your backend:
 
 ```tsx
-import { VortexProvider } from '@vortex/core/api'
-import { ConnectedVideoFeed } from '@vortex/feed'
+import { XHubReelProvider } from '@xhub-reel/core/api'
+import { ConnectedVideoFeed } from '@xhub-reel/feed'
 
 function App() {
   return (
-    <VortexProvider
+    <XHubReelProvider
       config={{
         baseUrl: 'https://api.yoursite.com/v1',
         auth: {
@@ -98,7 +98,7 @@ function App() {
         onComment={handleComment}
         onShare={handleShare}
       />
-    </VortexProvider>
+    </XHubReelProvider>
   )
 }
 ```
@@ -108,8 +108,8 @@ function App() {
 VideoFeedItem now exports VideoOverlay separately for custom layouts:
 
 ```tsx
-import { VideoFeedItem, VideoOverlay } from '@vortex/feed'
-import { ActionBar } from '@vortex/ui'
+import { VideoFeedItem, VideoOverlay } from '@xhub-reel/feed'
+import { ActionBar } from '@xhub-reel/ui'
 
 function CustomVideoItem({ video }) {
   return (
@@ -143,8 +143,8 @@ function CustomVideoItem({ video }) {
 For custom implementations, use the `useVideoFeed` hook:
 
 ```tsx
-import { useVideoFeed } from '@vortex/feed'
-import { VideoFeed } from '@vortex/feed'
+import { useVideoFeed } from '@xhub-reel/feed'
+import { VideoFeed } from '@xhub-reel/feed'
 
 function CustomFeedPage() {
   const {
@@ -243,7 +243,7 @@ Info overlay component (author, caption, hashtags).
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `config` | `VortexConfig` | - | API configuration (optional if using VortexProvider) |
+| `config` | `XHubReelConfig` | - | API configuration (optional if using XHubReelProvider) |
 | `userId` | `string` | - | User ID for user-specific feed |
 | `tag` | `string` | - | Tag/hashtag filter |
 | `searchQuery` | `string` | - | Search query |
@@ -255,7 +255,7 @@ Info overlay component (author, caption, hashtags).
 | `renderError` | `(error, retry) => ReactNode` | - | Custom error UI |
 | `renderEmpty` | `() => ReactNode` | - | Custom empty UI |
 
-> **Note:** `PullToRefresh` component đã được chuyển sang `@vortex/ui` package. Import từ `@vortex/ui` thay vì `@vortex/feed`.
+> **Note:** `PullToRefresh` component đã được chuyển sang `@xhub-reel/ui` package. Import từ `@xhub-reel/ui` thay vì `@xhub-reel/feed`.
 
 ## Hooks
 
@@ -275,7 +275,7 @@ const {
   isApiMode,        // Whether API mode active
   totalCount,       // Total count (if provided by API)
 } = useVideoFeed({
-  config,           // VortexConfig (required for API mode)
+  config,           // XHubReelConfig (required for API mode)
   userId,           // User ID filter
   tag,              // Tag filter
   searchQuery,      // Search query
@@ -309,12 +309,12 @@ const {
 })
 ```
 
-### usePreload (from @vortex/player-core)
+### usePreload (from @xhub-reel/player-core)
 
 Preload videos with priority queue.
 
 ```tsx
-import { usePreload, getPreloadPriorityForFeed } from '@vortex/feed'
+import { usePreload, getPreloadPriorityForFeed } from '@xhub-reel/feed'
 
 const {
   preload,          // Enqueue preload
@@ -348,7 +348,7 @@ import {
   mapPriorityToNumeric,        // Map enum to number
   getPreloadPriority,          // Get PreloadPriority enum
   preloadThumbnail,            // Preload thumbnail
-} from '@vortex/feed'
+} from '@xhub-reel/feed'
 
 // Get priority based on distance from current
 const priority = getPreloadPriorityForFeed(videoIndex, currentIndex)
@@ -391,11 +391,11 @@ The feed automatically manages memory:
 2. **Preload thumbnails** - Use blur placeholders
 3. **Let the system handle preloading** - usePreload manages queue automatically
 4. **Dispose properly** - Memory manager handles cleanup
-5. **Use design tokens** - All components use @vortex/core tokens
+5. **Use design tokens** - All components use @xhub-reel/core tokens
 
 ## Design System Integration
 
-All components use design tokens from @vortex/core:
+All components use design tokens from @xhub-reel/core:
 
 ```tsx
 import { 
@@ -406,8 +406,8 @@ import {
   radii,       // radii.sm, md, lg, full
   zIndices,    // zIndices.base, sticky, overlay
   durations,   // durations.fast, normal, slow
-  easings,     // easings.vortex (cubic-bezier)
-} from '@vortex/core'
+  easings,     // easings.xhubReel (cubic-bezier)
+} from '@xhub-reel/core'
 ```
 
 This ensures consistent styling across all packages.
@@ -420,21 +420,21 @@ This ensures consistent styling across all packages.
 
 ```tsx
 // Before
-import { usePreloader } from '@vortex/feed'
+import { usePreloader } from '@xhub-reel/feed'
 const { preloadStates } = usePreloader({ videos, currentIndex })
 
 // After  
-import { usePreload, getPreloadPriorityForFeed } from '@vortex/feed'
+import { usePreload, getPreloadPriorityForFeed } from '@xhub-reel/feed'
 const { statuses } = usePreload()
 const priority = getPreloadPriorityForFeed(index, currentIndex)
 ```
 
 #### 2. ActionBar Styling
 
-If you were overriding ActionBar styles, they may not work anymore since VideoFeedItem now uses @vortex/ui ActionBar component. Use ActionBar directly for custom styling:
+If you were overriding ActionBar styles, they may not work anymore since VideoFeedItem now uses @xhub-reel/ui ActionBar component. Use ActionBar directly for custom styling:
 
 ```tsx
-import { ActionBar } from '@vortex/ui'
+import { ActionBar } from '@xhub-reel/ui'
 
 <ActionBar
   likeCount={video.stats.likes}
@@ -448,7 +448,7 @@ import { ActionBar } from '@vortex/ui'
 If you were accessing internal overlay elements, use the new VideoOverlay component:
 
 ```tsx
-import { VideoOverlay } from '@vortex/feed'
+import { VideoOverlay } from '@xhub-reel/feed'
 
 <VideoOverlay
   video={video}

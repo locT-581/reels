@@ -4,14 +4,14 @@ sidebar_position: 2
 
 # Next.js Integration
 
-Hướng dẫn tích hợp VortexStream với Next.js 14+ (App Router).
+Hướng dẫn tích hợp XHubReel với Next.js 14+ (App Router).
 
 ## Setup
 
 ### 1. Cài đặt packages
 
 ```bash npm2yarn
-npm install @vortex/embed
+npm install @xhub-reel/embed
 npm install react react-dom hls.js motion lucide-react @tanstack/react-virtual @use-gesture/react zustand @tanstack/react-query
 ```
 
@@ -20,14 +20,14 @@ npm install react react-dom hls.js motion lucide-react @tanstack/react-virtual @
 ```js title="next.config.js"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Transpile @vortex packages
+  // Transpile @xhub-reel packages
   transpilePackages: [
-    '@vortex/core',
-    '@vortex/player',
-    '@vortex/ui',
-    '@vortex/gestures',
-    '@vortex/feed',
-    '@vortex/embed',
+    '@xhub-reel/core',
+    '@xhub-reel/player',
+    '@xhub-reel/ui',
+    '@xhub-reel/gestures',
+    '@xhub-reel/feed',
+    '@xhub-reel/embed',
   ],
   
   // Image domains (nếu dùng next/image)
@@ -49,11 +49,11 @@ module.exports = nextConfig
 ```js title="tailwind.config.js"
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  presets: [require('@vortex/ui/tailwind.preset')],
+  presets: [require('@xhub-reel/ui/tailwind.preset')],
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/@vortex/**/*.js',
+    './node_modules/@xhub-reel/**/*.js',
   ],
   theme: {
     extend: {},
@@ -70,14 +70,14 @@ module.exports = {
 @tailwind utilities;
 
 :root {
-  --vortex-violet: #8B5CF6;
-  --vortex-like: #FF2D55;
-  --vortex-black: #000000;
+  --xhub-reel-violet: #8B5CF6;
+  --xhub-reel-like: #FF2D55;
+  --xhub-reel-black: #000000;
 }
 
 html, body {
   height: 100%;
-  background: var(--vortex-black);
+  background: var(--xhub-reel-black);
 }
 
 /* Safe area padding cho mobile */
@@ -124,7 +124,7 @@ import { Providers } from './providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'VortexStream',
+  title: 'XHubReel',
   description: 'Short-form video platform',
 }
 
@@ -188,9 +188,9 @@ export function Providers({ children }: { children: ReactNode }) {
 ```tsx title="app/(feed)/page.tsx"
 'use client'
 
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import type { Video } from '@vortex/core'
+import type { Video } from '@xhub-reel/core'
 
 interface FeedResponse {
   videos: Video[]
@@ -280,7 +280,7 @@ export default function FeedPage() {
           <p>Có lỗi xảy ra</p>
           <button
             onClick={() => refetch()}
-            className="mt-4 px-4 py-2 bg-vortex-violet rounded-lg"
+            className="mt-4 px-4 py-2 bg-xhub-reel-violet rounded-lg"
           >
             Thử lại
           </button>
@@ -291,7 +291,7 @@ export default function FeedPage() {
 
   return (
     <main className="h-screen w-screen">
-      <VortexEmbed
+      <XHubReelEmbed
         videos={videos}
         config={{
           autoPlay: true,
@@ -323,7 +323,7 @@ export default function FeedPage() {
 ```tsx title="app/video/[id]/page.tsx"
 import { notFound } from 'next/navigation'
 import { VideoPlayerPage } from './VideoPlayerPage'
-import type { Video } from '@vortex/core'
+import type { Video } from '@xhub-reel/core'
 
 interface Props {
   params: { id: string }
@@ -369,13 +369,13 @@ export default async function VideoPage({ params }: Props) {
 ```tsx title="app/video/[id]/VideoPlayerPage.tsx"
 'use client'
 
-import { VortexPlayer } from '@vortex/embed'
-import type { Video } from '@vortex/core'
+import { XHubReelPlayer } from '@xhub-reel/embed'
+import type { Video } from '@xhub-reel/core'
 
 export function VideoPlayerPage({ video }: { video: Video }) {
   return (
     <div className="h-screen w-screen bg-black">
-      <VortexPlayer
+      <XHubReelPlayer
         video={video}
         autoPlay
         muted
@@ -470,8 +470,8 @@ module.exports = withPWA(nextConfig)
 
 ```json title="public/manifest.json"
 {
-  "name": "VortexStream",
-  "short_name": "Vortex",
+  "name": "XHubReel",
+  "short_name": "XHubReel",
   "description": "Short-form video platform",
   "start_url": "/",
   "display": "standalone",
@@ -499,9 +499,9 @@ module.exports = withPWA(nextConfig)
 ```tsx
 import dynamic from 'next/dynamic'
 
-// Lazy load VortexEmbed
-const VortexEmbed = dynamic(
-  () => import('@vortex/embed').then((mod) => mod.VortexEmbed),
+// Lazy load XHubReelEmbed
+const XHubReelEmbed = dynamic(
+  () => import('@xhub-reel/embed').then((mod) => mod.XHubReelEmbed),
   { 
     ssr: false,
     loading: () => <FeedSkeleton />,
@@ -525,7 +525,7 @@ function VideoFeed({ videos }) {
     })
   }, [videos, router])
 
-  return <VortexEmbed videos={videos} />
+  return <XHubReelEmbed videos={videos} />
 }
 ```
 
@@ -535,14 +535,14 @@ function VideoFeed({ videos }) {
 
 ```tsx
 // ❌ Sẽ gây hydration error
-<VortexEmbed videos={videos} />
+<XHubReelEmbed videos={videos} />
 
 // ✅ Sử dụng 'use client' và dynamic import
 'use client'
 import dynamic from 'next/dynamic'
 
-const VortexEmbed = dynamic(
-  () => import('@vortex/embed').then((m) => m.VortexEmbed),
+const XHubReelEmbed = dynamic(
+  () => import('@xhub-reel/embed').then((m) => m.XHubReelEmbed),
   { ssr: false }
 )
 ```
@@ -552,7 +552,7 @@ const VortexEmbed = dynamic(
 Browsers require user interaction or muted video for autoplay:
 
 ```tsx
-<VortexEmbed
+<XHubReelEmbed
   videos={videos}
   config={{
     autoPlay: true,

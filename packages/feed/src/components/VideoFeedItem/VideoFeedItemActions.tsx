@@ -8,7 +8,7 @@
 'use client'
 
 import { forwardRef, type HTMLAttributes } from 'react'
-import { ActionBar } from '@vortex/player'
+import { ActionBar } from '@xhub-reel/player'
 import { useVideoFeedItemContext } from './context'
 
 export interface VideoFeedItemActionsProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onShare'> {

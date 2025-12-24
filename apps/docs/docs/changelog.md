@@ -4,13 +4,13 @@ sidebar_position: 11
 
 # Changelog
 
-Lịch sử thay đổi của VortexStream.
+Lịch sử thay đổi của XHubReel.
 
 ## [0.1.0] - 2024-01-01
 
 ### 🎉 Initial Release
 
-#### @vortex/core
+#### @xhub-reel/core
 - ✨ TypeScript types cho Video, Author, Comment
 - ✨ Zustand stores (player, feed, UI)
 - ✨ Custom hooks (useDebounce, useThrottle, useNetworkStatus)
@@ -18,7 +18,7 @@ Lịch sử thay đổi của VortexStream.
 - ✨ IndexedDB storage (cache, watch history)
 - ✨ Offline action queue
 
-#### @vortex/player
+#### @xhub-reel/player
 - ✨ HLS video player với hls.js
 - ✨ Native HLS support cho Safari
 - ✨ Quality selection (auto, 1080p, 720p, 480p, 360p)
@@ -26,14 +26,14 @@ Lịch sử thay đổi của VortexStream.
 - ✨ Keyboard shortcuts
 - ✨ Seek bar với buffer indicator
 
-#### @vortex/feed
+#### @xhub-reel/feed
 - ✨ Virtualized video feed
 - ✨ Video activation based on visibility
 - ✨ Infinite scroll support
 - ✨ Pull to refresh
 - ✨ Memory management (max 5 videos in DOM)
 
-#### @vortex/gestures
+#### @xhub-reel/gestures
 - ✨ Tap gestures (single, double tap)
 - ✨ Long press detection
 - ✨ Swipe gestures (vertical, horizontal)
@@ -41,8 +41,8 @@ Lịch sử thay đổi của VortexStream.
 - ✨ Haptic feedback
 - ✨ Visual indicators (ripple, seek)
 
-#### @vortex/ui
-- ✨ Vortex Design System
+#### @xhub-reel/ui
+- ✨ XHubReel Design System
 - ✨ Button, IconButton, Avatar
 - ✨ LikeButton, CommentButton, ShareButton
 - ✨ Modal, BottomSheet
@@ -51,9 +51,9 @@ Lịch sử thay đổi của VortexStream.
 - ✨ DoubleTapHeart animation
 - ✨ Tailwind CSS preset
 
-#### @vortex/embed
-- ✨ All-in-one VortexEmbed component
-- ✨ VortexPlayer for single video
+#### @xhub-reel/embed
+- ✨ All-in-one XHubReelEmbed component
+- ✨ XHubReelPlayer for single video
 - ✨ Configurable theme và features
 - ✨ CDN build support
 

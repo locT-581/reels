@@ -8,7 +8,7 @@
 'use client'
 
 import { type CSSProperties, type ReactNode } from 'react'
-import { colors, spacing, fontSizes, fontWeights, radii } from '@vortex/design-tokens'
+import { colors, spacing, fontSizes, fontWeights, radii } from '@xhub-reel/design-tokens'
 import { BottomSheet } from '../BottomSheet'
 import { Toast } from '../Toast'
 import { useState, useCallback } from 'react'

@@ -4,11 +4,11 @@ sidebar_position: 3
 
 # Custom UI
 
-Tùy biến giao diện VortexStream theo thiết kế của bạn.
+Tùy biến giao diện XHubReel theo thiết kế của bạn.
 
 ## Tổng quan
 
-VortexStream cho phép bạn tùy biến:
+XHubReel cho phép bạn tùy biến:
 
 - 🎨 Colors và theme
 - 📐 Layout và positioning
@@ -19,13 +19,13 @@ VortexStream cho phép bạn tùy biến:
 
 ## Sử dụng các packages riêng lẻ
 
-Thay vì dùng `VortexEmbed`, bạn có thể compose UI từ các components nhỏ hơn:
+Thay vì dùng `XHubReelEmbed`, bạn có thể compose UI từ các components nhỏ hơn:
 
 ```tsx
-import { VideoFeed, VideoFeedItem } from '@vortex/feed'
-import { VideoPlayer } from '@vortex/player'
-import { useVideoGestures } from '@vortex/gestures'
-import { LikeButton, Avatar, Text } from '@vortex/ui'
+import { VideoFeed, VideoFeedItem } from '@xhub-reel/feed'
+import { VideoPlayer } from '@xhub-reel/player'
+import { useVideoGestures } from '@xhub-reel/gestures'
+import { LikeButton, Avatar, Text } from '@xhub-reel/ui'
 
 function CustomVideoFeed({ videos }) {
   return (
@@ -68,7 +68,7 @@ function CustomVideoItem({ video, isActive }) {
 ## Custom Video Overlay
 
 ```tsx
-import { Avatar, Text, Counter } from '@vortex/ui'
+import { Avatar, Text, Counter } from '@xhub-reel/ui'
 import { Music } from 'lucide-react'
 
 function CustomOverlay({ video }) {
@@ -109,7 +109,7 @@ function CustomOverlay({ video }) {
           {video.hashtags?.map(tag => (
             <span 
               key={tag}
-              className="text-vortex-violet text-sm"
+              className="text-xhub-reel-violet text-sm"
             >
               #{tag}
             </span>
@@ -135,7 +135,7 @@ function CustomOverlay({ video }) {
 
 ```tsx
 import { Heart, MessageCircle, Share2, Bookmark } from 'lucide-react'
-import { Counter } from '@vortex/ui'
+import { Counter } from '@xhub-reel/ui'
 import { motion } from 'motion/react'
 
 function CustomActions({ video, onLike, onComment, onShare, onSave }) {
@@ -208,7 +208,7 @@ function CustomActions({ video, onLike, onComment, onShare, onSave }) {
         <Bookmark
           className={`w-8 h-8 ${
             isSaved 
-              ? 'fill-vortex-violet text-vortex-violet' 
+              ? 'fill-xhub-reel-violet text-xhub-reel-violet' 
               : 'text-white'
           }`}
         />
@@ -221,7 +221,7 @@ function CustomActions({ video, onLike, onComment, onShare, onSave }) {
 ## Custom Player Controls
 
 ```tsx
-import { VideoPlayer, usePlayer } from '@vortex/player'
+import { VideoPlayer, usePlayer } from '@xhub-reel/player'
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 
@@ -320,11 +320,11 @@ function formatTime(seconds: number) {
 
 ```css
 :root {
-  /* Override Vortex colors */
-  --vortex-violet: #FF6B00;      /* Orange instead of violet */
-  --vortex-violet-light: #FF8533;
-  --vortex-violet-dark: #CC5500;
-  --vortex-like: #FF0000;
+  /* Override XHubReel colors */
+  --xhub-reel-violet: #FF6B00;      /* Orange instead of violet */
+  --xhub-reel-violet-light: #FF8533;
+  --xhub-reel-violet-dark: #CC5500;
+  --xhub-reel-like: #FF0000;
   
   /* Custom colors */
   --app-background: #0A0A0A;
@@ -334,14 +334,14 @@ function formatTime(seconds: number) {
 
 /* Dark mode specific */
 [data-theme='dark'] {
-  --vortex-violet: #FF6B00;
+  --xhub-reel-violet: #FF6B00;
 }
 ```
 
 ### ThemeProvider
 
 ```tsx
-import { ThemeProvider } from '@vortex/ui'
+import { ThemeProvider } from '@xhub-reel/ui'
 
 function App() {
   return (
@@ -372,7 +372,7 @@ function App() {
 ## Custom Comment Sheet
 
 ```tsx
-import { BottomSheet } from '@vortex/ui'
+import { BottomSheet } from '@xhub-reel/ui'
 import { useState } from 'react'
 
 function CustomCommentSheet({ isOpen, onClose, videoId, comments }) {
@@ -430,7 +430,7 @@ function CustomCommentSheet({ isOpen, onClose, videoId, comments }) {
             />
             <button
               disabled={!newComment.trim()}
-              className="px-4 py-2 bg-vortex-violet text-white rounded-full text-sm disabled:opacity-50"
+              className="px-4 py-2 bg-xhub-reel-violet text-white rounded-full text-sm disabled:opacity-50"
             >
               Gửi
             </button>
@@ -448,7 +448,7 @@ function CustomCommentSheet({ isOpen, onClose, videoId, comments }) {
 
 ```tsx
 <div className="h-screen w-screen">
-  <VortexEmbed videos={videos} />
+  <XHubReelEmbed videos={videos} />
 </div>
 ```
 
@@ -463,7 +463,7 @@ function CustomCommentSheet({ isOpen, onClose, videoId, comments }) {
   
   {/* Video feed */}
   <div className="flex-1">
-    <VortexEmbed videos={videos} />
+    <XHubReelEmbed videos={videos} />
   </div>
 </div>
 ```
@@ -479,7 +479,7 @@ function CustomCommentSheet({ isOpen, onClose, videoId, comments }) {
   
   {/* Main content */}
   <main className="flex-1 max-w-[500px] mx-auto">
-    <VortexEmbed videos={videos} />
+    <XHubReelEmbed videos={videos} />
   </main>
   
   {/* Right panel */}

@@ -1,15 +1,15 @@
-# @vortex/core
+# @xhub-reel/core
 
-> Core logic, types, stores, and utilities for VortexStream
+> Core logic, types, stores, and utilities for XHubReel
 
 ## Installation
 
 ```bash
-npm install @vortex/core
+npm install @xhub-reel/core
 # or
-pnpm add @vortex/core
+pnpm add @xhub-reel/core
 # or
-yarn add @vortex/core
+yarn add @xhub-reel/core
 ```
 
 ## Features
@@ -21,14 +21,14 @@ yarn add @vortex/core
 - 💾 **Storage** - IndexedDB for video cache, watch history, preferences
 - 🔄 **API Layer** - TanStack Query setup with optimized defaults
 - 📴 **Offline** - Action queue for offline-first support
-- 🔐 **API Integration** - VortexProvider for backend connectivity with auth support
+- 🔐 **API Integration** - XHubReelProvider for backend connectivity with auth support
 
 ## Usage
 
 ### Types
 
 ```typescript
-import type { Video, Author, Comment, PlayerState } from '@vortex/core'
+import type { Video, Author, Comment, PlayerState } from '@xhub-reel/core'
 
 const video: Video = {
   id: 'abc123',
@@ -43,7 +43,7 @@ const video: Video = {
 ### Stores
 
 ```typescript
-import { usePlayerStore, useFeedStore, useUIStore } from '@vortex/core'
+import { usePlayerStore, useFeedStore, useUIStore } from '@xhub-reel/core'
 
 // Player store
 const { isPlaying, play, pause, togglePlay } = usePlayerStore()
@@ -58,7 +58,7 @@ const { openCommentSheet, closeCommentSheet, showToast } = useUIStore()
 ### Hooks
 
 ```typescript
-import { useDebounce, useThrottle, useNetworkStatus } from '@vortex/core'
+import { useDebounce, useThrottle, useNetworkStatus } from '@xhub-reel/core'
 
 // Debounce search input
 const debouncedSearch = useDebounce(searchQuery, 300)
@@ -73,7 +73,7 @@ const { isOnline, isSlowConnection, effectiveType } = useNetworkStatus()
 ### Utilities
 
 ```typescript
-import { formatCount, formatDuration, formatTimestamp } from '@vortex/core'
+import { formatCount, formatDuration, formatTimestamp } from '@xhub-reel/core'
 
 formatCount(1500)      // "1.5K"
 formatCount(2300000)   // "2.3M"
@@ -90,7 +90,7 @@ import {
   getWatchHistory,
   cacheVideo,
   getCachedVideo,
-} from '@vortex/core'
+} from '@xhub-reel/core'
 
 // Save watch progress
 await saveWatchProgress('video-id', 30, 120) // position, duration
@@ -105,12 +105,12 @@ await cacheVideo(video)
 ### Constants
 
 ```typescript
-import { ANIMATION, TIMING, COLORS, GESTURE } from '@vortex/core/constants'
+import { ANIMATION, TIMING, COLORS, GESTURE } from '@xhub-reel/core/constants'
 
 // Animation constants
 ANIMATION.SPRING.STIFFNESS // 400
 ANIMATION.SPRING.DAMPING   // 30
-ANIMATION.EASING.VORTEX    // [0.32, 0.72, 0, 1]
+ANIMATION.EASING.XHUB_REEL    // [0.32, 0.72, 0, 1]
 
 // Timing
 TIMING.DOUBLE_TAP_DELAY    // 300ms
@@ -121,21 +121,21 @@ COLORS.VIOLET              // #8B5CF6
 COLORS.LIKE                // #FF2D55
 ```
 
-### API Integration (VortexProvider)
+### API Integration (XHubReelProvider)
 
-VortexStream supports two modes:
+XHubReel supports two modes:
 1. **Manual Mode**: Pass videos directly to components
 2. **API Mode**: Automatic data fetching from your backend
 
-#### Basic Setup with VortexProvider
+#### Basic Setup with XHubReelProvider
 
 ```tsx
-import { VortexProvider } from '@vortex/core/api'
-import { ConnectedVideoFeed } from '@vortex/feed'
+import { XHubReelProvider } from '@xhub-reel/core/api'
+import { ConnectedVideoFeed } from '@xhub-reel/feed'
 
 function App() {
   return (
-    <VortexProvider
+    <XHubReelProvider
       config={{
         baseUrl: 'https://api.yoursite.com/v1',
         auth: {
@@ -149,7 +149,7 @@ function App() {
       }}
     >
       <ConnectedVideoFeed feedType="foryou" />
-    </VortexProvider>
+    </XHubReelProvider>
   )
 }
 ```
@@ -157,9 +157,9 @@ function App() {
 #### Full Configuration Options
 
 ```typescript
-import type { VortexConfig } from '@vortex/core'
+import type { XHubReelConfig } from '@xhub-reel/core'
 
-const config: VortexConfig = {
+const config: XHubReelConfig = {
   // Required: Your API base URL
   baseUrl: 'https://api.yoursite.com/v1',
   
@@ -198,7 +198,7 @@ const config: VortexConfig = {
     // ... more endpoints
   },
   
-  // Transform API responses to VortexStream format
+  // Transform API responses to XHubReel format
   transformers: {
     transformVideoList: (response) => ({
       videos: response.data.items,
@@ -236,13 +236,13 @@ const config: VortexConfig = {
 }
 ```
 
-#### Using with useVortexConfig Hook
+#### Using with useXHubReelConfig Hook
 
 ```tsx
-import { useVortexConfig } from '@vortex/core/api'
+import { useXHubReelConfig } from '@xhub-reel/core/api'
 
 function MyComponent() {
-  const { config, isApiMode, setAccessToken } = useVortexConfig()
+  const { config, isApiMode, setAccessToken } = useXHubReelConfig()
   
   // Update token after login
   const handleLogin = async () => {
@@ -261,9 +261,9 @@ function MyComponent() {
 #### Creating Custom API Client
 
 ```typescript
-import { createVortexApiClient } from '@vortex/core/api'
+import { createXHubReelApiClient } from '@xhub-reel/core/api'
 
-const client = createVortexApiClient({
+const client = createXHubReelApiClient({
   baseUrl: 'https://api.example.com',
   auth: { accessToken: token },
 })
@@ -283,7 +283,7 @@ const comments = await client.fetchComments('video-id', { limit: 20 })
 
 #### Using Pre-built Transformers
 
-VortexStream provides pre-built transformers for common API response formats:
+XHubReel provides pre-built transformers for common API response formats:
 
 ```typescript
 import { 
@@ -291,11 +291,11 @@ import {
   transformSingleReelResponse,
   transformCommentsResponse,
   createVideoListTransformer,
-} from '@vortex/core'
+} from '@xhub-reel/core'
 
 // For APIs with structure:
 // { code: 200, data: { reels: [...], has_next: true, next_cursor: "..." } }
-const config: VortexConfig = {
+const config: XHubReelConfig = {
   baseUrl: 'https://api.yoursite.com',
   transformers: {
     transformVideoList: transformReelsResponse,
@@ -310,7 +310,7 @@ const config: VortexConfig = {
 For APIs with custom structure:
 
 ```typescript
-import { createVideoListTransformer } from '@vortex/core'
+import { createVideoListTransformer } from '@xhub-reel/core'
 
 // For APIs with structure:
 // { code: 200, data: { items: [...], hasMore: true, nextPage: "..." } }
@@ -321,7 +321,7 @@ const customTransformer = createVideoListTransformer({
   totalPath: 'data.totalCount',  // Optional: path to total
 })
 
-const config: VortexConfig = {
+const config: XHubReelConfig = {
   baseUrl: 'https://api.yoursite.com',
   transformers: {
     transformVideoList: customTransformer,
@@ -332,14 +332,14 @@ const config: VortexConfig = {
 #### Complete Real-world Example
 
 ```typescript
-import { VortexProvider } from '@vortex/core/api'
-import { transformReelsResponse } from '@vortex/core'
-import { ConnectedVideoFeed } from '@vortex/feed'
+import { XHubReelProvider } from '@xhub-reel/core/api'
+import { transformReelsResponse } from '@xhub-reel/core'
+import { ConnectedVideoFeed } from '@xhub-reel/feed'
 
 function App() {
   const [token, setToken] = useState(getStoredToken())
 
-  const config: VortexConfig = {
+  const config: XHubReelConfig = {
     baseUrl: 'https://gw-stg-messages.blocktrend.xyz/api/v1',
     
     // Authentication
@@ -381,9 +381,9 @@ function App() {
   }
 
   return (
-    <VortexProvider config={config}>
+    <XHubReelProvider config={config}>
       <ConnectedVideoFeed />
-    </VortexProvider>
+    </XHubReelProvider>
   )
 }
 ```

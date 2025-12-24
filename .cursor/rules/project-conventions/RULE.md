@@ -1,14 +1,14 @@
 ---
-description: "VortexStream project conventions - coding standards, file structure, and naming conventions"
+description: "XHubReel project conventions - coding standards, file structure, and naming conventions"
 globs: 
 alwaysApply: true
 ---
 
-# VortexStream Project Conventions
+# XHubReel Project Conventions
 
 ## Project Overview
 
-VortexStream là ứng dụng xem video dạng short-form (như TikTok), focus 100% vào mobile experience. Không cần SEO, chỉ client-side rendering.
+XHubReel là ứng dụng xem video dạng short-form (như TikTok), focus 100% vào mobile experience. Không cần SEO, chỉ client-side rendering.
 
 ## Tech Stack (Bắt buộc)
 

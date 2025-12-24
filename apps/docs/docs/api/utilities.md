@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Utilities
 
-Utility functions từ VortexStream.
+Utility functions từ XHubReel.
 
 ## Format Functions
 
@@ -13,7 +13,7 @@ Utility functions từ VortexStream.
 Format số lượng với suffix K/M/B.
 
 ```tsx
-import { formatCount } from '@vortex/core'
+import { formatCount } from '@xhub-reel/core'
 
 formatCount(500)       // "500"
 formatCount(1500)      // "1.5K"
@@ -29,7 +29,7 @@ formatCount(1500000000) // "1.5B"
 Format seconds thành mm:ss hoặc h:mm:ss.
 
 ```tsx
-import { formatDuration } from '@vortex/core'
+import { formatDuration } from '@xhub-reel/core'
 
 formatDuration(45)      // "0:45"
 formatDuration(125)     // "2:05"
@@ -43,7 +43,7 @@ formatDuration(3661)    // "1:01:01"
 Format timestamp thành relative time.
 
 ```tsx
-import { formatTimestamp } from '@vortex/core'
+import { formatTimestamp } from '@xhub-reel/core'
 
 formatTimestamp(new Date())                    // "now"
 formatTimestamp(new Date(Date.now() - 60000))  // "1m"
@@ -61,7 +61,7 @@ formatTimestamp(new Date(Date.now() - 604800000)) // "1w"
 Check if device is mobile.
 
 ```tsx
-import { isMobile } from '@vortex/core'
+import { isMobile } from '@xhub-reel/core'
 
 if (isMobile()) {
   // Mobile-specific behavior
@@ -75,7 +75,7 @@ if (isMobile()) {
 Check platform.
 
 ```tsx
-import { isIOS, isAndroid } from '@vortex/core'
+import { isIOS, isAndroid } from '@xhub-reel/core'
 
 if (isIOS()) {
   // iOS-specific
@@ -93,7 +93,7 @@ if (isAndroid()) {
 Check if browser is Safari.
 
 ```tsx
-import { isSafari } from '@vortex/core'
+import { isSafari } from '@xhub-reel/core'
 
 if (isSafari()) {
   // Safari handles native HLS
@@ -107,7 +107,7 @@ if (isSafari()) {
 Check if browser supports native HLS.
 
 ```tsx
-import { supportsHLS } from '@vortex/core'
+import { supportsHLS } from '@xhub-reel/core'
 
 if (supportsHLS()) {
   // Use native video element
@@ -123,7 +123,7 @@ if (supportsHLS()) {
 Get device pixel ratio.
 
 ```tsx
-import { getDevicePixelRatio } from '@vortex/core'
+import { getDevicePixelRatio } from '@xhub-reel/core'
 
 const ratio = getDevicePixelRatio()  // 2 on retina, 1 on standard
 ```
@@ -137,7 +137,7 @@ const ratio = getDevicePixelRatio()  // 2 on retina, 1 on standard
 Trigger haptic feedback.
 
 ```tsx
-import { haptic } from '@vortex/core'
+import { haptic } from '@xhub-reel/core'
 
 // Predefined patterns
 haptic.light()    // Light tap feedback
@@ -159,7 +159,7 @@ haptic.pattern([10, 50, 10])
 Check if URL is HLS manifest.
 
 ```tsx
-import { isHLSSource } from '@vortex/core'
+import { isHLSSource } from '@xhub-reel/core'
 
 isHLSSource('https://example.com/video.m3u8')  // true
 isHLSSource('https://example.com/video.mp4')   // false
@@ -172,7 +172,7 @@ isHLSSource('https://example.com/video.mp4')   // false
 Get MIME type from URL.
 
 ```tsx
-import { getVideoMimeType } from '@vortex/core'
+import { getVideoMimeType } from '@xhub-reel/core'
 
 getVideoMimeType('video.mp4')   // 'video/mp4'
 getVideoMimeType('video.webm')  // 'video/webm'
@@ -186,7 +186,7 @@ getVideoMimeType('video.m3u8')  // 'application/x-mpegURL'
 Check if browser can play source.
 
 ```tsx
-import { canPlaySource } from '@vortex/core'
+import { canPlaySource } from '@xhub-reel/core'
 
 const canPlay = canPlaySource('video/mp4')  // 'probably' | 'maybe' | ''
 ```
@@ -200,7 +200,7 @@ const canPlay = canPlaySource('video/mp4')  // 'probably' | 'maybe' | ''
 Determine tap zone from event.
 
 ```tsx
-import { getGestureZone } from '@vortex/gestures'
+import { getGestureZone } from '@xhub-reel/gestures'
 
 const zone = getGestureZone(event, containerElement)
 // Returns: 'left' | 'center' | 'right'
@@ -213,7 +213,7 @@ const zone = getGestureZone(event, containerElement)
 Calculate seek amount from drag distance.
 
 ```tsx
-import { calculateSeekAmount } from '@vortex/gestures'
+import { calculateSeekAmount } from '@xhub-reel/gestures'
 
 const seekAmount = calculateSeekAmount(dragDistance, {
   ratio: 0.5,        // 1px = 0.5s
@@ -233,7 +233,7 @@ const seekAmount = calculateSeekAmount(dragDistance, {
 Save video watch progress.
 
 ```tsx
-import { saveWatchProgress } from '@vortex/core/storage'
+import { saveWatchProgress } from '@xhub-reel/core/storage'
 
 await saveWatchProgress(videoId, currentTime, duration)
 ```
@@ -245,7 +245,7 @@ await saveWatchProgress(videoId, currentTime, duration)
 Get saved watch progress.
 
 ```tsx
-import { getWatchProgress } from '@vortex/core/storage'
+import { getWatchProgress } from '@xhub-reel/core/storage'
 
 const progress = await getWatchProgress(videoId)
 // { position: 30, duration: 120, percentage: 25, completed: false }
@@ -258,7 +258,7 @@ const progress = await getWatchProgress(videoId)
 Get watch history.
 
 ```tsx
-import { getWatchHistory } from '@vortex/core/storage'
+import { getWatchHistory } from '@xhub-reel/core/storage'
 
 const history = await getWatchHistory(limit)
 // [{ videoId, watchedAt, progress, completed }]
@@ -271,7 +271,7 @@ const history = await getWatchHistory(limit)
 Clear all watch history.
 
 ```tsx
-import { clearWatchHistory } from '@vortex/core/storage'
+import { clearWatchHistory } from '@xhub-reel/core/storage'
 
 await clearWatchHistory()
 ```
@@ -283,7 +283,7 @@ await clearWatchHistory()
 Cache video metadata.
 
 ```tsx
-import { cacheVideo } from '@vortex/core/storage'
+import { cacheVideo } from '@xhub-reel/core/storage'
 
 await cacheVideo(video)
 ```
@@ -295,7 +295,7 @@ await cacheVideo(video)
 Get cached video.
 
 ```tsx
-import { getCachedVideo } from '@vortex/core/storage'
+import { getCachedVideo } from '@xhub-reel/core/storage'
 
 const video = await getCachedVideo(videoId)
 ```
@@ -307,7 +307,7 @@ const video = await getCachedVideo(videoId)
 Get all cached videos.
 
 ```tsx
-import { getCachedVideos } from '@vortex/core/storage'
+import { getCachedVideos } from '@xhub-reel/core/storage'
 
 const videos = await getCachedVideos()
 ```
@@ -319,7 +319,7 @@ const videos = await getCachedVideos()
 Get total storage usage (including cache).
 
 ```tsx
-import { getStorageUsage } from '@vortex/core/storage'
+import { getStorageUsage } from '@xhub-reel/core/storage'
 
 const usage = await getStorageUsage()
 const sizeInBytes = usage.total
@@ -332,7 +332,7 @@ const sizeInBytes = usage.total
 Clear old cached videos (example policy).
 
 ```tsx
-import { clearOldCache } from '@vortex/core/storage'
+import { clearOldCache } from '@xhub-reel/core/storage'
 
 await clearOldCache(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000))
 ```
@@ -346,7 +346,7 @@ await clearOldCache(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000))
 Queue action for offline sync.
 
 ```tsx
-import { queueAction } from '@vortex/core/offline'
+import { queueAction } from '@xhub-reel/core/offline'
 
 await queueAction('like', { videoId })
 ```
@@ -358,7 +358,7 @@ await queueAction('like', { videoId })
 Process queued actions.
 
 ```tsx
-import { registerActionHandler, syncAllActions } from '@vortex/core/offline'
+import { registerActionHandler, syncAllActions } from '@xhub-reel/core/offline'
 
 registerActionHandler('like', async (action) => {
   await api.likeVideo(action.payload.videoId as string)
@@ -381,7 +381,7 @@ await syncAllActions()
 Get all queued actions.
 
 ```tsx
-import { getPendingActions } from '@vortex/core/offline'
+import { getPendingActions } from '@xhub-reel/core/offline'
 
 const actions = await getPendingActions()
 ```
@@ -395,11 +395,11 @@ const actions = await getPendingActions()
 Animation constants.
 
 ```tsx
-import { ANIMATION } from '@vortex/core/constants'
+import { ANIMATION } from '@xhub-reel/core/constants'
 
 ANIMATION.SPRING.STIFFNESS  // 400
 ANIMATION.SPRING.DAMPING    // 30
-ANIMATION.EASING.VORTEX     // [0.32, 0.72, 0, 1]
+ANIMATION.EASING.XHUB_REEL     // [0.32, 0.72, 0, 1]
 ANIMATION.DURATION.FAST     // 150
 ANIMATION.DURATION.NORMAL   // 300
 ANIMATION.DURATION.SLOW     // 500
@@ -412,7 +412,7 @@ ANIMATION.DURATION.SLOW     // 500
 Color constants.
 
 ```tsx
-import { COLORS } from '@vortex/core/constants'
+import { COLORS } from '@xhub-reel/core/constants'
 
 COLORS.VIOLET   // '#8B5CF6'
 COLORS.LIKE     // '#FF2D55'
@@ -426,7 +426,7 @@ COLORS.BLACK    // '#000000'
 Gesture constants.
 
 ```tsx
-import { GESTURE } from '@vortex/core/constants'
+import { GESTURE } from '@xhub-reel/core/constants'
 
 GESTURE.TAP.DOUBLE_TAP_DELAY       // 300
 GESTURE.LONG_PRESS.THRESHOLD       // 500
@@ -441,7 +441,7 @@ GESTURE.SWIPE.VELOCITY             // 0.5
 Player constants.
 
 ```tsx
-import { PLAYER } from '@vortex/core/constants'
+import { PLAYER } from '@xhub-reel/core/constants'
 
 PLAYER.HLS.MAX_BUFFER_LENGTH       // 30
 PLAYER.HLS.MAX_MAX_BUFFER_LENGTH   // 60

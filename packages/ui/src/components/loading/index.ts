@@ -1,5 +1,5 @@
 /**
- * @vortex/ui - Loading Components
+ * @xhub-reel/ui - Loading Components
  */
 
 export {

@@ -185,7 +185,7 @@ export function generateShareLink(videoId: string, baseUrl?: string): string {
 /**
  * Generate a deep link for mobile apps
  */
-export function generateDeepLink(videoId: string, scheme = 'vortex'): string {
+export function generateDeepLink(videoId: string, scheme = 'xhubreel'): string {
   return `${scheme}://video/${videoId}`
 }
 

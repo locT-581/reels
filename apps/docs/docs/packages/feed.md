@@ -2,19 +2,19 @@
 sidebar_position: 3
 ---
 
-# @vortex/feed
+# @xhub-reel/feed
 
 Virtualized video feed - TikTok-style infinite scroll.
 
 ## Cài đặt
 
 ```bash npm2yarn
-npm install @vortex/feed @vortex/core @vortex/player @tanstack/react-virtual
+npm install @xhub-reel/feed @xhub-reel/core @xhub-reel/player @tanstack/react-virtual
 ```
 
 ## Tổng quan
 
-`@vortex/feed` cung cấp:
+`@xhub-reel/feed` cung cấp:
 
 - 📜 **Virtualization** - Chỉ render video visible + buffer
 - ♾️ **Infinite Scroll** - Tự động load thêm content
@@ -26,8 +26,8 @@ npm install @vortex/feed @vortex/core @vortex/player @tanstack/react-virtual
 ## Basic Usage
 
 ```tsx
-import { VideoFeed } from '@vortex/feed'
-import type { Video } from '@vortex/core'
+import { VideoFeed } from '@xhub-reel/feed'
+import type { Video } from '@xhub-reel/core'
 
 function App() {
   const videos: Video[] = [/* ... */]
@@ -103,7 +103,7 @@ function App() {
 ### Với TanStack Query
 
 ```tsx
-import { VideoFeed } from '@vortex/feed'
+import { VideoFeed } from '@xhub-reel/feed'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
 function FeedPage() {
@@ -150,7 +150,7 @@ function FeedPage() {
 ### Manual pagination
 
 ```tsx
-import { VideoFeed } from '@vortex/feed'
+import { VideoFeed } from '@xhub-reel/feed'
 import { useState, useCallback } from 'react'
 
 function FeedPage() {
@@ -180,7 +180,7 @@ function FeedPage() {
 ## Custom Video Item
 
 ```tsx
-import { VideoFeed, VideoFeedItem } from '@vortex/feed'
+import { VideoFeed, VideoFeedItem } from '@xhub-reel/feed'
 
 <VideoFeed videos={videos}>
   {(video, index, isActive) => (
@@ -272,7 +272,7 @@ Feed tự động quản lý memory:
 Access feed state:
 
 ```tsx
-import { useFeed } from '@vortex/feed'
+import { useFeed } from '@xhub-reel/feed'
 
 function FeedControls() {
   const {
@@ -311,7 +311,7 @@ function FeedControls() {
 Control video activation:
 
 ```tsx
-import { useVideoActivation } from '@vortex/feed'
+import { useVideoActivation } from '@xhub-reel/feed'
 
 function VideoItem({ video }) {
   const {
@@ -338,7 +338,7 @@ function VideoItem({ video }) {
 Track video visibility:
 
 ```tsx
-import { useVideoVisibility } from '@vortex/feed'
+import { useVideoVisibility } from '@xhub-reel/feed'
 import { useRef } from 'react'
 
 function VideoItem({ video }) {
@@ -362,7 +362,7 @@ function VideoItem({ video }) {
 Preload upcoming videos:
 
 ```tsx
-import { usePreload } from '@vortex/feed'
+import { usePreload } from '@xhub-reel/feed'
 
 function Feed({ videos, currentIndex }) {
   // Preload next 2 videos

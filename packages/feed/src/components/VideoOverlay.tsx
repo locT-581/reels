@@ -2,13 +2,13 @@
  * VideoOverlay - Video information overlay (author, caption, hashtags)
  *
  * Displays video metadata over the video player
- * Uses design tokens from @vortex/core for styling
+ * Uses design tokens from @xhub-reel/core for styling
  */
 
 'use client'
 
 import { type CSSProperties } from 'react'
-import type { Video } from '@vortex/core'
+import type { Video } from '@xhub-reel/core'
 import {
   colors,
   spacing,
@@ -18,7 +18,7 @@ import {
   radii,
   zIndices,
   mergeStyles,
-} from '@vortex/core'
+} from '@xhub-reel/core'
 
 // =============================================================================
 // TYPES

@@ -8,7 +8,7 @@
 'use client'
 
 import { type CSSProperties } from 'react'
-import { colors, mergeStyles } from '@vortex/design-tokens'
+import { colors, mergeStyles } from '@xhub-reel/design-tokens'
 
 export interface SpinnerProps {
   /** Spinner size in pixels */
@@ -38,7 +38,7 @@ export function Spinner({
     <>
       {/* Inject keyframes if not already present */}
       <style>{`
-        @keyframes vortex-spin {
+        @keyframes xhub-reel-spin {
           to { transform: rotate(360deg); }
         }
       `}</style>
@@ -55,7 +55,7 @@ export function Spinner({
             borderColor: `${color}30`, // 30 = ~18% opacity
             borderTopColor: color,
             borderRadius: '50%',
-            animation: 'vortex-spin 1s linear infinite',
+            animation: 'xhub-reel-spin 1s linear infinite',
           },
           style
         )}

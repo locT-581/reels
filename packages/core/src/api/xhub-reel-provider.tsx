@@ -1,45 +1,45 @@
 /**
- * VortexProvider - React Context Provider for API configuration
+ * XHubReelProvider - React Context Provider for API configuration
  *
  * Usage:
  * ```tsx
  * // API Mode - fetch videos from your backend
- * <VortexProvider config={{
+ * <XHubReelProvider config={{
  *   baseUrl: 'https://api.yoursite.com/v1',
  *   auth: { accessToken: 'xxx' },
  * }}>
  *   <App />
- * </VortexProvider>
+ * </XHubReelProvider>
  *
  * // Manual Mode - pass videos directly to components
- * <VortexProvider>
+ * <XHubReelProvider>
  *   <VideoFeed videos={myVideos} />
- * </VortexProvider>
+ * </XHubReelProvider>
  * ```
  */
 
 'use client'
 
 import { createContext, useContext, useState, useCallback, useMemo } from 'react'
-import type { VortexConfig, VortexContextValue, VortexProviderProps } from '@vortex/types'
+import type { XHubReelConfig, XHubReelContextValue, XHubReelProviderProps } from '@xhub-reel/types'
 
 // =============================================================================
 // CONTEXT
 // =============================================================================
 
-const VortexContext = createContext<VortexContextValue | null>(null)
+const XHubReelContext = createContext<XHubReelContextValue | null>(null)
 
 // =============================================================================
 // PROVIDER
 // =============================================================================
 
 /**
- * VortexProvider - Wrap your app to enable API integration
+ * XHubReelProvider - Wrap your app to enable API integration
  *
  * @example
  * ```tsx
  * // With API configuration
- * <VortexProvider
+ * <XHubReelProvider
  *   config={{
  *     baseUrl: 'https://api.example.com',
  *     auth: {
@@ -56,27 +56,27 @@ const VortexContext = createContext<VortexContextValue | null>(null)
  *   }}
  * >
  *   <App />
- * </VortexProvider>
+ * </XHubReelProvider>
  *
  * // Without config (manual mode)
- * <VortexProvider>
+ * <XHubReelProvider>
  *   <VideoFeed videos={localVideos} />
- * </VortexProvider>
+ * </XHubReelProvider>
  * ```
  */
-export function VortexProvider({ config, children }: VortexProviderProps) {
-  const [currentConfig, setCurrentConfig] = useState<VortexConfig | null>(config ?? null)
+export function XHubReelProvider({ config, children }: XHubReelProviderProps) {
+  const [currentConfig, setCurrentConfig] = useState<XHubReelConfig | null>(config ?? null)
 
   // Update config at runtime
-  const updateConfig = useCallback((newConfig: Partial<VortexConfig>) => {
+  const updateConfig = useCallback((newConfig: Partial<XHubReelConfig>) => {
     setCurrentConfig((prev) => {
       if (!prev) {
         // If no previous config, newConfig must include baseUrl
         if (!newConfig.baseUrl) {
-          console.warn('[Vortex] Cannot update config without baseUrl')
+          console.warn('[XHubReel] Cannot update config without baseUrl')
           return prev
         }
-        return newConfig as VortexConfig
+        return newConfig as XHubReelConfig
       }
       return { ...prev, ...newConfig }
     })
@@ -97,7 +97,7 @@ export function VortexProvider({ config, children }: VortexProviderProps) {
   }, [])
 
   // Context value
-  const value = useMemo<VortexContextValue>(
+  const value = useMemo<XHubReelContextValue>(
     () => ({
       config: currentConfig,
       isApiMode: currentConfig !== null,
@@ -108,9 +108,9 @@ export function VortexProvider({ config, children }: VortexProviderProps) {
   )
 
   return (
-    <VortexContext.Provider value={value}>
+    <XHubReelContext.Provider value={value}>
       {children}
-    </VortexContext.Provider>
+    </XHubReelContext.Provider>
   )
 }
 
@@ -119,12 +119,12 @@ export function VortexProvider({ config, children }: VortexProviderProps) {
 // =============================================================================
 
 /**
- * useVortexConfig - Access VortexStream configuration
+ * useXHubReelConfig - Access XHubReel configuration
  *
  * @example
  * ```tsx
  * function MyComponent() {
- *   const { config, isApiMode, setAccessToken } = useVortexConfig()
+ *   const { config, isApiMode, setAccessToken } = useXHubReelConfig()
  *
  *   if (!isApiMode) {
  *     return <div>API mode not enabled</div>
@@ -134,8 +134,8 @@ export function VortexProvider({ config, children }: VortexProviderProps) {
  * }
  * ```
  */
-export function useVortexConfig(): VortexContextValue {
-  const context = useContext(VortexContext)
+export function useXHubReelConfig(): XHubReelContextValue {
+  const context = useContext(XHubReelContext)
 
   if (!context) {
     // Return default value when used outside provider (manual mode)
@@ -143,10 +143,10 @@ export function useVortexConfig(): VortexContextValue {
       config: null,
       isApiMode: false,
       updateConfig: () => {
-        console.warn('[Vortex] useVortexConfig called outside VortexProvider')
+        console.warn('[XHubReel] useXHubReelConfig called outside XHubReelProvider')
       },
       setAccessToken: () => {
-        console.warn('[Vortex] useVortexConfig called outside VortexProvider')
+        console.warn('[XHubReel] useXHubReelConfig called outside XHubReelProvider')
       },
     }
   }
@@ -155,12 +155,12 @@ export function useVortexConfig(): VortexContextValue {
 }
 
 /**
- * useVortexApiMode - Check if API mode is enabled
+ * useXHubReelApiMode - Check if API mode is enabled
  *
  * @example
  * ```tsx
  * function VideoFeedWrapper() {
- *   const isApiMode = useVortexApiMode()
+ *   const isApiMode = useXHubReelApiMode()
  *
  *   if (isApiMode) {
  *     return <VideoFeed /> // Will fetch from API
@@ -170,8 +170,8 @@ export function useVortexConfig(): VortexContextValue {
  * }
  * ```
  */
-export function useVortexApiMode(): boolean {
-  const { isApiMode } = useVortexConfig()
+export function useXHubReelApiMode(): boolean {
+  const { isApiMode } = useXHubReelConfig()
   return isApiMode
 }
 
@@ -183,13 +183,13 @@ export function useVortexApiMode(): boolean {
  * Get config or throw if not in API mode
  * Used internally by API hooks
  */
-export function useRequireConfig(): VortexConfig {
-  const { config, isApiMode } = useVortexConfig()
+export function useRequireConfig(): XHubReelConfig {
+  const { config, isApiMode } = useXHubReelConfig()
 
   if (!isApiMode || !config) {
     throw new Error(
-      '[Vortex] This hook requires API mode. ' +
-      'Wrap your app with <VortexProvider config={{...}}>'
+      '[XHubReel] This hook requires API mode. ' +
+      'Wrap your app with <XHubReelProvider config={{...}}>'
     )
   }
 
@@ -197,5 +197,5 @@ export function useRequireConfig(): VortexConfig {
 }
 
 // Export context for advanced use cases
-export { VortexContext }
+export { XHubReelContext }
 

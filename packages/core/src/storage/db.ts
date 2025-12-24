@@ -1,5 +1,5 @@
 /**
- * VortexDB - IndexedDB database for offline storage
+ * XHubReelDB - IndexedDB database for offline storage
  */
 
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb'
@@ -9,7 +9,7 @@ import type { Video } from '../types'
 // Database Schema
 // ============================================
 
-export interface VortexDBSchema extends DBSchema {
+export interface XHubReelDBSchema extends DBSchema {
   // Video metadata cache
   videos: {
     key: string
@@ -97,21 +97,21 @@ export interface VortexDBSchema extends DBSchema {
 // Database Instance
 // ============================================
 
-const DB_NAME = 'vortex-db'
+const DB_NAME = 'xhub-reel-db'
 const DB_VERSION = 1
 
-let dbPromise: Promise<IDBPDatabase<VortexDBSchema>> | null = null
+let dbPromise: Promise<IDBPDatabase<XHubReelDBSchema>> | null = null
 
 /**
  * Get or create database instance
  */
-export function getDB(): Promise<IDBPDatabase<VortexDBSchema>> {
+export function getDB(): Promise<IDBPDatabase<XHubReelDBSchema>> {
   if (typeof window === 'undefined') {
     return Promise.reject(new Error('IndexedDB not available on server'))
   }
 
   if (!dbPromise) {
-    dbPromise = openDB<VortexDBSchema>(DB_NAME, DB_VERSION, {
+    dbPromise = openDB<XHubReelDBSchema>(DB_NAME, DB_VERSION, {
       upgrade(db) {
         // Videos store
         if (!db.objectStoreNames.contains('videos')) {

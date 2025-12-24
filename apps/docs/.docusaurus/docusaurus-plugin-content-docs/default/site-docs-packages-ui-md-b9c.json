@@ -1,14 +1,14 @@
 {
   "id": "packages/ui",
-  "title": "@vortex/ui",
-  "description": "UI components với Vortex Design System.",
+  "title": "@xhub-reel/ui",
+  "description": "UI components với XHubReel Design System.",
   "source": "@site/docs/packages/ui.md",
   "sourceDirName": "packages",
   "slug": "/packages/ui",
   "permalink": "/en/docs/packages/ui",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/packages/ui.md",
+  "editUrl": "https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/docs/packages/ui.md",
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "locT-581",
@@ -19,11 +19,11 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "@vortex/gestures",
+    "title": "@xhub-reel/gestures",
     "permalink": "/en/docs/packages/gestures"
   },
   "next": {
-    "title": "@vortex/embed",
+    "title": "@xhub-reel/embed",
     "permalink": "/en/docs/packages/embed"
   }
 }

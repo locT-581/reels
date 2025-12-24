@@ -1,14 +1,14 @@
 {
   "id": "guides/performance",
   "title": "Performance",
-  "description": "Hướng dẫn tối ưu hiệu suất VortexStream.",
+  "description": "Hướng dẫn tối ưu hiệu suất XHubReel.",
   "source": "@site/docs/guides/performance.md",
   "sourceDirName": "guides",
   "slug": "/guides/performance",
   "permalink": "/en/docs/guides/performance",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/guides/performance.md",
+  "editUrl": "https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/docs/guides/performance.md",
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "locT-581",
@@ -23,7 +23,7 @@
     "permalink": "/en/docs/guides/offline-support"
   },
   "next": {
-    "title": "@vortex/core",
+    "title": "@xhub-reel/core",
     "permalink": "/en/docs/packages/core"
   }
 }

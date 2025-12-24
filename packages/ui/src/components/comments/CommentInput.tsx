@@ -8,7 +8,7 @@
 'use client'
 
 import { useState, useRef, type CSSProperties, type KeyboardEvent } from 'react'
-import { colors, spacing, fontSizes, radii, mergeStyles } from '@vortex/design-tokens'
+import { colors, spacing, fontSizes, radii, mergeStyles } from '@xhub-reel/design-tokens'
 import { Avatar } from '../base/Avatar'
 import { Spinner } from '../Spinner'
 

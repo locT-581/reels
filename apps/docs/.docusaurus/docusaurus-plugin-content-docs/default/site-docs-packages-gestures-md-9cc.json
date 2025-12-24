@@ -1,14 +1,14 @@
 {
   "id": "packages/gestures",
-  "title": "@vortex/gestures",
-  "description": "Gesture system cho VortexStream - Tap, swipe, long press, và more.",
+  "title": "@xhub-reel/gestures",
+  "description": "Gesture system cho XHubReel - Tap, swipe, long press, và more.",
   "source": "@site/docs/packages/gestures.md",
   "sourceDirName": "packages",
   "slug": "/packages/gestures",
   "permalink": "/en/docs/packages/gestures",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/packages/gestures.md",
+  "editUrl": "https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/docs/packages/gestures.md",
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "locT-581",
@@ -19,11 +19,11 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "@vortex/feed",
+    "title": "@xhub-reel/feed",
     "permalink": "/en/docs/packages/feed"
   },
   "next": {
-    "title": "@vortex/ui",
+    "title": "@xhub-reel/ui",
     "permalink": "/en/docs/packages/ui"
   }
 }

@@ -4,7 +4,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "paths": {
-      "@vortex/design-tokens": ["../design-tokens/dist/index.d.ts"]
+      "@xhub-reel/design-tokens": ["../design-tokens/dist/index.d.ts"]
     }
   },
   "include": ["src/**/*"],

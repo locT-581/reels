@@ -2,27 +2,27 @@
  * usePreloader - Feed-specific video preloading layer
  *
  * ARCHITECTURE:
- * This module re-exports core preload functionality from @vortex/player-core
+ * This module re-exports core preload functionality from @xhub-reel/player-core
  * and adds FEED-SPECIFIC abstractions:
  * - PreloadPriority type (high/medium/low/metadata/none)
  * - Priority calculation helpers based on video index distance
  *
  * LAYERED DESIGN (Big Tech Pattern):
  * ┌─────────────────────────────────────────┐
- * │ @vortex/feed (Domain Layer)             │
+ * │ @xhub-reel/feed (Domain Layer)             │
  * │ - Feed-specific priority enum           │
  * │ - Distance-based priority calculation   │
  * └──────────────┬──────────────────────────┘
  *                │ re-exports + extends
  *                ↓
  * ┌─────────────────────────────────────────┐
- * │ @vortex/player (UI Layer)               │
+ * │ @xhub-reel/player (UI Layer)               │
  * │ - Re-exports core + UI components       │
  * └──────────────┬──────────────────────────┘
  *                │ re-exports
  *                ↓
  * ┌─────────────────────────────────────────┐
- * │ @vortex/player-core (Core Layer)        │
+ * │ @xhub-reel/player-core (Core Layer)        │
  * │ - usePreload hook                       │
  * │ - PreloadManager service                │
  * │ - Generic, reusable logic               │
@@ -39,14 +39,14 @@
 
 'use client'
 
-// Re-export core preload hook from @vortex/player
+// Re-export core preload hook from @xhub-reel/player
 // Feed layer does NOT expose internal types (PreloadItem, PreloadStatus)
 // as these are implementation details. Consumers should use PreloadPriority.
 export {
   usePreload,
   type UsePreloadOptions,
   type UsePreloadReturn,
-} from '@vortex/player'
+} from '@xhub-reel/player'
 
 /**
  * Priority levels for feed preloading

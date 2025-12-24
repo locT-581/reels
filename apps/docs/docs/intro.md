@@ -3,13 +3,13 @@ sidebar_position: 1
 slug: /
 ---
 
-# VortexStream
+# XHubReel
 
 > High-performance short-form video SDK cho React - Xây dựng trải nghiệm video như TikTok/Reels
 
 ## 🎯 Tổng quan
 
-VortexStream là một bộ SDK modular giúp bạn tích hợp tính năng video ngắn (short-form video) vào ứng dụng React/Next.js của mình. Được thiết kế với triết lý **video-centric** và **mobile-first**, VortexStream mang đến trải nghiệm mượt mà, hiệu suất cao với bundle size tối thiểu.
+XHubReel là một bộ SDK modular giúp bạn tích hợp tính năng video ngắn (short-form video) vào ứng dụng React/Next.js của mình. Được thiết kế với triết lý **video-centric** và **mobile-first**, XHubReel mang đến trải nghiệm mượt mà, hiệu suất cao với bundle size tối thiểu.
 
 ## ✨ Tính năng chính
 
@@ -38,12 +38,12 @@ VortexStream là một bộ SDK modular giúp bạn tích hợp tính năng vide
 
 | Package | Mô tả | Size |
 |---------|-------|------|
-| `@vortex/core` | Types, stores, hooks, utilities | < 5KB |
-| `@vortex/player` | HLS video player | < 70KB |
-| `@vortex/feed` | Virtualized video feed | < 8KB |
-| `@vortex/gestures` | Gesture system | < 15KB |
-| `@vortex/ui` | UI components | < 15KB |
-| `@vortex/embed` | All-in-one embed | < 100KB |
+| `@xhub-reel/core` | Types, stores, hooks, utilities | < 5KB |
+| `@xhub-reel/player` | HLS video player | < 70KB |
+| `@xhub-reel/feed` | Virtualized video feed | < 8KB |
+| `@xhub-reel/gestures` | Gesture system | < 15KB |
+| `@xhub-reel/ui` | UI components | < 15KB |
+| `@xhub-reel/embed` | All-in-one embed | < 100KB |
 
 ## 🚀 Quick Start
 
@@ -51,16 +51,16 @@ VortexStream là một bộ SDK modular giúp bạn tích hợp tính năng vide
 
 ```bash
 # All-in-one package
-npm install @vortex/embed
+npm install @xhub-reel/embed
 
 # Hoặc các package riêng lẻ
-npm install @vortex/core @vortex/player @vortex/feed
+npm install @xhub-reel/core @xhub-reel/player @xhub-reel/feed
 ```
 
 ### Sử dụng cơ bản
 
 ```tsx
-import { VortexEmbed } from '@vortex/embed'
+import { XHubReelEmbed } from '@xhub-reel/embed'
 
 function App() {
   const videos = [
@@ -84,7 +84,7 @@ function App() {
 
   return (
     <div className="h-screen w-screen bg-black">
-      <VortexEmbed
+      <XHubReelEmbed
         videos={videos}
         config={{
           autoPlay: true,
@@ -115,9 +115,9 @@ function App() {
 
 ## 🔗 Links
 
-- [GitHub Repository](https://github.com/vortexstream/vortexstream)
-- [npm Packages](https://www.npmjs.com/org/vortex)
-- [Examples](https://github.com/vortexstream/vortexstream/tree/main/apps/example)
+- [GitHub Repository](https://github.com/xhubreel/xhubreel)
+- [npm Packages](https://www.npmjs.com/org/xhub-reel)
+- [Examples](https://github.com/xhubreel/xhubreel/tree/main/apps/example)
 
 ## 📄 License
 

@@ -1,6 +1,6 @@
-# VortexStream Documentation
+# XHubReel Documentation
 
-Documentation site cho VortexStream - High-performance short-form video SDK.
+Documentation site cho XHubReel - High-performance short-form video SDK.
 
 ## Getting Started
 

@@ -2,19 +2,19 @@
 sidebar_position: 1
 ---
 
-# @vortex/core
+# @xhub-reel/core
 
-Core logic, types, stores, và utilities cho VortexStream.
+Core logic, types, stores, và utilities cho XHubReel.
 
 ## Cài đặt
 
 ```bash npm2yarn
-npm install @vortex/core
+npm install @xhub-reel/core
 ```
 
 ## Tổng quan
 
-`@vortex/core` là nền tảng của toàn bộ VortexStream SDK, cung cấp:
+`@xhub-reel/core` là nền tảng của toàn bộ XHubReel SDK, cung cấp:
 
 - 📦 **Types** - TypeScript definitions cho Video, Author, Comment
 - 🏪 **Stores** - Zustand stores cho player, feed, UI state
@@ -28,7 +28,7 @@ npm install @vortex/core
 ### Video
 
 ```typescript
-import type { Video } from '@vortex/core'
+import type { Video } from '@xhub-reel/core'
 
 const video: Video = {
   id: 'abc123',
@@ -61,7 +61,7 @@ const video: Video = {
 ### Author
 
 ```typescript
-import type { Author } from '@vortex/core'
+import type { Author } from '@xhub-reel/core'
 
 const author: Author = {
   id: 'user1',
@@ -78,7 +78,7 @@ const author: Author = {
 ### Comment
 
 ```typescript
-import type { Comment } from '@vortex/core'
+import type { Comment } from '@xhub-reel/core'
 
 const comment: Comment = {
   id: 'comment1',
@@ -103,7 +103,7 @@ import type {
   PlayerState,  // 'idle' | 'loading' | 'playing' | 'paused' | 'buffering' | 'error'
   Quality,      // 'auto' | '1080p' | '720p' | '480p' | '360p'
   PlaybackSpeed // 0.5 | 0.75 | 1 | 1.25 | 1.5 | 2
-} from '@vortex/core'
+} from '@xhub-reel/core'
 ```
 
 ## Stores
@@ -113,7 +113,7 @@ import type {
 Quản lý state của video player.
 
 ```typescript
-import { usePlayerStore } from '@vortex/core'
+import { usePlayerStore } from '@xhub-reel/core'
 
 function PlayerControls() {
   const {
@@ -161,7 +161,7 @@ function PlayerControls() {
 Quản lý state của video feed.
 
 ```typescript
-import { useFeedStore } from '@vortex/core'
+import { useFeedStore } from '@xhub-reel/core'
 
 function FeedNavigation() {
   const {
@@ -195,7 +195,7 @@ function FeedNavigation() {
 Quản lý UI modals, sheets, toasts.
 
 ```typescript
-import { useUIStore } from '@vortex/core'
+import { useUIStore } from '@xhub-reel/core'
 
 function VideoActions() {
   const {
@@ -234,7 +234,7 @@ function VideoActions() {
 Debounce một giá trị.
 
 ```typescript
-import { useDebounce } from '@vortex/core'
+import { useDebounce } from '@xhub-reel/core'
 
 function Search() {
   const [query, setQuery] = useState('')
@@ -255,7 +255,7 @@ function Search() {
 Throttle một giá trị.
 
 ```typescript
-import { useThrottle } from '@vortex/core'
+import { useThrottle } from '@xhub-reel/core'
 
 function ScrollTracker() {
   const [scrollY, setScrollY] = useState(0)
@@ -277,7 +277,7 @@ function ScrollTracker() {
 Theo dõi trạng thái mạng.
 
 ```typescript
-import { useNetworkStatus } from '@vortex/core'
+import { useNetworkStatus } from '@xhub-reel/core'
 
 function NetworkIndicator() {
   const {
@@ -305,7 +305,7 @@ function NetworkIndicator() {
 ### Format functions
 
 ```typescript
-import { formatCount, formatDuration, formatTimestamp } from '@vortex/core'
+import { formatCount, formatDuration, formatTimestamp } from '@xhub-reel/core'
 
 // Format số lượng
 formatCount(1500)      // "1.5K"
@@ -330,7 +330,7 @@ import {
   isSafari,
   supportsHLS,
   getDevicePixelRatio,
-} from '@vortex/core'
+} from '@xhub-reel/core'
 
 // Kiểm tra thiết bị
 if (isMobile()) {
@@ -346,7 +346,7 @@ if (!supportsHLS()) {
 ### Haptic feedback
 
 ```typescript
-import { haptic } from '@vortex/core'
+import { haptic } from '@xhub-reel/core'
 
 // Trigger haptic feedback
 haptic.light()    // Nhẹ - cho tap
@@ -366,7 +366,7 @@ import {
   getWatchProgress,
   getWatchHistory,
   clearWatchHistory,
-} from '@vortex/core/storage'
+} from '@xhub-reel/core/storage'
 
 // Lưu tiến độ xem
 await saveWatchProgress('video123', 30, 120) // position: 30s, duration: 120s
@@ -392,7 +392,7 @@ import {
   getCachedVideos,
   getStorageUsage,
   clearOldCache,
-} from '@vortex/core/storage'
+} from '@xhub-reel/core/storage'
 
 // Cache video metadata
 await cacheVideo(video)
@@ -421,12 +421,12 @@ import {
   GESTURE,
   PLAYER,
   STORAGE,
-} from '@vortex/core/constants'
+} from '@xhub-reel/core/constants'
 
 // Animation
 ANIMATION.SPRING.STIFFNESS  // 400
 ANIMATION.SPRING.DAMPING    // 30
-ANIMATION.EASING.VORTEX     // [0.32, 0.72, 0, 1]
+ANIMATION.EASING.XHUB_REEL     // [0.32, 0.72, 0, 1]
 ANIMATION.DURATION.FAST     // 150
 ANIMATION.DURATION.NORMAL   // 300
 ANIMATION.DURATION.SLOW     // 500

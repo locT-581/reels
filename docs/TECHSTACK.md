@@ -1,4 +1,4 @@
-# VortexStream Tech Stack
+# XHubReel Tech Stack
 
 > **Nguyên tắc chọn stack:** Mobile-first, Ultra-lightweight, Cross-platform video stability, Easy integration
 
@@ -7,17 +7,17 @@
 ## 📦 Kiến trúc Monorepo
 
 ```
-vortex-stream/
+xhub-reel/
 ├── apps/
 │   ├── web/                    # Next.js demo app
 │   └── docs/                   # Documentation site (Nextra)
 ├── packages/
-│   ├── @vortex/core/           # Core logic, state, types
-│   ├── @vortex/player/         # HLS Video player
-│   ├── @vortex/ui/             # UI Components (React)
-│   ├── @vortex/gestures/       # Touch gesture system
-│   ├── @vortex/feed/           # Virtualized video feed
-│   └── @vortex/embed/          # Embeddable widget (standalone)
+│   ├── @xhub-reel/core/           # Core logic, state, types
+│   ├── @xhub-reel/player/         # HLS Video player
+│   ├── @xhub-reel/ui/             # UI Components (React)
+│   ├── @xhub-reel/gestures/       # Touch gesture system
+│   ├── @xhub-reel/feed/           # Virtualized video feed
+│   └── @xhub-reel/embed/          # Embeddable widget (standalone)
 ├── turbo.json
 ├── package.json
 └── pnpm-workspace.yaml
@@ -27,9 +27,9 @@ vortex-stream/
 
 | Benefit | Mô tả |
 |---------|-------|
-| **Plug & Play** | Người dùng có thể `npm install @vortex/embed` và nhúng vào bất kỳ website nào |
+| **Plug & Play** | Người dùng có thể `npm install @xhub-reel/embed` và nhúng vào bất kỳ website nào |
 | **Tree-shakable** | Chỉ import những gì cần, bundle size tối thiểu |
-| **Framework Agnostic** | `@vortex/core` không phụ thuộc React, có thể dùng với Vue/Svelte |
+| **Framework Agnostic** | `@xhub-reel/core` không phụ thuộc React, có thể dùng với Vue/Svelte |
 | **Versioning độc lập** | Mỗi package version riêng, dễ maintain |
 
 ---
@@ -76,7 +76,7 @@ const nextConfig = {
 | Layer | Choice | Size | Lý do |
 |-------|--------|------|-------|
 | **Styling** | CSS Variables + Inline Styles | 0KB | Zero runtime, maximum customizability |
-| **Design Tokens** | `@vortex/core/styles` | ~2KB | Type-safe, customizable |
+| **Design Tokens** | `@xhub-reel/core/styles` | ~2KB | Type-safe, customizable |
 | **Icons** | Inline SVG | 0KB dependency | No external icon library needed |
 | **Animation** | Motion (motion.dev) | ~18KB | Nhẹ hơn Framer Motion 50% |
 | **Spring Physics** | Motion | Included | `spring()` cho physics-based animation |
@@ -95,17 +95,17 @@ const nextConfig = {
 ```css
 /* Users can override in their CSS */
 :root {
-  --vortex-color-accent: #8B5CF6;
-  --vortex-color-like: #FF2D55;
-  --vortex-radius-lg: 16px;
-  --vortex-duration-normal: 300ms;
+  --xhub-reel-color-accent: #8B5CF6;
+  --xhub-reel-color-like: #FF2D55;
+  --xhub-reel-radius-lg: 16px;
+  --xhub-reel-duration-normal: 300ms;
 }
 ```
 
 ### Type-safe Style Utilities
 
 ```typescript
-import { colors, spacing, mergeStyles, layout, typography } from '@vortex/core'
+import { colors, spacing, mergeStyles, layout, typography } from '@xhub-reel/core'
 
 // Build styles with full type safety
 const buttonStyles = mergeStyles(
@@ -143,7 +143,7 @@ const buttonStyles = mergeStyles(
 ### Video Player Architecture
 
 ```typescript
-// @vortex/player structure
+// @xhub-reel/player structure
 packages/player/
 ├── src/
 │   ├── core/
@@ -202,7 +202,7 @@ const hlsConfig: Partial<HlsConfig> = {
 ### Gesture Implementation
 
 ```typescript
-// @vortex/gestures
+// @xhub-reel/gestures
 import { useGesture } from '@use-gesture/react'
 
 export function useVideoGestures(videoRef: RefObject<HTMLVideoElement>) {
@@ -244,7 +244,7 @@ export function useVideoGestures(videoRef: RefObject<HTMLVideoElement>) {
 ### Feed Architecture
 
 ```typescript
-// @vortex/feed
+// @xhub-reel/feed
 packages/feed/
 ├── src/
 │   ├── components/
@@ -310,7 +310,7 @@ export function VideoFeed({ videos }: { videos: Video[] }) {
 ### Store Structure
 
 ```typescript
-// @vortex/core/stores
+// @xhub-reel/core/stores
 
 // Player store
 interface PlayerStore {
@@ -355,9 +355,9 @@ interface FeedStore {
 ### IndexedDB Schema
 
 ```typescript
-// @vortex/core/storage
+// @xhub-reel/core/storage
 
-interface VortexDB {
+interface XHubReelDB {
   videos: {
     key: string          // video_id
     value: {
@@ -453,7 +453,7 @@ const withPWA = require('next-pwa')({
 ### Performance Monitoring
 
 ```typescript
-// @vortex/core/analytics
+// @xhub-reel/core/analytics
 
 import { onLCP, onFID, onCLS, onINP } from 'web-vitals'
 
@@ -479,27 +479,27 @@ export function trackVideoMetrics(videoId: string) {
 
 ## 📦 Package Exports (cho Integration)
 
-### @vortex/embed - Standalone Widget
+### @xhub-reel/embed - Standalone Widget
 
 ```typescript
 // Dễ dàng nhúng vào bất kỳ website nào
 
 // Option 1: Script tag
-<script src="https://cdn.vortex.dev/embed.min.js"></script>
-<div id="vortex-feed" data-api-key="xxx" data-feed-type="foryou"></div>
+<script src="https://cdn.xhubreel.dev/embed.min.js"></script>
+<div id="xhub-reel-feed" data-api-key="xxx" data-feed-type="foryou"></div>
 <script>
-  VortexEmbed.init('#vortex-feed', {
+  XHubReelEmbed.init('#xhub-reel-feed', {
     apiEndpoint: 'https://api.your-site.com/videos',
     theme: 'dark',
   })
 </script>
 
 // Option 2: React component
-import { VortexFeed } from '@vortex/embed/react'
+import { XHubReelFeed } from '@xhub-reel/embed/react'
 
 function App() {
   return (
-    <VortexFeed 
+    <XHubReelFeed 
       apiEndpoint="/api/videos"
       onVideoView={(video) => console.log('Viewed:', video.id)}
       onLike={(video) => handleLike(video.id)}
@@ -508,10 +508,10 @@ function App() {
 }
 
 // Option 3: Web Component
-<vortex-feed 
+<xhub-reel-feed 
   api-endpoint="/api/videos"
   theme="dark"
-></vortex-feed>
+></xhub-reel-feed>
 ```
 
 ---
@@ -520,12 +520,12 @@ function App() {
 
 | Package | Target Size (gzip) |
 |---------|-------------------|
-| `@vortex/core` | < 5KB |
-| `@vortex/player` | < 70KB (including hls.js) |
-| `@vortex/ui` | < 15KB |
-| `@vortex/gestures` | < 15KB |
-| `@vortex/feed` | < 8KB |
-| `@vortex/embed` | < 100KB (all-in-one) |
+| `@xhub-reel/core` | < 5KB |
+| `@xhub-reel/player` | < 70KB (including hls.js) |
+| `@xhub-reel/ui` | < 15KB |
+| `@xhub-reel/gestures` | < 15KB |
+| `@xhub-reel/feed` | < 8KB |
+| `@xhub-reel/embed` | < 100KB (all-in-one) |
 | **Total (full app)** | < 150KB |
 
 ### Bundle Analysis
@@ -573,19 +573,19 @@ pnpm size-limit
 
 ```bash
 # Install
-npm install @vortex/embed
+npm install @xhub-reel/embed
 
 # hoặc
-pnpm add @vortex/embed
+pnpm add @xhub-reel/embed
 ```
 
 ```tsx
 // React
-import { VortexFeed } from '@vortex/embed/react'
+import { XHubReelFeed } from '@xhub-reel/embed/react'
 
 export default function VideoPage() {
   return (
-    <VortexFeed
+    <XHubReelFeed
       videos={videos}
       onVideoEnd={(video) => loadMore()}
     />
@@ -596,9 +596,9 @@ export default function VideoPage() {
 ```html
 <!-- Vanilla JS -->
 <script type="module">
-  import { createVortexFeed } from 'https://cdn.vortex.dev/embed.esm.js'
+  import { createXHubReelFeed } from 'https://cdn.xhubreel.dev/embed.esm.js'
   
-  createVortexFeed(document.getElementById('feed'), {
+  createXHubReelFeed(document.getElementById('feed'), {
     videos: await fetchVideos(),
   })
 </script>

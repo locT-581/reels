@@ -8,8 +8,8 @@
 'use client'
 
 import { useCallback, useEffect, type RefObject } from 'react'
-import { usePlayerRuntimeStore, usePlayerPreferencesStore } from '@vortex/core'
-import type { PlaybackSpeed } from '@vortex/core'
+import { usePlayerRuntimeStore, usePlayerPreferencesStore } from '@xhub-reel/core'
+import type { PlaybackSpeed } from '@xhub-reel/core'
 import { safePlay } from '../utils/safePlay'
 
 export interface UsePlaybackReturn {

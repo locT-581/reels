@@ -1,14 +1,14 @@
 {
   "id": "api/types",
   "title": "Types",
-  "description": "TypeScript type definitions cho VortexStream.",
+  "description": "TypeScript type definitions cho XHubReel.",
   "source": "@site/docs/api/types.md",
   "sourceDirName": "api",
   "slug": "/api/types",
   "permalink": "/en/docs/api/types",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/api/types.md",
+  "editUrl": "https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/docs/api/types.md",
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "locT-581",
@@ -19,7 +19,7 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "@vortex/embed",
+    "title": "@xhub-reel/embed",
     "permalink": "/en/docs/packages/embed"
   },
   "next": {

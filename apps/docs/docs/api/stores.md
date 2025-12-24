@@ -42,7 +42,7 @@ Quản lý video player state.
 ### Usage
 
 ```tsx
-import { usePlayerStore } from '@vortex/core'
+import { usePlayerStore } from '@xhub-reel/core'
 
 function PlayerControls() {
   const {
@@ -135,7 +135,7 @@ Quản lý video feed state.
 ### Usage
 
 ```tsx
-import { useFeedStore } from '@vortex/core'
+import { useFeedStore } from '@xhub-reel/core'
 
 function FeedControls() {
   const {
@@ -180,7 +180,7 @@ function FeedControls() {
 ### Derived State
 
 ```tsx
-import { useFeedStore } from '@vortex/core'
+import { useFeedStore } from '@xhub-reel/core'
 
 function FeedStatus() {
   const videos = useFeedStore((state) => state.videos)
@@ -228,7 +228,7 @@ Quản lý UI state (modals, sheets, toasts).
 ### Usage
 
 ```tsx
-import { useUIStore } from '@vortex/core'
+import { useUIStore } from '@xhub-reel/core'
 
 function VideoActions({ video }) {
   const {
@@ -312,7 +312,7 @@ Quản lý user authentication state.
 ### Usage
 
 ```tsx
-import { useUserStore } from '@vortex/core'
+import { useUserStore } from '@xhub-reel/core'
 
 function UserProfile() {
   const { user, isAuthenticated, logout } = useUserStore()
@@ -348,7 +348,7 @@ const usePlayerStore = create(
       // ...
     }),
     {
-      name: 'vortex-player',
+      name: 'xhub-reel-player',
       partialize: (state) => ({
         isMuted: state.isMuted,
         volume: state.volume,
@@ -364,7 +364,7 @@ const usePlayerStore = create(
 ## Combining Stores
 
 ```tsx
-import { usePlayerStore, useFeedStore, useUIStore } from '@vortex/core'
+import { usePlayerStore, useFeedStore, useUIStore } from '@xhub-reel/core'
 
 function useVideoControls() {
   const { isPlaying, togglePlay } = usePlayerStore()

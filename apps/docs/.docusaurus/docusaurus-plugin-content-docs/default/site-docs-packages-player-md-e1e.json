@@ -1,6 +1,6 @@
 {
   "id": "packages/player",
-  "title": "@vortex/player",
+  "title": "@xhub-reel/player",
   "description": "HLS video player tối ưu cho short-form content.",
   "source": "@site/docs/packages/player.md",
   "sourceDirName": "packages",
@@ -8,7 +8,7 @@
   "permalink": "/en/docs/packages/player",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/packages/player.md",
+  "editUrl": "https://github.com/xhub-reel/xhub-reel/tree/main/apps/docs/docs/packages/player.md",
   "tags": [],
   "version": "current",
   "lastUpdatedBy": "locT-581",
@@ -19,11 +19,11 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "@vortex/core",
+    "title": "@xhub-reel/core",
     "permalink": "/en/docs/packages/core"
   },
   "next": {
-    "title": "@vortex/feed",
+    "title": "@xhub-reel/feed",
     "permalink": "/en/docs/packages/feed"
   }
 }
