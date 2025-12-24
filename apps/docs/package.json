@@ -1,6 +1,6 @@
 {
   "name": "@xhub-reel/docs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "XHubReel Documentation",
   "scripts": {
@@ -47,4 +47,3 @@
     "node": ">=18.0"
   }
 }
-

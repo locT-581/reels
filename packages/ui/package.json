@@ -1,6 +1,6 @@
 {
   "name": "@xhub-reel/ui",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "UI components for XHubReel",
   "license": "MIT",
   "author": "XHubReel Team",
@@ -13,7 +13,14 @@
   "bugs": {
     "url": "https://github.com/xhub-reel/xhub-reel/issues"
   },
-  "keywords": ["xhub-reel", "ui", "components", "react", "video", "tiktok"],
+  "keywords": [
+    "xhub-reel",
+    "ui",
+    "components",
+    "react",
+    "video",
+    "tiktok"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -60,4 +67,3 @@
     "dist"
   ]
 }
-

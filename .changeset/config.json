@@ -1,13 +1,10 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
-  "changelog": [
-    "@changesets/changelog-github",
-    { "repo": "vortex-stream/vortex-stream" }
-  ],
+  "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [],
   "linked": [
-    ["@vortex/core", "@vortex/player", "@vortex/ui", "@vortex/gestures", "@vortex/feed", "@vortex/embed"]
+    ["@xhub-reel/core", "@xhub-reel/player", "@xhub-reel/ui", "@xhub-reel/gestures", "@xhub-reel/feed", "@xhub-reel/embed"]
   ],
   "access": "public",
   "baseBranch": "main",

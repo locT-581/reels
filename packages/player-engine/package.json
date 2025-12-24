@@ -1,6 +1,6 @@
 {
   "name": "@xhub-reel/player-engine",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Pure Vanilla TypeScript video player engine for XHubReel",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -46,4 +46,3 @@
   ],
   "sideEffects": false
 }
-

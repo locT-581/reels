@@ -1,6 +1,6 @@
 {
   "name": "@xhub-reel/gestures",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Gesture system for XHubReel",
   "license": "MIT",
   "author": "XHubReel Team",
@@ -13,7 +13,14 @@
   "bugs": {
     "url": "https://github.com/xhub-reel/xhub-reel/issues"
   },
-  "keywords": ["xhub-reel", "gestures", "swipe", "tap", "react", "mobile"],
+  "keywords": [
+    "xhub-reel",
+    "gestures",
+    "swipe",
+    "tap",
+    "react",
+    "mobile"
+  ],
   "publishConfig": {
     "access": "public"
   },

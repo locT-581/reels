@@ -1,6 +1,6 @@
 {
   "name": "@xhub-reel/embed",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Embeddable widget for XHubReel",
   "license": "MIT",
   "author": "XHubReel Team",
@@ -13,7 +13,14 @@
   "bugs": {
     "url": "https://github.com/xhub-reel/xhub-reel/issues"
   },
-  "keywords": ["xhub-reel", "embed", "widget", "iframe", "react", "video"],
+  "keywords": [
+    "xhub-reel",
+    "embed",
+    "widget",
+    "iframe",
+    "react",
+    "video"
+  ],
   "publishConfig": {
     "access": "public"
   },

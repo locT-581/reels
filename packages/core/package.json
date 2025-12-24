@@ -1,6 +1,6 @@
 {
   "name": "@xhub-reel/core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Core logic, types, stores, and utilities for XHubReel",
   "license": "MIT",
   "author": "XHubReel Team",
@@ -13,7 +13,14 @@
   "bugs": {
     "url": "https://github.com/xhub-reel/xhub-reel/issues"
   },
-  "keywords": ["xhub-reel", "video", "player", "react", "tiktok", "short-form"],
+  "keywords": [
+    "xhub-reel",
+    "video",
+    "player",
+    "react",
+    "tiktok",
+    "short-form"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -101,4 +108,3 @@
     "dist"
   ]
 }
-

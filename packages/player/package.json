@@ -1,6 +1,6 @@
 {
   "name": "@xhub-reel/player",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "HLS video player for XHubReel",
   "license": "MIT",
   "author": "XHubReel Team",
@@ -13,7 +13,14 @@
   "bugs": {
     "url": "https://github.com/xhub-reel/xhub-reel/issues"
   },
-  "keywords": ["xhub-reel", "video", "player", "hls", "react", "streaming"],
+  "keywords": [
+    "xhub-reel",
+    "video",
+    "player",
+    "hls",
+    "react",
+    "streaming"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -61,4 +68,3 @@
     "dist"
   ]
 }
-
