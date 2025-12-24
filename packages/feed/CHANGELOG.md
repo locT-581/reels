@@ -1,5 +1,11 @@
 # @xhub-reel/feed
 
+## 0.2.2
+
+### Patch Changes
+
+- Set default value for initialMuted prop in ConnectedVideoFeed for improved autoplay handling
+
 ## 0.2.1
 
 ### Patch Changes

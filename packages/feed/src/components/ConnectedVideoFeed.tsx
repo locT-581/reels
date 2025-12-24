@@ -69,6 +69,13 @@ export interface ConnectedVideoFeedProps extends Omit<VideoFeedProps, 'videos' |
   initialVideos?: Video[]
 
   /**
+   * Whether video should start muted
+   * Set to false if you have already handled browser autoplay policy
+   * @default true
+   */
+  initialMuted?: boolean
+
+  /**
    * Called when videos are successfully fetched
    */
   onFetchSuccess?: (videos: Video[]) => void
@@ -197,6 +204,7 @@ export const ConnectedVideoFeed = forwardRef<VideoFeedRef, ConnectedVideoFeedPro
       searchQuery,
       pageSize = 10,
       initialVideos,
+      initialMuted = true,
       onFetchSuccess,
       onFetchError,
       renderLoading = () => <DefaultLoading />,
@@ -286,6 +294,7 @@ export const ConnectedVideoFeed = forwardRef<VideoFeedRef, ConnectedVideoFeedPro
         onComment={onComment}
         onShare={onShare}
         onAuthorClick={onAuthorClick}
+        initialMuted={initialMuted}
         {...videoFeedProps}
       />
     )

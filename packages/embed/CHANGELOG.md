@@ -1,5 +1,12 @@
 # @xhub-reel/embed
 
+## 0.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @xhub-reel/feed@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes
