@@ -1,0 +1,9 @@
+{
+  "label": "Packages",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Tài liệu chi tiết về các packages trong VortexStream monorepo."
+  }
+}
+

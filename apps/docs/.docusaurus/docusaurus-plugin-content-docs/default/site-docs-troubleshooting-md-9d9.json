@@ -5,7 +5,7 @@
   "source": "@site/docs/troubleshooting.md",
   "sourceDirName": ".",
   "slug": "/troubleshooting",
-  "permalink": "/docs/troubleshooting",
+  "permalink": "/en/docs/troubleshooting",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/troubleshooting.md",
@@ -20,10 +20,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Infinite Scroll",
-    "permalink": "/docs/examples/infinite-scroll"
+    "permalink": "/en/docs/examples/infinite-scroll"
   },
   "next": {
     "title": "Changelog",
-    "permalink": "/docs/changelog"
+    "permalink": "/en/docs/changelog"
   }
 }

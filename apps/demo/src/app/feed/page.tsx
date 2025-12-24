@@ -13,7 +13,6 @@ import Link from 'next/link'
 export default function FeedPage() {
   const feedRef = useRef<VideoFeedRef>(null)
 
-  // ✅ Sử dụng selector để chỉ lấy những fields cần thiết, tránh re-render khi các fields khác thay đổi
   const mode = useDemoConfig((state) => state.mode)
   const baseUrl = useDemoConfig((state) => state.baseUrl)
   const apiKey = useDemoConfig((state) => state.apiKey)
@@ -22,7 +21,6 @@ export default function FeedPage() {
   const endpoints = useDemoConfig((state) => state.endpoints)
   const debugMode = useDemoConfig((state) => state.debugMode)
 
-  // ✅ Memoize vortexConfig để tránh tạo object mới mỗi render
   const vortexConfig = useMemo(() => {
     if (mode === 'mock' || !baseUrl) {
       return null
@@ -106,7 +104,6 @@ export default function FeedPage() {
     showToast(`👤 Đang xem profile @${video.author.username}`, 'default')
   }, [showToast])
 
-  // ✅ Memoize feedProps để tránh tạo object mới mỗi render
   const feedProps = useMemo(() => ({
     onVideoChange: handleVideoChange,
     onLike: handleLike,

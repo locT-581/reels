@@ -1,7 +1,7 @@
 export default {
-  "0058b4c6": [() => import(/* webpackChunkName: "0058b4c6" */ "@generated/docusaurus-plugin-content-docs/default/p/docs-175.json"), "@generated/docusaurus-plugin-content-docs/default/p/docs-175.json", require.resolveWeak("@generated/docusaurus-plugin-content-docs/default/p/docs-175.json")],
   "0685996c": [() => import(/* webpackChunkName: "0685996c" */ "@site/docs/api/hooks.md"), "@site/docs/api/hooks.md", require.resolveWeak("@site/docs/api/hooks.md")],
   "0a7dbb82": [() => import(/* webpackChunkName: "0a7dbb82" */ "@site/docs/packages/feed.md"), "@site/docs/packages/feed.md", require.resolveWeak("@site/docs/packages/feed.md")],
+  "0abf49b1": [() => import(/* webpackChunkName: "0abf49b1" */ "@generated/docusaurus-plugin-content-docs/default/p/en-docs-b0f.json"), "@generated/docusaurus-plugin-content-docs/default/p/en-docs-b0f.json", require.resolveWeak("@generated/docusaurus-plugin-content-docs/default/p/en-docs-b0f.json")],
   "0ac02f92": [() => import(/* webpackChunkName: "0ac02f92" */ "@site/docs/api/components.md"), "@site/docs/api/components.md", require.resolveWeak("@site/docs/api/components.md")],
   "0e384e19": [() => import(/* webpackChunkName: "0e384e19" */ "@site/docs/intro.md"), "@site/docs/intro.md", require.resolveWeak("@site/docs/intro.md")],
   "0f3e4875": [() => import(/* webpackChunkName: "0f3e4875" */ "@site/docs/api/utilities.md"), "@site/docs/api/utilities.md", require.resolveWeak("@site/docs/api/utilities.md")],

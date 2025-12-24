@@ -5,7 +5,7 @@
   "source": "@site/docs/guides/gestures.md",
   "sourceDirName": "guides",
   "slug": "/guides/gestures",
-  "permalink": "/docs/guides/gestures",
+  "permalink": "/en/docs/guides/gestures",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/guides/gestures.md",
@@ -20,10 +20,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Custom UI",
-    "permalink": "/docs/guides/custom-ui"
+    "permalink": "/en/docs/guides/custom-ui"
   },
   "next": {
     "title": "Offline Support",
-    "permalink": "/docs/guides/offline-support"
+    "permalink": "/en/docs/guides/offline-support"
   }
 }

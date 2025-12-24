@@ -5,7 +5,7 @@
   "source": "@site/docs/api/types.md",
   "sourceDirName": "api",
   "slug": "/api/types",
-  "permalink": "/docs/api/types",
+  "permalink": "/en/docs/api/types",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/api/types.md",
@@ -20,10 +20,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "@vortex/embed",
-    "permalink": "/docs/packages/embed"
+    "permalink": "/en/docs/packages/embed"
   },
   "next": {
     "title": "Stores",
-    "permalink": "/docs/api/stores"
+    "permalink": "/en/docs/api/stores"
   }
 }

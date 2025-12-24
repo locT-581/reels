@@ -5,7 +5,7 @@
   "source": "@site/docs/packages/ui.md",
   "sourceDirName": "packages",
   "slug": "/packages/ui",
-  "permalink": "/docs/packages/ui",
+  "permalink": "/en/docs/packages/ui",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/packages/ui.md",
@@ -20,10 +20,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "@vortex/gestures",
-    "permalink": "/docs/packages/gestures"
+    "permalink": "/en/docs/packages/gestures"
   },
   "next": {
     "title": "@vortex/embed",
-    "permalink": "/docs/packages/embed"
+    "permalink": "/en/docs/packages/embed"
   }
 }

@@ -5,7 +5,7 @@
   "source": "@site/docs/examples/custom-actions.md",
   "sourceDirName": "examples",
   "slug": "/examples/custom-actions",
-  "permalink": "/docs/examples/custom-actions",
+  "permalink": "/en/docs/examples/custom-actions",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/examples/custom-actions.md",
@@ -20,10 +20,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Single Player",
-    "permalink": "/docs/examples/single-player"
+    "permalink": "/en/docs/examples/single-player"
   },
   "next": {
     "title": "Infinite Scroll",
-    "permalink": "/docs/examples/infinite-scroll"
+    "permalink": "/en/docs/examples/infinite-scroll"
   }
 }

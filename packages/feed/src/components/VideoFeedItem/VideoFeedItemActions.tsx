@@ -32,6 +32,7 @@ const VideoFeedItemActions = forwardRef<HTMLDivElement, VideoFeedItemActionsProp
     return (
       <div ref={ref} {...props}>
         <ActionBar
+          avatarUrl={video.author.avatar}
           likeCount={video.stats.likes}
           commentCount={video.stats.comments}
           shareCount={video.stats.shares}

@@ -5,7 +5,7 @@
   "source": "@site/docs/guides/performance.md",
   "sourceDirName": "guides",
   "slug": "/guides/performance",
-  "permalink": "/docs/guides/performance",
+  "permalink": "/en/docs/guides/performance",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/guides/performance.md",
@@ -20,10 +20,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Offline Support",
-    "permalink": "/docs/guides/offline-support"
+    "permalink": "/en/docs/guides/offline-support"
   },
   "next": {
     "title": "@vortex/core",
-    "permalink": "/docs/packages/core"
+    "permalink": "/en/docs/packages/core"
   }
 }

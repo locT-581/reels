@@ -5,7 +5,7 @@
   "source": "@site/docs/examples/infinite-scroll.md",
   "sourceDirName": "examples",
   "slug": "/examples/infinite-scroll",
-  "permalink": "/docs/examples/infinite-scroll",
+  "permalink": "/en/docs/examples/infinite-scroll",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/examples/infinite-scroll.md",
@@ -20,10 +20,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Custom Actions",
-    "permalink": "/docs/examples/custom-actions"
+    "permalink": "/en/docs/examples/custom-actions"
   },
   "next": {
     "title": "Troubleshooting",
-    "permalink": "/docs/troubleshooting"
+    "permalink": "/en/docs/troubleshooting"
   }
 }

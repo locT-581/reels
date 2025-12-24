@@ -5,7 +5,7 @@
   "source": "@site/docs/api/stores.md",
   "sourceDirName": "api",
   "slug": "/api/stores",
-  "permalink": "/docs/api/stores",
+  "permalink": "/en/docs/api/stores",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/api/stores.md",
@@ -20,10 +20,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Types",
-    "permalink": "/docs/api/types"
+    "permalink": "/en/docs/api/types"
   },
   "next": {
     "title": "Hooks",
-    "permalink": "/docs/api/hooks"
+    "permalink": "/en/docs/api/hooks"
   }
 }

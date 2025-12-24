@@ -1,148 +1,148 @@
 {
   "docusaurus-plugin-content-docs": {
     "default": {
-      "path": "/docs",
+      "path": "/en/docs",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/docs",
+          "path": "/en/docs",
           "mainDocId": "intro",
           "docs": [
             {
               "id": "api/components",
-              "path": "/docs/api/components",
+              "path": "/en/docs/api/components",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "api/hooks",
-              "path": "/docs/api/hooks",
+              "path": "/en/docs/api/hooks",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "api/stores",
-              "path": "/docs/api/stores",
+              "path": "/en/docs/api/stores",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "api/types",
-              "path": "/docs/api/types",
+              "path": "/en/docs/api/types",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "api/utilities",
-              "path": "/docs/api/utilities",
+              "path": "/en/docs/api/utilities",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "changelog",
-              "path": "/docs/changelog",
+              "path": "/en/docs/changelog",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "examples/basic-feed",
-              "path": "/docs/examples/basic-feed",
+              "path": "/en/docs/examples/basic-feed",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "examples/custom-actions",
-              "path": "/docs/examples/custom-actions",
+              "path": "/en/docs/examples/custom-actions",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "examples/infinite-scroll",
-              "path": "/docs/examples/infinite-scroll",
+              "path": "/en/docs/examples/infinite-scroll",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "examples/single-player",
-              "path": "/docs/examples/single-player",
+              "path": "/en/docs/examples/single-player",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "getting-started/installation",
-              "path": "/docs/getting-started/installation",
+              "path": "/en/docs/getting-started/installation",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "getting-started/project-structure",
-              "path": "/docs/getting-started/project-structure",
+              "path": "/en/docs/getting-started/project-structure",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "getting-started/quick-start",
-              "path": "/docs/getting-started/quick-start",
+              "path": "/en/docs/getting-started/quick-start",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "guides/basic-integration",
-              "path": "/docs/guides/basic-integration",
+              "path": "/en/docs/guides/basic-integration",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "guides/custom-ui",
-              "path": "/docs/guides/custom-ui",
+              "path": "/en/docs/guides/custom-ui",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "guides/gestures",
-              "path": "/docs/guides/gestures",
+              "path": "/en/docs/guides/gestures",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "guides/nextjs-integration",
-              "path": "/docs/guides/nextjs-integration",
+              "path": "/en/docs/guides/nextjs-integration",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "guides/offline-support",
-              "path": "/docs/guides/offline-support",
+              "path": "/en/docs/guides/offline-support",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "guides/performance",
-              "path": "/docs/guides/performance",
+              "path": "/en/docs/guides/performance",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "intro",
-              "path": "/docs/",
+              "path": "/en/docs/",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "packages/core",
-              "path": "/docs/packages/core",
+              "path": "/en/docs/packages/core",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "packages/embed",
-              "path": "/docs/packages/embed",
+              "path": "/en/docs/packages/embed",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "packages/feed",
-              "path": "/docs/packages/feed",
+              "path": "/en/docs/packages/feed",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "packages/gestures",
-              "path": "/docs/packages/gestures",
+              "path": "/en/docs/packages/gestures",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "packages/player",
-              "path": "/docs/packages/player",
+              "path": "/en/docs/packages/player",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "packages/ui",
-              "path": "/docs/packages/ui",
+              "path": "/en/docs/packages/ui",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "troubleshooting",
-              "path": "/docs/troubleshooting",
+              "path": "/en/docs/troubleshooting",
               "sidebar": "tutorialSidebar"
             }
           ],
@@ -150,7 +150,7 @@
           "sidebars": {
             "tutorialSidebar": {
               "link": {
-                "path": "/docs/",
+                "path": "/en/docs/",
                 "label": "intro"
               }
             }

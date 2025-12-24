@@ -63,7 +63,7 @@ const config: Config = {
           label: 'Docs',
         },
         {
-          to: '/docs/category/api-reference',
+          to: '/docs/api/types',
           label: 'API',
           position: 'left',
         },
@@ -82,11 +82,11 @@ const config: Config = {
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/getting-started',
+              to: '/docs/getting-started/installation',
             },
             {
               label: 'API Reference',
-              to: '/docs/category/api-reference',
+              to: '/docs/api/types',
             },
           ],
         },

@@ -91,6 +91,19 @@ const overlayStyles = {
     WebkitLineClamp: 2,
     WebkitBoxOrient: 'vertical' as const,
     overflow: 'hidden',
+    paddingBottom: spacing[1],
+  } satisfies CSSProperties,
+
+  author: {
+    color: colors.text,
+    fontSize: fontSizes.sm,
+    fontWeight: fontWeights.semibold,
+    textShadow: shadows.text,
+    display: '-webkit-box',
+    WebkitLineClamp: 1,
+    WebkitBoxOrient: 'vertical' as const,
+    overflow: 'hidden',
+    paddingBottom: spacing[1],
   } satisfies CSSProperties,
 
   hashtags: {
@@ -98,6 +111,7 @@ const overlayStyles = {
     flexWrap: 'wrap' as const,
     gap: spacing[1],
     marginTop: spacing[2],
+    paddingBottom: spacing[1],
   } satisfies CSSProperties,
 
   hashtag: {
@@ -114,7 +128,6 @@ const overlayStyles = {
 
 export function VideoOverlay({
   video,
-  onAuthorClick,
   timelineExpanded = false,
   style,
   className = '',
@@ -128,14 +141,7 @@ export function VideoOverlay({
   return (
     <div style={containerStyles} className={className}>
       {/* Author */}
-      <button style={overlayStyles.authorButton} onClick={onAuthorClick}>
-        <img
-          src={video.author.avatar}
-          alt={video.author.displayName}
-          style={overlayStyles.avatar}
-        />
-        <span style={overlayStyles.username}>@{video.author.username}</span>
-      </button>
+      {video.author && <p style={overlayStyles.author}>{video.author.displayName}</p>}
 
       {/* Caption */}
       {video.caption && <p style={overlayStyles.caption}>{video.caption}</p>}

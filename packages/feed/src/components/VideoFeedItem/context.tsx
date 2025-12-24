@@ -13,6 +13,8 @@ export interface VideoFeedItemContextValue {
   isActive: boolean
   shouldRenderVideo: boolean
   preload: '' | 'none' | 'metadata' | 'auto'
+  /** Video has been preloaded and first frame is ready */
+  isPreloaded: boolean
 
   // Refs
   containerRef: RefObject<HTMLDivElement | null>

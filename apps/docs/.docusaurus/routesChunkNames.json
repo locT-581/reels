@@ -1,132 +1,132 @@
 {
-  "/search-5de": {
+  "/en/search-5d6": {
     "__comp": "1a4e3797",
     "__context": {
       "plugin": "c141421f"
     }
   },
-  "/docs-d2b": {
+  "/en/docs-d1f": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/docs-a06": {
+  "/en/docs-dbe": {
     "__comp": "a7bd4aaa",
-    "__props": "0058b4c6"
+    "__props": "0abf49b1"
   },
-  "/docs-448": {
+  "/en/docs-8fb": {
     "__comp": "a94703ab"
   },
-  "/docs/-586": {
+  "/en/docs/-995": {
     "__comp": "17896441",
     "content": "0e384e19"
   },
-  "/docs/api/components-0a3": {
+  "/en/docs/api/components-aee": {
     "__comp": "17896441",
     "content": "0ac02f92"
   },
-  "/docs/api/hooks-712": {
+  "/en/docs/api/hooks-a28": {
     "__comp": "17896441",
     "content": "0685996c"
   },
-  "/docs/api/stores-41a": {
+  "/en/docs/api/stores-f5c": {
     "__comp": "17896441",
     "content": "41347662"
   },
-  "/docs/api/types-c54": {
+  "/en/docs/api/types-82d": {
     "__comp": "17896441",
     "content": "b999a6e4"
   },
-  "/docs/api/utilities-a1b": {
+  "/en/docs/api/utilities-73a": {
     "__comp": "17896441",
     "content": "0f3e4875"
   },
-  "/docs/changelog-49b": {
+  "/en/docs/changelog-5da": {
     "__comp": "17896441",
     "content": "9beb87c2"
   },
-  "/docs/examples/basic-feed-35d": {
+  "/en/docs/examples/basic-feed-e44": {
     "__comp": "17896441",
     "content": "aa7094da"
   },
-  "/docs/examples/custom-actions-64a": {
+  "/en/docs/examples/custom-actions-014": {
     "__comp": "17896441",
     "content": "fa46127d"
   },
-  "/docs/examples/infinite-scroll-c37": {
+  "/en/docs/examples/infinite-scroll-991": {
     "__comp": "17896441",
     "content": "f7ee4e22"
   },
-  "/docs/examples/single-player-724": {
+  "/en/docs/examples/single-player-585": {
     "__comp": "17896441",
     "content": "ba6180e2"
   },
-  "/docs/getting-started/installation-36a": {
+  "/en/docs/getting-started/installation-15f": {
     "__comp": "17896441",
     "content": "54f44165"
   },
-  "/docs/getting-started/project-structure-eea": {
+  "/en/docs/getting-started/project-structure-26f": {
     "__comp": "17896441",
     "content": "4c515ec3"
   },
-  "/docs/getting-started/quick-start-8cf": {
+  "/en/docs/getting-started/quick-start-921": {
     "__comp": "17896441",
     "content": "588bd741"
   },
-  "/docs/guides/basic-integration-3d5": {
+  "/en/docs/guides/basic-integration-e10": {
     "__comp": "17896441",
     "content": "281bb455"
   },
-  "/docs/guides/custom-ui-d85": {
+  "/en/docs/guides/custom-ui-3dc": {
     "__comp": "17896441",
     "content": "3434c48a"
   },
-  "/docs/guides/gestures-4c3": {
+  "/en/docs/guides/gestures-012": {
     "__comp": "17896441",
     "content": "1b6ecb8e"
   },
-  "/docs/guides/nextjs-integration-2f2": {
+  "/en/docs/guides/nextjs-integration-60c": {
     "__comp": "17896441",
     "content": "f32c5a34"
   },
-  "/docs/guides/offline-support-54d": {
+  "/en/docs/guides/offline-support-b8b": {
     "__comp": "17896441",
     "content": "d66ef0a4"
   },
-  "/docs/guides/performance-5ed": {
+  "/en/docs/guides/performance-fe3": {
     "__comp": "17896441",
     "content": "9c2b973e"
   },
-  "/docs/packages/core-e6d": {
+  "/en/docs/packages/core-77e": {
     "__comp": "17896441",
     "content": "8f900f9a"
   },
-  "/docs/packages/embed-334": {
+  "/en/docs/packages/embed-0c2": {
     "__comp": "17896441",
     "content": "73dfa9ac"
   },
-  "/docs/packages/feed-2c2": {
+  "/en/docs/packages/feed-37e": {
     "__comp": "17896441",
     "content": "0a7dbb82"
   },
-  "/docs/packages/gestures-23f": {
+  "/en/docs/packages/gestures-f9a": {
     "__comp": "17896441",
     "content": "9cce9d93"
   },
-  "/docs/packages/player-637": {
+  "/en/docs/packages/player-9a0": {
     "__comp": "17896441",
     "content": "e1e20b56"
   },
-  "/docs/packages/ui-c25": {
+  "/en/docs/packages/ui-101": {
     "__comp": "17896441",
     "content": "b9c9fa19"
   },
-  "/docs/troubleshooting-ee8": {
+  "/en/docs/troubleshooting-974": {
     "__comp": "17896441",
     "content": "9d9f8394"
   },
-  "/-e5f": {
+  "/en/-6c2": {
     "__comp": "1df93b7f",
     "__context": {
       "plugin": "a7456010"

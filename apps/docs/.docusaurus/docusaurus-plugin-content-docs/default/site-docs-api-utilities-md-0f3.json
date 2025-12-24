@@ -5,7 +5,7 @@
   "source": "@site/docs/api/utilities.md",
   "sourceDirName": "api",
   "slug": "/api/utilities",
-  "permalink": "/docs/api/utilities",
+  "permalink": "/en/docs/api/utilities",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/api/utilities.md",
@@ -20,10 +20,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Components",
-    "permalink": "/docs/api/components"
+    "permalink": "/en/docs/api/components"
   },
   "next": {
     "title": "Basic Feed",
-    "permalink": "/docs/examples/basic-feed"
+    "permalink": "/en/docs/examples/basic-feed"
   }
 }

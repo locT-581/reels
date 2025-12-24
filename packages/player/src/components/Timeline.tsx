@@ -88,19 +88,21 @@ const styles = {
     touchAction: 'none',
     userSelect: 'none' as const,
     WebkitUserSelect: 'none' as const,
+    // add animation for the container
+    transition: 'all 0.125s ease-in-out',
   } satisfies CSSProperties,
 
   // Collapsed mode - thin bar at bottom
   collapsed: {
     height: SEEK_BAR.HEIGHT_DEFAULT,
-    padding: 0,
+    paddingInline: spacing[3],
     cursor: 'pointer',
   } satisfies CSSProperties,
 
   // Expanded mode - full controls with gradient background
   expanded: {
-    padding: `${spacing[3]}px ${spacing[4]}px`,
-    paddingBottom: `calc(${spacing[4]}px + env(safe-area-inset-bottom, 0px))`,
+    padding: `${spacing[2]}px ${spacing[3]}px`,
+    paddingBottom: `calc(${spacing[1]}px + env(safe-area-inset-bottom, 0px))`,
     background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)',
   } satisfies CSSProperties,
 

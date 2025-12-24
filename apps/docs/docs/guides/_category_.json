@@ -1,0 +1,9 @@
+{
+  "label": "Guides",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Hướng dẫn chi tiết sử dụng VortexStream trong các trường hợp khác nhau."
+  }
+}
+

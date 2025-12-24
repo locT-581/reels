@@ -5,7 +5,7 @@
   "source": "@site/docs/changelog.md",
   "sourceDirName": ".",
   "slug": "/changelog",
-  "permalink": "/docs/changelog",
+  "permalink": "/en/docs/changelog",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/changelog.md",
@@ -20,6 +20,6 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Troubleshooting",
-    "permalink": "/docs/troubleshooting"
+    "permalink": "/en/docs/troubleshooting"
   }
 }

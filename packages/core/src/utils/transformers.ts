@@ -53,15 +53,15 @@ const DEFAULT_USER: User = {
 /**
  * Transform API owner to VortexStream Author
  */
-export function transformOwnerToAuthor(owner: ApiOwner | null): Author {
+export function transformOwnerToAuthor(owner: ApiOwner | null, fallbackDisplayName?: string): Author {
   if (!owner) {
-    return DEFAULT_AUTHOR
+    return {...DEFAULT_AUTHOR, displayName: `${fallbackDisplayName}`}
   }
 
   return {
     id: owner.id || 'unknown',
     username: owner.username || 'unknown',
-    displayName: owner.display_name || owner.username || 'Unknown User',
+    displayName: owner.display_name || owner.username || `${fallbackDisplayName}` || 'Unknown User',
     avatar: owner.avatar || '',
     isVerified: owner.is_verified || false,
     followersCount: owner.followers_count || 0,
@@ -115,8 +115,8 @@ export function transformReelToVideo(reel: ApiReel): Video {
     hlsUrl: videoMedia?.url || '',
     thumbnail: reel.thumbnail?.url || videoMedia?.poster || '',
     blurHash: undefined, // API doesn't provide blurHash
-    author: transformOwnerToAuthor(reel.owner),
-    caption: reel.description || reel.content || reel.title || '',
+    author: transformOwnerToAuthor(reel.owner, reel.title),
+    caption: reel.description || reel.content || '',
     hashtags,
     sound: undefined, // API doesn't provide sound info
     stats,

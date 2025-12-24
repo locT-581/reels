@@ -5,7 +5,7 @@
   "source": "@site/docs/packages/player.md",
   "sourceDirName": "packages",
   "slug": "/packages/player",
-  "permalink": "/docs/packages/player",
+  "permalink": "/en/docs/packages/player",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/vortexstream/vortexstream/tree/main/apps/docs/docs/packages/player.md",
@@ -20,10 +20,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "@vortex/core",
-    "permalink": "/docs/packages/core"
+    "permalink": "/en/docs/packages/core"
   },
   "next": {
     "title": "@vortex/feed",
-    "permalink": "/docs/packages/feed"
+    "permalink": "/en/docs/packages/feed"
   }
 }

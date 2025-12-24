@@ -8,7 +8,7 @@ export default {
   "tagline": "High-performance short-form video SDK for React",
   "favicon": "img/favicon.ico",
   "url": "https://vortexstream.dev",
-  "baseUrl": "/",
+  "baseUrl": "/en/",
   "organizationName": "vortexstream",
   "projectName": "vortexstream",
   "onBrokenLinks": "throw",
@@ -62,7 +62,7 @@ export default {
           "label": "Docs"
         },
         {
-          "to": "/docs/category/api-reference",
+          "to": "/docs/api/types",
           "label": "API",
           "position": "left"
         },
@@ -82,11 +82,11 @@ export default {
           "items": [
             {
               "label": "Getting Started",
-              "to": "/docs/getting-started"
+              "to": "/docs/getting-started/installation"
             },
             {
               "label": "API Reference",
-              "to": "/docs/category/api-reference"
+              "to": "/docs/api/types"
             }
           ]
         },

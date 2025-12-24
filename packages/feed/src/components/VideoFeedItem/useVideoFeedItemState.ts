@@ -47,6 +47,7 @@ export function useVideoFeedItemState({
   // UI State
   const [showPauseOverlay, setShowPauseOverlay] = useState(false)
   const [timelineExpanded, setTimelineExpanded] = useState(false)
+  const [isPreloaded, setIsPreloaded] = useState(false)
 
   // Heart animation
   const {
@@ -221,6 +222,54 @@ export function useVideoFeedItemState({
     return () => setInDom(false)
   }, [setInDom])
 
+  useEffect(() => {
+    const videoEl = videoRef.current
+    if (!videoEl) return
+
+    // Reset preloaded state khi video thay đổi
+    setIsPreloaded(false)
+
+    const handleLoadedData = () => {
+      console.log('[VideoFeedItem] Video loadeddata:', video.id, { isActive, priority })
+
+      // Nếu là video adjacent (priority = 'high' nhưng không active)
+      // Decode first frame bằng cách play() -> pause() ngay
+      if (priority === 'high' && !isActive) {
+        // Dùng requestAnimationFrame để đảm bảo video đã sẵn sàng
+        requestAnimationFrame(() => {
+          if (videoEl.readyState >= 2) { // HAVE_CURRENT_DATA
+            videoEl.currentTime = 0.01 // Seek nhẹ để trigger decode
+            setIsPreloaded(true)
+            console.log('[VideoFeedItem] First frame decoded (preloaded):', video.id)
+          }
+        })
+      } else if (isActive) {
+        // Video active cũng được coi là preloaded
+        setIsPreloaded(true)
+      }
+    }
+
+    const handleCanPlay = () => {
+      // Backup: nếu loadeddata không fire, canplay sẽ đảm bảo
+      if (priority === 'high' && !isPreloaded) {
+        setIsPreloaded(true)
+      }
+    }
+
+    videoEl.addEventListener('loadeddata', handleLoadedData)
+    videoEl.addEventListener('canplay', handleCanPlay)
+
+    // Nếu video đã có data, check ngay
+    if (videoEl.readyState >= 2) {
+      handleLoadedData()
+    }
+
+    return () => {
+      videoEl.removeEventListener('loadeddata', handleLoadedData)
+      videoEl.removeEventListener('canplay', handleCanPlay)
+    }
+  }, [video.id, isActive, priority, isPreloaded])
+
   // Debug log
   useEffect(() => {
     console.log('[VideoFeedItem] State:', {
@@ -300,6 +349,7 @@ export function useVideoFeedItemState({
     isActive,
     shouldRenderVideo,
     preload,
+    isPreloaded,
     containerRef,
     videoRef,
     isPlaying: effectiveIsPlaying,
