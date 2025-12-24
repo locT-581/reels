@@ -1,5 +1,11 @@
 # @xhub-reel/core
 
+## 0.2.3
+
+### Patch Changes
+
+- Integrate player-engine and enhance video feed with pooling support for improved performance
+
 ## 0.2.0
 
 ### Minor Changes

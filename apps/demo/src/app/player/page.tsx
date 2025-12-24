@@ -21,6 +21,7 @@ export default function PlayerPage() {
   const [toastVisible, setToastVisible] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
   const [toastVariant, setToastVariant] = useState<'default' | 'success' | 'error' | 'warning'>('default')
+  const [showSeekPreview, setShowSeekPreview] = useState(true)
 
   const currentVideo = mockVideos[selectedVideoIndex]
 
@@ -204,13 +205,18 @@ export default function PlayerPage() {
                 onShare={handleShare}
               />
 
-              {/* Timeline */}
+              {/* Timeline with Seek Preview */}
               <Timeline
                 videoRef={videoElementRef}
                 expanded={timelineExpanded}
                 onSeekStart={handleSeekStart}
                 onSeekEnd={handleSeekEnd}
                 onExpandedChange={setTimelineExpanded}
+                // Seek Preview feature
+                showPreview={showSeekPreview}
+                getThumbnailUrl={() => currentVideo.thumbnail}
+                previewWidth={120}
+                previewHeight={68}
               />
 
               {/* Video Info Overlay */}
@@ -261,6 +267,28 @@ export default function PlayerPage() {
               <Settings className="w-5 h-5" />
               Player Controls
             </h2>
+
+            {/* Seek Preview Toggle */}
+            <div className="flex items-center justify-between mb-4 p-3 rounded-xl bg-xhub-reel-surface border border-xhub-reel-border">
+              <div>
+                <div className="font-medium text-xhub-reel-text">Seek Preview</div>
+                <div className="text-sm text-xhub-reel-text-muted">
+                  Hiển thị thumbnail khi kéo timeline
+                </div>
+              </div>
+              <button
+                onClick={() => setShowSeekPreview(!showSeekPreview)}
+                className={`relative w-12 h-7 rounded-full transition-colors ${
+                  showSeekPreview ? 'bg-xhub-reel-accent' : 'bg-xhub-reel-glass-light'
+                }`}
+              >
+                <span
+                  className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full transition-transform ${
+                    showSeekPreview ? 'translate-x-5' : 'translate-x-0'
+                  }`}
+                />
+              </button>
+            </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <button
@@ -357,6 +385,15 @@ export default function PlayerPage() {
                 <div>
                   <div className="font-medium text-xhub-reel-text">Long Press</div>
                   <div className="text-xhub-reel-text-muted">Show info sheet</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-xhub-reel-accent/10 flex items-center justify-center">
+                  🎚️
+                </div>
+                <div>
+                  <div className="font-medium text-xhub-reel-text">Drag Timeline</div>
+                  <div className="text-xhub-reel-text-muted">Seek with thumbnail preview</div>
                 </div>
               </div>
             </div>

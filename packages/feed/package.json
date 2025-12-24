@@ -1,6 +1,6 @@
 {
   "name": "@xhub-reel/feed",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Virtualized video feed for XHubReel",
   "license": "MIT",
   "author": "XHubReel Team",
@@ -45,6 +45,8 @@
   "dependencies": {
     "@xhub-reel/core": "workspace:*",
     "@xhub-reel/player": "workspace:*",
+    "@xhub-reel/player-engine": "workspace:*",
+    "@xhub-reel/ui": "workspace:*",
     "@xhub-reel/gestures": "workspace:*"
   },
   "peerDependencies": {

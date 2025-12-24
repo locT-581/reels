@@ -5,8 +5,6 @@
 // Utility hooks
 export { useDebounce } from './useDebounce'
 export { useThrottle } from './useThrottle'
-export { useLocalStorage } from './useLocalStorage'
-export { useDeviceInfo } from './useDeviceInfo'
 
 // Interaction hooks
 export { useLike, type UseLikeOptions, type UseLikeReturn } from './useLike'

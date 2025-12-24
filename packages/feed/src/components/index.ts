@@ -23,6 +23,9 @@ export {
 } from './VideoFeedItem'
 export { VideoOverlay, type VideoOverlayProps } from './VideoOverlay'
 
-// API mode - automatic data fetching
+// API mode - automatic data fetching (with optional pooling)
 export { ConnectedVideoFeed, type ConnectedVideoFeedProps } from './ConnectedVideoFeed'
+
+// Manual mode with pooling (without API integration)
+export { PooledVideoFeed, type PooledVideoFeedProps } from './PooledVideoFeed'
 

@@ -11,6 +11,8 @@ export interface VideoFeedItemContextValue {
   // Video data
   video: Video
   isActive: boolean
+  /** Preload priority level */
+  priority: 'high' | 'medium' | 'low' | 'metadata' | 'none'
   shouldRenderVideo: boolean
   preload: '' | 'none' | 'metadata' | 'auto'
   /** Video has been preloaded and first frame is ready */

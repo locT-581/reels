@@ -56,6 +56,24 @@ export {
 
 // Utils
 export { safePlay, type SafePlayOptions } from './utils/safePlay'
+export {
+  detectPlatform,
+  getPlatformConfig,
+  getPlatformDescription,
+  isHLSJSSupported,
+  type PlatformInfo,
+  type PlatformConfig,
+} from './utils/platform'
+
+// Video Engine Pool
+export {
+  VideoEnginePool,
+  createVideoEnginePool,
+  type EngineSlot,
+  type SlotState,
+  type VideoEnginePoolOptions,
+  type PrepareOptions,
+} from './pool'
 
 // Types
 export type { PlayResult } from './types/playback'

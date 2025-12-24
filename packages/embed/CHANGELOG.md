@@ -1,5 +1,17 @@
 # @xhub-reel/embed
 
+## 0.2.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @xhub-reel/player-engine@0.0.3
+  - @xhub-reel/player@0.2.3
+  - @xhub-reel/core@0.2.3
+  - @xhub-reel/feed@0.2.3
+  - @xhub-reel/ui@0.2.3
+  - @xhub-reel/player-core@0.0.4
+
 ## 0.2.2
 
 ### Patch Changes

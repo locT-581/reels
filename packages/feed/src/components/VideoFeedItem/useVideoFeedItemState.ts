@@ -361,6 +361,7 @@ export function useVideoFeedItemState({
   return {
     video,
     isActive,
+    priority,
     shouldRenderVideo,
     preload,
     isPreloaded,

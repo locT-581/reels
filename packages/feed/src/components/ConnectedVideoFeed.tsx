@@ -1,41 +1,57 @@
 /**
- * ConnectedVideoFeed - VideoFeed with automatic API data fetching
+ * ConnectedVideoFeed - High-performance VideoFeed with automatic API data fetching
  *
- * This component wraps VideoFeed and handles data fetching from your backend.
+ * Features:
+ * - Automatic data fetching from your backend
+ * - Optional Video Engine Pool for instant playback (enabled by default)
+ * - Pre-loading and pre-decoding adjacent videos for seamless swipe experience
+ *
  * Requires XHubReelProvider config to be set up, or pass config directly.
  *
  * @example
  * ```tsx
- * // With XHubReelProvider (recommended)
+ * // Basic usage (pooling enabled by default)
  * <XHubReelProvider config={{ baseUrl: 'https://api.example.com' }}>
  *   <ConnectedVideoFeed onLike={handleLike} />
  * </XHubReelProvider>
  *
- * // Or pass config directly
+ * // Disable pooling for simpler use cases
+ * <ConnectedVideoFeed pooling={false} />
+ *
+ * // Custom pool configuration
  * <ConnectedVideoFeed
  *   config={{ baseUrl: 'https://api.example.com', auth: { accessToken: '...' } }}
+ *   poolConfig={{ poolSize: 5 }}
+ *   forceHLSJS  // Recommended for WebViews
  * />
  * ```
  */
 
 'use client'
 
-import {
-  forwardRef,
-  useCallback,
-  type CSSProperties,
-} from 'react'
+import { forwardRef, useCallback, useState } from 'react'
 import type { Video, XHubReelConfig } from '@xhub-reel/core'
-import { colors, spacing, fontSizes, fontWeights, radii } from '@xhub-reel/core'
 import { useXHubReelConfig } from '@xhub-reel/core/api'
+import {
+  FeedLoadingState,
+  FeedErrorState,
+  FeedEmptyState,
+  FeedNoConfigState,
+} from '@xhub-reel/ui'
 import { VideoFeed, type VideoFeedRef, type VideoFeedProps } from './VideoFeed'
 import { useVideoFeed } from '../hooks/useVideoFeed'
+import {
+  VideoEnginePoolProvider,
+  usePoolOrchestration,
+  type VideoEnginePoolProviderProps,
+} from '../hooks/useVideoEnginePool'
 
 // =============================================================================
 // TYPES
 // =============================================================================
 
-export interface ConnectedVideoFeedProps extends Omit<VideoFeedProps, 'videos' | 'isLoading' | 'hasMore' | 'onLoadMore'> {
+export interface ConnectedVideoFeedProps
+  extends Omit<VideoFeedProps, 'videos' | 'isLoading' | 'hasMore' | 'onLoadMore'> {
   /**
    * XHubReelConfig for API connection
    * Optional if wrapped in XHubReelProvider with config
@@ -76,6 +92,26 @@ export interface ConnectedVideoFeedProps extends Omit<VideoFeedProps, 'videos' |
   initialMuted?: boolean
 
   /**
+   * Enable Video Engine Pool for instant playback
+   * - When `true`: Uses pre-loading and pre-decoding for seamless swipe
+   * - When `false`: Uses standard video loading (simpler, less memory)
+   * @default true
+   */
+  pooling?: boolean
+
+  /**
+   * Pool configuration (only used when pooling=true)
+   */
+  poolConfig?: VideoEnginePoolProviderProps['config']
+
+  /**
+   * Force HLS.js over native HLS (only used when pooling=true)
+   * Recommended for WebViews (especially iOS) for better preloading control
+   * @default auto-detect based on platform
+   */
+  forceHLSJS?: boolean
+
+  /**
    * Called when videos are successfully fetched
    */
   onFetchSuccess?: (videos: Video[]) => void
@@ -102,97 +138,67 @@ export interface ConnectedVideoFeedProps extends Omit<VideoFeedProps, 'videos' |
 }
 
 // =============================================================================
-// STYLES
+// INNER COMPONENT (with pool orchestration)
 // =============================================================================
 
-const stateStyles = {
-  container: {
-    position: 'fixed' as const,
-    inset: 0,
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.background,
-    color: colors.text,
-    gap: spacing[4],
-  } satisfies CSSProperties,
-
-  spinner: {
-    width: 40,
-    height: 40,
-    borderWidth: 3,
-    borderStyle: 'solid',
-    borderColor: 'rgba(255, 255, 255, 0.2)',
-    borderTopColor: colors.accent,
-    borderRadius: radii.full,
-    animation: 'xhub-reel-spin 1s linear infinite',
-  } satisfies CSSProperties,
-
-  text: {
-    fontSize: fontSizes.md,
-    color: colors.textSecondary,
-    textAlign: 'center' as const,
-    maxWidth: 280,
-    lineHeight: 1.5,
-  } satisfies CSSProperties,
-
-  button: {
-    padding: `${spacing[3]}px ${spacing[6]}px`,
-    backgroundColor: colors.accent,
-    color: colors.text,
-    border: 'none',
-    borderRadius: radii.md,
-    fontSize: fontSizes.sm,
-    fontWeight: fontWeights.semibold,
-    cursor: 'pointer',
-  } satisfies CSSProperties,
-
-  errorIcon: {
-    fontSize: 48,
-    marginBottom: spacing[2],
-  } satisfies CSSProperties,
+interface ConnectedVideoFeedInnerProps
+  extends Omit<VideoFeedProps, 'isLoading' | 'hasMore' | 'onLoadMore'> {
+  videos: Video[]
+  isLoading: boolean
+  hasMore: boolean
+  onLoadMore: () => Promise<void>
+  /** Enable pool orchestration */
+  usePooling: boolean
 }
 
-// =============================================================================
-// DEFAULT RENDERS
-// =============================================================================
+const ConnectedVideoFeedInner = forwardRef<VideoFeedRef, ConnectedVideoFeedInnerProps>(
+  (
+    {
+      videos,
+      isLoading,
+      hasMore,
+      onLoadMore,
+      onVideoChange,
+      initialIndex = 0,
+      usePooling,
+      ...feedProps
+    },
+    ref
+  ) => {
+    const [currentIndex, setCurrentIndex] = useState(initialIndex)
 
-const DefaultLoading = () => (
-  <div style={stateStyles.container}>
-    <style>{`
-      @keyframes xhub-reel-spin {
-        to { transform: rotate(360deg); }
-      }
-    `}</style>
-    <div style={stateStyles.spinner} />
-    <p style={stateStyles.text}>Đang tải video...</p>
-  </div>
+    // Enable pool orchestration when pooling is active
+    // This preloads adjacent videos for instant playback
+    usePoolOrchestration(usePooling ? currentIndex : -1, usePooling ? videos : [])
+
+    // Handle video change
+    const handleVideoChange = useCallback(
+      (video: Video, index: number) => {
+        setCurrentIndex(index)
+        onVideoChange?.(video, index)
+      },
+      [onVideoChange]
+    )
+
+    return (
+      <VideoFeed
+        ref={ref}
+        videos={videos}
+        isLoading={isLoading}
+        hasMore={hasMore}
+        onLoadMore={onLoadMore}
+        onVideoChange={handleVideoChange}
+        initialIndex={initialIndex}
+        {...feedProps}
+      />
+    )
+  }
 )
 
-const DefaultError = ({ error, retry }: { error: Error; retry: () => void }) => (
-  <div style={stateStyles.container}>
-    <div style={stateStyles.errorIcon}>😕</div>
-    <p style={stateStyles.text}>
-      {error.message || 'Có lỗi xảy ra khi tải video'}
-    </p>
-    <button style={stateStyles.button} onClick={retry}>
-      Thử lại
-    </button>
-  </div>
-)
-
-const DefaultEmpty = () => (
-  <div style={stateStyles.container}>
-    <div style={stateStyles.errorIcon}>📭</div>
-    <p style={stateStyles.text}>
-      Không có video nào để hiển thị
-    </p>
-  </div>
-)
+ConnectedVideoFeedInner.displayName = 'ConnectedVideoFeedInner'
 
 // =============================================================================
-// COMPONENT
+// MAIN COMPONENT
 // =============================================================================
 
 export const ConnectedVideoFeed = forwardRef<VideoFeedRef, ConnectedVideoFeedProps>(
@@ -205,11 +211,14 @@ export const ConnectedVideoFeed = forwardRef<VideoFeedRef, ConnectedVideoFeedPro
       pageSize = 10,
       initialVideos,
       initialMuted = true,
+      pooling = true,
+      poolConfig,
+      forceHLSJS,
       onFetchSuccess,
       onFetchError,
-      renderLoading = () => <DefaultLoading />,
-      renderError = (error, retry) => <DefaultError error={error} retry={retry} />,
-      renderEmpty = () => <DefaultEmpty />,
+      renderLoading,
+      renderError,
+      renderEmpty,
       // Pass through VideoFeed props
       onVideoChange,
       onLike,
@@ -254,36 +263,40 @@ export const ConnectedVideoFeed = forwardRef<VideoFeedRef, ConnectedVideoFeedPro
       refetch()
     }, [refetch])
 
+    // =========================================================================
+    // STATE RENDERING
+    // =========================================================================
+
     // No config provided
     if (!config) {
-      return (
-        <div style={stateStyles.container}>
-          <div style={stateStyles.errorIcon}>⚠️</div>
-          <p style={stateStyles.text}>
-            Chưa cấu hình API. Vui lòng wrap component trong XHubReelProvider với config hoặc truyền config prop.
-          </p>
-        </div>
-      )
+      return <FeedNoConfigState />
     }
 
     // Loading state
     if (isLoading && videos.length === 0) {
-      return renderLoading()
+      return renderLoading ? renderLoading() : <FeedLoadingState />
     }
 
     // Error state
     if (error && videos.length === 0) {
-      return renderError(error, handleRetry)
+      return renderError ? (
+        renderError(error, handleRetry)
+      ) : (
+        <FeedErrorState error={error} onRetry={handleRetry} />
+      )
     }
 
     // Empty state
     if (!isLoading && videos.length === 0) {
-      return renderEmpty()
+      return renderEmpty ? renderEmpty() : <FeedEmptyState />
     }
 
-    // Render feed
-    return (
-      <VideoFeed
+    // =========================================================================
+    // FEED RENDERING
+    // =========================================================================
+
+    const feedContent = (
+      <ConnectedVideoFeedInner
         ref={ref}
         videos={videos}
         isLoading={isFetchingMore}
@@ -295,11 +308,32 @@ export const ConnectedVideoFeed = forwardRef<VideoFeedRef, ConnectedVideoFeedPro
         onShare={onShare}
         onAuthorClick={onAuthorClick}
         initialMuted={initialMuted}
+        usePooling={pooling}
         {...videoFeedProps}
       />
     )
+
+    // Wrap with VideoEnginePoolProvider when pooling is enabled
+    if (pooling) {
+      return (
+        <VideoEnginePoolProvider
+          config={poolConfig}
+          forceHLSJS={forceHLSJS}
+          onFirstFrameReady={(slot) => {
+            console.log('[ConnectedVideoFeed] First frame ready:', slot.videoId)
+          }}
+          onError={(slot, err) => {
+            console.warn('[ConnectedVideoFeed] Slot error:', slot.videoId, err)
+          }}
+        >
+          {feedContent}
+        </VideoEnginePoolProvider>
+      )
+    }
+
+    // Without pooling - simpler rendering
+    return feedContent
   }
 )
 
 ConnectedVideoFeed.displayName = 'ConnectedVideoFeed'
-

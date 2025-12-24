@@ -30,7 +30,6 @@ export {
   type PreloadPriority, // Domain-specific priority enum
 } from './usePreloader'
 export { useMemoryManager, useGlobalMemoryState, type UseMemoryManagerOptions, type UseMemoryManagerReturn } from './useMemoryManager'
-export { useFeedScroll, type UseFeedScrollOptions, type UseFeedScrollReturn } from './useFeedScroll'
 
 // Infinite scroll via IntersectionObserver
 // Use for: Loading more videos when approaching end of feed
@@ -41,4 +40,20 @@ export { useVideoFeed, prefetchVideoFeed, type UseVideoFeedOptions, type UseVide
 
 // High-performance animation hook
 export { useSwipeAnimation, type UseSwipeAnimationOptions, type UseSwipeAnimationReturn } from './useSwipeAnimation'
+
+// Video Engine Pool - High-performance preloading for instant playback
+export {
+  VideoEnginePoolProvider,
+  useVideoEnginePool,
+  useVideoEnginePoolOptional,
+  usePoolOrchestration,
+  usePooledVideo,
+  usePoolStats,
+  usePoolMemoryControl,
+  type VideoEnginePoolProviderProps,
+  type VideoEnginePoolOptions,
+  type EngineSlot,
+  type SlotState,
+  type PlatformConfig,
+} from './useVideoEnginePool'
 

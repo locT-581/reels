@@ -1,14 +1,20 @@
 'use client'
 
 import { useState, useCallback, useRef, useMemo } from 'react'
-import { VideoFeed, ConnectedVideoFeed, type VideoFeedRef } from '@xhub-reel/feed'
+import {
+  VideoFeed,
+  PooledVideoFeed,
+  ConnectedVideoFeed,
+  type VideoFeedRef,
+} from '@xhub-reel/feed'
 import type { Video } from '@xhub-reel/core'
 import { CommentSheet, ShareSheet, Toast } from '@xhub-reel/ui'
 import { mockVideos, mockComments } from '@/lib/mock-data'
 import { useDemoConfig, toXHubReelConfig } from '@/lib/demo-config'
 import { Navigation } from '@/components/Navigation'
-import { Settings, Wifi, WifiOff } from 'lucide-react'
+import { Settings, Wifi, WifiOff, Zap, ChevronUp, ChevronDown, GripVertical } from 'lucide-react'
 import Link from 'next/link'
+import { motion, useDragControls } from 'motion/react'
 
 export default function FeedPage() {
   const feedRef = useRef<VideoFeedRef>(null)
@@ -20,6 +26,15 @@ export default function FeedPage() {
   const refreshToken = useDemoConfig((state) => state.refreshToken)
   const endpoints = useDemoConfig((state) => state.endpoints)
   const debugMode = useDemoConfig((state) => state.debugMode)
+
+  // Pool mode toggle - force HLS.js for better preloading in WebViews
+  const [usePooledFeed, setUsePooledFeed] = useState(true)
+  const [forceHLSJS, setForceHLSJS] = useState(false)
+
+  // Debug panel state
+  const [isPanelCollapsed, setIsPanelCollapsed] = useState(false)
+  const dragControls = useDragControls()
+  const constraintsRef = useRef<HTMLDivElement>(null)
 
   const xhubReelConfig = useMemo(() => {
     if (mode === 'mock' || !baseUrl) {
@@ -116,19 +131,40 @@ export default function FeedPage() {
     hapticEnabled: true,
   }), [handleVideoChange, handleLike, handleComment, handleShare, handleAuthorClick])
 
+  // Pool configuration
+  const poolConfig = useMemo(() => ({
+    maxSlots: 5,
+    preloadBufferTarget: 5,
+    activeBufferTarget: 30,
+  }), [])
+
   return (
     <div className="min-h-screen bg-xhub-reel-bg">
       <Navigation />
 
       {/* Video Feed - Switch between mock and API mode */}
       {isApiMode ? (
+        // API Mode: Use ConnectedVideoFeed with pooling prop
         <ConnectedVideoFeed
           ref={feedRef}
           config={xhubReelConfig}
           pageSize={10}
+          pooling={usePooledFeed}
+          forceHLSJS={forceHLSJS}
+          poolConfig={poolConfig}
+          {...feedProps}
+        />
+      ) : usePooledFeed ? (
+        // Mock Mode with Pooling: Use PooledVideoFeed
+        <PooledVideoFeed
+          ref={feedRef}
+          videos={videos}
+          forceHLSJS={forceHLSJS}
+          poolConfig={poolConfig}
           {...feedProps}
         />
       ) : (
+        // Mock Mode without Pooling: Use VideoFeed
         <VideoFeed
           ref={feedRef}
           videos={videos}
@@ -171,10 +207,30 @@ export default function FeedPage() {
         onClose={() => setToastVisible(false)}
       />
 
-      {/* Mode Indicator - Top Left */}
-      <div className="fixed top-4 left-4 z-40 pointer-events-none">
-        <div className="xhub-reel-glass rounded-xl px-4 py-3 max-w-[220px] pointer-events-auto">
-          <div className="flex items-center gap-2 mb-2">
+      {/* Drag Constraints Container */}
+      <div
+        ref={constraintsRef}
+        className="fixed inset-0 z-40 pointer-events-none"
+      />
+
+      {/* Mode Indicator - Draggable & Collapsible */}
+      <motion.div
+        drag
+        dragControls={dragControls}
+        dragMomentum={false}
+        dragElastic={0.1}
+        dragConstraints={constraintsRef}
+        initial={{ x: 16, y: 160 }}
+        className="fixed z-40 touch-none pointer-events-auto"
+        style={{ top: 0, left: 0 }}
+      >
+        <div className="xhub-reel-glass rounded-xl overflow-hidden max-w-[260px]">
+          {/* Header - Always visible, acts as drag handle */}
+          <div
+            className="flex items-center gap-2 px-4 py-3 cursor-grab active:cursor-grabbing"
+            onPointerDown={(e) => dragControls.start(e)}
+          >
+            <GripVertical className="w-3.5 h-3.5 text-xhub-reel-text-muted" />
             {isApiMode ? (
               <Wifi className="w-4 h-4 text-green-400" />
             ) : (
@@ -183,25 +239,89 @@ export default function FeedPage() {
             <span className="text-xs font-medium text-xhub-reel-text">
               {isApiMode ? 'API Mode' : 'Mock Mode'}
             </span>
-            <Link
-              href="/settings"
-              className="ml-auto p-1 rounded hover:bg-xhub-reel-surface transition-colors"
-              title="Settings"
-            >
-              <Settings className="w-3.5 h-3.5 text-xhub-reel-text-muted" />
-            </Link>
-          </div>
-          {isApiMode && baseUrl && (
-            <div className="text-xs text-xhub-reel-text-muted truncate">
-              {baseUrl}
+            <div className="ml-auto flex items-center gap-1">
+              <Link
+                href="/settings"
+                className="p-1 rounded hover:bg-xhub-reel-surface transition-colors"
+                title="Settings"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Settings className="w-3.5 h-3.5 text-xhub-reel-text-muted" />
+              </Link>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setIsPanelCollapsed(!isPanelCollapsed)
+                }}
+                className="p-1 rounded hover:bg-xhub-reel-surface transition-colors"
+                title={isPanelCollapsed ? 'Mở rộng' : 'Thu gọn'}
+              >
+                {isPanelCollapsed ? (
+                  <ChevronDown className="w-3.5 h-3.5 text-xhub-reel-text-muted" />
+                ) : (
+                  <ChevronUp className="w-3.5 h-3.5 text-xhub-reel-text-muted" />
+                )}
+              </button>
             </div>
-          )}
-          <div className="text-xs text-xhub-reel-text-secondary mt-1">
-            {currentVideo?.author.displayName || 'Video'} •{' '}
-            {feedRef.current ? `${feedRef.current.activeIndex + 1}/${feedRef.current.totalSlides}` : '1/?'}
           </div>
+
+          {/* Collapsible Content */}
+          <motion.div
+            initial={false}
+            animate={{
+              height: isPanelCollapsed ? 0 : 'auto',
+              opacity: isPanelCollapsed ? 0 : 1,
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 400,
+              damping: 30,
+            }}
+            className="overflow-hidden"
+          >
+            <div className="px-4 pb-3">
+              {isApiMode && baseUrl && (
+                <div className="text-xs text-xhub-reel-text-muted truncate">
+                  {baseUrl}
+                </div>
+              )}
+              <div className="text-xs text-xhub-reel-text-secondary mt-1">
+                {currentVideo?.author.displayName || 'Video'} •{' '}
+                {feedRef.current ? `${feedRef.current.activeIndex + 1}/${feedRef.current.totalSlides}` : '1/?'}
+              </div>
+
+              {/* Pool Controls */}
+              <div className="mt-3 pt-3 border-t border-xhub-reel-surface space-y-2">
+                <button
+                  onClick={() => setUsePooledFeed(!usePooledFeed)}
+                  className={`flex items-center gap-2 w-full px-2 py-1.5 rounded-lg text-xs transition-colors ${
+                    usePooledFeed
+                      ? 'bg-xhub-reel-accent/20 text-xhub-reel-accent'
+                      : 'bg-xhub-reel-surface text-xhub-reel-text-muted'
+                  }`}
+                >
+                  <Zap className="w-3.5 h-3.5" />
+                  <span>Engine Pool: {usePooledFeed ? 'ON' : 'OFF'}</span>
+                </button>
+
+                {usePooledFeed && (
+                  <button
+                    onClick={() => setForceHLSJS(!forceHLSJS)}
+                    className={`flex items-center gap-2 w-full px-2 py-1.5 rounded-lg text-xs transition-colors ${
+                      forceHLSJS
+                        ? 'bg-orange-500/20 text-orange-400'
+                        : 'bg-xhub-reel-surface text-xhub-reel-text-muted'
+                    }`}
+                  >
+                    <span className="w-3.5 h-3.5 text-center">⚙️</span>
+                    <span>Force HLS.js: {forceHLSJS ? 'ON' : 'Auto'}</span>
+                  </button>
+                )}
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Instructions - Bottom Center */}
       <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-40 pointer-events-none">

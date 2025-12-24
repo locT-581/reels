@@ -1,5 +1,19 @@
 # xhub-reel-demo
 
+## 0.0.6
+
+### Patch Changes
+
+- Integrate player-engine and enhance video feed with pooling support for improved performance
+- Updated dependencies
+  - @xhub-reel/player-engine@0.0.3
+  - @xhub-reel/player@0.2.3
+  - @xhub-reel/core@0.2.3
+  - @xhub-reel/feed@0.2.3
+  - @xhub-reel/ui@0.2.3
+  - @xhub-reel/embed@0.2.3
+  - @xhub-reel/player-core@0.0.4
+
 ## 0.0.5
 
 ### Patch Changes

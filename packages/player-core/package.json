@@ -1,6 +1,6 @@
 {
   "name": "@xhub-reel/player-core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Core video playback engine for XHubReel (no UI dependency)",
   "license": "MIT",
   "author": "XHubReel Team",

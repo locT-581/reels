@@ -20,8 +20,9 @@ export const videoFeedItemStyles = {
   placeholder: {
     position: 'absolute' as const,
     inset: 0,
-    backgroundSize: 'cover',
+    backgroundSize: 'contain',
     backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat' as const,
   } satisfies CSSProperties,
 
   // Tap area for play/pause

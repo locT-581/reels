@@ -10,6 +10,8 @@ export default defineConfig({
     'react-dom',
     '@xhub-reel/core',
     '@xhub-reel/player',
+    '@xhub-reel/player-engine',
+    '@xhub-reel/ui',
     '@tanstack/react-query',
     'motion',
     'motion/react',

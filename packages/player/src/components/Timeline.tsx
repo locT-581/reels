@@ -1,5 +1,5 @@
 /**
- * Timeline - High-performance video progress bar
+ * Timeline - High-performance video progress bar with seek preview
  *
  * Features:
  * - Uses requestAnimationFrame instead of state (zero re-renders)
@@ -7,6 +7,7 @@
  * - Two modes: collapsed (simple) and expanded (full controls)
  * - Touch-friendly scrubbing
  * - Buffer progress indicator
+ * - **Thumbnail preview while seeking** (optional)
  * - Full accessibility support (ARIA)
  *
  * @remarks
@@ -53,6 +54,21 @@ export interface TimelineProps {
   onSeekEnd?: (time: number) => void
   /** Called when expanded state should toggle */
   onExpandedChange?: (expanded: boolean) => void
+
+  // ============ SEEK PREVIEW OPTIONS ============
+  /** Enable thumbnail preview while seeking (default: false) */
+  showPreview?: boolean
+  /**
+   * Get thumbnail URL for a specific time (seconds)
+   * If not provided, only time indicator will be shown
+   * @example (time) => `/thumbnails/video-${Math.floor(time)}.jpg`
+   */
+  getThumbnailUrl?: (time: number) => string | undefined
+  /** Preview thumbnail width (default: 120) */
+  previewWidth?: number
+  /** Preview thumbnail height (default: 68 - 16:9 ratio) */
+  previewHeight?: number
+
   /** Custom styles */
   style?: CSSProperties
   /** Custom className */
@@ -74,6 +90,9 @@ export interface TimelineRef {
 const TARGET_FPS = 30
 const FRAME_INTERVAL = 1000 / TARGET_FPS // ~33.3ms
 
+/** Preview popup animation duration */
+const PREVIEW_ANIMATION_DURATION = 150
+
 // =============================================================================
 // STYLES
 // =============================================================================
@@ -84,11 +103,10 @@ const styles = {
     bottom: 0,
     left: 0,
     right: 0,
-    zIndex: zIndices.sticky, // Use design token instead of hardcoded value
+    zIndex: zIndices.sticky,
     touchAction: 'none',
     userSelect: 'none' as const,
     WebkitUserSelect: 'none' as const,
-    // add animation for the container
     transition: 'all 0.125s ease-in-out',
   } satisfies CSSProperties,
 
@@ -123,6 +141,12 @@ const styles = {
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
     padding: `${spacing[1]}px ${spacing[3]}px`,
     borderRadius: radii.md,
+  } satisfies CSSProperties,
+
+  // Track wrapper (for positioning preview)
+  trackWrapper: {
+    position: 'relative' as const,
+    width: '100%',
   } satisfies CSSProperties,
 
   // Track
@@ -190,6 +214,66 @@ const styles = {
     bottom: -12,
     cursor: 'pointer',
   } satisfies CSSProperties,
+
+  // ============ SEEK PREVIEW STYLES ============
+  previewContainer: {
+    position: 'absolute' as const,
+    bottom: '100%',
+    marginBottom: spacing[3],
+    transform: 'translateX(-50%)',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    alignItems: 'center',
+    gap: spacing[1],
+    pointerEvents: 'none' as const,
+    zIndex: zIndices.popover,
+    // Animation
+    opacity: 0,
+    transition: `opacity ${PREVIEW_ANIMATION_DURATION}ms ease, transform ${PREVIEW_ANIMATION_DURATION}ms ease`,
+  } satisfies CSSProperties,
+
+  previewContainerVisible: {
+    opacity: 1,
+  } satisfies CSSProperties,
+
+  previewThumbnail: {
+    borderRadius: radii.lg,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+    border: '2px solid rgba(255, 255, 255, 0.2)',
+  } satisfies CSSProperties,
+
+  previewImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover' as const,
+  } satisfies CSSProperties,
+
+  previewTime: {
+    fontSize: fontSizes.xs,
+    fontWeight: fontWeights.semibold,
+    color: colors.text,
+    textShadow: shadows.text,
+    fontVariantNumeric: 'tabular-nums',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backdropFilter: 'blur(8px)',
+    WebkitBackdropFilter: 'blur(8px)',
+    padding: `${spacing[1]}px ${spacing[2]}px`,
+    borderRadius: radii.full,
+    whiteSpace: 'nowrap' as const,
+  } satisfies CSSProperties,
+
+  // Preview indicator line (connects preview to scrubber)
+  previewLine: {
+    position: 'absolute' as const,
+    bottom: 0,
+    width: 2,
+    height: spacing[2],
+    backgroundColor: colors.text,
+    borderRadius: radii.full,
+    transform: 'translateX(-50%)',
+  } satisfies CSSProperties,
 }
 
 // =============================================================================
@@ -218,6 +302,11 @@ function getBufferedEnd(video: HTMLVideoElement): number {
   return video.buffered.end(video.buffered.length - 1)
 }
 
+/** Clamp position percentage to keep preview on screen (10% - 90%) */
+function clampPreviewPosition(percent: number): number {
+  return Math.max(10, Math.min(90, percent))
+}
+
 // =============================================================================
 // COMPONENT
 // =============================================================================
@@ -231,6 +320,11 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps>(
       onSeek,
       onSeekEnd,
       onExpandedChange,
+      // Preview options
+      showPreview = false,
+      getThumbnailUrl,
+      previewWidth = 120,
+      previewHeight = 68,
       style,
       className = '',
     },
@@ -243,6 +337,11 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps>(
     const scrubberRef = useRef<HTMLDivElement>(null)
     const timeDisplayRef = useRef<HTMLSpanElement>(null)
     const durationCacheRef = useRef<number>(0)
+
+    // Preview refs (DOM manipulation for performance)
+    const previewContainerRef = useRef<HTMLDivElement>(null)
+    const previewImageRef = useRef<HTMLImageElement>(null)
+    const previewTimeRef = useRef<HTMLSpanElement>(null)
 
     // ARIA state (lightweight state for accessibility, updated less frequently)
     const [ariaValues, setAriaValues] = useState({ currentTime: 0, duration: 0 })
@@ -330,31 +429,71 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps>(
       }
     }, [animationLoop])
 
-    // Calculate time from position
-    const getTimeFromPosition = useCallback((clientX: number): number => {
+    // Calculate time and percentage from position
+    const getPositionData = useCallback((clientX: number): { time: number; percent: number } => {
       const container = containerRef.current
       const video = videoRef.current
-      if (!container || !video) return 0
+      if (!container || !video) return { time: 0, percent: 0 }
 
       const rect = container.getBoundingClientRect()
       const x = clientX - rect.left
       const percent = Math.max(0, Math.min(1, x / rect.width))
-      return percent * (video.duration || 0)
+      const time = percent * (video.duration || 0)
+      return { time, percent: percent * 100 }
     }, [videoRef])
+
+    // Update preview position and content (DOM manipulation)
+    const updatePreview = useCallback((time: number, percent: number, visible: boolean) => {
+      if (!showPreview) return
+
+      const previewContainer = previewContainerRef.current
+      const previewImage = previewImageRef.current
+      const previewTime = previewTimeRef.current
+
+      if (!previewContainer) return
+
+      if (visible) {
+        // Position preview (clamped to stay on screen)
+        const clampedPercent = clampPreviewPosition(percent)
+        previewContainer.style.left = `${clampedPercent}%`
+        previewContainer.style.opacity = '1'
+        previewContainer.style.transform = 'translateX(-50%) translateY(0)'
+
+        // Update time text
+        const duration = durationCacheRef.current
+        if (previewTime) {
+          previewTime.textContent = `${formatTime(time)} / ${formatTime(duration)}`
+        }
+
+        // Update thumbnail (if available)
+        if (previewImage && getThumbnailUrl) {
+          const thumbnailUrl = getThumbnailUrl(time)
+          if (thumbnailUrl) {
+            previewImage.src = thumbnailUrl
+            previewImage.style.display = 'block'
+          } else {
+            previewImage.style.display = 'none'
+          }
+        }
+      } else {
+        // Hide preview
+        previewContainer.style.opacity = '0'
+        previewContainer.style.transform = 'translateX(-50%) translateY(8px)'
+      }
+    }, [showPreview, getThumbnailUrl])
 
     // Handle seek
     const handleSeekStart = useCallback((clientX: number) => {
       isSeekingRef.current = true
       onSeekStart?.()
 
-      const time = getTimeFromPosition(clientX)
+      const { time, percent } = getPositionData(clientX)
       onSeek?.(time)
 
       // Update visual immediately
       const video = videoRef.current
       if (video && progressRef.current) {
         const duration = video.duration || durationCacheRef.current || 1
-        const percent = (time / duration) * 100
         progressRef.current.style.width = `${percent}%`
         if (scrubberRef.current) {
           scrubberRef.current.style.left = `${percent}%`
@@ -363,19 +502,21 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps>(
           timeDisplayRef.current.textContent = `${formatTime(time)} / ${formatTime(duration)}`
         }
       }
-    }, [getTimeFromPosition, onSeek, onSeekStart, videoRef])
+
+      // Show preview
+      updatePreview(time, percent, true)
+    }, [getPositionData, onSeek, onSeekStart, videoRef, updatePreview])
 
     const handleSeekMove = useCallback((clientX: number) => {
       if (!isSeekingRef.current) return
 
-      const time = getTimeFromPosition(clientX)
+      const { time, percent } = getPositionData(clientX)
       onSeek?.(time)
 
       // Update visual immediately
       const video = videoRef.current
       if (video && progressRef.current) {
         const duration = video.duration || durationCacheRef.current || 1
-        const percent = (time / duration) * 100
         progressRef.current.style.width = `${percent}%`
         if (scrubberRef.current) {
           scrubberRef.current.style.left = `${percent}%`
@@ -384,13 +525,16 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps>(
           timeDisplayRef.current.textContent = `${formatTime(time)} / ${formatTime(duration)}`
         }
       }
-    }, [getTimeFromPosition, onSeek, videoRef])
+
+      // Update preview position
+      updatePreview(time, percent, true)
+    }, [getPositionData, onSeek, videoRef, updatePreview])
 
     const handleSeekEnd = useCallback((clientX: number) => {
       if (!isSeekingRef.current) return
 
       isSeekingRef.current = false
-      const time = getTimeFromPosition(clientX)
+      const { time } = getPositionData(clientX)
       onSeekEnd?.(time)
 
       // Apply seek to video
@@ -398,7 +542,12 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps>(
       if (video) {
         video.currentTime = time
       }
-    }, [getTimeFromPosition, onSeekEnd, videoRef])
+
+      // Hide preview with delay for smooth animation
+      setTimeout(() => {
+        updatePreview(0, 0, false)
+      }, 100)
+    }, [getPositionData, onSeekEnd, videoRef, updatePreview])
 
     // Touch handlers
     const handleTouchStart = useCallback((e: React.TouchEvent) => {
@@ -506,6 +655,13 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps>(
       ...(expanded ? styles.scrubberVisible : {}),
     }
 
+    // Preview thumbnail styles
+    const previewThumbnailStyles: CSSProperties = {
+      ...styles.previewThumbnail,
+      width: previewWidth,
+      height: previewHeight,
+    }
+
     return (
       <div
         ref={containerRef}
@@ -534,19 +690,50 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps>(
           </div>
         )}
 
-        {/* Track */}
-        <div style={trackStyles} aria-hidden="true">
-          {/* Larger touch area */}
-          <div style={styles.touchArea} />
+        {/* Track wrapper (contains track + preview) */}
+        <div style={styles.trackWrapper}>
+          {/* Seek Preview (positioned above track) */}
+          {showPreview && (
+            <div
+              ref={previewContainerRef}
+              style={styles.previewContainer}
+              aria-hidden="true"
+            >
+              {/* Thumbnail (if getThumbnailUrl provided) */}
+              {getThumbnailUrl && (
+                <div style={previewThumbnailStyles}>
+                  <img
+                    ref={previewImageRef}
+                    style={styles.previewImage}
+                    alt="Seek preview"
+                  />
+                </div>
+              )}
 
-          {/* Buffer progress */}
-          <div ref={bufferRef} style={styles.buffer} />
+              {/* Time indicator */}
+              <span ref={previewTimeRef} style={styles.previewTime}>
+                0:00 / 0:00
+              </span>
 
-          {/* Play progress */}
-          <div ref={progressRef} style={styles.progress} />
+              {/* Indicator line */}
+              <div style={styles.previewLine} />
+            </div>
+          )}
 
-          {/* Scrubber handle (expanded only) */}
-          {expanded && <div ref={scrubberRef} style={scrubberStyles} />}
+          {/* Track */}
+          <div style={trackStyles} aria-hidden="true">
+            {/* Larger touch area */}
+            <div style={styles.touchArea} />
+
+            {/* Buffer progress */}
+            <div ref={bufferRef} style={styles.buffer} />
+
+            {/* Play progress */}
+            <div ref={progressRef} style={styles.progress} />
+
+            {/* Scrubber handle (expanded only) */}
+            {expanded && <div ref={scrubberRef} style={scrubberStyles} />}
+          </div>
         </div>
       </div>
     )
@@ -554,4 +741,3 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps>(
 )
 
 Timeline.displayName = 'Timeline'
-

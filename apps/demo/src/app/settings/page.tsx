@@ -14,7 +14,9 @@ import {
   Bug,
   Wifi,
   WifiOff,
+  ArrowLeft,
 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { Navigation } from '@/components/Navigation'
 import {
   useDemoConfig,
@@ -23,6 +25,7 @@ import {
 } from '@/lib/demo-config'
 
 export default function SettingsPage() {
+  const router = useRouter()
   const config = useDemoConfig()
   const [isTesting, setIsTesting] = useState(false)
 
@@ -65,6 +68,15 @@ export default function SettingsPage() {
       {/* Header */}
       <header className="sticky top-0 z-50 xhub-reel-glass border-b border-xhub-reel-border">
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-3">
+          {/* Back Button */}
+          <button
+            onClick={() => router.back()}
+            className="w-10 h-10 rounded-xl bg-xhub-reel-surface border border-xhub-reel-border flex items-center justify-center text-xhub-reel-text-secondary hover:text-xhub-reel-text hover:border-xhub-reel-text-muted active:scale-95 transition-all"
+            aria-label="Quay lại"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          
           <div className="w-10 h-10 rounded-xl bg-xhub-reel-accent/20 flex items-center justify-center">
             <Settings className="w-5 h-5 text-xhub-reel-accent" />
           </div>
